@@ -14,8 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
-        <ProviderLayout>{children}</ProviderLayout>
+      <body className="antialiased h-dvh">
+        <ProviderLayout>
+          <div className="w-screen h-full m-auto">{children}</div>
+        </ProviderLayout>
       </body>
     </html>
   )
