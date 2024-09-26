@@ -1,6 +1,16 @@
-import type { Config } from "tailwindcss";
+import { merge } from "lodash"
+import type { Config } from "tailwindcss"
+import {
+  ColorGroundConfig,
+  tailwindColorConfig,
+  tailwindElevationConfig,
+  tailwindSpacingConfig,
+  tailwindRadiusConfig,
+  tailwindMotionsConfig,
+  tailwindTypographyConfig,
+} from "@eolluga/eolluga-ui"
 
-const config: Config = {
+const baseConfig: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -15,5 +25,16 @@ const config: Config = {
     },
   },
   plugins: [],
-};
-export default config;
+}
+
+const config: Config = merge(
+  baseConfig,
+  ColorGroundConfig,
+  tailwindElevationConfig,
+  tailwindSpacingConfig,
+  tailwindRadiusConfig,
+  tailwindMotionsConfig,
+  tailwindTypographyConfig,
+)
+
+export default config

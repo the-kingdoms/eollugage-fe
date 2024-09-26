@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@eolluga/eolluga-ui": "^3.0.2",
+    "lodash": "^4.17.21",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
     "@types/eslint-plugin-jsx-a11y": "^6",
+    "@types/lodash": "^4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
