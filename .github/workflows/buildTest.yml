@@ -1,0 +1,35 @@
+name: Next.js Build Test
+
+on:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+
+      - name: Cache yarn
+        uses: actions/cache@v4
+        id: yarn-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Run build test
+        run: yarn build
