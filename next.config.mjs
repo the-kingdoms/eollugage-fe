@@ -1,4 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = { transpilePackages: ["jotai-devtools"] }
+const nextConfig = { transpilePackages: ['jotai-devtools'] }
 
 export default nextConfig
