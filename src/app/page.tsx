@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import LoginButton from '@/component/main/loginButton'
 import FlexBox from '@/component/shared/flexbox'
 
 export default function Home() {
@@ -14,6 +15,11 @@ export default function Home() {
       <FlexBox direction="col" className={`${styles.bodyAnimation} justify-between w-full h-full`}>
         <div className="text-[#A8A8A8] body-02-regular">간편하게 일하는 법</div>
         <div className={styles.backgroundImage} />
+        <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-04">
+          <LoginButton type="apple" />
+          <LoginButton type="kakao" />
+          <LoginButton type="phone" />
+        </FlexBox>
       </FlexBox>
     </FlexBox>
   )
