@@ -14,6 +14,11 @@
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/quotes": "off",
+    "@typescript-eslint/dot-notation": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/button-has-type": "off"
   }
 }

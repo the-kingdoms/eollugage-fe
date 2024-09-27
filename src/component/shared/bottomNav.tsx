@@ -1,20 +1,23 @@
-import { HorizontalNav } from "@eolluga/eolluga-ui"
-import React from "react"
+import { HorizontalNav } from '@eolluga/eolluga-ui'
+import React from 'react'
 
 const navItem = [
   {
-    name: "홈",
-    icon: "home",
+    name: '홈',
+    icon: 'home',
+    // eslint-disable-next-line no-console
     onClick: () => console.log(1),
   },
   {
-    name: "근무 관리",
-    icon: "people",
+    name: '근무 관리',
+    icon: 'people',
+    // eslint-disable-next-line no-console
     onClick: () => console.log(1),
   },
   {
-    name: "마이",
-    icon: "person_outlined",
+    name: '마이',
+    icon: 'person_outlined',
+    // eslint-disable-next-line no-console
     onClick: () => console.log(1),
   },
 ]

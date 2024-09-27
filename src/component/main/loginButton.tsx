@@ -1,8 +1,7 @@
 'use client'
 
-import { Icon } from '@eolluga/eolluga-ui'
-import FlexBox from '../shared/flexbox'
 import { useRouter } from 'next/navigation'
+import { Icon } from '@eolluga/eolluga-ui'
 
 interface LoginButtonProps {
   type: 'apple' | 'kakao' | 'phone'
@@ -41,7 +40,7 @@ export default function LoginButton({ type }: LoginButtonProps) {
       case 'phone':
         return <Icon icon="device_phone" className="fill-white" />
       default:
-        break
+        return null
     }
   }
 
