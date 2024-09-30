@@ -19,6 +19,7 @@
     "@typescript-eslint/quotes": "off",
     "@typescript-eslint/dot-notation": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "linebreak-style": 0
   }
 }
