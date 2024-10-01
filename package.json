@@ -10,18 +10,25 @@
   },
   "dependencies": {
     "@eolluga/eolluga-ui": "^3.0.2",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
+    "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-query-devtools": "^5.58.0",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
     "framer-motion": "^11.7.0",
     "jotai": "^2.10.0",
     "jotai-devtools": "^0.10.1",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.446.0",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
-    "react-modal-sheet": "^3.1.0"
+    "react-modal-sheet": "^3.1.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/eslint-plugin-jsx-a11y": "^6",
