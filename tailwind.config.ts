@@ -23,6 +23,7 @@ const baseConfig: Config = {
 const config: Config = merge(
   baseConfig,
   ColorGroundConfig,
+  tailwindColorConfig,
   tailwindElevationConfig,
   tailwindSpacingConfig,
   tailwindRadiusConfig,
