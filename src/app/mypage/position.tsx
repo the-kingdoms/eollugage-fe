@@ -53,22 +53,18 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
   }
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result
-
     if (!destination) return
-
     const updatedList = Array.from(positionList)
-
     if (source.droppableId === destination.droppableId) {
-      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
+      const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
       if (sourceGroup) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
         sourceGroup!.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
     } else {
-      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
-      const destinationGroup = updatedList.find(group => group.id === destination.droppableId)
-
+      const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
+      const destinationGroup = updatedList.find((group) => group.id === destination.droppableId)
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)
         destinationGroup.items.splice(destination.index, 0, movedItem)

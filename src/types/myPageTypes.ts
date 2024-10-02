@@ -17,3 +17,5 @@ export interface PositionGroupProps {
   index: number
   length: number
 }
+
+export type SettingsView = 'alarm' | 'appInfo' | 'businessInfo' | 'privacy' | 'quit' | 'settings'

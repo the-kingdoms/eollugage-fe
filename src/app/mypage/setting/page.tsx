@@ -31,9 +31,9 @@ export default function SettingPage() {
             <ul className="flex flex-col gap-spacing-02 p-4">
               <li className="flex justify-between py-spacing-04">
                 <span>알림</span>
-                <div onClick={() => handleChangeView('alarm')}>
+                <button onClick={() => handleChangeView('alarm')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
             </ul>
 
@@ -42,15 +42,15 @@ export default function SettingPage() {
             <ul className="flex flex-col gap-spacing-02 p-4">
               <li className="flex justify-between py-spacing-04">
                 <span>개인정보 처리방침</span>
-                <div onClick={() => handleChangeView('privacy')}>
+                <button onClick={() => handleChangeView('privacy')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
               <li className="flex justify-between py-spacing-04">
                 <span>문의하기</span>
-                <div onClick={() => router.push('/mypage/setting/inquire')}>
+                <button onClick={() => router.push('/mypage/setting/inquire')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
             </ul>
 
@@ -59,15 +59,15 @@ export default function SettingPage() {
             <ul className="flex flex-col gap-spacing-02 p-4">
               <li className="flex justify-between py-spacing-04">
                 <span>앱 버전</span>
-                <div onClick={() => handleChangeView('appInfo')}>
+                <button onClick={() => handleChangeView('appInfo')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
               <li className="flex justify-between py-spacing-04">
                 <span>사업자 정보</span>
-                <div onClick={() => handleChangeView('businessInfo')}>
+                <button onClick={() => handleChangeView('businessInfo')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
             </ul>
 
@@ -76,15 +76,15 @@ export default function SettingPage() {
             <ul className="flex flex-col gap-spacing-02 p-4">
               <li className="flex justify-between py-spacing-04">
                 <span>로그아웃</span>
-                <div onClick={() => setIsModalOpen(true)}>
+                <button onClick={() => setIsModalOpen(true)}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
               <li className="flex justify-between py-spacing-04">
                 <span>탈퇴하기</span>
-                <div onClick={() => handleChangeView('quit')}>
+                <button onClick={() => handleChangeView('quit')}>
                   <Icon icon="chevron_right_outlined" />
-                </div>
+                </button>
               </li>
             </ul>
           </div>

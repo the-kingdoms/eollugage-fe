@@ -13,7 +13,7 @@ export default function BottomSheet({
   setPositionList: (value: PositionGroupType[]) => void
   closeBottomSheet: () => void
 }) {
-  const [positions, setPositions] = useState<string[]>(positionList.map(item => item.position))
+  const [positions, setPositions] = useState<string[]>(positionList.map((item) => item.position))
   const [inputValue, setInputValue] = useState<string>('')
 
   const handlePositionsChange = (value: string, index: number) => {
@@ -26,7 +26,7 @@ export default function BottomSheet({
   }
 
   const deletePosition = (id: string) => {
-    const updatedPositionList = positionList.filter(e => e.id !== id)
+    const updatedPositionList = positionList.filter((e) => e.id !== id)
     setPositionList(updatedPositionList)
   }
 
@@ -73,13 +73,12 @@ export default function BottomSheet({
         <div className="flex flex-col justify-between space-y-4 h-[80%]">
           <div className="flex-grow">
             {positionList.map((position, idx) => (
-              <div className="flex justify-between items-center pt-2">
+              <div key={position.id} className="flex justify-between items-center pt-2">
                 <TextField
-                  key={uuidv4()}
                   value={position.position}
                   size="M"
                   style="outlined"
-                  onChange={e => handlePositionsChange(e.target.value, idx)}
+                  onChange={(e) => handlePositionsChange(e.target.value, idx)}
                 />
                 <button className="p-4" onClick={() => deletePosition(position.id)}>
                   <Icon icon="delete" />
@@ -94,7 +93,7 @@ export default function BottomSheet({
               size="M"
               style="outlined"
               placeholder="직책 추가하기"
-              onChange={e => setInputValue(e.target.value)}
+              onChange={(e) => setInputValue(e.target.value)}
             />
           </div>
         </div>

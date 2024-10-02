@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
-import { SettingsView } from './page'
+import { SettingsView } from '@/types/myPageTypes'
 
 export default function QuitPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
   const [isChecked, setIsChecked] = useState(false)
@@ -26,7 +26,18 @@ export default function QuitPage({ handleChangeView }: { handleChangeView: (valu
         </div>
       </div>
       <footer className="w-full py-3 px-4 fixed bottom-4">
-        <div className="mb-4" onClick={() => setIsChecked(!isChecked)}>
+        <div
+          role="checkbox"
+          aria-checked={isChecked}
+          tabIndex={0}
+          className="mb-4"
+          onClick={() => setIsChecked(!isChecked)}
+          onKeyDown={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setIsChecked(!isChecked)
+            }
+          }}
+        >
           <CheckBox alert="동의확인란" size="L" state="enable" title="확인했습니다" />
         </div>
         <ButtonMobile

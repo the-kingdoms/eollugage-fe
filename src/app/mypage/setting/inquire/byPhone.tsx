@@ -1,9 +1,17 @@
+import { ChangeEvent, useCallback, useState } from 'react'
 import { TopBar, TextField, ButtonMobile, SnackBar } from '@eolluga/eolluga-ui'
 import { InquireView } from './page'
-import { ChangeEvent, useState } from 'react'
 
-export default function byPhonePage({ handleChangeView }: { handleChangeView: (value: InquireView) => void }) {
+export default function ByPhonePage({ handleChangeView }: { handleChangeView: (value: InquireView) => void }) {
   const [isClicked, setIsClicked] = useState(false)
+
+  const handleSnackBarClose = useCallback(() => {
+    setIsClicked(false)
+  }, [])
+
+  const handleCopyPhoneNumber = useCallback(() => {
+    setIsClicked(!isClicked)
+  }, [isClicked])
 
   return (
     <div className="pt-4">
@@ -31,11 +39,7 @@ export default function byPhonePage({ handleChangeView }: { handleChangeView: (v
 
       <footer className="w-full py-3 px-4 fixed bottom-4">
         <div className="pb-4">
-          <SnackBar
-            message="고객센터 번호를 복사했어요"
-            open={isClicked}
-            onClose={() => setIsClicked(false)}
-          />
+          <SnackBar message="고객센터 번호를 복사했어요" open={isClicked} onClose={handleSnackBarClose} />
         </div>
         <ButtonMobile
           style="primary"
@@ -43,7 +47,7 @@ export default function byPhonePage({ handleChangeView }: { handleChangeView: (v
           type="text"
           state="enabled"
           text1="번호 복사하기"
-          onClick={() => setIsClicked(!isClicked)}
+          onClick={handleCopyPhoneNumber}
         />
       </footer>
     </div>

@@ -1,5 +1,5 @@
 import { TopBar } from '@eolluga/eolluga-ui'
-import { SettingsView } from './page'
+import { SettingsView } from '@/types/myPageTypes'
 
 export default function AppInfoPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
   return (
