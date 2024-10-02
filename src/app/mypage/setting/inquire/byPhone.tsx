@@ -18,8 +18,8 @@ export default function ByPhonePage({
     setIsClicked(!isClicked)
   }, [isClicked])
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value)
+  const handleInputChange = (value: string) => {
+    setPhoneNumber(value)
   }
 
   return (
@@ -42,7 +42,7 @@ export default function ByPhonePage({
         <TextField
           value={phoneNumber}
           label="고객센터 번호"
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e.target.value)}
           size="L"
           style="outlined"
         />
