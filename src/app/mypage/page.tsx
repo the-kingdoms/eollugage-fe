@@ -1,12 +1,12 @@
 'use client'
 
 // 마이페이지
-import { HorizontalNav, Icon, Avatar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import PositionPage from './position'
-import isOwnerAtom from '@/lib/globalState'
 import { useAtom } from 'jotai'
+import { HorizontalNav, Icon, Avatar } from '@eolluga/eolluga-ui'
+import isOwnerAtom from '@/lib/globalState'
+import PositionPage from './position'
 
 export default function MyPage() {
   const router = useRouter()

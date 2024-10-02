@@ -1,26 +1,23 @@
-import { DragDropContext, DropResult } from 'react-beautiful-dnd'
-import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
 import { useEffect, useState } from 'react'
+import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { v4 as uuidv4 } from 'uuid'
+import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
+import { PositionGroupType } from '@/types/myPageTypes'
 import PositionGroup from './positionGroup'
 import BottomSheet from './bottomSheet'
-
-export interface PositionItem {
-  id: string
-  name: string
-}
-
-export interface PositionGroupType {
-  id: string
-  position: string
-  items: PositionItem[]
-}
 
 // 근무자 직책 설정
 export default function PositionPage({ setCurrentPage }: { setCurrentPage: () => void }) {
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
+  /*
+  useEffect 안에서 positionList를 초기화
+  이렇게 한 이유는 react-beautiful-dnd는 droppableId와 draggableId에 할당된 고유한 id 값을 기준으로 드래그 앤 드롭 위치를 추적하기 때문. 
+  처음 렌더링에서 할당된 id로 드래그 앤 드롭이 작동
+  하지만, 컴포넌트가 재렌더링되면, positionList에 있는 id 값들이 새로 할당. 
+  이 경우, 기존의 draggableId와 droppableId가 변경된 id와 일치하지 않게 되면서 추적불가
+  */
   useEffect(() => {
     setPositionList([
       {

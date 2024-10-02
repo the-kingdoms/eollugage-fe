@@ -1,5 +1,5 @@
-import { SettingsView } from './page'
 import { TopBar } from '@eolluga/eolluga-ui'
+import { SettingsView } from './page'
 
 export default function BusinessInfoPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
   return (

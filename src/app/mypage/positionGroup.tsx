@@ -1,15 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Icon } from '@eolluga/eolluga-ui'
-import { PositionItem } from './position'
-
-interface PositionGroupProps {
-  id: string
-  position: string
-  items: PositionItem[]
-  index: number
-  length: number
-}
+import { PositionGroupProps } from '@/types/myPageTypes'
 
 export default function PositionGroup({ id, position, items, index, length }: PositionGroupProps) {
   return (
@@ -38,7 +30,7 @@ export default function PositionGroup({ id, position, items, index, length }: Po
           </ul>
         )}
       </Droppable>
-      {index !== length - 1 && <div className="h-[12px] bg-[#F4F4F4]" />}
+      {index !== length - 1 && <div className="h-[12px] bg-Gray-10" />}
     </>
   )
 }

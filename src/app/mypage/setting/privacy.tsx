@@ -1,5 +1,5 @@
-import { SettingsView } from './page'
 import { TopBar } from '@eolluga/eolluga-ui'
+import { SettingsView } from './page'
 
 interface PrivacyPolicyContent {
   subTitle: string

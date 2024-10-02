@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
 import ByPhonePage from './byPhone'
-import { useState } from 'react'
 
 export type InquireView = 'byPhone' | 'inquire'
 

@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion'
-import { TextField, Icon } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
-import { PositionGroupType } from './position'
+import { motion } from 'framer-motion'
 import { v4 as uuidv4 } from 'uuid'
+import { TextField, Icon } from '@eolluga/eolluga-ui'
+import { PositionGroupType } from '@/types/myPageTypes'
 
 export default function BottomSheet({
   positionList,

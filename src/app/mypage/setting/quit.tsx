@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
 import { SettingsView } from './page'
-import { useState } from 'react'
 
 export default function QuitPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
   const [isChecked, setIsChecked] = useState(false)
