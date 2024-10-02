@@ -1,1 +1,2 @@
-export { default as WorkRecord } from './work-record/ui/WorkRecord'
+/* eslint-disable import/prefer-default-export */
+export { default as WorkManagement } from './work-management/ui/WorkManagement'

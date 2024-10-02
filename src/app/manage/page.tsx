@@ -1,9 +1,5 @@
-import { WorkRecord } from '@/widgets'
+import { WorkManagement } from '@/widgets'
 
 export default function ManagePage() {
-  return (
-    <div>
-      <WorkRecord />
-    </div>
-  )
+  return <WorkManagement />
 }

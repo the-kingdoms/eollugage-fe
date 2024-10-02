@@ -1,11 +1,11 @@
 import { AttendanceInfo } from '@/features'
 import AttendanceRegister from './AttendanceRegister'
-import WorkRecordHeader from './WorkRecordHeader'
+import WorkManagementWorkerHeader from './WorkManagementWorkerHeader'
 
-export default function WorkRecord() {
+export default function WorkManagementWorker() {
   return (
     <div>
-      <WorkRecordHeader userName="JaneDoe" />
+      <WorkManagementWorkerHeader userName="JaneDoe" />
       <AttendanceRegister />
       <AttendanceInfo />
     </div>
