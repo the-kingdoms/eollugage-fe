@@ -37,7 +37,7 @@ export default function ByPhonePage({
         <TextField
           value="010-4000-9842"
           label="고객센터 번호"
-          onChange={function handleInputChange() {}}
+          onChange={() => {}}
           size="L"
           style="outlined"
         />
