@@ -3,7 +3,7 @@ import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
 export default function QuitPage({
-  handleChangeView,
+  handleChangeView
 }: {
   handleChangeView: (value: SettingsView) => void
 }) {

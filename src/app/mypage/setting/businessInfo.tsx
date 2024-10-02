@@ -2,7 +2,7 @@ import { TopBar } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
 export default function BusinessInfoPage({
-  handleChangeView,
+  handleChangeView
 }: {
   handleChangeView: (value: SettingsView) => void
 }) {

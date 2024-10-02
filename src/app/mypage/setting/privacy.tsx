@@ -12,7 +12,7 @@ interface PrivacyPolicyData {
 
 export default function PrivacyPage({
   privacyPolicyData,
-  handleChangeView,
+  handleChangeView
 }: {
   privacyPolicyData: PrivacyPolicyData
   handleChangeView: (value: SettingsView) => void

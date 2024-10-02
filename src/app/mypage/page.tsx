@@ -58,18 +58,18 @@ export default function MyPage() {
               {
                 icon: 'home',
                 name: '홈',
-                onClick: () => setCurrentPage('mypage'),
+                onClick: () => setCurrentPage('mypage')
               },
               {
                 icon: 'people',
                 name: '근무관리',
-                onClick: () => {},
+                onClick: () => {}
               },
               {
                 icon: 'person_outlined',
                 name: '마이',
-                onClick: () => setCurrentPage('mypage'),
-              },
+                onClick: () => setCurrentPage('mypage')
+              }
             ]}
           />
         </footer>

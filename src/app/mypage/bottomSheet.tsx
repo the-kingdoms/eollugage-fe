@@ -7,14 +7,14 @@ import { PositionGroupType } from '@/types/myPageTypes'
 export default function BottomSheet({
   positionList,
   setPositionList,
-  closeBottomSheet,
+  closeBottomSheet
 }: {
   positionList: PositionGroupType[]
   setPositionList: (value: PositionGroupType[]) => void
   closeBottomSheet: () => void
 }) {
   const [positions, setPositions] = useState<string[]>(
-    positionList.map((item) => item.position),
+    positionList.map((item) => item.position)
   )
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -37,7 +37,7 @@ export default function BottomSheet({
       const newPosition = {
         id: uuidv4(),
         position: value,
-        items: [],
+        items: []
       }
       const updatedPositionList = [...positionList]
       updatedPositionList.push(newPosition)

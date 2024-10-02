@@ -7,7 +7,7 @@ export default function PositionGroup({
   position,
   items,
   index,
-  length,
+  length
 }: PositionGroupProps) {
   return (
     <div>

@@ -18,8 +18,8 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         position: '미지정',
         items: [
           { id: uuidv4(), name: '이수아' },
-          { id: uuidv4(), name: '오지윤' },
-        ],
+          { id: uuidv4(), name: '오지윤' }
+        ]
       },
       {
         id: uuidv4(),
@@ -27,14 +27,14 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         items: [
           { id: uuidv4(), name: '윤수민' },
           { id: uuidv4(), name: '오지윤' },
-          { id: uuidv4(), name: '최주원' },
-        ],
+          { id: uuidv4(), name: '최주원' }
+        ]
       },
       {
         id: uuidv4(),
         position: '매니저',
-        items: [{ id: uuidv4(), name: '얼루가' }],
-      },
+        items: [{ id: uuidv4(), name: '얼루가' }]
+      }
     ])
   }, [])
 
@@ -58,7 +58,7 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
     } else {
       const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
       const destinationGroup = updatedList.find(
-        (group) => group.id === destination.droppableId,
+        (group) => group.id === destination.droppableId
       )
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)
