@@ -5,7 +5,7 @@ import { PositionGroupProps } from '@/types/myPageTypes'
 
 export default function PositionGroup({ id, position, items, index, length }: PositionGroupProps) {
   return (
-    <>
+    <div>
       <Droppable droppableId={id}>
         {provided => (
           <ul className="flex flex-col gap-spacing-02 p-4" {...provided.droppableProps} ref={provided.innerRef}>
@@ -31,6 +31,6 @@ export default function PositionGroup({ id, position, items, index, length }: Po
         )}
       </Droppable>
       {index !== length - 1 && <div className="h-[12px] bg-Gray-10" />}
-    </>
+    </div>
   )
 }

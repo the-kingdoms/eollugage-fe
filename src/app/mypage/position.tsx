@@ -58,7 +58,6 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
 
     const updatedList = Array.from(positionList)
 
-    // 같은 포지션 내에서 항목을 이동하는 경우
     if (source.droppableId === destination.droppableId) {
       const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       if (sourceGroup) {
@@ -66,9 +65,7 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         sourceGroup!.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
-    }
-    // 다른 포지션으로 항목을 이동하는 경우
-    else {
+    } else {
       const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       const destinationGroup = updatedList.find(group => group.id === destination.droppableId)
 
