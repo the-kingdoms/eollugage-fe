@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { TopBar, TextField, ButtonMobile, SnackBar } from '@eolluga/eolluga-ui'
 import { InquireView } from '@/types/myPageTypes'
 
@@ -8,7 +8,7 @@ export default function ByPhonePage({
   handleChangeView: (value: InquireView) => void
 }) {
   const [isClicked, setIsClicked] = useState(false)
-  const [phoneNumber, setPhoneNumber] = useState('010-4000-9842')
+  const phoneNumber = '010-4000-9842'
 
   const handleSnackBarClose = useCallback(() => {
     setIsClicked(false)
@@ -17,10 +17,6 @@ export default function ByPhonePage({
   const handleCopyPhoneNumber = useCallback(() => {
     setIsClicked(!isClicked)
   }, [isClicked])
-
-  const handleInputChange = (value: string) => {
-    setPhoneNumber(value)
-  }
 
   return (
     <div className="pt-4">
@@ -42,7 +38,7 @@ export default function ByPhonePage({
         <TextField
           value={phoneNumber}
           label="고객센터 번호"
-          onChange={(e) => handleInputChange(e.target.value)}
+          onChange={() => {}}
           size="L"
           style="outlined"
         />
