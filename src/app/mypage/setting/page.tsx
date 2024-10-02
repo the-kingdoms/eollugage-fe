@@ -9,7 +9,7 @@ import AppInfoPage from './appInfo'
 import PrivacyPage from './privacy'
 import BusinessInfoPage from './businessInfo'
 import QuitPage from './quit'
-import LogoutModal from './logout'
+import LogoutModal from './logoutModal'
 
 export type SettingsView =
   | 'alarm'
