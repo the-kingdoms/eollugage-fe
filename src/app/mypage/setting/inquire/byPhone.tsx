@@ -17,13 +17,13 @@ export default function ByPhonePage({
     setIsClicked(!isClicked)
   }, [isClicked])
 
-  const handleLeftIconClick = useCallback(() => {
-    handleChangeView('inquire')
-  }, [handleChangeView])
-
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="" onClickLeftIcon={handleLeftIconClick} />
+      <TopBar
+        leftIcon="close"
+        title=""
+        onClickLeftIcon={() => handleChangeView('inquire')}
+      />
       <div className="mt-4 gap-spacing-02 p-4">
         <h2 className="body-05-bold">전화로 문의하기</h2>
         <div className="pt-spacing-02 body-02-medium text-text-secondary">
@@ -37,9 +37,7 @@ export default function ByPhonePage({
         <TextField
           value="010-4000-9842"
           label="고객센터 번호"
-          onChange={function (event: ChangeEvent<HTMLInputElement>): void {
-            throw new Error('Function not implemented.')
-          }}
+          onChange={function handleInputChange() {}}
           size="L"
           style="outlined"
         />
