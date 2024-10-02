@@ -8,6 +8,7 @@ export default function ByPhonePage({
   handleChangeView: (value: InquireView) => void
 }) {
   const [isClicked, setIsClicked] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState('010-4000-9842')
 
   const handleSnackBarClose = useCallback(() => {
     setIsClicked(false)
@@ -16,6 +17,10 @@ export default function ByPhonePage({
   const handleCopyPhoneNumber = useCallback(() => {
     setIsClicked(!isClicked)
   }, [isClicked])
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value)
+  }
 
   return (
     <div className="pt-4">
@@ -35,9 +40,9 @@ export default function ByPhonePage({
 
       <div className="px-4 pt-12">
         <TextField
-          value="010-4000-9842"
+          value={phoneNumber}
           label="고객센터 번호"
-          onChange={() => {}}
+          onChange={handleInputChange}
           size="L"
           style="outlined"
         />
