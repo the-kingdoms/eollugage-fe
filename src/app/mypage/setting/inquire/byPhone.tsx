@@ -3,7 +3,7 @@ import { TopBar, TextField, ButtonMobile, SnackBar } from '@eolluga/eolluga-ui'
 import { InquireView } from '@/types/myPageTypes'
 
 export default function ByPhonePage({
-  handleChangeView,
+  handleChangeView
 }: {
   handleChangeView: (value: InquireView) => void
 }) {
