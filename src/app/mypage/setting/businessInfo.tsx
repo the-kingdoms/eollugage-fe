@@ -1,10 +1,18 @@
 import { TopBar } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
-export default function BusinessInfoPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
+export default function BusinessInfoPage({
+  handleChangeView,
+}: {
+  handleChangeView: (value: SettingsView) => void
+}) {
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="사업자 정보" onClickLeftIcon={() => handleChangeView('settings')} />
+      <TopBar
+        leftIcon="close"
+        title="사업자 정보"
+        onClickLeftIcon={() => handleChangeView('settings')}
+      />
       <div className="mt-4 p-spacing-04">
         <ul className="flex flex-col gap-spacing-02 py-spacing-02 px-spacing-03 rounded-radius-05 border-2 border-Gray-20 bg-layer-01 body-01-medium">
           <li className="flex justify-between py-spacing-04">

@@ -1,10 +1,18 @@
 import { TopBar, Switch } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
-export default function AlarmPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
+export default function AlarmPage({
+  handleChangeView,
+}: {
+  handleChangeView: (value: SettingsView) => void
+}) {
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="알림" onClickLeftIcon={() => handleChangeView('settings')} />
+      <TopBar
+        leftIcon="close"
+        title="알림"
+        onClickLeftIcon={() => handleChangeView('settings')}
+      />
       <div className="mt-4">
         <ul className="flex flex-col gap-spacing-02 p-4">
           <li className="flex justify-between py-spacing-04">

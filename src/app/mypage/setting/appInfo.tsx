@@ -1,10 +1,18 @@
 import { TopBar } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
-export default function AppInfoPage({ handleChangeView }: { handleChangeView: (value: SettingsView) => void }) {
+export default function AppInfoPage({
+  handleChangeView,
+}: {
+  handleChangeView: (value: SettingsView) => void
+}) {
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="앱 버전" onClickLeftIcon={() => handleChangeView('settings')} />
+      <TopBar
+        leftIcon="close"
+        title="앱 버전"
+        onClickLeftIcon={() => handleChangeView('settings')}
+      />
       <div className="mt-32 flex justify-center ">
         <div className="flex flex-col items-center justify-center gap-spacing-02">
           <div className="w-[80px] h-[80px] bg-Gray-30" />

@@ -74,7 +74,9 @@ export default function MyPage() {
           />
         </footer>
       )}
-      {isOwnerAtom && currentPage === 'position' && <PositionPage setCurrentPage={() => setCurrentPage('mypage')} />}
+      {isOwnerAtom && currentPage === 'position' && (
+        <PositionPage setCurrentPage={() => setCurrentPage('mypage')} />
+      )}
     </div>
   )
 }

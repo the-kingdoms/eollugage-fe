@@ -1,6 +1,6 @@
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 
-export default function LogOutModal({ setIsModalOpen }: { setIsModalOpen: () => void }) {
+export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => void }) {
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center">
       <div className="w-[90%]">
@@ -15,20 +15,16 @@ export default function LogOutModal({ setIsModalOpen }: { setIsModalOpen: () => 
               text1="닫기"
               onClick={setIsModalOpen}
             />
-            <ButtonMobile size="M" style="primary" type="text" state="enabled" text1="확인" />
+            <ButtonMobile
+              size="M"
+              style="primary"
+              type="text"
+              state="enabled"
+              text1="확인"
+            />
           </div>
         </div>
       </div>
-      {/* 
-      <Dialog
-        open={true}
-        title="로그아웃 하시나요"
-        leftText="닫기"
-        rightText="확인"
-        onClose={setIsModalOpen}
-        leftOnClick={setIsModalOpen}
-      />
-      */}
     </div>
   )
 }

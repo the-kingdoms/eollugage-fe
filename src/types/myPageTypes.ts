@@ -9,7 +9,6 @@ export interface PositionGroupType {
   items: PositionItem[]
 }
 
-//positionGroup 컴포넌트 props 타입
 export interface PositionGroupProps {
   id: string
   position: string
@@ -18,4 +17,12 @@ export interface PositionGroupProps {
   length: number
 }
 
-export type SettingsView = 'alarm' | 'appInfo' | 'businessInfo' | 'privacy' | 'quit' | 'settings'
+export type SettingsView =
+  | 'alarm'
+  | 'appInfo'
+  | 'businessInfo'
+  | 'privacy'
+  | 'quit'
+  | 'settings'
+
+export type InquireView = 'byPhone' | 'inquire'

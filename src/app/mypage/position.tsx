@@ -11,13 +11,6 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
-  /*
-  useEffect 안에서 positionList를 초기화
-  이렇게 한 이유는 react-beautiful-dnd는 droppableId와 draggableId에 할당된 고유한 id 값을 기준으로 드래그 앤 드롭 위치를 추적하기 때문. 
-  처음 렌더링에서 할당된 id로 드래그 앤 드롭이 작동
-  하지만, 컴포넌트가 재렌더링되면, positionList에 있는 id 값들이 새로 할당. 
-  이 경우, 기존의 draggableId와 droppableId가 변경된 id와 일치하지 않게 되면서 추적불가
-  */
   useEffect(() => {
     setPositionList([
       {
@@ -64,7 +57,9 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
       }
     } else {
       const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
-      const destinationGroup = updatedList.find((group) => group.id === destination.droppableId)
+      const destinationGroup = updatedList.find(
+        (group) => group.id === destination.droppableId,
+      )
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)
         destinationGroup.items.splice(destination.index, 0, movedItem)
@@ -75,7 +70,11 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
 
   return (
     <main className="flex-grow mt-4">
-      <TopBar leftIcon="chevron_left_outlined" title="근무자 직책 설정" onClickLeftIcon={setCurrentPage} />
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        title="근무자 직책 설정"
+        onClickLeftIcon={setCurrentPage}
+      />
       <div className="mt-4 pb-32">
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (

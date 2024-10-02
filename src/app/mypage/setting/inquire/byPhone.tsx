@@ -1,8 +1,12 @@
 import { ChangeEvent, useCallback, useState } from 'react'
 import { TopBar, TextField, ButtonMobile, SnackBar } from '@eolluga/eolluga-ui'
-import { InquireView } from './page'
+import { InquireView } from '@/types/myPageTypes'
 
-export default function ByPhonePage({ handleChangeView }: { handleChangeView: (value: InquireView) => void }) {
+export default function ByPhonePage({
+  handleChangeView,
+}: {
+  handleChangeView: (value: InquireView) => void
+}) {
   const [isClicked, setIsClicked] = useState(false)
 
   const handleSnackBarClose = useCallback(() => {
@@ -13,9 +17,13 @@ export default function ByPhonePage({ handleChangeView }: { handleChangeView: (v
     setIsClicked(!isClicked)
   }, [isClicked])
 
+  const handleLeftIconClick = useCallback(() => {
+    handleChangeView('inquire')
+  }, [handleChangeView])
+
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="" onClickLeftIcon={() => handleChangeView('inquire')} />
+      <TopBar leftIcon="close" title="" onClickLeftIcon={handleLeftIconClick} />
       <div className="mt-4 gap-spacing-02 p-4">
         <h2 className="body-05-bold">전화로 문의하기</h2>
         <div className="pt-spacing-02 body-02-medium text-text-secondary">
@@ -39,7 +47,11 @@ export default function ByPhonePage({ handleChangeView }: { handleChangeView: (v
 
       <footer className="w-full py-3 px-4 fixed bottom-4">
         <div className="pb-4">
-          <SnackBar message="고객센터 번호를 복사했어요" open={isClicked} onClose={handleSnackBarClose} />
+          <SnackBar
+            message="고객센터 번호를 복사했어요"
+            open={isClicked}
+            onClose={handleSnackBarClose}
+          />
         </div>
         <ButtonMobile
           style="primary"

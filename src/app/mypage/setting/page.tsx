@@ -8,10 +8,16 @@ import AlarmPage from './alarm'
 import AppInfoPage from './appInfo'
 import PrivacyPage from './privacy'
 import BusinessInfoPage from './businessInfo'
-import LogOutModal from './logOut'
+import LogoutModal from './logOut'
 import QuitPage from './quit'
 
-export type SettingsView = 'alarm' | 'appInfo' | 'businessInfo' | 'privacy' | 'quit' | 'settings'
+export type SettingsView =
+  | 'alarm'
+  | 'appInfo'
+  | 'businessInfo'
+  | 'privacy'
+  | 'quit'
+  | 'settings'
 
 export default function SettingPage() {
   const router = useRouter()
@@ -26,7 +32,11 @@ export default function SettingPage() {
     <main className="body-03-medium">
       {currentView === 'settings' && (
         <div className="pt-4 pb-24">
-          <TopBar leftIcon="chevron_left_outlined" title="설정" onClickLeftIcon={() => router.push('/mypage')} />
+          <TopBar
+            leftIcon="chevron_left_outlined"
+            title="설정"
+            onClickLeftIcon={() => router.push('/mypage')}
+          />
           <div className="pt-4">
             <ul className="flex flex-col gap-spacing-02 p-4">
               <li className="flex justify-between py-spacing-04">
@@ -88,16 +98,21 @@ export default function SettingPage() {
               </li>
             </ul>
           </div>
-          {isModalOpen && <LogOutModal setIsModalOpen={() => setIsModalOpen(false)} />}
+          {isModalOpen && <LogoutModal setIsModalOpen={() => setIsModalOpen(false)} />}
         </div>
       )}
 
       {currentView === 'alarm' && <AlarmPage handleChangeView={handleChangeView} />}
       {currentView === 'privacy' && (
-        <PrivacyPage privacyPolicyData={privacyPolicyData} handleChangeView={handleChangeView} />
+        <PrivacyPage
+          privacyPolicyData={privacyPolicyData}
+          handleChangeView={handleChangeView}
+        />
       )}
       {currentView === 'appInfo' && <AppInfoPage handleChangeView={handleChangeView} />}
-      {currentView === 'businessInfo' && <BusinessInfoPage handleChangeView={handleChangeView} />}
+      {currentView === 'businessInfo' && (
+        <BusinessInfoPage handleChangeView={handleChangeView} />
+      )}
       {currentView === 'quit' && <QuitPage handleChangeView={handleChangeView} />}
     </main>
   )

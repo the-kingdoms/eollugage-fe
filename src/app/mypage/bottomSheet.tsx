@@ -13,7 +13,9 @@ export default function BottomSheet({
   setPositionList: (value: PositionGroupType[]) => void
   closeBottomSheet: () => void
 }) {
-  const [positions, setPositions] = useState<string[]>(positionList.map((item) => item.position))
+  const [positions, setPositions] = useState<string[]>(
+    positionList.map((item) => item.position),
+  )
   const [inputValue, setInputValue] = useState<string>('')
 
   const handlePositionsChange = (value: string, index: number) => {
@@ -65,7 +67,10 @@ export default function BottomSheet({
 
         <div className="mb-8 relative">
           <h2 className="text-center label-03-medium">가게 직책</h2>
-          <button onClick={() => addNewPosition(inputValue)} className="text-Blue-70 absolute top-0 right-0 font-bold">
+          <button
+            onClick={() => addNewPosition(inputValue)}
+            className="text-Blue-70 absolute top-0 right-0 font-bold"
+          >
             저장
           </button>
         </div>
