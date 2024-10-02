@@ -20,6 +20,8 @@
     "@typescript-eslint/dot-notation": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
-    "react/style-prop-object": "off"
+    "react/style-prop-object": "off",
+    "object-curly-newline": "off",
+    "@typescript-eslint/comma-dangle": ["error", "never"]
   }
 }
