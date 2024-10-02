@@ -7,14 +7,14 @@ import { PositionGroupType } from '@/types/myPageTypes'
 export default function BottomSheet({
   positionList,
   setPositionList,
-  closeBottomSheet
+  closeBottomSheet,
 }: {
   positionList: PositionGroupType[]
   setPositionList: (value: PositionGroupType[]) => void
   closeBottomSheet: () => void
 }) {
   const [positions, setPositions] = useState<string[]>(
-    positionList.map((item) => item.position)
+    positionList.map(item => item.position),
   )
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -28,7 +28,7 @@ export default function BottomSheet({
   }
 
   const deletePosition = (id: string) => {
-    const updatedPositionList = positionList.filter((e) => e.id !== id)
+    const updatedPositionList = positionList.filter(e => e.id !== id)
     setPositionList(updatedPositionList)
   }
 
@@ -37,7 +37,7 @@ export default function BottomSheet({
       const newPosition = {
         id: uuidv4(),
         position: value,
-        items: []
+        items: [],
       }
       const updatedPositionList = [...positionList]
       updatedPositionList.push(newPosition)
@@ -83,7 +83,7 @@ export default function BottomSheet({
                   value={position.position}
                   size="M"
                   style="outlined"
-                  onChange={(e) => handlePositionsChange(e.target.value, idx)}
+                  onChange={e => handlePositionsChange(e.target.value, idx)}
                 />
                 <button className="p-4" onClick={() => deletePosition(position.id)}>
                   <Icon icon="delete" />
@@ -98,7 +98,7 @@ export default function BottomSheet({
               size="M"
               style="outlined"
               placeholder="직책 추가하기"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={e => setInputValue(e.target.value)}
             />
           </div>
         </div>

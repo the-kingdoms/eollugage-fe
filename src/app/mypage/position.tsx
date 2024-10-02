@@ -18,8 +18,8 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         position: '미지정',
         items: [
           { id: uuidv4(), name: '이수아' },
-          { id: uuidv4(), name: '오지윤' }
-        ]
+          { id: uuidv4(), name: '오지윤' },
+        ],
       },
       {
         id: uuidv4(),
@@ -27,14 +27,14 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         items: [
           { id: uuidv4(), name: '윤수민' },
           { id: uuidv4(), name: '오지윤' },
-          { id: uuidv4(), name: '최주원' }
-        ]
+          { id: uuidv4(), name: '최주원' },
+        ],
       },
       {
         id: uuidv4(),
         position: '매니저',
-        items: [{ id: uuidv4(), name: '얼루가' }]
-      }
+        items: [{ id: uuidv4(), name: '얼루가' }],
+      },
     ])
   }, [])
 
@@ -49,16 +49,16 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
     if (!destination) return
     const updatedList = Array.from(positionList)
     if (source.droppableId === destination.droppableId) {
-      const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
+      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       if (sourceGroup) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
         sourceGroup!.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
     } else {
-      const sourceGroup = updatedList.find((group) => group.id === source.droppableId)
+      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       const destinationGroup = updatedList.find(
-        (group) => group.id === destination.droppableId
+        group => group.id === destination.droppableId,
       )
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)

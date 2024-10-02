@@ -2,7 +2,7 @@ import { TopBar, Switch } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
 export default function AlarmPage({
-  handleChangeView
+  handleChangeView,
 }: {
   handleChangeView: (value: SettingsView) => void
 }) {

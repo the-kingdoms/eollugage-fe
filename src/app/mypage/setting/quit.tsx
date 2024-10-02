@@ -3,7 +3,7 @@ import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
 import { SettingsView } from '@/types/myPageTypes'
 
 export default function QuitPage({
-  handleChangeView
+  handleChangeView,
 }: {
   handleChangeView: (value: SettingsView) => void
 }) {
@@ -43,7 +43,7 @@ export default function QuitPage({
           tabIndex={0}
           className="mb-4"
           onClick={() => setIsChecked(!isChecked)}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === 'Enter' || e.key === ' ') {
               setIsChecked(!isChecked)
             }

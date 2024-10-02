@@ -7,12 +7,12 @@ export default function PositionGroup({
   position,
   items,
   index,
-  length
+  length,
 }: PositionGroupProps) {
   return (
     <div>
       <Droppable droppableId={id}>
-        {(droppabledProvided) => (
+        {droppabledProvided => (
           <ul
             className="flex flex-col gap-spacing-02 p-4"
             {...droppabledProvided.droppableProps}
@@ -21,7 +21,7 @@ export default function PositionGroup({
             <li className="body-03-bold text-text-primary justify-content">{position}</li>
             {items.map((item, idx) => (
               <Draggable key={item.id} draggableId={item.id} index={idx}>
-                {(draggableProvided) => (
+                {draggableProvided => (
                   <li
                     className="flex justify-between py-spacing-04"
                     ref={draggableProvided.innerRef}
