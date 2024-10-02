@@ -8,8 +8,8 @@ import AlarmPage from './alarm'
 import AppInfoPage from './appInfo'
 import PrivacyPage from './privacy'
 import BusinessInfoPage from './businessInfo'
-import LogoutModal from './logout'
 import QuitPage from './quit'
+import LogoutModal from './logout'
 
 export type SettingsView =
   | 'alarm'
