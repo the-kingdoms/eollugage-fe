@@ -9,6 +9,8 @@ import { useRouter } from 'next/navigation'
 import { Scrim } from '@eolluga/eolluga-ui'
 import { Dialog } from '@eolluga/eolluga-ui'
 import { ChangeEvent, useState } from 'react'
+import { useAtom } from 'jotai'
+import { isOwnerAtom } from '@/lib/globalState'
 
 //임시 데이터
 const workdata = [
@@ -51,6 +53,8 @@ export default function HomePage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const router = useRouter()
 
+  const [isOwner] = useAtom(isOwnerAtom)
+
   const canNext = currentIndex + 2 < workdata.length
   const canPrev = currentIndex > 0
 
@@ -78,20 +82,22 @@ export default function HomePage() {
     <>
       <Header />
       <div className="mt-[76px]">
-        <div
-          className="flex flex-row items-center mx-4 mb-6 px-3 pb-[11px] pt-[9px] border border-border-title-01 rounded-lg
+        {isOwner && (
+          <div
+            className="flex flex-row items-center mx-4 mb-6 px-3 pb-[11px] pt-[9px] border border-border-title-01 rounded-lg
            justify-between"
-          onClick={() => {
-            router.push('/home') // 경로 수정
-          }}
-        >
-          <FlexBox direction="col" className="gap-2 w-full items-start">
-            <Chip size="S" state="enable" dismissible={false} label={'권장'} color={'blue'} readOnly={true} />
-            <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
-            <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
-          </FlexBox>
-          <Icon icon="chevron_right_outlined" size={20} className="fill-icon-secondary" />
-        </div>
+            onClick={() => {
+              router.push('/home') // 경로 수정
+            }}
+          >
+            <FlexBox direction="col" className="gap-2 w-full items-start">
+              <Chip size="S" state="enable" dismissible={false} label={'권장'} color={'blue'} readOnly={true} />
+              <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
+              <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
+            </FlexBox>
+            <Icon icon="chevron_right_outlined" size={20} className="fill-icon-secondary" />
+          </div>
+        )}
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeBundle
             title="가게 공지"
