@@ -51,6 +51,7 @@ const fooddata = [
 export default function HomePage() {
   const [open, setOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentModal, setCurrentModal] = useState<{ title: string; description: string } | null>(null)
   const router = useRouter()
 
   const [isOwner] = useAtom(isOwnerAtom)
@@ -70,12 +71,14 @@ export default function HomePage() {
     }
   }
 
-  const handleOpen = () => {
+  const handleOpen = (item: { title: string; description: string }) => {
+    setCurrentModal(item)
     setOpen(true)
   }
 
   const handleClose = () => {
     setOpen(false)
+    setCurrentModal(null)
   }
 
   return (
@@ -115,7 +118,7 @@ export default function HomePage() {
                 size="L"
                 placeholder="공지가 아직 없어요"
                 value=""
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {}}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {}} // 디자인 피드백 후 수정
                 style="outlined"
               />
             }
@@ -170,7 +173,10 @@ export default function HomePage() {
             underChildren={
               <div className="grid grid-cols-2 gap-4 w-full">
                 {fooddata.map((item, index) => (
-                  <div className="flex flex-col gap-2 p-4 border border-border-subtle-01 rounded" onClick={handleOpen}>
+                  <div
+                    className="flex flex-col gap-2 p-4 border border-border-subtle-01 rounded"
+                    onClick={() => handleOpen(item)}
+                  >
                     <div className="body-04-medium-compact w-full">{item.title}</div>
                     <div className="body-03-medium-compact text-text-secondary w-full">{item.description}</div>
                   </div>
@@ -180,13 +186,13 @@ export default function HomePage() {
           />
         </FlexBox>
         <BottomNav />
-        {open && (
+        {open && currentModal && (
           <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleClose}>
             <Dialog
               open={open}
               onClose={handleClose}
-              title="양배추 1kg"
-              description="매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다."
+              title={currentModal.title}
+              description={currentModal.description}
               dismissible={true}
               leftText={''}
               rightText={''}
