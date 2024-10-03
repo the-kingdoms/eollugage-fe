@@ -1,7 +1,8 @@
 'use client'
 
 import { Avatar } from '@eolluga/eolluga-ui'
-import { useSelectedWorkerID } from './WorkManagementOwnerProvider'
+import { useAtom } from 'jotai'
+import { selectedWorkerAtom } from '../atoms/workManagementAtoms'
 
 export interface Worker {
   id: string
@@ -12,10 +13,10 @@ export interface Worker {
 }
 
 export default function WorkerItem({ worker }: { worker: Worker }) {
-  const [selectedWorkerIDAtom, setSelectedWorkerIDAtom] = useSelectedWorkerID()
+  const [selectedWorkerIDAtom, setSelectedWorkerIDAtom] = useAtom(selectedWorkerAtom)
   return (
     <button
-      className="flex flex-col space-y-1 items-center justify-center text-center"
+      className="h-[88px] w-[48px] flex flex-col space-y-1 items-center justify-end text-center"
       type="button"
       onClick={() => setSelectedWorkerIDAtom(worker.id)}
     >

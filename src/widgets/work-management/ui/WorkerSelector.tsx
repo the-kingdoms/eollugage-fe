@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable arrow-parens */
+import { useAtomValue } from 'jotai'
 import { Worker } from './WorkerItem'
 import WorkerList from './WorkerList'
-import { useSelectedWorkerID } from './WorkManagementOwnerProvider'
+import { selectedWorkerAtom } from '../atoms/workManagementAtoms'
 
 const workers: Worker[] = [
   {
@@ -78,7 +79,7 @@ const workers: Worker[] = [
 ]
 
 export default function WorkerSelector() {
-  const [selectedWorkerIDAtom] = useSelectedWorkerID()
+  const selectedWorkerID = useAtomValue(selectedWorkerAtom)
   return (
     <div className=" px-[16px] pb-[16px] pt-[24px] bg-[#131313] text-white overflow-hidden">
       <div className="flex space-x-[8px] mb-[16px]">
@@ -87,7 +88,7 @@ export default function WorkerSelector() {
       </div>
       <WorkerList workers={workers} />
       <p className="body-03-bold-compact mt-[12px]">
-        {workers.find(worker => worker.id === selectedWorkerIDAtom)?.phoneNumber || ''}
+        {workers.find(worker => worker.id === selectedWorkerID)?.phoneNumber || ''}
       </p>
     </div>
   )

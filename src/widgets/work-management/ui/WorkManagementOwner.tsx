@@ -1,12 +1,19 @@
+'use client'
+
+import React from 'react'
+
 import { AttendanceInfo } from '@/features'
+import { useSetAtom } from 'jotai'
 import WorkerSelector from './WorkerSelector'
-import WorkManagementOwnerProvider from './WorkManagementOwnerProvider'
+import { selectedWorkerAtom } from '../atoms/workManagementAtoms'
 
 export default function WorkManagementOwner() {
+  const setSelectedWorkerID = useSetAtom(selectedWorkerAtom)
+  setSelectedWorkerID('1')
   return (
-    <WorkManagementOwnerProvider>
+    <>
       <WorkerSelector />
       <AttendanceInfo />
-    </WorkManagementOwnerProvider>
+    </>
   )
 }
