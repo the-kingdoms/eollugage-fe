@@ -7,6 +7,25 @@ import { useEffect, useState } from 'react'
 import { ImageUploadResultT } from '../utils/imageType'
 
 export default function ImageUploadScreen() {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false)
+
+  const onClickSelectButton = () => sendRNFunction('accessGallery')
+
+  const onMessageEvent = (e: MessageEvent) => {
+    e.stopPropagation()
+    const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
+
+    if (message.type === 'getImageUploadResult') {
+      console.log(message.data.isSuccess)
+      setIsSuccess(message.data.isSuccess)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', onMessageEvent)
+    document.addEventListener('message', onMessageEvent as EventListener)
+  }, [])
+
   return (
     <FlexBox direction="col" className="w-full h-full justify-between">
       <FlexBox direction="col" className="w-full ">
