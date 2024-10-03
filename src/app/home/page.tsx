@@ -2,12 +2,10 @@
 
 import BottomNav from '@/component/shared/bottomNav'
 import HomeBundle from '@/component/main/HomeBundle'
-import { Chip, Icon, TextField } from '@eolluga/eolluga-ui'
+import { Chip, Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/component/shared/Header'
 import FlexBox from '@/component/shared/flexbox'
 import { useRouter } from 'next/navigation'
-import { Scrim } from '@eolluga/eolluga-ui'
-import { Dialog } from '@eolluga/eolluga-ui'
 import { ChangeEvent, useState } from 'react'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/lib/globalState'
@@ -15,21 +13,25 @@ import { isOwnerAtom } from '@/lib/globalState'
 //임시 데이터
 const workdata = [
   {
+    id: 1,
     store: '얼루가게',
     position: '매니저',
     time: '08:00',
   },
   {
+    id: 2,
     store: '매장 1',
     position: '직원',
     time: '09:00',
   },
   {
+    id: 3,
     store: '매장 2',
     position: '직원',
     time: '10:00',
   },
   {
+    id: 4,
     store: '매장 3',
     position: '매니저',
     time: '11:00',
@@ -39,10 +41,12 @@ const workdata = [
 //임시 데이터
 const fooddata = [
   {
+    id: 1,
     title: '얼루가게',
     description: '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다.',
   },
   {
+    id: 2,
     title: '얼루가게',
     description: '매주 화요일마다 발주 부탁드립니다.',
   },
@@ -51,7 +55,7 @@ const fooddata = [
 export default function HomePage() {
   const [open, setOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [currentModal, setCurrentModal] = useState<{ title: string; description: string } | null>(null)
+  const [nowModal, setNowModal] = useState<{ title: string; description: string } | null>(null)
   const router = useRouter()
 
   const [isOwner] = useAtom(isOwnerAtom)
@@ -72,13 +76,13 @@ export default function HomePage() {
   }
 
   const handleOpen = (item: { title: string; description: string }) => {
-    setCurrentModal(item)
+    setNowModal(item)
     setOpen(true)
   }
 
   const handleClose = () => {
     setOpen(false)
-    setCurrentModal(null)
+    setNowModal(null)
   }
 
   return (
@@ -94,7 +98,7 @@ export default function HomePage() {
             }}
           >
             <FlexBox direction="col" className="gap-2 w-full items-start">
-              <Chip size="S" state="enable" dismissible={false} label={'권장'} color={'blue'} readOnly={true} />
+              <Chip size="S" state="enable" dismissible={false} label="권장" color="blue" readOnly />
               <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
               <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
             </FlexBox>
@@ -104,7 +108,7 @@ export default function HomePage() {
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeBundle
             title="가게 공지"
-            rightChildren={
+            rightChild={
               <div
                 onClick={() => {
                   router.push('/home/notice')
@@ -113,7 +117,7 @@ export default function HomePage() {
                 <Icon icon="chevron_right_outlined" size={20} />
               </div>
             }
-            underChildren={
+            lowChild={
               <TextField
                 size="L"
                 placeholder="공지가 아직 없어요"
@@ -126,7 +130,7 @@ export default function HomePage() {
           <HomeBundle
             title="금일 근무자"
             description="출근 시간순으로 나열되어 있습니다"
-            rightChildren={
+            rightChild={
               <FlexBox className="gap-5">
                 <div onClick={prevSlide}>
                   <Icon
@@ -144,16 +148,16 @@ export default function HomePage() {
                 </div>
               </FlexBox>
             }
-            underChildren={
+            lowChild={
               <div className="flex flex-row gap-4 w-full">
-                {workdata.slice(currentIndex, currentIndex + 2).map((item, index) => (
-                  <FlexBox direction="col" className="gap-2 py-3 px-4 rounded bg-layer-01 w-full">
+                {workdata.slice(currentIndex, currentIndex + 2).map(item => (
+                  <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
                     <div className="w-full">
                       <div className="body-04-medium-compact">{item.store}</div>
                       <div className="body-01-medium-compact text-text-secondary">{item.position}</div>
                     </div>
                     <div className="body-02-medium-compact w-full">{item.time}</div>
-                  </FlexBox>
+                  </div>
                 ))}
               </div>
             }
@@ -161,7 +165,7 @@ export default function HomePage() {
           <HomeBundle
             title="발주 리스트"
             description="발주 항목을 수정하려면 클릭해주세요"
-            rightChildren={
+            rightChild={
               <div
                 onClick={() => {
                   router.push('/home/order')
@@ -170,10 +174,11 @@ export default function HomePage() {
                 <Icon icon="add" size={24} />
               </div>
             }
-            underChildren={
+            lowChild={
               <div className="grid grid-cols-2 gap-4 w-full">
-                {fooddata.map((item, index) => (
+                {fooddata.map(item => (
                   <div
+                    key={item.id}
                     className="flex flex-col gap-2 p-4 border border-border-subtle-01 rounded"
                     onClick={() => handleOpen(item)}
                   >
@@ -186,16 +191,16 @@ export default function HomePage() {
           />
         </FlexBox>
         <BottomNav />
-        {open && currentModal && (
+        {open && nowModal && (
           <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleClose}>
             <Dialog
               open={open}
               onClose={handleClose}
-              title={currentModal.title}
-              description={currentModal.description}
-              dismissible={true}
-              leftText={''}
-              rightText={''}
+              title={nowModal.title}
+              description={nowModal.description}
+              dismissible
+              leftText=""
+              rightText=""
             />
           </Scrim>
         )}
