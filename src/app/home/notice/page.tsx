@@ -24,14 +24,10 @@ export default function NoticePage() {
       />
       <FlexBox direction="col" className="w-full mt-8 px-4 h-full justify-between">
         <TextArea size="L" placeholder="공지가 아직 없어요" value={noticeText} onChange={handleTextChange} />
-        <ButtonMobile
-          size="L"
-          style="primary"
-          type="text"
-          state={noticeText.trim() ? 'enabled' : 'disabled'}
-          text1={noticeText.trim() ? '저장하기' : '추가하기'}
-        />
+        <ButtonMobile size="L" style="primary" type="text" state="enabled" text1="저장하기" />
       </FlexBox>
     </FlexBox>
   )
 }
+
+// 데이터 연결 후 버튼 수정

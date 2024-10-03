@@ -3,11 +3,20 @@
 import FlexBox from '@/component/shared/flexbox'
 import { ButtonMobile, TextArea, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
-
-import { ChangeEvent } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 export default function OrderPage() {
   const router = useRouter()
+  const [nameText, setNameText] = useState('')
+  const [descriptionText, setDescriptionText] = useState('')
+
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setNameText(event.target.value)
+  }
+
+  const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescriptionText(event.target.value)
+  }
 
   return (
     <FlexBox direction="col" className="py-3 h-full">
@@ -24,19 +33,25 @@ export default function OrderPage() {
             size="L"
             label="발주 이름"
             placeholder="발주 이름을 입력해주세요"
-            value=""
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {}}
+            value={nameText}
+            onChange={handleNameChange}
             style="outlined"
           />
           <TextArea
             size="L"
             label="발주 설명"
             placeholder="발주 설명을 입력해주세요"
-            value={''}
-            onChange={(event: ChangeEvent<HTMLTextAreaElement>) => {}}
+            value={descriptionText}
+            onChange={handleDescriptionChange}
           />
         </FlexBox>
-        <ButtonMobile size="L" style="primary" type="text" state="enabled" text1="저장하기" />
+        <ButtonMobile
+          size="L"
+          style="primary"
+          type="text"
+          state={nameText.trim() && descriptionText.trim() ? 'enabled' : 'disabled'}
+          text1="저장하기"
+        />
       </FlexBox>
     </FlexBox>
   )
