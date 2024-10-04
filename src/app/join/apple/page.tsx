@@ -1,9 +1,7 @@
-/* eslint-disable react/style-prop-object */
-
 'use client'
 
 import FlexBox from '@/component/shared/flexbox'
-import BadgeCard from '@/widgets/join/ui/BadgeCard'
+import BadgeCard from '@/widgets/join/ui/badgeCard'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 
 export default function ApplePage() {

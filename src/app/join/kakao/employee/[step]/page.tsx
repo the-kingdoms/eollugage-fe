@@ -8,15 +8,16 @@ import { ButtonMobile, TextField, TopBar, Dialog, Scrim, Avatar } from '@eolluga
 import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-export default function KakaoStepPage() {
+export default function KakaoEmployeePage() {
   const router = useRouter()
   const { step } = useParams()
 
   const [name, setName] = useState<string>('얼루가')
   const [storeCode, setStoreCode] = useState<string>('')
+  const storeName = '얼루가게 얼루점'
+
   const [open, setOpen] = useState(false)
   const [valid, setValid] = useState(true)
-  const storeName = '얼루가게 얼루점'
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)
   const handleStoreCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -130,7 +131,7 @@ export default function KakaoStepPage() {
         </FlexBox>
       </FlexBox>
 
-      {/* 아바타 부분 - 스텝 3 */}
+      {/* Profile */}
       {step === '3' && (
         <FlexBox direction="col" className="gap-spacing-04 mt-[152px]">
           <div className="text-white">
