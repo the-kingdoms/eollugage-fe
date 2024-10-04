@@ -40,20 +40,21 @@ export default function AddAttendanceForm() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Header />
-      <div className="px-[16px]">
-        <Form {...form}>
-          <form>
-            <div className="space-y-[16px]">
-              <SelectWorkerDrawer form={form} />
-              <SelectWorkingDateCalendar form={form} />
-              <SelectWorkingTime form={form} />
-            </div>
-            <div className="fixed bottom-[12px] left-[16px] w-full ">
+
+      <Form {...form}>
+        <form>
+          <div className="px-4 space-y-[16px]">
+            <SelectWorkerDrawer form={form} />
+            <SelectWorkingDateCalendar form={form} />
+            <SelectWorkingTime form={form} />
+          </div>
+          <div className="w-full ">
+            <div className="fixed bottom-[12px] w-full px-[16px] ">
               <AddAttendanceButton />
             </div>
-          </form>
-        </Form>
-      </div>
+          </div>
+        </form>
+      </Form>
     </LocalizationProvider>
   )
 }
