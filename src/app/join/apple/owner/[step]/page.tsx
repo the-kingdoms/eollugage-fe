@@ -7,14 +7,16 @@ import getRandomColor from '@/features/join/utils/getRandomColor'
 import BottomSheet from '@/widgets/join/ui/bottomSheet'
 import { ButtonMobile, TextField, TopBar, Avatar, Scrim, Icon, Dialog } from '@eolluga/eolluga-ui'
 import Image from 'next/image'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 
-export default function KakaoOwnerPage() {
+export default function AppleOwnerPage() {
   const router = useRouter()
   const { step } = useParams()
+  const searchParams = useSearchParams() // URL의 쿼리 파라미터 가져오기
+  const initialName = searchParams.get('name') || '' // URL에서 받은 name
 
-  const [name, setName] = useState<string>('얼루가게')
+  const [name, setName] = useState<string>(initialName)
   const [storeCode, setStoreCode] = useState<string>('')
   const storeName = '얼루가게 얼루점'
 
@@ -39,7 +41,11 @@ export default function KakaoOwnerPage() {
   const renderTopText = () => {
     switch (step) {
       case '1':
-        return `${name}님이신가요?`
+        return (
+          <>
+            사장님의 <br /> 이름을 입력해주세요
+          </>
+        )
       case '2':
         return (
           <>

@@ -8,7 +8,7 @@ import { ButtonMobile, TextField, TopBar, Dialog, Scrim, Avatar } from '@eolluga
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 
-export default function AppleStepPage() {
+export default function AppleEmployeePage() {
   const router = useRouter()
   const { step } = useParams()
   const searchParams = useSearchParams() // URL의 쿼리 파라미터 가져오기
