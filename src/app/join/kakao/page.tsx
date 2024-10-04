@@ -12,7 +12,7 @@ export default function KakaoPage() {
   const setIsOwner = useSetAtom(isOwnerAtom)
 
   return (
-    <FlexBox direction="col" className="bg-white w-full h-full items-center relative ">
+    <FlexBox direction="col" className="bg-white w-full h-full items-center relative">
       <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={() => router.back()} />
       <div className="w-full head-02-bold px-spacing-04 text-left mt-spacing-06 mb-[66px]">직원으로 근무 중인가요?</div>
       <BadgeCard />
