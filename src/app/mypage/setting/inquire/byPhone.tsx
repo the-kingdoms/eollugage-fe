@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
-import { TopBar, TextField, ButtonMobile, SnackBar } from '@eolluga/eolluga-ui'
+import { TopBar, TextField, ButtonMobile } from '@eolluga/eolluga-ui'
 import { InquireView } from '@/types/myPageTypes'
+import ToastMessage from '@/component/shared/toastMessage'
 
 export default function ByPhonePage({
   handleChangeView,
@@ -10,13 +11,10 @@ export default function ByPhonePage({
   const [isClicked, setIsClicked] = useState(false)
   const phoneNumber = '010-4000-9842'
 
-  const handleSnackBarClose = useCallback(() => {
-    setIsClicked(false)
-  }, [])
-
-  const handleCopyPhoneNumber = useCallback(() => {
-    setIsClicked(!isClicked)
-  }, [isClicked])
+  const handleCopy = () => {
+    navigator.clipboard.writeText(phoneNumber)
+    setIsClicked(true)
+  }
 
   return (
     <div className="pt-4">
@@ -46,10 +44,11 @@ export default function ByPhonePage({
 
       <footer className="w-full py-3 px-4 fixed bottom-4">
         <div className="pb-4">
-          <SnackBar
+          <ToastMessage
             message="고객센터 번호를 복사했어요"
+            icon="check"
             open={isClicked}
-            onClose={handleSnackBarClose}
+            setOpen={setIsClicked}
           />
         </div>
         <ButtonMobile
@@ -58,7 +57,7 @@ export default function ByPhonePage({
           type="text"
           state="enabled"
           text1="번호 복사하기"
-          onClick={handleCopyPhoneNumber}
+          onClick={handleCopy}
         />
       </footer>
     </div>

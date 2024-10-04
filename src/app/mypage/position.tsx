@@ -6,7 +6,6 @@ import { PositionGroupType } from '@/types/myPageTypes'
 import PositionGroup from './positionGroup'
 import BottomSheet from './bottomSheet'
 
-// 근무자 직책 설정
 export default function PositionPage({ setCurrentPage }: { setCurrentPage: () => void }) {
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)

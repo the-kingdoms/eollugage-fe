@@ -1,10 +1,10 @@
 'use client'
 
-// 마이페이지
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
-import { HorizontalNav, Icon, Avatar } from '@eolluga/eolluga-ui'
+import { Icon, Avatar } from '@eolluga/eolluga-ui'
+import BottomNav from '@/component/shared/bottomNav'
 import isOwnerAtom from '@/lib/globalState'
 import PositionPage from './position'
 
@@ -51,29 +51,7 @@ export default function MyPage() {
           </div>
         </main>
       )}
-      {currentPage === 'mypage' && (
-        <footer>
-          <HorizontalNav
-            items={[
-              {
-                icon: 'home',
-                name: '홈',
-                onClick: () => setCurrentPage('mypage'),
-              },
-              {
-                icon: 'people',
-                name: '근무관리',
-                onClick: () => {},
-              },
-              {
-                icon: 'person_outlined',
-                name: '마이',
-                onClick: () => setCurrentPage('mypage'),
-              },
-            ]}
-          />
-        </footer>
-      )}
+      {currentPage === 'mypage' && <BottomNav key={'23231'} />}
       {isOwnerAtom && currentPage === 'position' && (
         <PositionPage setCurrentPage={() => setCurrentPage('mypage')} />
       )}
