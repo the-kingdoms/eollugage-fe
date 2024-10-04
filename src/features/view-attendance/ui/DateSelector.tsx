@@ -35,6 +35,9 @@ export default function DateSelector({ type }: { type: 'week' | 'month' }) {
         onClick={() => {
           handleNext(type, setYear, setMonth, year, month, setWeekOfMonth, weekOfMonth)
         }}
+        type={type}
+        month={month}
+        year={year}
       />
     </div>
   )
