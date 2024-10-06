@@ -81,7 +81,7 @@ const workers: Worker[] = [
 export default function WorkerSelector() {
   const selectedWorkerID = useAtomValue(selectedWorkerAtom)
   return (
-    <div className=" px-[16px] pb-[16px] pt-[24px] bg-[#131313] text-white overflow-hidden">
+    <div className=" pl-[16px] pb-[16px] pt-[24px] bg-[#131313] text-white overflow-hidden">
       <div className="flex space-x-[8px] mb-[16px]">
         <h2 className="body-03-bold-compact">근무자</h2>
         <p className="body-01-medium-compact text-[#A8A8A8]">근무자를 선택해주세요</p>
