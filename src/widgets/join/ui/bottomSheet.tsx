@@ -31,7 +31,7 @@ export default function BottomSheet({ open, onClose, children }: BottomSheetProp
         className={`w-full h-[${bottomSheetHeight}px] items-center rounded-t-2xl justify-center relative p-spacing-04 bg-white`}
       >
         {/* Header */}
-        <div className="w-[40px] h-[4px] items-center rounded-[1000px] bg-[#E0E0E0] mb-spacing-04" />
+        <div className="w-10 h-1 items-center rounded-full bg-button-secondary mb-spacing-04" />
         {/* Dynamic Content */}
         {children} {/* children을 통해 동적인 컨텐츠 삽입 */}
       </FlexBox>
