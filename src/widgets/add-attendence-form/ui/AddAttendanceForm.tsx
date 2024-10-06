@@ -36,6 +36,10 @@ export default function AddAttendanceForm() {
       },
     },
   })
+  const workerID = form.watch('workerID')
+  const workingDate = form.watch('workingDate')
+  const workingTimeStart = form.watch('workingTime.start')
+  const workingTimeEnd = form.watch('workingTime.end')
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -49,7 +53,13 @@ export default function AddAttendanceForm() {
             <SelectWorkingTime form={form} />
           </div>
           <div className="w-full ">
-            <div className="fixed bottom-[12px] w-full px-[16px] ">
+            <div
+              className={`fixed bottom-[12px] w-full px-[16px] ${
+                workerID !== '' && workingDate !== undefined && workingTimeStart !== '' && workingTimeEnd !== ''
+                  ? 'block'
+                  : 'hidden'
+              }`}
+            >
               <AddAttendanceButton />
             </div>
           </div>

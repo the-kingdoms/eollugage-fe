@@ -4,6 +4,7 @@
 /* eslint-disable arrow-parens */
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { isNaN } from 'lodash'
 import { UseFormReturn } from 'react-hook-form'
 
 export default function SelectWorkingDateCalendar({
@@ -32,7 +33,11 @@ export default function SelectWorkingDateCalendar({
           <FormControl>
             <Input
               type="date"
-              value={field.value ? field.value.toISOString().substring(0, 10) : ''}
+              value={
+                field.value instanceof Date && !isNaN(field.value.getTime())
+                  ? field.value.toISOString().substring(0, 10)
+                  : ''
+              }
               onChange={e => field.onChange(new Date(e.target.value))}
               className="w-full justify-start text-[20px] font-medium h-[56px]"
               aria-label="근무 날짜 선택"
