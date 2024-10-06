@@ -4,7 +4,7 @@
 
 import FlexBox from '@/component/shared/flexbox'
 import getRandomColor from '@/features/join/utils/getRandomColor'
-import BottomSheet from '@/widgets/join/ui/bottomSheet'
+import BottomSheet from '@/shared/ui/bottomSheet'
 import { ButtonMobile, TextField, TopBar, Avatar, Scrim, Icon, Dialog } from '@eolluga/eolluga-ui'
 import Image from 'next/image'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
