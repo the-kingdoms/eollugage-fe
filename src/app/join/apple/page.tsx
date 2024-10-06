@@ -1,7 +1,7 @@
 'use client'
 
 import FlexBox from '@/component/shared/flexbox'
-import BadgeCard from '@/widgets/join/ui/badgeCard'
+import { BadgeCard } from '@/widgets'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 
 export default function ApplePage() {

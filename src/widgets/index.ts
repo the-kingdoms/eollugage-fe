@@ -1,1 +1,1 @@
-export { default as BadgeCard } from './join/ui/badgeCard'
+export { default as BadgeCard } from './join/ui/BadgeCard'
