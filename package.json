@@ -24,6 +24,7 @@
     "react-modal-sheet": "^3.1.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/eslint-plugin-jsx-a11y": "^6",
     "@types/lodash": "^4",
     "@types/node": "^20",
