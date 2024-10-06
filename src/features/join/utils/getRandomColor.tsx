@@ -27,5 +27,5 @@ export default function getRandomColor():
   | 'out-purple'
   | undefined {
   const randomIndex = Math.floor(Math.random() * colors.length)
-  return colors[randomIndex] || undefined // 반환되지 않을 경우 undefined 허용
+  return colors[randomIndex] // 반환되지 않을 경우 undefined 허용
 }
