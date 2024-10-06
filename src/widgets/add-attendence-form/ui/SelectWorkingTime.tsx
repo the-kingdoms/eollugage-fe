@@ -4,8 +4,7 @@
 /* eslint-disable arrow-parens */
 
 import { FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { MobileTimePicker } from '@mui/x-date-pickers'
-import dayjs from 'dayjs'
+import { Input } from '@/components/ui/input'
 import { UseFormReturn } from 'react-hook-form'
 
 export default function SelectWorkingTime({
@@ -32,28 +31,30 @@ export default function SelectWorkingTime({
         <FormItem className="flex flex-col space-y-1">
           <FormLabel className="body-02-regular text-[#6F6F6F]">근무 시간</FormLabel>
           <div className="flex space-x-4">
-            <MobileTimePicker
-              value={field.value.start ? dayjs(field.value.start) : null}
-              onChange={newValue => {
+            <Input
+              type="time"
+              value={field.value.start || ''}
+              onChange={e => {
                 field.onChange({
                   ...field.value,
-                  start: newValue ? newValue.format('HH:mm') : '',
+                  start: e.target.value,
                 })
               }}
-              label="출근 시간"
-              className="w-1/2"
+              className="w-1/2 justify-start text-[20px] font-medium h-[56px]"
+              aria-label="출근 시간"
             />
 
-            <MobileTimePicker
-              className="w-1/2"
-              value={field.value.end ? dayjs(field.value.end) : null}
-              onChange={newValue => {
+            <Input
+              type="time"
+              value={field.value.end || ''}
+              onChange={e => {
                 field.onChange({
                   ...field.value,
-                  end: newValue ? newValue.format('HH:mm') : '',
+                  end: e.target.value,
                 })
               }}
-              label="퇴근 시간"
+              className="w-1/2 justify-start text-[20px] font-medium h-[56px]"
+              aria-label="퇴근 시간"
             />
           </div>
         </FormItem>
