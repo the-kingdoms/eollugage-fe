@@ -6,7 +6,7 @@ import WorkManagementWorker from './WorkManagementWorker'
 import WorkManagementOwner from './WorkManagementOwner'
 
 export default function WorkManagement() {
-  const isOwner = true //useAtom(isOwnerAtom)
+  const isOwner = useAtom(isOwnerAtom)
 
   return isOwner ? <WorkManagementOwner /> : <WorkManagementWorker />
 }

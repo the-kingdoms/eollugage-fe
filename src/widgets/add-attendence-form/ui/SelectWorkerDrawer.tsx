@@ -15,6 +15,7 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { cn } from '@/lib/utils'
 import { Worker } from '@/widgets/work-management/ui/WorkerItem'
+import { Icon } from '@eolluga/eolluga-ui'
 import { UseFormReturn } from 'react-hook-form'
 
 const workers: Worker[] = [
@@ -146,20 +147,7 @@ export default function SelectWorkerDrawer({
                         {worker.name}
                         {worker.id === field.value && (
                           <span className="ml-auto">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M18.1724 4.79038C18.4036 5.0467 18.3832 5.44191 18.1269 5.6731L7.5019 15.2564C7.25884 15.4757 6.88781 15.4702 6.65128 15.244L1.85961 10.6606C1.61017 10.422 1.60138 10.0264 1.83998 9.77698C2.07857 9.52753 2.4742 9.51874 2.72364 9.75734L7.09578 13.9394L17.2897 4.74488C17.546 4.51369 17.9412 4.53407 18.1724 4.79038Z"
-                                fill="#262626"
-                              />
-                            </svg>
+                            <Icon icon="checkmark" />
                           </span>
                         )}
                       </Button>
