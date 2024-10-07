@@ -133,20 +133,20 @@ export default function HomePage() {
             description="출근 시간순으로 나열되어 있습니다"
             rightChild={(
               <FlexBox className="gap-5">
-                <div onClick={prevSlide}>
+                <button onClick={prevSlide} disabled={!canNext} className='disabled:cursor-not-allowed'>
                   <Icon
                     icon="chevron_left_outlined"
                     size={20}
                     className={canPrev ? 'fill-icon-primary' : 'fill-icon-disabled'}
                   />
-                </div>
-                <div onClick={nextSlide}>
+                </button>
+                <button onClick={nextSlide} disabled={!canPrev} className='disabled:cursor-not-allowed'>
                   <Icon
                     icon="chevron_right_outlined"
                     size={20}
                     className={canNext ? 'fill-icon-primary' : 'fill-icon-disabled'}
                   />
-                </div>
+                </button>
               </FlexBox>
             )}
             lowChild={(
