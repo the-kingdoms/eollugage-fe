@@ -1,6 +1,6 @@
 'use client'
 
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import RoleSelection from '@/widgets/join/ui/RoleSelection'
 import SignupName from '@/widgets/join/ui/SignupName'
 import { TopBar } from '@eolluga/eolluga-ui'

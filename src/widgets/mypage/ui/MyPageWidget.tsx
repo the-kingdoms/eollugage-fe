@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
-import isOwnerAtom from '@/lib/globalState'
+import { isOwnerAtom } from '@/lib/globalState'
 import BottomNav from '@/shared/bottomNav'
 
 export default function MyPageWidget() {

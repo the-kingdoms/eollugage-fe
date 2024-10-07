@@ -1,6 +1,6 @@
-import FlexBox from '@/component/shared/flexbox'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import React from 'react'
+import FlexBox from '@/shared/flexbox'
 import BadgeCard from './BadgeCard'
 
 export default function RoleSelection() {

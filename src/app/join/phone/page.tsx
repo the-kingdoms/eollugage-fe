@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 

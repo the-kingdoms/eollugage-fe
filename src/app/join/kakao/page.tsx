@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import { useSetAtom } from 'jotai'
 import { isOwnerAtom } from '@/lib/globalState'
