@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { TopBar } from '@eolluga/eolluga-ui'
-import { Icon } from '@eolluga/eolluga-ui'
+import { TopBar, Icon } from '@eolluga/eolluga-ui'
 import LogoutModal from '@/features/setting/ui/LogoutModal'
 
 export default function SettingsWidget() {

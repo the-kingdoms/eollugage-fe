@@ -20,6 +20,15 @@
     "@typescript-eslint/dot-notation": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
-    "eslint-plugin-import/prefer-default-export": "off"
+    "react/style-prop-object": "off",
+    "eslintimport/prefer-default-export": "off",
+    "eslint-plugin-import/prefer-default-export": "off",
+
+    "arrow-parens": "off",
+    "object-curly-newline": "off", // 중괄호 줄바꿈 규칙 비활성화
+    "import/prefer-default-export": "off", // default export 강제하지 않음
+    "react/jsx-curly-brace-presence": "off",
+    "max-len": "off",
+    "react/jsx-no-useless-fragment": "off" // 불필요한 Fragment 사용 허용
   }
 }

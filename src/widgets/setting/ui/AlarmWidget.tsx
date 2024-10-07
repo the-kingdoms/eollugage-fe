@@ -1,8 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { TopBar } from '@eolluga/eolluga-ui'
-import { Switch } from '@eolluga/eolluga-ui'
+import { TopBar, Switch } from '@eolluga/eolluga-ui'
 
 export default function AlarmWidget() {
   const { push } = useRouter()

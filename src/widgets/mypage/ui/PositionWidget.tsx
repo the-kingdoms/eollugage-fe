@@ -39,7 +39,6 @@ export default function PositionWidget() {
         items: [{ id: uuidv4(), name: '얼루가' }],
       },
     ])
-    console.log(positionList)
   }, [])
 
   const openBottomSheet = () => {
