@@ -9,9 +9,9 @@ import {
 import Header from '@/component/main/Header'
 import FlexBox from '@/component/shared/flexbox'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/lib/globalState'
+import isOwnerAtom from '@/lib/globalState'
 
 const workdata = [
   {
@@ -97,6 +97,7 @@ export default function HomePage() {
             onClick={() => {
               router.push('/home')
             }}
+            aria-hidden="true"
           >
             <FlexBox direction="col" className="gap-2 w-full items-start">
               <Chip size="S" state="enable" dismissible={false} label="권장" color="blue" readOnly />
@@ -110,20 +111,20 @@ export default function HomePage() {
           <HomeBundle
             title="가게 공지"
             rightChild={(
-              <div
+              <button
                 onClick={() => {
                   router.push('/home/notice')
                 }}
               >
                 <Icon icon="chevron_right_outlined" size={20} />
-              </div>
+              </button>
             )}
             lowChild={(
               <TextField
                 size="L"
                 placeholder="공지가 아직 없어요"
                 value=""
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {}} // 디자인 피드백 후 수정
+                onChange={() => {}} // 디자인 피드백 후 수정
                 style="outlined"
               />
             )}
@@ -133,14 +134,14 @@ export default function HomePage() {
             description="출근 시간순으로 나열되어 있습니다"
             rightChild={(
               <FlexBox className="gap-5">
-                <button onClick={prevSlide} disabled={canNext} className='disabled:cursor-not-allowed'>
+                <button onClick={prevSlide} disabled={canNext} className="disabled:cursor-not-allowed">
                   <Icon
                     icon="chevron_left_outlined"
                     size={20}
                     className={canPrev ? 'fill-icon-primary' : 'fill-icon-disabled'}
                   />
                 </button>
-                <button onClick={nextSlide} disabled={canPrev} className='disabled:cursor-not-allowed'>
+                <button onClick={nextSlide} disabled={canPrev} className="disabled:cursor-not-allowed">
                   <Icon
                     icon="chevron_right_outlined"
                     size={20}
@@ -151,7 +152,7 @@ export default function HomePage() {
             )}
             lowChild={(
               <div className="flex flex-row gap-4 w-full">
-                {workdata.slice(currentIndex, currentIndex + 2).map(item => (
+                {workdata.slice(currentIndex, currentIndex + 2).map((item) => (
                   <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
                     <div className="w-full">
                       <div className="body-04-medium-compact">{item.store}</div>
@@ -167,21 +168,22 @@ export default function HomePage() {
             title="발주 리스트"
             description="발주 항목을 수정하려면 클릭해주세요"
             rightChild={(
-              <div
+              <button
                 onClick={() => {
                   router.push('/home/order')
                 }}
               >
                 <Icon icon="add" size={24} />
-              </div>
+              </button>
             )}
             lowChild={(
               <div className="grid grid-cols-2 gap-4 w-full">
-                {fooddata.map(item => (
+                {fooddata.map((item) => (
                   <div
                     key={item.id}
                     className="flex flex-col gap-2 p-4 border border-border-subtle-01 rounded"
                     onClick={() => handleOpen(item)}
+                    aria-hidden="true"
                   >
                     <div className="body-04-medium-compact w-full">{item.title}</div>
                     <div className="body-03-medium-compact text-text-secondary w-full line-clamp-2">{item.description}</div>

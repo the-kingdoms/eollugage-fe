@@ -1032,10 +1032,10 @@
     "@babel/helper-validator-identifier" "^7.24.7"
     to-fast-properties "^2.0.0"
 
-"@eolluga/eolluga-ui@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@eolluga/eolluga-ui/-/eolluga-ui-3.0.2.tgz#96ed03020e1c9961d614733eb7c96ee0e13b1b6f"
-  integrity sha512-8ymqZBLvGYHVxxDXosOHwWGN0OTIrjkXM9TnBUrzZF4T53yFhSQkkr8e8DGHdelGOFM7yrN8UbIMMi8qJ8uupQ==
+"@eolluga/eolluga-ui@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@eolluga/eolluga-ui/-/eolluga-ui-3.2.1.tgz#9ca6be2c6e40c778dd3e8085db8ef71b7f4d379f"
+  integrity sha512-gcKGsl77CzOllX3tFlx4vO/fto71bjznJbxMQDKmqRwnqkB7yHjB1LNSi7o/za7NfnxAkCml593fhGTuV0UuBQ==
   dependencies:
     "@svgr/rollup" "^8.1.0"
     dayjs "^1.11.12"

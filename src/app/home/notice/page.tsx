@@ -36,8 +36,8 @@ export default function NoticePage() {
         }}
       />
       <FlexBox direction="col" className="w-full mt-8 px-4 h-full justify-between">
-        <div className='w-full' onFocus={handleFocus}>
-        <TextArea size="L" placeholder="공지가 아직 없어요" value={noticeText} onChange={handleTextChange} />
+        <div className="w-full" onFocus={handleFocus}>
+          <TextArea size="L" placeholder="공지가 아직 없어요" value={noticeText} onChange={handleTextChange} />
         </div>
         <ButtonMobile size="L" style="primary" type="text" state="enabled" text1={buttonText} />
       </FlexBox>
