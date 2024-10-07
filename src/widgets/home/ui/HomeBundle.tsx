@@ -1,4 +1,4 @@
-import FlexBox from '../shared/flexbox'
+import FlexBox from '../../../component/shared/flexbox'
 
 interface HomeBundleProps {
   title: string

@@ -1,12 +1,12 @@
 'use client'
 
 import BottomNav from '@/component/shared/bottomNav'
-import HomeBundle from '@/component/main/HomeBundle'
+import HomeBundle from '@/widgets/home/ui/HomeBundle'
 import {
   Chip, Icon, TextField, Scrim, Dialog,
 }
   from '@eolluga/eolluga-ui'
-import Header from '@/component/main/Header'
+import Header from "@/widgets/home/ui/Header"
 import FlexBox from '@/component/shared/flexbox'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
