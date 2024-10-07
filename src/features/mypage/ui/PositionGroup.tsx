@@ -4,13 +4,7 @@ import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Icon } from '@eolluga/eolluga-ui'
 import { PositionGroupProps } from '@/shared/types/myPageTypes'
 
-export default function PositionGroup({
-  id,
-  position,
-  items,
-  index,
-  length,
-}: PositionGroupProps) {
+export default function PositionGroup({ id, position, items, index, length }: PositionGroupProps) {
   return (
     <div>
       <Droppable droppableId={id}>

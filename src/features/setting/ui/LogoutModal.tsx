@@ -15,13 +15,7 @@ export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => 
               text1="닫기"
               onClick={setIsModalOpen}
             />
-            <ButtonMobile
-              size="M"
-              style="primary"
-              type="text"
-              state="enabled"
-              text1="확인"
-            />
+            <ButtonMobile size="M" style="primary" type="text" state="enabled" text1="확인" />
           </div>
         </div>
       </div>

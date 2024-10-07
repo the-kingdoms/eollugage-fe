@@ -13,11 +13,7 @@ export default function SettingsWidget() {
   return (
     <>
       <div className="pt-4 pb-24">
-        <TopBar
-          leftIcon="chevron_left_outlined"
-          title="설정"
-          onClickLeftIcon={() => push('/mypage')}
-        />
+        <TopBar leftIcon="chevron_left_outlined" title="설정" onClickLeftIcon={() => push('/mypage')} />
         <div>
           <ul className="flex flex-col gap-spacing-02 px-4 py-2">
             <li className="flex justify-between py-spacing-04">

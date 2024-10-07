@@ -9,11 +9,7 @@ export default function AlarmWidget() {
 
   return (
     <div className="pt-4">
-      <TopBar
-        leftIcon="close"
-        title="알림"
-        onClickLeftIcon={() => push('/mypage/setting')}
-      />
+      <TopBar leftIcon="close" title="알림" onClickLeftIcon={() => push('/mypage/setting')} />
       <div className="mt-4">
         <ul className="flex flex-col gap-spacing-02 p-4">
           <li className="flex justify-between py-spacing-04">

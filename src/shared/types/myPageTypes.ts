@@ -17,12 +17,6 @@ export interface PositionGroupProps {
   length: number
 }
 
-export type SettingsView =
-  | 'alarm'
-  | 'appInfo'
-  | 'businessInfo'
-  | 'privacy'
-  | 'quit'
-  | 'settings'
+export type SettingsView = 'alarm' | 'appInfo' | 'businessInfo' | 'privacy' | 'quit' | 'settings'
 
 export type InquireView = 'byPhone' | 'inquire'

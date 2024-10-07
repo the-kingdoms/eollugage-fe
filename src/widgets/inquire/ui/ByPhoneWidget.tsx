@@ -17,11 +17,7 @@ export default function ByPhoneWidget() {
 
   return (
     <div className="pt-4">
-      <TopBar
-        leftIcon="close"
-        title=""
-        onClickLeftIcon={() => push('/mypage/setting/inquire')}
-      />
+      <TopBar leftIcon="close" title="" onClickLeftIcon={() => push('/mypage/setting/inquire')} />
       <div className="mt-4 gap-spacing-02 p-4">
         <h2 className="body-05-bold">전화로 문의하기</h2>
         <div className="pt-spacing-02 body-02-medium text-text-secondary">
@@ -32,32 +28,14 @@ export default function ByPhoneWidget() {
       </div>
 
       <div className="px-4 pt-12">
-        <TextField
-          value={phoneNumber}
-          label="고객센터 번호"
-          onChange={() => {}}
-          size="L"
-          style="outlined"
-        />
+        <TextField value={phoneNumber} label="고객센터 번호" onChange={() => {}} size="L" style="outlined" />
       </div>
 
       <footer className="w-full py-3 px-4 fixed bottom-4">
         <div className="pb-4">
-          <ToastMessage
-            message="고객센터 번호를 복사했어요"
-            icon="check"
-            open={isClicked}
-            setOpen={setIsClicked}
-          />
+          <ToastMessage message="고객센터 번호를 복사했어요" icon="check" open={isClicked} setOpen={setIsClicked} />
         </div>
-        <ButtonMobile
-          style="primary"
-          size="L"
-          type="text"
-          state="enabled"
-          text1="번호 복사하기"
-          onClick={handleCopy}
-        />
+        <ButtonMobile style="primary" size="L" type="text" state="enabled" text1="번호 복사하기" onClick={handleCopy} />
       </footer>
     </div>
   )
