@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased h-dvh">
         <ProviderLayout>
-          <div className="w-screen h-full m-auto">{children}</div>
+          <div className="relative w-screen h-full m-auto">{children}</div>
         </ProviderLayout>
       </body>
     </html>

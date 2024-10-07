@@ -48,7 +48,15 @@ package.json
     "react-dom": "^18",
     "react-modal-sheet": "^3.1.0",
     "style-loader": "^4.0.0",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "react": "^18",
+    "react-day-picker": "8.10.1",
+    "react-hook-form": "^7.53.0",
+    "tailwind-merge": "^2.5.2",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^1.0.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
