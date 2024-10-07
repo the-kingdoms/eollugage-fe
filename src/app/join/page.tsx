@@ -4,7 +4,6 @@ import FlexBox from '@/component/shared/flexbox'
 import RoleSelection from '@/widgets/join/ui/RoleSelection'
 import SignupName from '@/widgets/join/ui/SignupName'
 import { TopBar } from '@eolluga/eolluga-ui'
-import { useState } from 'react'
 
 export default function JoinPage() {
   return (

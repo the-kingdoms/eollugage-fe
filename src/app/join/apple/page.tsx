@@ -1,3 +1,3 @@
 export default function ApplePage() {
-  return <></>
+  return <>hi</>
 }
