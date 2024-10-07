@@ -1,6 +1,6 @@
 'use client'
 
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import { ButtonMobile, TextArea, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState, useEffect } from 'react'
@@ -11,7 +11,8 @@ export default function NoticePage() {
   const [buttonText, setButtonText] = useState('추가하기')
 
   useEffect(() => {
-    if (noticeText.trim()) { // api 연결 후 디테일하게 수정 예정
+    if (noticeText.trim()) {
+      // api 연결 후 디테일하게 수정 예정
       setButtonText('수정하기')
     } else {
       setButtonText('추가하기')

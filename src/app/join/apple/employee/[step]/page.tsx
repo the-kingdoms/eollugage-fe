@@ -2,7 +2,7 @@
 
 'use client'
 
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import getRandomColor from '@/features/join/utils/getRandomColor'
 import { ButtonMobile, TextField, TopBar, Dialog, Scrim, Avatar } from '@eolluga/eolluga-ui'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'

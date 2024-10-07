@@ -1,10 +1,10 @@
 'use client'
 
-import BottomNav from '@/component/shared/bottomNav'
+import BottomNav from '@/shared/bottomNav'
 import HomeBundle from '@/widgets/home/ui/HomeBundle'
 import { Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/widgets/home/ui/Header'
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'

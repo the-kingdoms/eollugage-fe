@@ -1,5 +1,5 @@
-import FlexBox from '@/component/shared/flexbox'
 import Image from 'next/image'
+import FlexBox from '@/shared/flexbox'
 
 export default function BadgeCard() {
   return (
