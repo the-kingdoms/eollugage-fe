@@ -7,7 +7,9 @@ interface HomeBundleProps {
   lowChild: React.ReactNode
 }
 
-export default function HomeBundle({ title, description, rightChild, lowChild }: HomeBundleProps) {
+export default function HomeBundle({
+  title, description, rightChild, lowChild,
+}: HomeBundleProps) {
   return (
     <FlexBox direction="col" className="gap-3 w-full">
       <FlexBox className="w-full justify-between items-start">

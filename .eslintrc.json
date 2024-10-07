@@ -21,6 +21,7 @@
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
     "react/style-prop-object": "off",
-    "eslintimport/prefer-default-export": "off"
+    "eslintimport/prefer-default-export": "off",
+     "eslint-plugin-import/prefer-default-export": "off",
   }
 }

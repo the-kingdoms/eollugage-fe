@@ -2,15 +2,17 @@
 
 import BottomNav from '@/component/shared/bottomNav'
 import HomeBundle from '@/component/main/HomeBundle'
-import { Chip, Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
-import Header from '@/component/shared/Header'
+import {
+  Chip, Icon, TextField, Scrim, Dialog,
+}
+  from '@eolluga/eolluga-ui'
+import Header from '@/component/main/Header'
 import FlexBox from '@/component/shared/flexbox'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/lib/globalState'
 
-//임시 데이터
 const workdata = [
   {
     id: 1,
@@ -38,7 +40,6 @@ const workdata = [
   },
 ]
 
-//임시 데이터
 const fooddata = [
   {
     id: 1,
@@ -65,13 +66,13 @@ export default function HomePage() {
 
   const nextSlide = () => {
     if (canNext) {
-      setCurrentIndex(prevIndex => prevIndex + 2)
+      setCurrentIndex((prevIndex) => prevIndex + 2)
     }
   }
 
   const prevSlide = () => {
     if (canPrev) {
-      setCurrentIndex(prevIndex => prevIndex - 2)
+      setCurrentIndex((prevIndex) => prevIndex - 2)
     }
   }
 
@@ -94,7 +95,7 @@ export default function HomePage() {
             className="flex flex-row items-center mx-4 mb-6 px-3 pb-[11px] pt-[9px] border border-border-title-01 rounded-lg
            justify-between"
             onClick={() => {
-              router.push('/home') // 경로 수정
+              router.push('/home')
             }}
           >
             <FlexBox direction="col" className="gap-2 w-full items-start">
@@ -108,7 +109,7 @@ export default function HomePage() {
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeBundle
             title="가게 공지"
-            rightChild={
+            rightChild={(
               <div
                 onClick={() => {
                   router.push('/home/notice')
@@ -116,8 +117,8 @@ export default function HomePage() {
               >
                 <Icon icon="chevron_right_outlined" size={20} />
               </div>
-            }
-            lowChild={
+            )}
+            lowChild={(
               <TextField
                 size="L"
                 placeholder="공지가 아직 없어요"
@@ -125,12 +126,12 @@ export default function HomePage() {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => {}} // 디자인 피드백 후 수정
                 style="outlined"
               />
-            }
+            )}
           />
           <HomeBundle
             title="금일 근무자"
             description="출근 시간순으로 나열되어 있습니다"
-            rightChild={
+            rightChild={(
               <FlexBox className="gap-5">
                 <div onClick={prevSlide}>
                   <Icon
@@ -147,8 +148,8 @@ export default function HomePage() {
                   />
                 </div>
               </FlexBox>
-            }
-            lowChild={
+            )}
+            lowChild={(
               <div className="flex flex-row gap-4 w-full">
                 {workdata.slice(currentIndex, currentIndex + 2).map(item => (
                   <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
@@ -160,12 +161,12 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            }
+            )}
           />
           <HomeBundle
             title="발주 리스트"
             description="발주 항목을 수정하려면 클릭해주세요"
-            rightChild={
+            rightChild={(
               <div
                 onClick={() => {
                   router.push('/home/order')
@@ -173,8 +174,8 @@ export default function HomePage() {
               >
                 <Icon icon="add" size={24} />
               </div>
-            }
-            lowChild={
+            )}
+            lowChild={(
               <div className="grid grid-cols-2 gap-4 w-full">
                 {fooddata.map(item => (
                   <div
@@ -187,7 +188,7 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            }
+            )}
           />
         </FlexBox>
         <BottomNav />
