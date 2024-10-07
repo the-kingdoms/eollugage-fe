@@ -13,12 +13,8 @@ export default function BadgeCard() {
         }}
       >
         <FlexBox direction="col" className="gap-spacing-05 p-spacing-05">
-          <div className="w-[192px] h-[51px]">
-            <Image alt="text1" src="/image/eollugage_badge_text1.svg" />
-          </div>
-          <div className="w-[192px] h-[49px]">
-            <Image alt="text2" src="/image/eollugage_badge_text2.svg" />
-          </div>
+          <Image width={192} height={51} alt="text1" src="/image/eollugage_badge_text1.svg" />
+          <Image width={192} height={49} alt="text2" src="/image/eollugage_badge_text2.svg" />
         </FlexBox>
         <div className="body-05-bold-compact text-text-on-white pl-spacing-05 mt-[108px]">
           얼루가게
