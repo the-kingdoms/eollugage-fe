@@ -20,6 +20,9 @@
     "@typescript-eslint/dot-notation": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/button-has-type": "off",
+    "import/prefer-default-export": "off",
+    "react/style-prop-object": "off",
+    "linebreak-style": 0
     "eslint-plugin-import/prefer-default-export": "off"
   }
 }
