@@ -2,6 +2,8 @@
 
 /* eslint-disable object-curly-newline */
 /* eslint-disable arrow-parens */
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-trailing-spaces */
 import { z } from 'zod'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Form } from '@/components/ui/form'
@@ -9,11 +11,11 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AddAttendanceButton } from '@/features'
 import Header from './Header'
 import SelectWorkerDrawer from './SelectWorkerDrawer'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
+import AddAttendanceButton from './AddAttendanceButton'
 
 const formSchema = z.object({
   workerID: z.string(),
@@ -23,7 +25,6 @@ const formSchema = z.object({
     end: z.string(),
   }),
 })
-
 export default function AddAttendanceForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,10 +37,13 @@ export default function AddAttendanceForm() {
       },
     },
   })
+
   const workerID = form.watch('workerID')
   const workingDate = form.watch('workingDate')
-  const workingTimeStart = form.watch('workingTime.start')
-  const workingTimeEnd = form.watch('workingTime.end')
+  const workingTime = form.watch('workingTime')
+
+  const isFormComplete =
+    workerID !== '' && workingDate !== undefined && workingTime.end !== '' && workingTime.start !== ''
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -52,12 +56,10 @@ export default function AddAttendanceForm() {
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>
-          <div className="w-full ">
+          <div className="w-full">
             <div
               className={`fixed bottom-[12px] w-full px-[16px] ${
-                workerID !== '' && workingDate !== undefined && workingTimeStart !== '' && workingTimeEnd !== ''
-                  ? 'block'
-                  : 'hidden'
+                isFormComplete ? 'block' : 'hidden' // 모든 값이 입력된 경우에만 'block'
               }`}
             >
               <AddAttendanceButton />
