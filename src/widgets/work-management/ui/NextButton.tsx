@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { Icon } from '@eolluga/eolluga-ui'
 import { useRef } from 'react'
@@ -8,6 +9,7 @@ import getObjectWeekOfMonth from '../utils/getObjectOfWeekOfMonth'
 interface Today {
   month: number
   weekOfMonth: number
+  monthOfWeekOfMonth: number
 }
 /* eslint-disable operator-linebreak */
 export default function NextButton({
@@ -22,8 +24,9 @@ export default function NextButton({
   monthState: MonthState
 }) {
   const todayRef = useRef<Today>({
-    month: new Date().getMonth(),
+    month: new Date().getMonth() + 1,
     weekOfMonth: getObjectWeekOfMonth(new Date()).weekOfMonth,
+    monthOfWeekOfMonth: getObjectWeekOfMonth(new Date()).month,
   })
   return (
     <button
@@ -32,7 +35,8 @@ export default function NextButton({
       disabled={
         type === 'month'
           ? todayRef.current.month === monthState.month
-          : todayRef.current.weekOfMonth === weekState.weekOfMonth
+          : todayRef.current.weekOfMonth === weekState.weekOfMonth &&
+            todayRef.current.monthOfWeekOfMonth === weekState.month
       }
     >
       <Icon
@@ -40,7 +44,9 @@ export default function NextButton({
         className={`${
           type === 'month'
             ? todayRef.current.month === monthState.month && 'fill-text-disabled'
-            : todayRef.current.weekOfMonth === weekState.weekOfMonth && 'fill-text-disabled'
+            : todayRef.current.weekOfMonth === weekState.weekOfMonth &&
+              todayRef.current.monthOfWeekOfMonth === weekState.month &&
+              'fill-text-disabled'
         }`}
       />
     </button>
