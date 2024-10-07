@@ -7,7 +7,7 @@ import {
   tailwindRadiusConfig,
   tailwindMotionsConfig,
   tailwindTypographyConfig,
-} from '@eolluga/eolluga-ui/tailwindConfig'
+} from '@eolluga/eolluga-ui'
 
 const baseConfig: Config = {
   content: ['./src/**/**/*.{js,ts,jsx,tsx,mdx}'],
