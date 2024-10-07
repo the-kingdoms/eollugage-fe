@@ -64,7 +64,7 @@ const baseConfig: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar-hide'), require('@tailwindcss/line-clamp')],
+  plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar-hide')],
 }
 
 const config: Config = merge(

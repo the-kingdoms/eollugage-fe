@@ -2,16 +2,13 @@
 
 import BottomNav from '@/component/shared/bottomNav'
 import HomeBundle from '@/widgets/home/ui/HomeBundle'
-import {
-  Chip, Icon, TextField, Scrim, Dialog,
-}
-  from '@eolluga/eolluga-ui'
-import Header from "@/widgets/home/ui/Header"
+import { Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
+import Header from '@/widgets/home/ui/Header'
 import FlexBox from '@/component/shared/flexbox'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
-import isOwnerAtom from '@/lib/globalState'
+import { isOwnerAtom } from '@/lib/globalState'
 
 const workdata = [
   {
@@ -66,13 +63,13 @@ export default function HomePage() {
 
   const nextSlide = () => {
     if (canNext) {
-      setCurrentIndex((prevIndex) => prevIndex + 2)
+      setCurrentIndex(prevIndex => prevIndex + 2)
     }
   }
 
   const prevSlide = () => {
     if (canPrev) {
-      setCurrentIndex((prevIndex) => prevIndex - 2)
+      setCurrentIndex(prevIndex => prevIndex - 2)
     }
   }
 
@@ -100,7 +97,6 @@ export default function HomePage() {
             aria-hidden="true"
           >
             <FlexBox direction="col" className="gap-2 w-full items-start">
-              <Chip size="S" state="enable" dismissible={false} label="권장" color="blue" readOnly />
               <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
               <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
             </FlexBox>
@@ -110,7 +106,7 @@ export default function HomePage() {
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeBundle
             title="가게 공지"
-            rightChild={(
+            rightChild={
               <button
                 onClick={() => {
                   router.push('/home/notice')
@@ -118,8 +114,8 @@ export default function HomePage() {
               >
                 <Icon icon="chevron_right_outlined" size={20} />
               </button>
-            )}
-            lowChild={(
+            }
+            lowChild={
               <TextField
                 size="L"
                 placeholder="공지가 아직 없어요"
@@ -127,12 +123,12 @@ export default function HomePage() {
                 onChange={() => {}} // 디자인 피드백 후 수정
                 style="outlined"
               />
-            )}
+            }
           />
           <HomeBundle
             title="금일 근무자"
             description="출근 시간순으로 나열되어 있습니다"
-            rightChild={(
+            rightChild={
               <FlexBox className="gap-5">
                 <button onClick={prevSlide} disabled={canNext} className="disabled:cursor-not-allowed">
                   <Icon
@@ -149,10 +145,10 @@ export default function HomePage() {
                   />
                 </button>
               </FlexBox>
-            )}
-            lowChild={(
+            }
+            lowChild={
               <div className="flex flex-row gap-4 w-full">
-                {workdata.slice(currentIndex, currentIndex + 2).map((item) => (
+                {workdata.slice(currentIndex, currentIndex + 2).map(item => (
                   <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
                     <div className="w-full">
                       <div className="body-04-medium-compact">{item.store}</div>
@@ -162,12 +158,12 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-            )}
+            }
           />
           <HomeBundle
             title="발주 리스트"
             description="발주 항목을 수정하려면 클릭해주세요"
-            rightChild={(
+            rightChild={
               <button
                 onClick={() => {
                   router.push('/home/order')
@@ -175,10 +171,10 @@ export default function HomePage() {
               >
                 <Icon icon="add" size={24} />
               </button>
-            )}
-            lowChild={(
+            }
+            lowChild={
               <div className="grid grid-cols-2 gap-4 w-full">
-                {fooddata.map((item) => (
+                {fooddata.map(item => (
                   <div
                     key={item.id}
                     className="flex flex-col gap-2 p-4 border border-border-subtle-01 rounded"
@@ -186,11 +182,13 @@ export default function HomePage() {
                     aria-hidden="true"
                   >
                     <div className="body-04-medium-compact w-full">{item.title}</div>
-                    <div className="body-03-medium-compact text-text-secondary w-full line-clamp-2">{item.description}</div>
+                    <div className="body-03-medium-compact text-text-secondary w-full line-clamp-2">
+                      {item.description}
+                    </div>
                   </div>
                 ))}
               </div>
-            )}
+            }
           />
         </FlexBox>
         <BottomNav />
@@ -202,6 +200,8 @@ export default function HomePage() {
               title={nowModal.title}
               description={nowModal.description}
               dismissible
+              leftText=""
+              rightText=""
             />
           </Scrim>
         )}
