@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@eolluga/eolluga-ui": "^3.2.1",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@eolluga/eolluga-ui": "^3.0.2",
