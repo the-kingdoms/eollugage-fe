@@ -8,14 +8,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+} from '@/shared/ui/shadcn/alert-dialog'
 import formatTime from '../utils/formatTime'
 
 export default function AttendanceButton({ buttonText }: { buttonText: string }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold">{buttonText}</button>
+        <button className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold">
+          {buttonText}
+        </button>
       </AlertDialogTrigger>
       <AlertDialogContent className="rounded-lg max-w-[calc(100%-48px)] space-y-[24px] gap-0">
         <AlertDialogHeader className="space-y-4 text-left">

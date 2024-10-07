@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
-import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
+import { Input } from '@/shared/ui/shadcn/input'
 import { isNaN } from 'lodash'
 import { UseFormReturn } from 'react-hook-form'
 

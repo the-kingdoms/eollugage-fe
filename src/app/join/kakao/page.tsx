@@ -1,10 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import { useSetAtom } from 'jotai'
-import { isOwnerAtom } from '@/lib/globalState'
+import { isOwnerAtom } from '@/shared/states/globalState'
 import { BadgeCard } from '@/widgets'
 
 export default function KakaoPage() {
@@ -14,7 +14,9 @@ export default function KakaoPage() {
   return (
     <FlexBox direction="col" className="bg-white w-full h-full items-center relative">
       <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={() => router.back()} />
-      <div className="w-full head-02-bold px-spacing-04 text-left mt-spacing-06 mb-[66px]">직원으로 근무 중인가요?</div>
+      <div className="w-full head-02-bold px-spacing-04 text-left mt-spacing-06 mb-[66px]">
+        직원으로 근무 중인가요?
+      </div>
       <BadgeCard />
       <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 gap-spacing-02">
         <ButtonMobile

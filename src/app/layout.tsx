@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import ProviderLayout from '@/shared/providerLayout'
+import ProviderLayout from '@/shared/ui/ProviderLayout'
 
 export const metadata: Metadata = {
   title: '얼루가게',
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="antialiased h-dvh">
         <ProviderLayout>
-          <div className="relative w-screen h-full m-auto">{children}</div>
+          <div className="relative h-full m-auto">{children}</div>
         </ProviderLayout>
       </body>
     </html>

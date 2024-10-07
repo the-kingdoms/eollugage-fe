@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 
 export default function BadgeCard() {
   return (

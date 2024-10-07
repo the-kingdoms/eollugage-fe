@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
-import { Button } from '@/components/ui/button'
+import { Button } from '@/shared/ui/shadcn/button'
 import {
   Drawer,
   DrawerClose,
@@ -11,9 +11,9 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from '@/components/ui/drawer'
-import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { cn } from '@/lib/utils'
+} from '@/shared/ui/shadcn/drawer'
+import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
+import { cn } from '@/shared/utils/cn'
 import { Worker } from '@/widgets/work-management/ui/WorkerItem'
 import { Icon } from '@eolluga/eolluga-ui'
 import { UseFormReturn } from 'react-hook-form'

@@ -2,9 +2,9 @@
 
 'use client'
 
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import getRandomColor from '@/features/join/utils/getRandomColor'
-import BottomSheet from '@/shared/ui/bottomSheet'
+import BottomSheet from '@/shared/ui/BottomSheet'
 import { ButtonMobile, TextField, TopBar, Avatar, Scrim, Icon, Dialog } from '@eolluga/eolluga-ui'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
@@ -147,7 +147,10 @@ export default function KakaoOwnerPage() {
 
       {/* BottomSheet */}
       {openBottomSheet && (
-        <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleCloseBottomSheet}>
+        <Scrim
+          className="fixed inset-0 z-40 flex items-center justify-center"
+          onClick={handleCloseBottomSheet}
+        >
           <BottomSheet open={openBottomSheet}>
             <FlexBox direction="col" className="w-full text-left items-start gap-spacing-01">
               <div className="body-04-bold">가게 코드는 홈에서 확인할 수 있어요</div>
@@ -196,7 +199,13 @@ export default function KakaoOwnerPage() {
       {(step === '4' || step === '5') && (
         <FlexBox direction="col" className="p-spacing-04 h-full relative justify-between">
           <FlexBox direction="col" className="w-full gap-spacing-02 mt-spacing-03 items-start">
-            <Image width={328} height={220} layout="responsive" alt="store_img" src="/image/eollugage_main.png" />
+            <Image
+              width={328}
+              height={220}
+              layout="responsive"
+              alt="store_img"
+              src="/image/eollugage_main.png"
+            />
             <FlexBox className="w-full gap-spacing-02 mt-spacing-03 items-start">
               <Icon icon="info_circle_filled" className="fill-Blue-70" />
               <div className="body-01-medium text-[#6f6f6f]">
@@ -229,7 +238,10 @@ export default function KakaoOwnerPage() {
         </FlexBox>
       )}
       {openDialog && (
-        <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleCloseDialog}>
+        <Scrim
+          className="fixed inset-0 z-40 flex items-center justify-center"
+          onClick={handleCloseDialog}
+        >
           <Dialog
             open={openDialog}
             onClose={handleCloseDialog}

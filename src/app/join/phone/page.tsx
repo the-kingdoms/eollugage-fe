@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 
@@ -18,8 +18,15 @@ export default function PhonePage() {
   }
 
   return (
-    <FlexBox direction="col" className="bg-white w-full h-full items-center relative gap-spacing-08">
-      <TopBar leftIcon="chevron_left_outlined" title="전화번호로 시작하기" onClickLeftIcon={() => router.back()} />
+    <FlexBox
+      direction="col"
+      className="bg-white w-full h-full items-center relative gap-spacing-08"
+    >
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        title="전화번호로 시작하기"
+        onClickLeftIcon={() => router.back()}
+      />
       <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-08">
         <TextField
           onChange={handleNameChange}

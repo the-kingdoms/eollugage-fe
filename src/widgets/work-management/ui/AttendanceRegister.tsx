@@ -1,6 +1,6 @@
 'use client'
 
-import formatDate from '@/widgets/utils/getTodayDate'
+import formatDate from '@/widgets/work-management/utils/getTodayDate'
 import AttendanceButton from './AttendanceButtonDialog'
 
 export default function AttendanceRegister() {

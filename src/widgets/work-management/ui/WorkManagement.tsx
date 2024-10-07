@@ -1,6 +1,6 @@
 'use client'
 
-import { isOwnerAtom } from '@/lib/globalState'
+import { isOwnerAtom } from '@/shared/states/globalState'
 import { useAtom } from 'jotai'
 import WorkManagementWorker from './WorkManagementWorker'
 import WorkManagementOwner from './WorkManagementOwner'

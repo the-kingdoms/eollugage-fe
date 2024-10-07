@@ -2,7 +2,7 @@
 
 'use client'
 
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import getRandomColor from '@/features/join/utils/getRandomColor'
 import { ButtonMobile, TextField, TopBar, Dialog, Scrim, Avatar } from '@eolluga/eolluga-ui'
 import { useParams, useRouter } from 'next/navigation'
@@ -146,7 +146,10 @@ export default function KakaoEmployeePage() {
 
       {/* Dialog and Scrim */}
       {open && (
-        <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleClose}>
+        <Scrim
+          className="fixed inset-0 z-40 flex items-center justify-center"
+          onClick={handleClose}
+        >
           <Dialog
             open={open}
             onClose={handleClose}

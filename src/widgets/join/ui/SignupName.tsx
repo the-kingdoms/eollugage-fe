@@ -1,8 +1,8 @@
-import { loginMethodAtom } from '@/lib/globalState'
+import { loginMethodAtom } from '@/shared/states/globalState'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 
 export default function SignupName() {
   const [name, setName] = useState('얼루가')

@@ -1,14 +1,14 @@
 'use client'
 
-import BottomNav from '@/shared/bottomNav'
+import BottomNav from '@/shared/ui/BottomNav'
 import HomeBundle from '@/widgets/home/ui/HomeBundle'
 import { Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/widgets/home/ui/Header'
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/lib/globalState'
+import { isOwnerAtom } from '@/shared/states/globalState'
 
 const workdata = [
   {
@@ -41,7 +41,8 @@ const fooddata = [
   {
     id: 1,
     title: '얼루가게',
-    description: '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다. 가나다라마바사아자차카타파하',
+    description:
+      '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다. 가나다라마바사아자차카타파하',
   },
   {
     id: 2,
@@ -130,14 +131,22 @@ export default function HomePage() {
             description="출근 시간순으로 나열되어 있습니다"
             rightChild={
               <FlexBox className="gap-5">
-                <button onClick={prevSlide} disabled={canNext} className="disabled:cursor-not-allowed">
+                <button
+                  onClick={prevSlide}
+                  disabled={canNext}
+                  className="disabled:cursor-not-allowed"
+                >
                   <Icon
                     icon="chevron_left_outlined"
                     size={20}
                     className={canPrev ? 'fill-icon-primary' : 'fill-icon-disabled'}
                   />
                 </button>
-                <button onClick={nextSlide} disabled={canPrev} className="disabled:cursor-not-allowed">
+                <button
+                  onClick={nextSlide}
+                  disabled={canPrev}
+                  className="disabled:cursor-not-allowed"
+                >
                   <Icon
                     icon="chevron_right_outlined"
                     size={20}
@@ -149,10 +158,15 @@ export default function HomePage() {
             lowChild={
               <div className="flex flex-row gap-4 w-full">
                 {workdata.slice(currentIndex, currentIndex + 2).map(item => (
-                  <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
+                  <div
+                    key={item.id}
+                    className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full"
+                  >
                     <div className="w-full">
                       <div className="body-04-medium-compact">{item.store}</div>
-                      <div className="body-01-medium-compact text-text-secondary">{item.position}</div>
+                      <div className="body-01-medium-compact text-text-secondary">
+                        {item.position}
+                      </div>
                     </div>
                     <div className="body-02-medium-compact w-full">{item.time}</div>
                   </div>
@@ -193,7 +207,10 @@ export default function HomePage() {
         </FlexBox>
         <BottomNav />
         {open && nowModal && (
-          <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleClose}>
+          <Scrim
+            className="fixed inset-0 z-40 flex items-center justify-center"
+            onClick={handleClose}
+          >
             <Dialog
               open={open}
               onClose={handleClose}
