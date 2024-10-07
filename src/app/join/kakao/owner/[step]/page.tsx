@@ -148,7 +148,7 @@ export default function KakaoOwnerPage() {
       {/* BottomSheet */}
       {openBottomSheet && (
         <Scrim className="fixed inset-0 z-40 flex items-center justify-center" onClick={handleCloseBottomSheet}>
-          <BottomSheet onClose={handleCloseBottomSheet} open={openBottomSheet}>
+          <BottomSheet open={openBottomSheet}>
             <FlexBox direction="col" className="w-full text-left items-start gap-spacing-01">
               <div className="body-04-bold">가게 코드는 홈에서 확인할 수 있어요</div>
               <div className="body-01-regular-compact text-[#6F6F6F]">
@@ -157,14 +157,14 @@ export default function KakaoOwnerPage() {
               </div>
             </FlexBox>
             <div className="w-full mt-[48px] mb-[80px]">
-              <TextField
+              {/* <TextField
                 value="aaaa"
                 label="가게 코드"
                 size="L"
                 style="underlined"
                 state="readOnly"
-                onChange={() => console.log('')}
-              />
+                onChange={() => }
+              /> */}
             </div>
             <div className="w-full">
               <ButtonMobile
