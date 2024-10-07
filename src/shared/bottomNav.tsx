@@ -1,4 +1,4 @@
-import { HorizontalNav } from '@eolluga/eolluga-ui'
+import { HorizontalNav } from '@eolluga/eolluga-ui/Navigation'
 import React from 'react'
 
 const navItem = [

@@ -1,13 +1,12 @@
-import { useCallback, useState } from 'react'
-import { TopBar, TextField, ButtonMobile } from '@eolluga/eolluga-ui'
-import { InquireView } from '@/types/myPageTypes'
-import ToastMessage from '@/component/shared/toastMessage'
+'use client'
 
-export default function ByPhonePage({
-  handleChangeView,
-}: {
-  handleChangeView: (value: InquireView) => void
-}) {
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { TopBar, TextField, ButtonMobile } from '@eolluga/eolluga-ui'
+import ToastMessage from '@/shared/ui/toastMessage'
+
+export default function ByPhoneWidget() {
+  const { push } = useRouter()
   const [isClicked, setIsClicked] = useState(false)
   const phoneNumber = '010-4000-9842'
 
@@ -21,7 +20,7 @@ export default function ByPhonePage({
       <TopBar
         leftIcon="close"
         title=""
-        onClickLeftIcon={() => handleChangeView('inquire')}
+        onClickLeftIcon={() => push('/mypage/setting/inquire')}
       />
       <div className="mt-4 gap-spacing-02 p-4">
         <h2 className="body-05-bold">전화로 문의하기</h2>

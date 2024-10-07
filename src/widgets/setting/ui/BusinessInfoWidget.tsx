@@ -1,17 +1,16 @@
-import { TopBar } from '@eolluga/eolluga-ui'
-import { SettingsView } from '@/types/myPageTypes'
+'use client'
 
-export default function BusinessInfoPage({
-  handleChangeView,
-}: {
-  handleChangeView: (value: SettingsView) => void
-}) {
+import { useRouter } from 'next/navigation'
+import { TopBar } from '@eolluga/eolluga-ui'
+
+export default function BusinessInfoWidget() {
+  const { push } = useRouter()
   return (
     <div className="pt-4">
       <TopBar
         leftIcon="close"
         title="사업자 정보"
-        onClickLeftIcon={() => handleChangeView('settings')}
+        onClickLeftIcon={() => push('/mypage/setting')}
       />
       <div className="mt-4 p-spacing-04">
         <ul className="flex flex-col gap-spacing-02 py-spacing-02 px-spacing-03 rounded-radius-05 border-2 border-Gray-20 bg-layer-01 body-01-medium">

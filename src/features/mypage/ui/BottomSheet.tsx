@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { v4 as uuidv4 } from 'uuid'
-import { TextField, Icon } from '@eolluga/eolluga-ui'
-import { PositionGroupType } from '@/types/myPageTypes'
+import { Icon, TextField } from '@eolluga/eolluga-ui'
+import { PositionGroupType } from '@/shared/types/myPageTypes'
+import { BottomSheetZIndex } from '@/shared/constants'
 
 export default function BottomSheet({
   positionList,
-  setPositionList,
+  onAddPosition,
+  onDeletePosition,
   closeBottomSheet,
 }: {
   positionList: PositionGroupType[]
-  setPositionList: (value: PositionGroupType[]) => void
+  onAddPosition: (newPosition: PositionGroupType) => void
+  onDeletePosition: (id: string) => void
   closeBottomSheet: () => void
 }) {
   const [positions, setPositions] = useState<string[]>(
@@ -24,30 +27,28 @@ export default function BottomSheet({
     const updatedPositions = [...positions]
     updatedPositions[index] = value
     setPositions(updatedPositions)
-    setPositionList(updatedList)
   }
 
-  const deletePosition = (id: string) => {
-    const updatedPositionList = positionList.filter(e => e.id !== id)
-    setPositionList(updatedPositionList)
-  }
-
-  const addNewPosition = (value: string) => {
-    if (value.trim() !== '') {
-      const newPosition = {
+  const addNewPosition = () => {
+    if (inputValue.trim() !== '') {
+      const newPosition: PositionGroupType = {
         id: uuidv4(),
-        position: value,
+        position: inputValue,
         items: [],
       }
-      const updatedPositionList = [...positionList]
-      updatedPositionList.push(newPosition)
-      setPositionList(updatedPositionList)
+      onAddPosition(newPosition)
     }
     closeBottomSheet()
   }
 
+  const handleDeletePosition = (id: string) => {
+    onDeletePosition(id)
+  }
+
   return (
-    <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex justify-center items-end">
+    <div
+      className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-${BottomSheetZIndex} flex justify-center items-end`}
+    >
       <motion.div
         initial={{ y: '20%' }}
         animate={{ y: 0 }}
@@ -68,8 +69,8 @@ export default function BottomSheet({
         <div className="mb-8 relative">
           <h2 className="text-center label-03-medium">가게 직책</h2>
           <button
-            onClick={() => addNewPosition(inputValue)}
-            className="text-Blue-70 absolute top-0 right-0 font-bold"
+            onClick={addNewPosition}
+            className="text-support-info absolute top-0 right-0 font-bold"
           >
             저장
           </button>
@@ -85,7 +86,7 @@ export default function BottomSheet({
                   style="outlined"
                   onChange={e => handlePositionsChange(e.target.value, idx)}
                 />
-                <button className="p-4" onClick={() => deletePosition(position.id)}>
+                <button className="p-4" onClick={() => handleDeletePosition(position.id)}>
                   <Icon icon="delete" />
                 </button>
               </div>

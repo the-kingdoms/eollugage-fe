@@ -1,17 +1,18 @@
-import { TopBar, Switch } from '@eolluga/eolluga-ui'
-import { SettingsView } from '@/types/myPageTypes'
+'use client'
 
-export default function AlarmPage({
-  handleChangeView,
-}: {
-  handleChangeView: (value: SettingsView) => void
-}) {
+import { useRouter } from 'next/navigation'
+import { TopBar } from '@eolluga/eolluga-ui'
+import { Switch } from '@eolluga/eolluga-ui'
+
+export default function AlarmWidget() {
+  const { push } = useRouter()
+
   return (
     <div className="pt-4">
       <TopBar
         leftIcon="close"
         title="알림"
-        onClickLeftIcon={() => handleChangeView('settings')}
+        onClickLeftIcon={() => push('/mypage/setting')}
       />
       <div className="mt-4">
         <ul className="flex flex-col gap-spacing-02 p-4">

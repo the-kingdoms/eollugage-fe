@@ -2,13 +2,12 @@ import { merge } from 'lodash'
 import type { Config } from 'tailwindcss'
 import {
   ColorGroundConfig,
-  tailwindColorConfig,
   tailwindElevationConfig,
   tailwindSpacingConfig,
   tailwindRadiusConfig,
   tailwindMotionsConfig,
   tailwindTypographyConfig,
-} from '@eolluga/eolluga-ui'
+} from '@eolluga/eolluga-ui/tailwindConfig'
 
 const baseConfig: Config = {
   content: ['./src/**/**/*.{js,ts,jsx,tsx,mdx}'],

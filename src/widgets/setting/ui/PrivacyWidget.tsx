@@ -1,5 +1,7 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { TopBar } from '@eolluga/eolluga-ui'
-import { SettingsView } from '@/types/myPageTypes'
 
 interface PrivacyPolicyContent {
   subTitle: string
@@ -10,19 +12,18 @@ interface PrivacyPolicyData {
   sections: PrivacyPolicyContent[]
 }
 
-export default function PrivacyPage({
+export default function PrivacyWidget({
   privacyPolicyData,
-  handleChangeView,
 }: {
   privacyPolicyData: PrivacyPolicyData
-  handleChangeView: (value: SettingsView) => void
 }) {
+  const { push } = useRouter()
   return (
     <div className="pt-4">
       <TopBar
         leftIcon="close"
         title="개인정보처리방침"
-        onClickLeftIcon={() => handleChangeView('settings')}
+        onClickLeftIcon={() => push('/mypage/setting')}
       />
       <div className="mt-4">
         <ul className="flex flex-col gap-spacing-02 p-4">

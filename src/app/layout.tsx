@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import ProviderLayout from '@/component/shared/providerLayout'
+import ProviderLayout from '@/shared/providerLayout'
 
 export const metadata: Metadata = {
   title: '얼루가게',

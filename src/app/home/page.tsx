@@ -1,6 +1,6 @@
 'use client'
 
-import BottomNav from '@/component/shared/bottomNav'
+import BottomNav from '@/shared/bottomNav'
 
 export default function HomePage() {
   return (

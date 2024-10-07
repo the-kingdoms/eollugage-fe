@@ -54,7 +54,9 @@ export default function LoginButton({ type }: LoginButtonProps) {
       onClick={onClickLogin}
     >
       {returnIcon()}
-      <div className={`w-full body-03-medium text-center ${style[type]['font']}`}>{style[type]['name']}로 시작하기</div>
+      <div className={`w-full body-03-medium text-center ${style[type]['font']}`}>
+        {style[type]['name']}로 시작하기
+      </div>
     </button>
   )
 }

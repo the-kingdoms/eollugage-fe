@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import LoginButton from '@/component/main/loginButton'
-import FlexBox from '@/component/shared/flexbox'
+import FlexBox from '@/shared/flexbox'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -12,7 +12,10 @@ export default function Home() {
       <div className={styles.titleAnimation}>
         <Image height={38} width={234} alt="text" src="/image/eollugage_title.png" />
       </div>
-      <FlexBox direction="col" className={`${styles.bodyAnimation} justify-between w-full h-full`}>
+      <FlexBox
+        direction="col"
+        className={`${styles.bodyAnimation} justify-between w-full h-full`}
+      >
         <div className="text-Gray-40 body-02-regular">간편하게 일하는 법</div>
         <div className={styles.backgroundImage} />
         <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-04">

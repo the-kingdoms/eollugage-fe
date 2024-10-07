@@ -1,12 +1,16 @@
+'use client'
+
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { v4 as uuidv4 } from 'uuid'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
-import { PositionGroupType } from '@/types/myPageTypes'
-import PositionGroup from './positionGroup'
-import BottomSheet from './bottomSheet'
+import { PositionGroupType } from '@/shared/types/myPageTypes'
+import PositionGroup from '@/features/mypage/ui/PositionGroup'
+import BottomSheet from '@/features/mypage/ui/BottomSheet'
 
-export default function PositionPage({ setCurrentPage }: { setCurrentPage: () => void }) {
+export default function PositionWidget() {
+  const { push } = useRouter()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
 
@@ -35,6 +39,7 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
         items: [{ id: uuidv4(), name: '얼루가' }],
       },
     ])
+    console.log(positionList)
   }, [])
 
   const openBottomSheet = () => {
@@ -43,6 +48,14 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
   const closeBottomSheet = () => {
     setIsOpen(false)
   }
+  const addPosition = (newPosition: PositionGroupType) => {
+    setPositionList(prevList => [...prevList, newPosition])
+  }
+
+  const deletePosition = (id: string) => {
+    setPositionList(prevList => prevList.filter(position => position.id !== id))
+  }
+
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result
     if (!destination) return
@@ -72,7 +85,7 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
       <TopBar
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
-        onClickLeftIcon={setCurrentPage}
+        onClickLeftIcon={() => push('/mypage')}
       />
       <div className="mt-4 pb-32">
         <DragDropContext onDragEnd={onDragEnd}>
@@ -101,7 +114,8 @@ export default function PositionPage({ setCurrentPage }: { setCurrentPage: () =>
       {isOpen && (
         <BottomSheet
           positionList={positionList}
-          setPositionList={setPositionList}
+          onAddPosition={addPosition}
+          onDeletePosition={deletePosition}
           closeBottomSheet={closeBottomSheet}
         />
       )}

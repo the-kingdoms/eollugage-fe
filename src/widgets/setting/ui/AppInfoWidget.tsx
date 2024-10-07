@@ -1,17 +1,16 @@
-import { TopBar } from '@eolluga/eolluga-ui'
-import { SettingsView } from '@/types/myPageTypes'
+'use client'
 
-export default function AppInfoPage({
-  handleChangeView,
-}: {
-  handleChangeView: (value: SettingsView) => void
-}) {
+import { useRouter } from 'next/navigation'
+import { TopBar } from '@eolluga/eolluga-ui'
+
+export default function AppInfo() {
+  const { push } = useRouter()
   return (
     <div className="pt-4">
       <TopBar
         leftIcon="close"
         title="앱 버전"
-        onClickLeftIcon={() => handleChangeView('settings')}
+        onClickLeftIcon={() => push('/mypage/setting')}
       />
       <div className="mt-32 flex justify-center ">
         <div className="flex flex-col items-center justify-center gap-spacing-02">

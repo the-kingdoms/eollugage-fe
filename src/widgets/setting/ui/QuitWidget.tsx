@@ -1,21 +1,16 @@
-import { useState } from 'react'
-import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
-import { SettingsView } from '@/types/myPageTypes'
+'use client'
 
-export default function QuitPage({
-  handleChangeView,
-}: {
-  handleChangeView: (value: SettingsView) => void
-}) {
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
+
+export default function Quit() {
+  const { push } = useRouter()
   const [isChecked, setIsChecked] = useState(false)
 
   return (
     <div className="pt-4">
-      <TopBar
-        leftIcon="close"
-        title=""
-        onClickLeftIcon={() => handleChangeView('settings')}
-      />
+      <TopBar leftIcon="close" title="" onClickLeftIcon={() => push('/mypage/setting')} />
       <div className="mt-4">
         <div className="flex flex-col gap-spacing-02 p-4">
           <h2 className="body-05-bold">
