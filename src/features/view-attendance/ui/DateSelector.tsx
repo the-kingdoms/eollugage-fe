@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/default-param-last */
 /* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable max-len */
@@ -9,35 +10,48 @@ import PrevButton from './PrevButton'
 import NextButton from './NextButton'
 import handlePrev from '../utils/handlePrev'
 import handleNext from '../utils/handleNext'
+import getObjectWeekOfMonth from '../utils/getObjectOfWeekOfMonth'
+
+export interface WeekState {
+  year: number
+  month: number
+  weekOfMonth: number
+}
+
+export interface MonthState {
+  year: number
+  month: number
+}
 
 export default function DateSelector({ type }: { type: 'week' | 'month' }) {
-  const [year, setYear] = useState<number>(new Date().getFullYear())
-  const [month, setMonth] = useState<number>(type === 'month' ? new Date().getMonth() + 1 : new Date().getMonth() + 1)
-  const [weekOfMonth, setWeekOfMonth] = useState<number>(
-    type === 'week' ? new Date().getMonth() + 1 : new Date().getMonth() + 1,
-  )
+  const [weekState, setWeekState] = useState<WeekState>({
+    ...getObjectWeekOfMonth(new Date()),
+  })
+
+  const [monthState, setMonthState] = useState<MonthState>({
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+  })
 
   return (
     <div className="flex space-x-2 justify-between body-04-bold-compact items-center">
       <PrevButton
-        onClick={() => {
-          handlePrev(type, setYear, setMonth, year, month, setWeekOfMonth, weekOfMonth)
-        }}
+        weekState={weekState}
+        monthState={monthState}
+        onClick={() => handlePrev(type, weekState, monthState, setWeekState, setMonthState)}
       />
       {type === 'week' ? (
-        <p>{`${month || ''}월 ${weekOfMonth || ''}주차`}</p>
+        <p>{`${weekState.month || ''}월 ${weekState.weekOfMonth || ''}주차`}</p>
       ) : (
         <p>
-          {year || ''}년 {month || ''}월
+          {monthState.year || ''}년 {monthState.month || ''}월
         </p>
       )}
       <NextButton
-        onClick={() => {
-          handleNext(type, setYear, setMonth, year, month, setWeekOfMonth, weekOfMonth)
-        }}
         type={type}
-        month={month}
-        year={year}
+        weekState={weekState}
+        monthState={monthState}
+        onClick={() => handleNext(type, weekState, monthState, setWeekState, setMonthState)}
       />
     </div>
   )
