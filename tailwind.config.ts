@@ -17,7 +17,9 @@ const baseConfig: Config = {
       colors: {},
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ],
 }
 
 const config: Config = merge(

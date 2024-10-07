@@ -44,7 +44,7 @@ const fooddata = [
   {
     id: 1,
     title: '얼루가게',
-    description: '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다.',
+    description: '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다. 가나다라마바사아자차카타파하',
   },
   {
     id: 2,
@@ -133,14 +133,14 @@ export default function HomePage() {
             description="출근 시간순으로 나열되어 있습니다"
             rightChild={(
               <FlexBox className="gap-5">
-                <button onClick={prevSlide} disabled={!canNext} className='disabled:cursor-not-allowed'>
+                <button onClick={prevSlide} disabled={canNext} className='disabled:cursor-not-allowed'>
                   <Icon
                     icon="chevron_left_outlined"
                     size={20}
                     className={canPrev ? 'fill-icon-primary' : 'fill-icon-disabled'}
                   />
                 </button>
-                <button onClick={nextSlide} disabled={!canPrev} className='disabled:cursor-not-allowed'>
+                <button onClick={nextSlide} disabled={canPrev} className='disabled:cursor-not-allowed'>
                   <Icon
                     icon="chevron_right_outlined"
                     size={20}
@@ -184,7 +184,7 @@ export default function HomePage() {
                     onClick={() => handleOpen(item)}
                   >
                     <div className="body-04-medium-compact w-full">{item.title}</div>
-                    <div className="body-03-medium-compact text-text-secondary w-full">{item.description}</div>
+                    <div className="body-03-medium-compact text-text-secondary w-full line-clamp-2">{item.description}</div>
                   </div>
                 ))}
               </div>
