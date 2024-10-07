@@ -1,4 +1,4 @@
-import { AttendanceInfo } from '@/features'
+import AttendanceInfo from './AttendanceInfo'
 import AttendanceRegister from './AttendanceRegister'
 import WorkManagementWorkerHeader from './WorkManagementWorkerHeader'
 

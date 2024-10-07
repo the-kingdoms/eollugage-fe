@@ -2,10 +2,11 @@
 
 import React from 'react'
 
-import { AddAttendanceLink, AttendanceInfo } from '@/features'
 import { useSetAtom } from 'jotai'
 import WorkerSelector from './WorkerSelector'
 import { selectedWorkerAtom } from '../atoms/workManagementAtoms'
+import AttendanceInfo from './AttendanceInfo'
+import AddAttendanceLink from './AddAttendanceLink'
 
 export default function WorkManagementOwner() {
   const setSelectedWorkerID = useSetAtom(selectedWorkerAtom)
