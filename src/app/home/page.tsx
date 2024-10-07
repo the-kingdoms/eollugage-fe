@@ -202,8 +202,6 @@ export default function HomePage() {
               title={nowModal.title}
               description={nowModal.description}
               dismissible
-              leftText=""
-              rightText=""
             />
           </Scrim>
         )}
