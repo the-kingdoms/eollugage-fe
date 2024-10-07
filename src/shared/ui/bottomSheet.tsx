@@ -9,11 +9,10 @@ const bottomSheetVariants = {
 
 interface BottomSheetProps {
   open: boolean
-  onClose: () => void
   children: ReactNode // children 타입 추가
 }
 
-export default function BottomSheet({ open, onClose, children }: BottomSheetProps) {
+export default function BottomSheet({ open, children }: BottomSheetProps) {
   const minY = 60
   const bottomSheetHeight = typeof window !== 'undefined' ? window.innerHeight - minY : 600 // SSR 방지
 
