@@ -3,6 +3,7 @@ import type { Config } from 'tailwindcss'
 import {
   ColorGroundConfig,
   tailwindElevationConfig,
+  tailwindColorConfig,
   tailwindSpacingConfig,
   tailwindRadiusConfig,
   tailwindMotionsConfig,
