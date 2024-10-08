@@ -205,7 +205,6 @@ export default function HomePage() {
             }
           />
         </FlexBox>
-        <BottomNav />
         {open && nowModal && (
           <Scrim
             className="fixed inset-0 z-40 flex items-center justify-center"
