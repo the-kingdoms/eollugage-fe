@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import FlexBox from '@/component/shared/flexbox'
 import React, { ReactNode } from 'react'
+import FlexBox from '@/shared/flexbox'
 
 const bottomSheetVariants = {
   hidden: { y: '100%' },

@@ -2,8 +2,8 @@ import { merge } from 'lodash'
 import type { Config } from 'tailwindcss'
 import {
   ColorGroundConfig,
-  tailwindColorConfig,
   tailwindElevationConfig,
+  tailwindColorConfig,
   tailwindSpacingConfig,
   tailwindRadiusConfig,
   tailwindMotionsConfig,
@@ -70,6 +70,7 @@ const baseConfig: Config = {
 const config: Config = merge(
   baseConfig,
   ColorGroundConfig,
+  tailwindColorConfig,
   tailwindElevationConfig,
   tailwindSpacingConfig,
   tailwindRadiusConfig,
