@@ -3,7 +3,7 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import React from 'react'
-import { isOwnerAtom } from '@/shared/states/globalState'
+import { isOwnerAtom } from '@/shared/atoms/globalAtom'
 import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import BadgeCard from './BadgeCard'

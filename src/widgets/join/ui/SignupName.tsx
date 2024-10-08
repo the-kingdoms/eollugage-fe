@@ -1,6 +1,6 @@
 'use client'
 
-import { loginMethodAtom } from '@/shared/states/globalState'
+import { loginMethodAtom } from '@/shared/atoms/globalAtom'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'

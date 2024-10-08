@@ -8,7 +8,7 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/shared/states/globalState'
+import { isOwnerAtom } from '@/shared/atoms/globalAtom'
 
 const workdata = [
   {
