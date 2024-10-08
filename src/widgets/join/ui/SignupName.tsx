@@ -1,3 +1,5 @@
+'use client'
+
 import FlexBox from '@/component/shared/flexbox'
 import { loginMethodAtom } from '@/lib/globalState'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'

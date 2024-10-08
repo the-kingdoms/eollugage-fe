@@ -1,5 +1,3 @@
-'use client'
-
 import FlexBox from '@/component/shared/flexbox'
 import { RoleSelection } from '@/widgets'
 import { TopBar } from '@eolluga/eolluga-ui'

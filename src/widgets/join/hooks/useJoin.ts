@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
-import { loginMethodAtom, stepAtom } from '../atoms/joinAtoms'
-import { isOwnerAtom } from '@/lib/globalState'
+import { stepAtom } from '../atoms/joinAtoms'
+import { isOwnerAtom, loginMethodAtom } from '@/lib/globalState'
 import { useCallback } from 'react'
 
 export default function useJoin() {
