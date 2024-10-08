@@ -1,6 +1,5 @@
 'use client'
 
-import BottomNav from '@/shared/ui/BottomNav'
 import HomeBundle from '@/widgets/home/ui/HomeBundle'
 import { Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/widgets/home/ui/Header'
@@ -93,7 +92,7 @@ export default function HomePage() {
             className="flex flex-row items-center mx-4 mb-6 px-3 pb-[11px] pt-[9px] border border-border-title-01 rounded-lg
            justify-between"
             onClick={() => {
-              router.push('/home')
+              router.push('/home/upload-image')
             }}
             aria-hidden="true"
           >
