@@ -1,3 +1,5 @@
+'use client'
+
 import { loginMethodAtom } from '@/lib/globalState'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
 import { useAtom } from 'jotai'
