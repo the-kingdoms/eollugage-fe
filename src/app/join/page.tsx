@@ -1,8 +1,5 @@
-'use client'
-
 import FlexBox from '@/shared/ui/Flexbox'
-import RoleSelection from '@/widgets/join/ui/RoleSelection'
-import SignupName from '@/widgets/join/ui/SignupName'
+import { RoleSelection } from '@/widgets'
 import { TopBar } from '@eolluga/eolluga-ui'
 
 export default function JoinPage() {
@@ -13,7 +10,6 @@ export default function JoinPage() {
     >
       <TopBar leftIcon="chevron_left_outlined" />
       <RoleSelection />
-      <SignupName />
     </FlexBox>
   )
 }
