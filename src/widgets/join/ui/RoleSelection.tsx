@@ -14,13 +14,13 @@ export default function RoleSelection() {
   const router = useRouter()
 
   const handleEmployeeClick = () => {
-    setIsOwner(false) // Set to false for employees
-    router.push('/join/employee') // Navigate to employee page
+    setIsOwner(false)
+    router.push('/join/employee')
   }
 
   const handleOwnerClick = () => {
-    setIsOwner(true) // Set to true for business owners
-    router.push('/join/owner') // Navigate to owner page
+    setIsOwner(true)
+    router.push('/join/owner')
   }
 
   return (
