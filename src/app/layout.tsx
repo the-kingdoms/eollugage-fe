@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import '@eolluga/eolluga-ui/dist/index.css'
 import ProviderLayout from '@/shared/ui/ProviderLayout'
 
 export const metadata: Metadata = {
