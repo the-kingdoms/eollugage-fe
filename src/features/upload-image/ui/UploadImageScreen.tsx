@@ -1,11 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
+import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import { sendRNFunction } from '../utils/rnSender'
-import { useEffect, useState } from 'react'
 import { ImageUploadResultT } from '../types/imageUploadType'
-import { useRouter } from 'next/navigation'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -14,6 +14,7 @@ interface ImageUploadScreenProps {
 export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const router = useRouter()
 
+  // eslint-disable-next-line
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
   const onClickBackButton = () => {
@@ -27,7 +28,6 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
     const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
 
     if (message.type === 'getImageUploadResult') {
-      console.log(message.data.isSuccess)
       setIsSuccess(message.data.isSuccess)
     }
   }
@@ -57,7 +57,7 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[4/3] bg-gray-200"></div>
+            <div className="w-full aspect-[4/3] bg-gray-200" />
             <FlexBox className="items-start w-full gap-4">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
               <div className="w-full body-01-medium text-text-helper">

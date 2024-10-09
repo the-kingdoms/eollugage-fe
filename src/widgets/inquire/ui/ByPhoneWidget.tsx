@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { TopBar, TextField, ButtonMobile } from '@eolluga/eolluga-ui'
-import ToastMessage from '@/shared/ui/toastMessage'
+import ToastMessage from '@/shared/ui/ToastMessage'
 
 export default function ByPhoneWidget() {
   const { push } = useRouter()
