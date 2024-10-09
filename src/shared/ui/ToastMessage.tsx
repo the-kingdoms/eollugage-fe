@@ -40,8 +40,12 @@ export default function ToastMessage({ message, icon, open, setOpen }: ToastMess
       className="flex flex-row px-spacing-05 py-spacing-03 bg-layer-inverse rounded-full w-full transition-opacity justify-between"
     >
       <div className="flex flex-row items-center">
-        {icon === 'check' && <Image height={20} width={20} alt="text" src="/image/check-icon.svg" />}
-        {icon === 'warning' && <Image height={20} width={20} alt="text" src="/image/warning-icon.svg" />}
+        {icon === 'check' && (
+          <Image height={20} width={20} alt="text" src="/image/check-icon.svg" />
+        )}
+        {icon === 'warning' && (
+          <Image height={20} width={20} alt="text" src="/image/warning-icon.svg" />
+        )}
         <span className="pl-2 text-text-on-color body-01-medium">{message}</span>
       </div>
     </motion.div>

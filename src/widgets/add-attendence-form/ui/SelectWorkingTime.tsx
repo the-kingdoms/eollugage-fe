@@ -3,8 +3,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
 
-import { FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
+import { Input } from '@/shared/ui/shadcn/input'
 import { UseFormReturn } from 'react-hook-form'
 
 export default function SelectWorkingTime({

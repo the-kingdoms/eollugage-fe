@@ -1,9 +1,9 @@
 'use client'
 
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import React from 'react'
-import { isOwnerAtom } from '@/lib/globalState'
+import { isOwnerAtom } from '@/shared/atoms/globalAtom'
 import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import BadgeCard from './BadgeCard'

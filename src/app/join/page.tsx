@@ -1,4 +1,4 @@
-import FlexBox from '@/shared/flexbox'
+import FlexBox from '@/shared/ui/Flexbox'
 import { RoleSelection } from '@/widgets'
 import { TopBar } from '@eolluga/eolluga-ui'
 

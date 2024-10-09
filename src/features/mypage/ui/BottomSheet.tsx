@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { v4 as uuidv4 } from 'uuid'
 import { Icon, TextField } from '@eolluga/eolluga-ui'
 import { PositionGroupType } from '@/shared/types/myPageTypes'
-import { BottomSheetZIndex } from '@/shared/constants'
+import { ZINDEX } from '@/shared/constants/zIndex'
 
 export default function BottomSheet({
   positionList,
@@ -44,7 +44,9 @@ export default function BottomSheet({
   }
 
   return (
-    <div className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-${BottomSheetZIndex} flex justify-center items-end`}>
+    <div
+      className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-${ZINDEX.bottomSheet} flex justify-center items-end`}
+    >
       <motion.div
         initial={{ y: '20%' }}
         animate={{ y: 0 }}
@@ -64,7 +66,10 @@ export default function BottomSheet({
 
         <div className="mb-8 relative">
           <h2 className="text-center label-03-medium">가게 직책</h2>
-          <button onClick={addNewPosition} className="text-support-info absolute top-0 right-0 font-bold">
+          <button
+            onClick={addNewPosition}
+            className="text-support-info absolute top-0 right-0 font-bold"
+          >
             저장
           </button>
         </div>

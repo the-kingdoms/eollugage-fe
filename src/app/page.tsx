@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import LoginButton from '@/component/main/loginButton'
-import FlexBox from '@/shared/flexbox'
+import LoginButton from '@/widgets/join/ui/LoginButton'
+import FlexBox from '@/shared/ui/Flexbox'
 import styles from './page.module.css'
 
 export default function Home() {
