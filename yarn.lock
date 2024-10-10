@@ -5633,6 +5633,11 @@ typescript@^5:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.2.tgz#d1de67b6bef77c41823f822df8f0b3bcff60a5a0"
   integrity sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==
 
+typescript@^5.6.2:
+  version "5.6.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.3.tgz#5f3449e31c9d94febb17de03cc081dd56d81db5b"
+  integrity sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==
+
 unbox-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/unbox-primitive/-/unbox-primitive-1.0.2.tgz#29032021057d5e6cdbd08c5129c226dff8ed6f9e"
@@ -5752,6 +5757,13 @@ watchpack@2.4.0:
   dependencies:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
+
+week-of-month@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/week-of-month/-/week-of-month-1.0.6.tgz#c59cb0ab882d8a3a58cda0a0ebfa1820291c2b94"
+  integrity sha512-AaCuyl7gbJD4X5DtYpoeQo0clEpJCtoktLpamYt5J3/kDCDeK3EpB5xKISLPxxnJlQr3TOaqCD4Ne8vIRjlnkg==
+  dependencies:
+    typescript "^5.6.2"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
