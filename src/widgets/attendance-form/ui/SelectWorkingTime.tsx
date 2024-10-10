@@ -32,7 +32,7 @@ export default function SelectWorkingTime({
           <FormLabel className="body-02-regular text-[#6F6F6F]">근무 시간</FormLabel>
           <div className="flex space-x-4">
             <Input
-              type="time"
+              type="string"
               value={field.value.start || ''}
               onChange={e => {
                 field.onChange({
@@ -40,12 +40,13 @@ export default function SelectWorkingTime({
                   start: e.target.value,
                 })
               }}
-              className="w-1/2 justify-start text-[20px] font-medium h-[56px]"
+              className="w-1/2 justify-start text-[20px] font-medium h-[56px] placeholder:text-[#A8A8A8]"
               aria-label="출근 시간"
+              placeholder="예: 12:00"
             />
 
             <Input
-              type="time"
+              type="string"
               value={field.value.end || ''}
               onChange={e => {
                 field.onChange({
@@ -53,8 +54,9 @@ export default function SelectWorkingTime({
                   end: e.target.value,
                 })
               }}
-              className="w-1/2 justify-start text-[20px] font-medium h-[56px]"
+              className="w-1/2 justify-start text-[20px] font-medium h-[56px] placeholder:text-[#A8A8A8]"
               aria-label="퇴근 시간"
+              placeholder="예: 18:00"
             />
           </div>
         </FormItem>

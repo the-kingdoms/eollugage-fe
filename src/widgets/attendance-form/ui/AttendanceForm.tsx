@@ -10,7 +10,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Form } from '@/shared/ui/shadcn/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import Header from './Header'
@@ -19,12 +18,13 @@ import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import AddAttendanceButton from './AttendanceButton'
 
+const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘 못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
   workerID: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
-    start: z.string(),
-    end: z.string(),
+    start: timeSchema,
+    end: timeSchema,
   }),
 })
 export default function AttendanceForm({
