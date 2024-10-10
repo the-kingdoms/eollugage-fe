@@ -1,7 +1,7 @@
 import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 
-export default function Header() {
+export default function Header({ type }: { type: 'add' | 'edit' }) {
   return (
     <header className="h-[32px] text-center relative flex items-center justify-center  font-medium pt-[18px] mb-[32px]">
       <Link
@@ -13,7 +13,7 @@ export default function Header() {
         <Icon icon="chevron_left_outlined" />
       </Link>
 
-      <h2>근무 추가</h2>
+      <h2>{type === 'edit' ? '근무 수정' : '근무 추가'}</h2>
     </header>
   )
 }

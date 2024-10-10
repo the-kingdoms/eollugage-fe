@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable object-curly-newline */
 /* eslint-disable arrow-parens */
 /* eslint-disable operator-linebreak */
@@ -9,13 +10,14 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { Form } from '@/shared/ui/shadcn/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import Header from './Header'
 import SelectWorkerDrawer from './SelectWorkerDrawer'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
-import AddAttendanceButton from './AddAttendanceButton'
+import AddAttendanceButton from './AttendanceButton'
 
 const formSchema = z.object({
   workerID: z.string(),
@@ -25,7 +27,13 @@ const formSchema = z.object({
     end: z.string(),
   }),
 })
-export default function AddAttendanceForm() {
+export default function AttendanceForm({
+  type,
+  defaultWorkerId,
+}: {
+  type: 'add' | 'edit'
+  defaultWorkerId?: string
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,7 +58,7 @@ export default function AddAttendanceForm() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Header />
+      <Header type={type} />
 
       <Form {...form}>
         <form>
@@ -62,7 +70,7 @@ export default function AddAttendanceForm() {
           <div className="w-full">
             <div
               className={`fixed bottom-[12px] w-full px-[16px] ${
-                isFormComplete ? 'block' : 'hidden' // 모든 값이 입력된 경우에만 'block'
+                isFormComplete ? 'block' : 'hidden'
               }`}
             >
               <AddAttendanceButton />
