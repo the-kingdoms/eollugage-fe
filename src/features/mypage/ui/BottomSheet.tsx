@@ -1,4 +1,3 @@
-/* eslint-disable-next-line react/jsx-curly-brace-presence */
 import { PositionGroupType } from '@/shared/types/myPageTypes'
 import { v4 as uuidv4 } from 'uuid'
 import { Button } from '@/shared/ui/shadcn/button'
@@ -26,11 +25,13 @@ export default function BottomSheet({
   isOpen: boolean
   closeBottomSheet: () => void
 }) {
+  const [positions, setPositions] = useState<PositionGroupType[]>(positionList)
   const [inputValue, setInputValue] = useState<string>('')
 
   const handlePositionsChange = (value: string, index: number) => {
     const updatedList = [...positionList]
     updatedList[index].position = value
+    setPositions(updatedList)
   }
 
   const addNewPosition = (newPosition: string) => {
@@ -57,7 +58,7 @@ export default function BottomSheet({
       <DrawerContent className="h-5/6" aria-describedby="set-positions">
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
-          <DrawerDescription>{''}</DrawerDescription>
+          <DrawerDescription />
           <button onClick={() => addNewPosition(inputValue)} className="absolute top-5 right-7">
             <span className="text-support-info body-03-medium">저장</span>
           </button>
@@ -66,7 +67,7 @@ export default function BottomSheet({
           {positionList.map((position, idx) => (
             <div key={position.id} className="flex justify-between items-center px-5">
               <TextField
-                value={position.position}
+                value={positions[idx].position}
                 onChange={e => handlePositionsChange(e.target.value, idx)}
                 size="M"
                 style="outlined"
