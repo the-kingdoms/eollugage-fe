@@ -12,11 +12,6 @@ import {
 import { TextField, Icon } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 
-interface PositionFormData {
-  positionID: string
-  newPosition: string
-}
-
 export default function BottomSheet({
   positionList,
   onAddPosition,

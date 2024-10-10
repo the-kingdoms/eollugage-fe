@@ -8,7 +8,7 @@ export default function PositionGroup({ id, position, items, index, length }: Po
   return (
     <div>
       <Droppable droppableId={id}>
-        {(droppabledProvided, snapshot) => (
+        {droppabledProvided => (
           <ul
             className="flex flex-col gap-spacing-02 p-4"
             {...droppabledProvided.droppableProps}

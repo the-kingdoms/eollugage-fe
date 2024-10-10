@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-curly-brace-presence */
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
