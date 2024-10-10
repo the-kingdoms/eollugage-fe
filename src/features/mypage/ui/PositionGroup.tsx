@@ -8,7 +8,7 @@ export default function PositionGroup({ id, position, items, index, length }: Po
   return (
     <div>
       <Droppable droppableId={id}>
-        {droppabledProvided => (
+        {(droppabledProvided, snapshot) => (
           <ul
             className="flex flex-col gap-spacing-02 p-4"
             {...droppabledProvided.droppableProps}
@@ -19,12 +19,13 @@ export default function PositionGroup({ id, position, items, index, length }: Po
               <Draggable key={item.id} draggableId={item.id} index={idx}>
                 {draggableProvided => (
                   <li
-                    className="flex justify-between py-spacing-04"
+                    className="flex justify-between py-spacing-04 transition-colors"
                     ref={draggableProvided.innerRef}
                     {...draggableProvided.draggableProps}
+                    {...draggableProvided.dragHandleProps}
                   >
                     <span>{item.name}</span>
-                    <div {...draggableProvided.dragHandleProps}>
+                    <div>
                       <Icon icon="draggable" />
                     </div>
                   </li>
