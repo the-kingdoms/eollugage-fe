@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { Icon } from '@eolluga/eolluga-ui'
+import useJoin from '../hooks/useJoin'
 
 interface LoginButtonProps {
   type: 'apple' | 'kakao' | 'phone'
@@ -30,6 +31,7 @@ const style = {
 
 export default function LoginButton({ type }: LoginButtonProps) {
   const router = useRouter()
+  const { handleNextStep } = useJoin()
 
   const returnIcon = () => {
     switch (type) {
@@ -45,7 +47,8 @@ export default function LoginButton({ type }: LoginButtonProps) {
   }
 
   const onClickLogin = () => {
-    router.push('/home')
+    router.push('/join')
+    handleNextStep()
   }
 
   return (
