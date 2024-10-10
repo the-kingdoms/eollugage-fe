@@ -1,20 +1,19 @@
 import { useCallback } from 'react'
 import { useAtom } from 'jotai'
-import { isOwnerAtom, loginMethodAtom } from '@/shared/atoms/globalAtom'
+import { isOwnerAtom } from '@/shared/atoms/globalAtom'
 import { stepAtom } from '../atoms/joinAtoms'
 
 export default function useJoin() {
   const [step, setStep] = useAtom(stepAtom)
   const [isOwner, setIsOwner] = useAtom(isOwnerAtom)
-  const [loginMethod, setLoginMethod] = useAtom(loginMethodAtom)
 
-  const nextStep = useCallback(() => {
-    setStep(prevStep => prevStep + 1)
-  }, [setStep])
+  const handlePreviousStep = () => {
+    setStep(prevStep => (prevStep > 0 ? prevStep - 1 : 0)) // 스텝을 0 이하로 내려가지 않도록 설정
+  }
 
-  const previousStep = useCallback(() => {
-    setStep(prevStep => prevStep - 1)
-  }, [setStep])
+  const handleNextStep = () => {
+    setStep(prevStep => prevStep + 1) // 동적으로 다음 스텝으로 이동
+  }
 
   const setEmployeeRole = useCallback(() => {
     setIsOwner(false)
@@ -24,28 +23,12 @@ export default function useJoin() {
     setIsOwner(true)
   }, [setIsOwner])
 
-  const setLoginMethodApple = useCallback(() => {
-    setLoginMethod('apple')
-  }, [setLoginMethod])
-
-  const setLoginMethodPhone = useCallback(() => {
-    setLoginMethod('phone')
-  }, [setLoginMethod])
-
-  const setLoginMethodKakao = useCallback(() => {
-    setLoginMethod('kakao')
-  }, [setLoginMethod])
-
   return {
     step,
-    nextStep,
-    previousStep,
+    handleNextStep,
+    handlePreviousStep,
     isOwner,
     setEmployeeRole,
     setOwnerRole,
-    loginMethod,
-    setLoginMethodApple,
-    setLoginMethodKakao,
-    setLoginMethodPhone,
   }
 }

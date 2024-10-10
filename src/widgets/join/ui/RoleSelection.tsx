@@ -3,24 +3,24 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import React from 'react'
-import { isOwnerAtom } from '@/shared/atoms/globalAtom'
-import { useSetAtom } from 'jotai'
 import { useRouter } from 'next/navigation'
 import BadgeCard from './BadgeCard'
+import useJoin from '../hooks/useJoin'
 
 export default function RoleSelection() {
-  const setIsOwner = useSetAtom(isOwnerAtom)
+  const { setEmployeeRole, setOwnerRole, handleNextStep } = useJoin()
 
   const router = useRouter()
 
   const handleEmployeeClick = () => {
-    setIsOwner(false)
-    router.push('/join/employee')
+    setEmployeeRole()
+    handleNextStep()
   }
 
   const handleOwnerClick = () => {
-    setIsOwner(true)
+    setOwnerRole()
     router.push('/join/owner')
+    handleNextStep()
   }
 
   return (
