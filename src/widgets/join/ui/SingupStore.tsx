@@ -9,7 +9,6 @@ import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
 import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
-// import SelectWorkerDrawer from '@/widgets/add-attendence-form/ui/SelectWorkerDrawer'
 
 interface SignupStoreProps {
   name: string
