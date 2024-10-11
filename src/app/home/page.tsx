@@ -116,13 +116,20 @@ export default function HomePage() {
               </button>
             }
             lowChild={
-              <TextField
-                size="L"
-                placeholder="공지가 아직 없어요"
-                value=""
-                onChange={() => {}} // 디자인 피드백 후 수정
-                style="outlined"
-              />
+              <div
+                className="w-full"
+                onFocus={() => {
+                  router.push('/home/notice')
+                }}
+              >
+                <TextField
+                  size="L"
+                  placeholder="공지가 아직 없어요"
+                  value=""
+                  onChange={() => {}}
+                  style="outlined"
+                />
+              </div>
             }
           />
           <HomeBundle
