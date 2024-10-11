@@ -1,16 +1,16 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import React from 'react'
-import { useRouter } from 'next/navigation'
 import BadgeCard from './BadgeCard'
 import useJoin from '../hooks/useJoin'
 
-export default function RoleSelection() {
+interface RoleSelectionProps {
+  handlePreviousStep: () => void
+}
+export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps) {
   const { setEmployeeRole, setOwnerRole, handleNextStep } = useJoin()
-
-  const router = useRouter()
 
   const handleEmployeeClick = () => {
     setEmployeeRole()
@@ -19,12 +19,12 @@ export default function RoleSelection() {
 
   const handleOwnerClick = () => {
     setOwnerRole()
-    router.push('/join/owner')
     handleNextStep()
   }
 
   return (
     <>
+      <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={handlePreviousStep} />
       <div className="w-full head-02-bold px-spacing-04 text-left mt-spacing-06 mb-[66px]">
         직원으로 근무 중인가요?
       </div>

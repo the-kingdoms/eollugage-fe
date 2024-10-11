@@ -1,5 +1,5 @@
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 
 interface SignupNameProps {
   name: string
@@ -7,6 +7,7 @@ interface SignupNameProps {
   handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleNextStep: () => void
+  handlePreviousStep: () => void
 }
 
 export default function SignupName({
@@ -15,9 +16,15 @@ export default function SignupName({
   handleNameChange,
   handlePhoneChange,
   handleNextStep,
+  handlePreviousStep,
 }: SignupNameProps) {
   return (
     <>
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        onClickLeftIcon={handlePreviousStep}
+        title="전화번호로 시작하기"
+      />
       <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-08 pt-spacing-08">
         <TextField
           onChange={handleNameChange}
