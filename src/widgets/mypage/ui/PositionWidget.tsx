@@ -79,7 +79,11 @@ export default function PositionWidget() {
 
   return (
     <main className="flex-grow mt-4">
-      <TopBar leftIcon="chevron_left_outlined" title="근무자 직책 설정" onClickLeftIcon={() => push('/mypage')} />
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        title="근무자 직책 설정"
+        onClickLeftIcon={() => push('/mypage')}
+      />
       <div className="mt-4 pb-32">
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
@@ -108,6 +112,7 @@ export default function PositionWidget() {
         <BottomSheet
           positionList={positionList}
           onAddPosition={addPosition}
+          isOpen={isOpen}
           onDeletePosition={deletePosition}
           closeBottomSheet={closeBottomSheet}
         />

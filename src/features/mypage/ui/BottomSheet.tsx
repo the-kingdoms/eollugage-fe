@@ -1,107 +1,97 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { v4 as uuidv4 } from 'uuid'
-import { Icon, TextField } from '@eolluga/eolluga-ui'
 import { PositionGroupType } from '@/shared/types/myPageTypes'
-import { ZINDEX } from '@/shared/constants/zIndex'
+import { v4 as uuidv4 } from 'uuid'
+import { Button } from '@/shared/ui/shadcn/button'
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/shared/ui/shadcn/drawer'
+import { TextField, Icon } from '@eolluga/eolluga-ui'
+import { useState } from 'react'
 
 export default function BottomSheet({
   positionList,
   onAddPosition,
   onDeletePosition,
+  isOpen,
   closeBottomSheet,
 }: {
   positionList: PositionGroupType[]
   onAddPosition: (newPosition: PositionGroupType) => void
   onDeletePosition: (id: string) => void
+  isOpen: boolean
   closeBottomSheet: () => void
 }) {
-  const [positions, setPositions] = useState<string[]>(positionList.map(item => item.position))
+  const [positions, setPositions] = useState<PositionGroupType[]>(positionList)
   const [inputValue, setInputValue] = useState<string>('')
 
   const handlePositionsChange = (value: string, index: number) => {
     const updatedList = [...positionList]
     updatedList[index].position = value
-    const updatedPositions = [...positions]
-    updatedPositions[index] = value
-    setPositions(updatedPositions)
+    setPositions(updatedList)
   }
 
-  const addNewPosition = () => {
-    if (inputValue.trim() !== '') {
-      const newPosition: PositionGroupType = {
+  const addNewPosition = (newPosition: string) => {
+    if (newPosition.trim() !== '') {
+      const newPositionItem: PositionGroupType = {
         id: uuidv4(),
-        position: inputValue,
+        position: newPosition,
         items: [],
       }
-      onAddPosition(newPosition)
+      onAddPosition(newPositionItem)
     }
     closeBottomSheet()
   }
 
-  const handleDeletePosition = (id: string) => {
+  const handleDelete = (id: string) => {
     onDeletePosition(id)
   }
 
   return (
-    <div
-      className={`fixed inset-0 bg-gray-900 bg-opacity-50 z-${ZINDEX.bottomSheet} flex justify-center items-end`}
-    >
-      <motion.div
-        initial={{ y: '20%' }}
-        animate={{ y: 0 }}
-        exit={{ y: '20%' }}
-        drag="y"
-        dragConstraints={{ top: 0, bottom: 0 }}
-        onDragEnd={(event, info) => {
-          if (info.point.y > 200) {
-            closeBottomSheet()
-          }
-        }}
-        className="bg-white w-full rounded-t-lg p-6 h-[90vh]"
-      >
-        <div className="flex justify-center mb-4">
-          <div className="w-[40px] h-[4px] bg-gray-300 rounded-full" />
-        </div>
-
-        <div className="mb-8 relative">
-          <h2 className="text-center label-03-medium">가게 직책</h2>
-          <button
-            onClick={addNewPosition}
-            className="text-support-info absolute top-0 right-0 font-bold"
-          >
-            저장
+    <Drawer open={isOpen} onOpenChange={closeBottomSheet}>
+      <DrawerTrigger asChild>
+        <Button variant="outline">직책 선택</Button>
+      </DrawerTrigger>
+      <DrawerContent className="h-5/6" aria-describedby="set-positions">
+        <DrawerHeader className="relative">
+          <DrawerTitle>가게 직책</DrawerTitle>
+          <DrawerDescription />
+          <button onClick={() => addNewPosition(inputValue)} className="absolute top-5 right-7">
+            <span className="text-support-info body-03-medium">저장</span>
           </button>
+        </DrawerHeader>
+        <div className="flex flex-col space-y-4 justify-between">
+          {positionList.map((position, idx) => (
+            <div key={position.id} className="flex justify-between items-center px-5">
+              <TextField
+                value={positions[idx].position}
+                onChange={e => handlePositionsChange(e.target.value, idx)}
+                size="M"
+                style="outlined"
+                placeholder="직책 입력"
+              />
+              <button onClick={() => handleDelete(position.id)} className="p-3">
+                <Icon icon="delete" />
+              </button>
+            </div>
+          ))}
         </div>
 
-        <div className="flex flex-col justify-between space-y-4 h-[80%]">
-          <div className="flex-grow">
-            {positionList.map((position, idx) => (
-              <div key={position.id} className="flex justify-between items-center pt-2">
-                <TextField
-                  value={position.position}
-                  size="M"
-                  style="outlined"
-                  onChange={e => handlePositionsChange(e.target.value, idx)}
-                />
-                <button className="p-4" onClick={() => handleDeletePosition(position.id)}>
-                  <Icon icon="delete" />
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <div className="w-full border-t-[1px] px-3 py-4 fixed left-0 bottom-4">
+        <div className="w-full border-t-2 fixed bottom-4 pt-3">
+          <div className=" px-4">
             <TextField
               value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
               size="M"
               style="outlined"
               placeholder="직책 추가하기"
-              onChange={e => setInputValue(e.target.value)}
             />
           </div>
         </div>
-      </motion.div>
-    </div>
+      </DrawerContent>
+    </Drawer>
   )
 }
