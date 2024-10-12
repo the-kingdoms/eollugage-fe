@@ -84,10 +84,7 @@ export default function SettingsWidget() {
               <Icon icon="chevron_right_outlined" />
             </button>
           </li>
-          <li
-            className="flex justify-between py-spacing-04"
-            onClick={() => push('/mypage/setting/quit')}
-          >
+          <li className="flex justify-between py-spacing-04">
             <button
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/quit')}
