@@ -78,13 +78,13 @@ export default function PositionWidget() {
   }
 
   return (
-    <main className="flex-grow mt-4">
+    <main className="flex-grow pt-4">
       <TopBar
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
         onClickLeftIcon={() => push('/mypage')}
       />
-      <div className="mt-4 pb-32">
+      <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
             <PositionGroup
