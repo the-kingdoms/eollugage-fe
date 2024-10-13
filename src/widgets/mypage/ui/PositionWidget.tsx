@@ -90,7 +90,7 @@ export default function PositionWidget() {
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
         onClickLeftIcon={() => push('/mypage')}
-        rightText={'저장'}
+        rightText="저장"
         onClickRightText={postPositions}
       />
       <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
