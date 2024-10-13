@@ -13,6 +13,7 @@ export default function PositionWidget() {
   const { push } = useRouter()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
+  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     setPositionList([
@@ -63,6 +64,7 @@ export default function PositionWidget() {
       const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       if (sourceGroup) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
+        movedItem.id = uuidv4()
         sourceGroup!.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
@@ -71,10 +73,16 @@ export default function PositionWidget() {
       const destinationGroup = updatedList.find(group => group.id === destination.droppableId)
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)
+        movedItem.id = uuidv4()
         destinationGroup.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
     }
+  }
+
+  const postPositions = () => {
+    setIsSaved(true)
+    console.log('saved')
   }
 
   return (
@@ -83,6 +91,8 @@ export default function PositionWidget() {
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
         onClickLeftIcon={() => push('/mypage')}
+        rightText={'저장'}
+        onClickRightText={postPositions}
       />
       <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
         <DragDropContext onDragEnd={onDragEnd}>
