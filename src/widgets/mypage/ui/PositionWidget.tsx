@@ -13,7 +13,6 @@ export default function PositionWidget() {
   const { push } = useRouter()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
-  const [isSaved, setIsSaved] = useState(false)
 
   useEffect(() => {
     setPositionList([
@@ -81,8 +80,8 @@ export default function PositionWidget() {
   }
 
   const postPositions = () => {
-    setIsSaved(true)
-    console.log('saved')
+    // 최종변경사항 저장하는 로직이 들어갈 예정
+    push('/mypage')
   }
 
   return (
