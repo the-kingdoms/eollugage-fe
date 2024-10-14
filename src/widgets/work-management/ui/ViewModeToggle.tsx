@@ -8,7 +8,7 @@ export default function ViewModeToggle({
   setSelectedType: (type: 'week' | 'month') => void
 }) {
   return (
-    <div className="border-[4px] border-[#E0E0E0] rounded-[6px]">
+    <div className="border-4 border-[#E0E0E0] bg-[#E0E0E0] rounded-radius-03">
       <ViewModeToggleChip
         isActivated={selectedType === 'week'}
         onClick={() => setSelectedType('week')}

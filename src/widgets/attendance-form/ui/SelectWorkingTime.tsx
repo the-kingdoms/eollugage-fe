@@ -42,7 +42,7 @@ export default function SelectWorkingTime({
                 })
               }}
               className={cn(
-                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-[#A8A8A8]',
+                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
                 !field.value.start && ' border-[hsl(var(--input))]',
               )}
               aria-label="출근 시간"
@@ -59,7 +59,7 @@ export default function SelectWorkingTime({
                 })
               }}
               className={cn(
-                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-[#A8A8A8]',
+                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
                 !field.value.end && 'border-[hsl(var(--input))]',
               )}
               aria-label="퇴근 시간"
