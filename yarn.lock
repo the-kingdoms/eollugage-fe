@@ -1134,10 +1134,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.4.0.tgz#5e13fac887f08c44f76b0ccaf3370eb00fec9bb6"
   integrity sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg==
 
-"@eolluga/eolluga-ui@^3.2.5":
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/@eolluga/eolluga-ui/-/eolluga-ui-3.2.5.tgz#bdc95907adab48902b6fadea35c51f52077f3a79"
-  integrity sha512-bd8ytoL+3nvbL2t5z9A33mhQArOrEuB5j5SKsPD50JoX3/AqHweUWV443nbIxPSSxGNmlz6WRUILfvmtWQ5hJw==
+"@eolluga/eolluga-ui@^3.2.8":
+  version "3.2.8"
+  resolved "https://registry.yarnpkg.com/@eolluga/eolluga-ui/-/eolluga-ui-3.2.8.tgz#7324a349b5a115e749882bd788c0b8e7426e2f60"
+  integrity sha512-28EZvYKBeZQtfh3tm8uuRfeGZXe2QnDU4Z3qVgMy8YrW7/5TdFumsZJofHgUrUxsU0TmQwsg3WuJObsAdZTbkg==
   dependencies:
     "@svgr/rollup" "^8.1.0"
     dayjs "^1.11.12"
