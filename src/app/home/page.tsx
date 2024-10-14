@@ -1,6 +1,6 @@
 'use client'
 
-import HomeBundle from '@/widgets/home/ui/HomeBundle'
+import HomeBundle from '@/features/home/ui/HomeBundle'
 import { Icon, TextField, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/widgets/home/ui/Header'
 import FlexBox from '@/shared/ui/Flexbox'
@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/shared/atoms/globalAtom'
+import AddPhotoButton from '@/features/home/ui/AddPhotoButton'
+import Link from 'next/link'
 
 const workdata = [
   {
@@ -40,8 +42,7 @@ const fooddata = [
   {
     id: 1,
     title: '얼루가게',
-    description:
-      '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다. 가나다라마바사아자차카타파하',
+    description: '매주 화요일마다 발주 부탁드립니다. 매주 화요일마다 발주 부탁드립니다.',
   },
   {
     id: 2,
@@ -87,22 +88,7 @@ export default function HomePage() {
     <>
       <Header />
       <div className="mt-[76px]">
-        {isOwner && (
-          <div
-            className="flex flex-row items-center mx-4 mb-6 px-3 pb-[11px] pt-[9px] border border-border-title-01 rounded-lg
-           justify-between"
-            onClick={() => {
-              router.push('/home/upload-image')
-            }}
-            aria-hidden="true"
-          >
-            <FlexBox direction="col" className="gap-2 w-full items-start">
-              <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
-              <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
-            </FlexBox>
-            <Icon icon="chevron_right_outlined" size={20} className="fill-icon-secondary" />
-          </div>
-        )}
+        {isOwner && <AddPhotoButton />}
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeBundle
             title="가게 공지"
@@ -116,12 +102,7 @@ export default function HomePage() {
               </button>
             }
             lowChild={
-              <div
-                className="w-full"
-                onFocus={() => {
-                  router.push('/home/notice')
-                }}
-              >
+              <Link href="/home/notice" className="w-full" passHref>
                 <TextField
                   size="L"
                   placeholder="공지가 아직 없어요"
@@ -129,7 +110,7 @@ export default function HomePage() {
                   onChange={() => {}}
                   style="outlined"
                 />
-              </div>
+              </Link>
             }
           />
           <HomeBundle
@@ -222,8 +203,6 @@ export default function HomePage() {
               title={nowModal.title}
               description={nowModal.description}
               dismissible
-              leftText=""
-              rightText=""
             />
           </Scrim>
         )}
