@@ -24,7 +24,7 @@ export default function UserProfile({ name, store, handlePreviousStep }: UserPro
           <div className="head-02-bold">
             {name} {isOwner ? '사장님' : '직원'}
           </div>
-          <div className="body-03-medium text-[#6F6F6F]">{store}</div>
+          <div className="body-03-medium text-text-secondary">{store}</div>
         </FlexBox>
         <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 absolute bottom-4">
           <ButtonMobile
