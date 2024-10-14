@@ -15,11 +15,9 @@ export default function Home() {
       <FlexBox direction="col" className={`${styles.bodyAnimation} justify-between w-full h-full`}>
         <div className="text-Gray-40 body-02-regular">간편하게 일하는 법</div>
         <div className={styles.backgroundImage} />
-        <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-04">
-          <LoginButton type="apple" />
-          <LoginButton type="kakao" />
-          <LoginButton type="phone" />
-        </FlexBox>
+        <div className="w-full px-spacing-04">
+          <LoginButton />
+        </div>
       </FlexBox>
     </FlexBox>
   )
