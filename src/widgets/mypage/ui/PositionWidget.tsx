@@ -63,6 +63,7 @@ export default function PositionWidget() {
       const sourceGroup = updatedList.find(group => group.id === source.droppableId)
       if (sourceGroup) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
+        movedItem.id = uuidv4()
         sourceGroup!.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
@@ -71,16 +72,28 @@ export default function PositionWidget() {
       const destinationGroup = updatedList.find(group => group.id === destination.droppableId)
       if (sourceGroup && destinationGroup) {
         const [movedItem] = sourceGroup!.items.splice(source.index, 1)
+        movedItem.id = uuidv4()
         destinationGroup.items.splice(destination.index, 0, movedItem)
         setPositionList(updatedList)
       }
     }
   }
 
+  const postPositions = () => {
+    // 최종변경사항 저장하는 로직이 들어갈 예정
+    push('/mypage')
+  }
+
   return (
-    <main className="flex-grow mt-4">
-      <TopBar leftIcon="chevron_left_outlined" title="근무자 직책 설정" onClickLeftIcon={() => push('/mypage')} />
-      <div className="mt-4 pb-32">
+    <main className="flex-grow pt-4">
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        title="근무자 직책 설정"
+        onClickLeftIcon={() => push('/mypage')}
+        rightText="저장"
+        onClickRightText={postPositions}
+      />
+      <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
             <PositionGroup
@@ -108,6 +121,7 @@ export default function PositionWidget() {
         <BottomSheet
           positionList={positionList}
           onAddPosition={addPosition}
+          isOpen={isOpen}
           onDeletePosition={deletePosition}
           closeBottomSheet={closeBottomSheet}
         />
