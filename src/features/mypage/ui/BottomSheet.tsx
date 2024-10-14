@@ -59,7 +59,11 @@ export default function BottomSheet({
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
           <DrawerDescription />
-          <button onClick={() => addNewPosition(inputValue)} className="absolute top-5 right-7">
+          <button
+            type="button"
+            onClick={() => addNewPosition(inputValue)}
+            className="absolute top-5 right-7"
+          >
             <span className="text-support-info body-03-medium">저장</span>
           </button>
         </DrawerHeader>
@@ -73,7 +77,7 @@ export default function BottomSheet({
                 style="outlined"
                 placeholder="직책 입력"
               />
-              <button onClick={() => handleDelete(position.id)} className="p-3">
+              <button type="button" onClick={() => handleDelete(position.id)} className="p-3">
                 <Icon icon="delete" />
               </button>
             </div>

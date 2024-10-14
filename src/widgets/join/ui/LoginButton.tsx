@@ -53,6 +53,7 @@ export default function LoginButton({ type }: LoginButtonProps) {
 
   return (
     <button
+      type="button"
       className={`flex w-full px-spacing-06 py-spacing-04 rounded-radius-04 border ${style[type]['bg']} ${style[type]['border']}`}
       onClick={onClickLogin}
     >

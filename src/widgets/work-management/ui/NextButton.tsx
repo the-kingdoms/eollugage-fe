@@ -30,6 +30,7 @@ export default function NextButton({
   })
   return (
     <button
+      type="button"
       onClick={onClick}
       aria-label="다음"
       disabled={

@@ -14,10 +14,10 @@ export default function MyPageWidget() {
       {isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button onClick={() => router.push('/mypage/position')}>
+            <button type="button" onClick={() => router.push('/mypage/position')}>
               <Icon icon="id" />
             </button>
-            <button onClick={() => router.push('/mypage/setting')}>
+            <button type="button" onClick={() => router.push('/mypage/setting')}>
               <Icon icon="gear" />
             </button>
           </div>
@@ -34,7 +34,7 @@ export default function MyPageWidget() {
       {!isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button onClick={() => router.push('/mypage/setting')}>
+            <button type="button" onClick={() => router.push('/mypage/setting')}>
               <Icon icon="gear" />
             </button>
           </div>
