@@ -72,7 +72,7 @@ export default function SelectWorkingDateCalendar({
               <DrawerContent>
                 <DrawerHeader className="text-left">
                   <div className="flex justify-between">
-                    <DrawerTitle>
+                    <DrawerTitle className="body-04-bold">
                       {curWeekOfMonth.month}월 {curWeekOfMonth.weekOfMonth}주차
                     </DrawerTitle>
                     <div className="space-x-4">
