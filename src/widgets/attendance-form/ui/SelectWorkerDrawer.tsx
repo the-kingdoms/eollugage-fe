@@ -120,8 +120,8 @@ export default function SelectWorkerDrawer({
                 <Button
                   variant="outline"
                   className={cn(
-                    'w-full justify-start text-[20px] font-medium h-[56px]',
-                    !field.value && 'text-[#A8A8A8]',
+                    'w-full justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01',
+                    !field.value && 'text-[#A8A8A8] border-[hsl(var(--input))]',
                   )}
                 >
                   {field.value ? (

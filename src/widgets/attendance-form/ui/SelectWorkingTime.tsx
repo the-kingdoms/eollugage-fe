@@ -5,6 +5,7 @@
 
 import { FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
 import { Input } from '@/shared/ui/shadcn/input'
+import { cn } from '@/shared/utils/cn'
 import { UseFormReturn } from 'react-hook-form'
 
 export default function SelectWorkingTime({
@@ -40,7 +41,10 @@ export default function SelectWorkingTime({
                   start: e.target.value,
                 })
               }}
-              className="w-1/2 justify-start text-[20px] font-medium h-[56px] placeholder:text-[#A8A8A8]"
+              className={cn(
+                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-[#A8A8A8]',
+                !field.value.start && ' border-[hsl(var(--input))]',
+              )}
               aria-label="출근 시간"
               placeholder="예: 12:00"
             />
@@ -54,7 +58,10 @@ export default function SelectWorkingTime({
                   end: e.target.value,
                 })
               }}
-              className="w-1/2 justify-start text-[20px] font-medium h-[56px] placeholder:text-[#A8A8A8]"
+              className={cn(
+                'w-1/2 justify-start  label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-[#A8A8A8]',
+                !field.value.end && 'border-[hsl(var(--input))]',
+              )}
               aria-label="퇴근 시간"
               placeholder="예: 18:00"
             />
