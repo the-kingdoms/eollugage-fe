@@ -1,15 +1,79 @@
+'use client'
+
 import FlexBox from '@/shared/ui/Flexbox'
-import { RoleSelection } from '@/widgets'
-import { TopBar } from '@eolluga/eolluga-ui'
+import SignupName from '@/widgets/join/ui/SignupName'
+import { useEffect, useState } from 'react'
+import { RoleSelection, useJoin } from '@/widgets'
+import { useRouter } from 'next/navigation'
+import SingupStore from '@/widgets/join/ui/SingupStore'
+import UserProfile from '@/widgets/join/ui/UserProfile'
+import { UploadImageScreen } from '@/features'
 
 export default function JoinPage() {
+  const { isOwner, step, handleNextStep, handlePreviousStep } = useJoin()
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [store, setStore] = useState('')
+  const router = useRouter()
+
+  useEffect(() => {
+    if (step === 0) {
+      router.push('/')
+    }
+  }, [step, router])
+
+  useEffect(() => {
+    if (step === 1) {
+      setName('')
+      setPhone('')
+    }
+    if (step === 3) {
+      setStore('')
+    }
+  }, [step])
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value)
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPhone(e.target.value)
+  }
+  const handleStoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStore(e.target.value)
+  }
+
   return (
     <FlexBox
       direction="col"
       className="bg-white w-full h-full items-center w-full h-full relative "
     >
-      <TopBar leftIcon="chevron_left_outlined" />
-      <RoleSelection />
+      {step === 1 && (
+        <SignupName
+          name={name}
+          phone={phone}
+          handleNameChange={handleNameChange}
+          handlePhoneChange={handlePhoneChange}
+          handleNextStep={handleNextStep}
+          handlePreviousStep={handlePreviousStep}
+        />
+      )}
+      {step === 2 && <RoleSelection handlePreviousStep={handlePreviousStep} />}
+      {step === 3 && (
+        <SingupStore
+          name={name}
+          store={store}
+          setStore={setStore}
+          handleNameChange={handleNameChange}
+          handleStoreChange={handleStoreChange}
+          handleNextStep={handleNextStep}
+          handlePreviousStep={handlePreviousStep}
+        />
+      )}
+      {step === 4 && (
+        <UserProfile name={name} store={store} handlePreviousStep={handlePreviousStep} />
+      )}
+      {step === 5 && isOwner && <UploadImageScreen page="join" />}
     </FlexBox>
   )
 }

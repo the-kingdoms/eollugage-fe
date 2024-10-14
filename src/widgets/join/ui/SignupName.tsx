@@ -1,45 +1,74 @@
 'use client'
 
-import { loginMethodAtom } from '@/shared/atoms/globalAtom'
-import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
-import { useAtom } from 'jotai'
-import React, { useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
+import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
+import { useState } from 'react'
 
-export default function SignupName() {
-  const [name, setName] = useState('얼루가')
-  const [loginMethod] = useAtom(loginMethodAtom)
+interface SignupNameProps {
+  name: string
+  phone: string
+  handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handlePhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleNextStep: () => void
+  handlePreviousStep: () => void
+}
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)
+export default function SignupName({
+  name,
+  phone,
+  handleNameChange,
+  handlePhoneChange,
+  handleNextStep,
+  handlePreviousStep,
+}: SignupNameProps) {
+  const [isNumber, setIsNumber] = useState(true)
 
-  const getGreetingText = () => {
-    switch (loginMethod) {
-      case 'kakao':
-        return `${name}님이신가요?`
-      case 'apple':
-        return `이름을 입력해주세요`
-      default:
-        return `이름을 입력해주세요`
+  const handleStartClick = () => {
+    const phoneNumberPattern = /^[0-9]+$/
+    if (!phoneNumberPattern.test(phone)) {
+      setIsNumber(false)
+    } else {
+      setIsNumber(true)
+      handleNextStep()
     }
   }
   return (
     <>
-      <div className="w-full head-02-bold h-[52px] px-spacing-04 text-left mt-spacing-06 mb-[66px]">
-        {getGreetingText()}
-      </div>
-      <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-08">
+      <TopBar
+        leftIcon="chevron_left_outlined"
+        onClickLeftIcon={handlePreviousStep}
+        title="전화번호로 시작하기"
+      />
+      <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-08 pt-spacing-08">
         <TextField
           onChange={handleNameChange}
           size="L"
-          style="underlined"
+          style="outlined"
           label="이름"
           placeholder="이름을 입력해주세요"
           value={name}
-          // state={step === '2' ? 'readOnly' : 'enable'}
+          description=" "
         />
-        <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
-          <ButtonMobile size="L" style="primary" state="enabled" type="text" text1="다음" />
-        </FlexBox>
+        <TextField
+          onChange={handlePhoneChange}
+          size="L"
+          style="outlined"
+          label="전화번호"
+          placeholder="전화번호를 입력해주세요"
+          value={phone}
+          state={isNumber ? 'enable' : 'error'}
+          description={isNumber ? '' : '숫자만 입력해주세요'}
+        />
+      </FlexBox>
+      <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
+        <ButtonMobile
+          size="L"
+          style="primary"
+          state={name && phone ? 'enabled' : 'disabled'}
+          type="text"
+          text1="시작하기"
+          onClick={handleStartClick}
+        />
       </FlexBox>
     </>
   )

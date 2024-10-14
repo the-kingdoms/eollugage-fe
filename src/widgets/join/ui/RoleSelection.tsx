@@ -1,30 +1,30 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import React from 'react'
-import { isOwnerAtom } from '@/shared/atoms/globalAtom'
-import { useSetAtom } from 'jotai'
-import { useRouter } from 'next/navigation'
 import BadgeCard from './BadgeCard'
+import useJoin from '../hooks/useJoin'
 
-export default function RoleSelection() {
-  const setIsOwner = useSetAtom(isOwnerAtom)
-
-  const router = useRouter()
+interface RoleSelectionProps {
+  handlePreviousStep: () => void
+}
+export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps) {
+  const { setEmployeeRole, setOwnerRole, handleNextStep } = useJoin()
 
   const handleEmployeeClick = () => {
-    setIsOwner(false) // Set to false for employees
-    router.push('/join/employee') // Navigate to employee page
+    setEmployeeRole()
+    handleNextStep()
   }
 
   const handleOwnerClick = () => {
-    setIsOwner(true) // Set to true for business owners
-    router.push('/join/owner') // Navigate to owner page
+    setOwnerRole()
+    handleNextStep()
   }
 
   return (
     <>
+      <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={handlePreviousStep} />
       <div className="w-full head-02-bold px-spacing-04 text-left mt-spacing-06 mb-[66px]">
         직원으로 근무 중인가요?
       </div>
@@ -38,14 +38,11 @@ export default function RoleSelection() {
           text1="네 직원이에요"
           type="text"
         />
-        <ButtonMobile
-          onClick={handleOwnerClick}
-          size="M"
-          state="enabled"
-          style="ghost"
-          text1="아니요 사장님이에요"
-          type="text"
-        />
+        <FlexBox className="w-full justify-center">
+          <button onClick={handleOwnerClick} className="py-3 label-02-bold text-text-disabled">
+            아니요 사장님이에요
+          </button>
+        </FlexBox>
       </FlexBox>
     </>
   )
