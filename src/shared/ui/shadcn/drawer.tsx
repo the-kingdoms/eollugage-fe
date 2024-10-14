@@ -3,11 +3,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/function-component-definition */
-/* eslint-disable arrow-body-style */
-/* eslint-disable max-len */
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable object-curly-newline */
 import * as React from 'react'
 import { Drawer as DrawerPrimitive } from 'vaul'
 

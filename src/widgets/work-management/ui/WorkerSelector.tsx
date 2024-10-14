@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable arrow-parens */
 import { useAtomValue } from 'jotai'
 import { Worker } from './WorkerItem'
 import WorkerList from './WorkerList'

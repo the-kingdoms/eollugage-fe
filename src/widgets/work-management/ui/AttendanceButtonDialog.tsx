@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import {
   AlertDialog,
   AlertDialogAction,

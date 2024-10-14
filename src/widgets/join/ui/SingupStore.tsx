@@ -1,5 +1,4 @@
 /* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable no-confusing-arrow */
 
 'use client'
 

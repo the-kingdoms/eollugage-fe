@@ -1,8 +1,6 @@
 'use client'
 
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable object-curly-newline */
 import * as React from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { cva, type VariantProps } from 'class-variance-authority'

@@ -1,9 +1,6 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable object-curly-newline */
-/* eslint-disable arrow-parens */
-/* eslint-disable operator-linebreak */
 /* eslint-disable no-trailing-spaces */
 import { z } from 'zod'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'

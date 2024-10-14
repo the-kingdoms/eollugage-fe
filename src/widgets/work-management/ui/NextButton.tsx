@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { Icon } from '@eolluga/eolluga-ui'
 import { useRef } from 'react'
@@ -11,7 +10,6 @@ interface Today {
   weekOfMonth: number
   monthOfWeekOfMonth: number
 }
-/* eslint-disable operator-linebreak */
 export default function NextButton({
   onClick,
   type,
