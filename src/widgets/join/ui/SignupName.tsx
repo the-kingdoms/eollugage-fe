@@ -1,5 +1,6 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
+import { useState } from 'react'
 
 interface SignupNameProps {
   name: string
@@ -18,6 +19,17 @@ export default function SignupName({
   handleNextStep,
   handlePreviousStep,
 }: SignupNameProps) {
+  const [isNumber, setIsNumber] = useState(true)
+
+  const handleStartClick = () => {
+    const phoneNumberPattern = /^[0-9]+$/
+    if (!phoneNumberPattern.test(phone)) {
+      setIsNumber(false)
+    } else {
+      setIsNumber(true)
+      handleNextStep()
+    }
+  }
   return (
     <>
       <TopBar
@@ -42,6 +54,8 @@ export default function SignupName({
           label="전화번호"
           placeholder="전화번호를 입력해주세요"
           value={phone}
+          state={isNumber ? 'enable' : 'error'}
+          description={isNumber ? '' : '숫자만 입력해주세요'}
         />
       </FlexBox>
       <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
@@ -51,7 +65,7 @@ export default function SignupName({
           state={name && phone ? 'enabled' : 'disabled'}
           type="text"
           text1="시작하기"
-          onClick={handleNextStep}
+          onClick={handleStartClick}
         />
       </FlexBox>
     </>
