@@ -26,7 +26,7 @@ export default function UserProfile({ name, store, handlePreviousStep }: UserPro
           </div>
           <div className="body-03-medium text-[#6F6F6F]">{store}</div>
         </FlexBox>
-        <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
+        <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 absolute bottom-4">
           <ButtonMobile
             size="L"
             style="primary"
