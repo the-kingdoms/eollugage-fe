@@ -8,11 +8,17 @@ export default function ViewModeToggle({
   setSelectedType: (type: 'week' | 'month') => void
 }) {
   return (
-    <div className="bg-[#E0E0E0] rounded-[6px] p-1">
-      <ViewModeToggleChip isActivated={selectedType === 'week'} onClick={() => setSelectedType('week')}>
+    <div className="border-4 border-[#E0E0E0] bg-[#E0E0E0] rounded-radius-03">
+      <ViewModeToggleChip
+        isActivated={selectedType === 'week'}
+        onClick={() => setSelectedType('week')}
+      >
         주간
       </ViewModeToggleChip>
-      <ViewModeToggleChip isActivated={selectedType === 'month'} onClick={() => setSelectedType('month')}>
+      <ViewModeToggleChip
+        isActivated={selectedType === 'month'}
+        onClick={() => setSelectedType('month')}
+      >
         월간
       </ViewModeToggleChip>
     </div>

@@ -1,5 +1,5 @@
-import { AddAttendanceForm } from '@/widgets'
+import { AttendanceForm } from '@/widgets'
 
-export default function Page() {
-  return <AddAttendanceForm />
+export default function AddAttendancePage() {
+  return <AttendanceForm type="add" />
 }

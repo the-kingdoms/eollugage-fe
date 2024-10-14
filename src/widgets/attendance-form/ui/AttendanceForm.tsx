@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable object-curly-newline */
 /* eslint-disable arrow-parens */
 /* eslint-disable operator-linebreak */
@@ -15,17 +16,24 @@ import Header from './Header'
 import SelectWorkerDrawer from './SelectWorkerDrawer'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
-import AddAttendanceButton from './AddAttendanceButton'
+import AddAttendanceButton from './AttendanceButton'
 
+const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘 못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
   workerID: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
-    start: z.string(),
-    end: z.string(),
+    start: timeSchema,
+    end: timeSchema,
   }),
 })
-export default function AddAttendanceForm() {
+export default function AttendanceForm({
+  type,
+  defaultWorkerId,
+}: {
+  type: 'add' | 'edit'
+  defaultWorkerId?: string
+}) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,7 +58,7 @@ export default function AddAttendanceForm() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Header />
+      <Header type={type} />
 
       <Form {...form}>
         <form>
@@ -62,7 +70,7 @@ export default function AddAttendanceForm() {
           <div className="w-full">
             <div
               className={`fixed bottom-[12px] w-full px-[16px] ${
-                isFormComplete ? 'block' : 'hidden' // 모든 값이 입력된 경우에만 'block'
+                isFormComplete ? 'block' : 'hidden'
               }`}
             >
               <AddAttendanceButton />
