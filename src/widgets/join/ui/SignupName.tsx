@@ -48,7 +48,7 @@ export default function SignupName({
         <ButtonMobile
           size="L"
           style="primary"
-          state="enabled"
+          state={name && phone ? 'enabled' : 'disabled'}
           type="text"
           text1="시작하기"
           onClick={handleNextStep}
