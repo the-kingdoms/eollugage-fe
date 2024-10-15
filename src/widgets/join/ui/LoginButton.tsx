@@ -1,15 +1,15 @@
 'use client'
 
 import { Icon } from '@eolluga/eolluga-ui'
-import useJoin from '../hooks/useJoin'
 import Link from 'next/link'
+import useJoin from '../hooks/useJoin'
 
 export default function LoginButton() {
   const { handleNextStep } = useJoin()
 
   return (
     <Link
-      href={'/join'}
+      href="/join"
       onClick={handleNextStep}
       className="flex w-full px-spacing-06 py-spacing-04 rounded-radius-04 border bg-transparent border-border-subtle-01"
     >
