@@ -1,5 +1,6 @@
 'use client'
 
+import { usePostLogin } from '@/entities'
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
@@ -23,12 +24,15 @@ export default function SignupName({
 }: SignupNameProps) {
   const [isNumber, setIsNumber] = useState(true)
 
+  const { mutate } = usePostLogin({ name, phone })
+
   const handleStartClick = () => {
     const phoneNumberPattern = /^[0-9]+$/
     if (!phoneNumberPattern.test(phone)) {
       setIsNumber(false)
     } else {
       setIsNumber(true)
+      mutate()
       handleNextStep()
     }
   }
