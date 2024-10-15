@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
+import Link from 'next/link'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
-import Link from 'next/link'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'

@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { postLogin } from './postLogin'
 import { setTokenFromLocalStorage } from '@/shared'
+import { postLogin } from './postLogin'
 import { UserInfoT } from './user'
 
 function usePostLogin(userInfo: UserInfoT) {

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getTokenFromLocalStorage } from '..'
+import { getTokenFromLocalStorage } from '../utils/handleToken'
 
 const axiosInstance = axios.create({
   baseURL: '/API',
@@ -9,9 +9,7 @@ const axiosInstance = axios.create({
     'Access-Control-Allow-Origin': 'http://localhost:3000',
     'Access-Control-Allow-Credentials': 'true',
   },
-  validateStatus: status => {
-    return status < 300
-  },
+  validateStatus: status => status < 300,
 })
 axiosInstance.interceptors.request.use(
   async config => {
@@ -21,9 +19,7 @@ axiosInstance.interceptors.request.use(
     }
     return config
   },
-  error => {
-    return Promise.reject(error)
-  },
+  error => Promise.reject(error),
 )
 
 export default axiosInstance

@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
+import { storeIdAtom } from '@/shared'
+import { useAtom } from 'jotai'
 import { postStoreInfo } from './postStoreInfo'
 import { StoreInfoT } from './store'
-import { useAtom } from 'jotai'
-import { storeIdAtom } from '@/shared'
 
 function usePostStoreInfo(name: string) {
   const [, setStoreId] = useAtom(storeIdAtom)
