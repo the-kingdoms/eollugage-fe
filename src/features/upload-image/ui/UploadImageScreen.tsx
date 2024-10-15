@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
+import Link from 'next/link'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -79,9 +80,12 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <button type="button" className="py-3 label-02-bold text-text-disabled">
+          <Link
+            href={page === 'join' ? '/home' : '/home'}
+            className="py-3 label-02-bold text-text-disabled"
+          >
             나중에 추가하기
-          </button>
+          </Link>
         </FlexBox>
       </FlexBox>
     </FlexBox>
