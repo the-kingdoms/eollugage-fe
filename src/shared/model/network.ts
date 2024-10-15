@@ -1,11 +1,6 @@
 import axios from 'axios'
 import { getTokenFromLocalStorage } from '..'
 
-interface ApiResponse {
-  id: string
-  msg: string
-}
-
 const axiosInstance = axios.create({
   baseURL: '/API',
   headers: {
@@ -32,4 +27,3 @@ axiosInstance.interceptors.request.use(
 )
 
 export default axiosInstance
-export type { ApiResponse }
