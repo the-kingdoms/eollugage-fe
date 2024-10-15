@@ -1,7 +1,5 @@
 /* eslint-disable no-fallthrough */
-/* eslint-disable no-plusplus */
 /* eslint-disable default-case */
-/* eslint-disable max-len */
 
 const getObjectWeekOfMonth = (date: Date) => {
   const dateOfToday = date.getDate()
@@ -52,7 +50,10 @@ const getObjectWeekOfMonth = (date: Date) => {
       let dateOfTheStartWeek = 1
 
       // 오늘 날짜가 이번 달 1주차에 속할 때
-      if (dateOfToday >= dateOfTheStartWeek && dateOfToday < dateOfTheStartWeek + daysOfTheFirstWeek) {
+      if (
+        dateOfToday >= dateOfTheStartWeek &&
+        dateOfToday < dateOfTheStartWeek + daysOfTheFirstWeek
+      ) {
         return {
           year: date.getMonth() ? date.getFullYear() : date.getFullYear(),
           month: date.getMonth() + 1,

@@ -20,6 +20,7 @@ export default function SettingsWidget() {
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/alarm')}
             >
@@ -34,6 +35,7 @@ export default function SettingsWidget() {
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/privacy')}
             >
@@ -43,6 +45,7 @@ export default function SettingsWidget() {
           </li>
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/inquire')}
             >
@@ -57,6 +60,7 @@ export default function SettingsWidget() {
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/appInfo')}
             >
@@ -66,6 +70,7 @@ export default function SettingsWidget() {
           </li>
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/businessInfo')}
             >
@@ -79,13 +84,18 @@ export default function SettingsWidget() {
 
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
-            <button className="flex w-full justify-between" onClick={() => setIsModalOpen(true)}>
+            <button
+              type="button"
+              className="flex w-full justify-between"
+              onClick={() => setIsModalOpen(true)}
+            >
               <span>로그아웃</span>
               <Icon icon="chevron_right_outlined" />
             </button>
           </li>
           <li className="flex justify-between py-spacing-04">
             <button
+              type="button"
               className="flex w-full justify-between"
               onClick={() => push('/mypage/setting/quit')}
             >

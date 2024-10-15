@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +14,10 @@ export default function AttendanceButton({ buttonText }: { buttonText: string })
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold">
+        <button
+          type="button"
+          className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold"
+        >
           {buttonText}
         </button>
       </AlertDialogTrigger>

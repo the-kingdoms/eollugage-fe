@@ -53,11 +53,7 @@ export default function HomePage() {
             title="발주 리스트"
             description="발주 항목을 수정하려면 클릭해주세요"
             rightChild={
-              <button
-                onClick={() => {
-                  router.push('/home/order')
-                }}
-              >
+              <button type="button" onClick={() => router.push('/home/order')}>
                 <Icon icon="add" size={24} />
               </button>
             }

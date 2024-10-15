@@ -3,7 +3,6 @@
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/default-param-last */
 /* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable max-len */
 
 import { useState } from 'react'
 import PrevButton from './PrevButton'
@@ -35,7 +34,9 @@ export default function DateSelector({ type }: { type: 'week' | 'month' }) {
 
   return (
     <div className="flex space-x-2 justify-between body-04-bold-compact items-center">
-      <PrevButton onClick={() => handlePrev(type, weekState, monthState, setWeekState, setMonthState)} />
+      <PrevButton
+        onClick={() => handlePrev(type, weekState, monthState, setWeekState, setMonthState)}
+      />
       {type === 'week' ? (
         <p>{`${weekState.month || ''}월 ${weekState.weekOfMonth || ''}주차`}</p>
       ) : (

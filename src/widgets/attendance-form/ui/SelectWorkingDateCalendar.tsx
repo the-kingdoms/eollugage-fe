@@ -1,8 +1,5 @@
-/* eslint-disable operator-linebreak */
-/* eslint-disable object-curly-newline */
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable arrow-parens */
 import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
 import {
   Drawer,

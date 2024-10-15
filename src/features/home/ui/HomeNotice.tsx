@@ -12,11 +12,7 @@ export default function HomeNotice() {
     <HomeBundle
       title="가게 공지"
       rightChild={
-        <button
-          onClick={() => {
-            router.push('/home/notice')
-          }}
-        >
+        <button type="button" onClick={() => router.push('/home/notice')}>
           <Icon icon="chevron_right_outlined" size={20} />
         </button>
       }

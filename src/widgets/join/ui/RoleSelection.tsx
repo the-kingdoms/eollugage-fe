@@ -39,7 +39,11 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
           type="text"
         />
         <FlexBox className="w-full justify-center">
-          <button onClick={handleOwnerClick} className="py-3 label-02-bold text-text-disabled">
+          <button
+            type="button"
+            onClick={handleOwnerClick}
+            className="py-3 label-02-bold text-text-disabled"
+          >
             아니요 사장님이에요
           </button>
         </FlexBox>

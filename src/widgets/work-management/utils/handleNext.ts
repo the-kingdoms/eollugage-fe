@@ -1,6 +1,4 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Dispatch, SetStateAction } from 'react'
@@ -23,7 +21,11 @@ const handleNext = (
     monthWeekOfTheseMonthLastDay === 5 || monthWeekOfTheseMonthLastDay === 4
       ? monthWeekOfTheseMonthLastDay
       : getObjectWeekOfMonth(
-          new Date(weekState.year, weekState.month - 2, lastDayOfTheseMonth - dayOfTheseMonthLastDay),
+          new Date(
+            weekState.year,
+            weekState.month - 2,
+            lastDayOfTheseMonth - dayOfTheseMonthLastDay,
+          ),
         ).weekOfMonth
 
   switch (type) {

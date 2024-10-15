@@ -1,8 +1,5 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable @typescript-eslint/indent */
-/* eslint-disable max-len */
 /* eslint-disable no-fallthrough */
-/* eslint-disable no-plusplus */
 import { WeekOfMonth, WeekDates } from '../types/weekOfMonth'
 
 export const getWeekOfMonth = (date: Date): WeekOfMonth => {

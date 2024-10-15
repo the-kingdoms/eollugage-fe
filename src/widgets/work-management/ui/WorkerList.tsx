@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens */
 import DragScrollWrapper from './DragScrollWrapper'
 import WorkerItem, { Worker } from './WorkerItem'
 

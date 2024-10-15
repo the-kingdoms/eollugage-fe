@@ -55,14 +55,24 @@ export default function TodayWork() {
       description="출근 시간순으로 나열되어 있습니다"
       rightChild={
         <FlexBox className="gap-5">
-          <button onClick={prevSlide} disabled={canNext} className="disabled:cursor-not-allowed">
+          <button
+            type="button"
+            onClick={prevSlide}
+            disabled={canNext}
+            className="disabled:cursor-not-allowed"
+          >
             <Icon
               icon="chevron_left_outlined"
               size={20}
               className={canPrev ? 'fill-icon-primary' : 'fill-icon-disabled'}
             />
           </button>
-          <button onClick={nextSlide} disabled={canPrev} className="disabled:cursor-not-allowed">
+          <button
+            type="button"
+            onClick={nextSlide}
+            disabled={canPrev}
+            className="disabled:cursor-not-allowed"
+          >
             <Icon
               icon="chevron_right_outlined"
               size={20}

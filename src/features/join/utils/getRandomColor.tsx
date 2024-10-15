@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/indent */
 const colors = [
   'in-gray',
   'out-red',
