@@ -31,5 +31,12 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Check environment variable
+        run: echo SERVER_URL
+
+      - name: Create .env file
+        run: |
+          echo SERVER_URL=${{ secrets.SERVER_URL }} >> .env
+
       - name: Run build test
         run: yarn build
