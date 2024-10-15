@@ -1,6 +1,8 @@
 import { Drawer, DrawerContent } from '@/shared/ui/shadcn/drawer'
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
+import { useAtom } from 'jotai'
+import { storeIdAtom } from '@/shared'
 
 interface BottomSheetProps {
   openBottomSheet: boolean
@@ -13,6 +15,8 @@ export default function BottomSheet({
   setOpenBottomSheet,
   handleNextStep,
 }: BottomSheetProps) {
+  const [storeId] = useAtom(storeIdAtom)
+
   return (
     <Drawer open={openBottomSheet} onOpenChange={setOpenBottomSheet}>
       <DrawerContent>
@@ -26,7 +30,7 @@ export default function BottomSheet({
           </FlexBox>
           <div className="w-full mt-[48px] mb-[80px]">
             <TextField
-              value="aaaa"
+              value={storeId.slice(0, 4)}
               label="가게 코드"
               size="L"
               style="underlined"
