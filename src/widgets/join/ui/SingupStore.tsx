@@ -8,6 +8,7 @@ import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
 import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
+import { usePostStoreInfo } from '../api/usePostStoreInfo'
 
 interface SignupStoreProps {
   name: string
@@ -34,12 +35,17 @@ export default function SingupStore({
   const [showToast, setShowToast] = useState(false)
   const [approvalFailed, setApprovalFailed] = useState(false)
 
+  const { mutate } = usePostStoreInfo(name)
+
   const handleOpenDialog = () => setOpenDialog(true)
   const handleCloseDialog = () => {
     setOpenDialog(false)
   }
 
-  const handleOpenBottomSheet = () => setOpenBottomSheet(true)
+  const handleOpenBottomSheet = () => {
+    mutate()
+    setOpenBottomSheet(true)
+  }
 
   const handleDisagree = () => {
     setShowToast(true)
