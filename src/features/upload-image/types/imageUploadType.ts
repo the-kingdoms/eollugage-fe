@@ -1,6 +1,7 @@
 interface ImageUploadResultT {
   isSuccess: boolean
-  reason: string
+  reason?: string
+  fileFullName?: string
 }
 
 export { type ImageUploadResultT }
