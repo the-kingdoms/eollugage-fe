@@ -8,6 +8,7 @@ interface HandleImageUploadParams {
   setIsSuccess: React.Dispatch<SetStateAction<boolean>>
   setShowToast: React.Dispatch<SetStateAction<boolean>>
   setImageURL: React.Dispatch<SetStateAction<string>>
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>
 }
 
 function handleImageUpload({
@@ -16,6 +17,7 @@ function handleImageUpload({
   setIsSuccess,
   setShowToast,
   setImageURL,
+  setIsLoading,
 }: HandleImageUploadParams) {
   if (!data.isSuccess) {
     const failReason = data.reason
@@ -32,9 +34,11 @@ function handleImageUpload({
       default:
         setErrorMessage('다시 시도해주세요.')
     }
+    setIsLoading(false)
     setShowToast(true)
   } else {
     getImageFromS3(String(data.fileFullName)).then(url => {
+      setIsLoading(false)
       if (url.length !== 0) {
         setIsSuccess(true)
         setImageURL(url)

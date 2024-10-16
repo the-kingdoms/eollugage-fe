@@ -11,7 +11,7 @@ import Image from 'next/image'
 import { ToastMessage } from '@/shared'
 import { getImageFromS3 } from '../api/getImage'
 import { handleImageUpload } from '../utils/handleImageUpload'
-
+import { OrbitProgress } from 'react-loading-indicators'
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
 }
@@ -19,6 +19,7 @@ interface ImageUploadScreenProps {
 export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const router = useRouter()
 
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [showToast, setShowToast] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
@@ -29,6 +30,7 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const onClickBackButton = () => router.back()
 
   const onClickSelectButton = () => {
+    setIsLoading(true)
     sendRNFunction('accessGallery', tempStoreId)
   }
 
@@ -38,7 +40,14 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
 
     if (message.type === 'getImageUploadResult') {
       const data = message.data
-      handleImageUpload({ data, setErrorMessage, setIsSuccess, setShowToast, setImageURL })
+      handleImageUpload({
+        data,
+        setErrorMessage,
+        setIsSuccess,
+        setShowToast,
+        setImageURL,
+        setIsLoading,
+      })
     }
   }
 
@@ -121,6 +130,11 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           setOpen={setShowToast}
           message={errorMessage}
         />
+      )}
+      {isLoading && (
+        <div className="bg-overlay-default w-full absolute inset-0 flex justify-center items-center">
+          <OrbitProgress color="#fff" size="small" text="" textColor="" />
+        </div>
       )}
     </FlexBox>
   )
