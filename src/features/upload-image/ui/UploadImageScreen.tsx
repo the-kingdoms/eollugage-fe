@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
+import { ToastMessage } from '@/shared'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -18,6 +19,8 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
 
   // eslint-disable-next-line
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const [showToast, setShowToast] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const onClickBackButton = () => {
     router.back()
@@ -31,6 +34,22 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
 
     if (message.type === 'getImageUploadResult') {
       setIsSuccess(message.data.isSuccess)
+      if (!message.data.isSuccess) {
+        const failReason = message.data.reason
+        switch (failReason) {
+          case 'upload-fail':
+            setErrorMessage('업로드에 실패했습니다.')
+            break
+          case 'not-select':
+            setErrorMessage('사진이 선택되지 않았습니다.')
+            break
+          case 'presigned-url-error':
+            setErrorMessage('다시 시도해주세요.')
+            break
+          default:
+            setErrorMessage('다시 시도해주세요.')
+        }
+        setShowToast(true)
     }
   }
 
@@ -95,6 +114,14 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           </Link>
         </FlexBox>
       </FlexBox>
+      {showToast && (
+        <ToastMessage
+          icon="warning"
+          open={showToast}
+          setOpen={setShowToast}
+          message={errorMessage}
+        />
+      )}
     </FlexBox>
   )
 }
