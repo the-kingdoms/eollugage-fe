@@ -7,6 +7,7 @@ import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
+import Image from 'next/image'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -58,7 +59,13 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[4/3] bg-gray-200" />
+            <div className="w-full aspect-[3/2] bg-gray-200">
+              <Image
+                alt="store default image"
+                src={require('@public/image/store_default_image.png')}
+                style={{ objectFit: 'contain', width: '100%' }}
+              />
+            </div>
             <FlexBox className="items-start w-full gap-4">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
               <div className="w-full body-01-medium text-text-helper">
