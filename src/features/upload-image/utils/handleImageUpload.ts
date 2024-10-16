@@ -25,9 +25,6 @@ function handleImageUpload({
       case 'upload-fail':
         setErrorMessage('업로드에 실패했습니다.')
         break
-      case 'not-select':
-        setErrorMessage('사진이 선택되지 않았습니다.')
-        break
       case 'presigned-url-error':
         setErrorMessage('다시 시도해주세요.')
         break
