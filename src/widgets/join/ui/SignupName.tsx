@@ -3,7 +3,7 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
-import { usePostLogin } from '../api/usePostLogin'
+import { usePostLogin } from '../model/usePostLogin'
 
 interface SignupNameProps {
   name: string
