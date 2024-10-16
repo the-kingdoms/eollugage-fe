@@ -9,6 +9,7 @@ import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
 import { ToastMessage } from '@/shared'
+import { getImageFromS3 } from '../api/getImage'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -21,19 +22,21 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [showToast, setShowToast] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [imageURL, setImageURL] = useState<string>('')
 
-  const onClickBackButton = () => {
-    router.back()
+  const tempStoreId = 'storeId123'
+
+  const onClickBackButton = () => router.back()
+
+  const onClickSelectButton = () => {
+    sendRNFunction('accessGallery', tempStoreId)
   }
-
-  const onClickSelectButton = () => sendRNFunction('accessGallery')
 
   const onMessageEvent = (e: MessageEvent) => {
     e.stopPropagation()
     const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
 
     if (message.type === 'getImageUploadResult') {
-      setIsSuccess(message.data.isSuccess)
       if (!message.data.isSuccess) {
         const failReason = message.data.reason
         switch (failReason) {
@@ -50,6 +53,17 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
             setErrorMessage('다시 시도해주세요.')
         }
         setShowToast(true)
+      } else {
+        getImageFromS3(String(message.data.fileFullName)).then(url => {
+          if (url.length !== 0) {
+            setIsSuccess(true)
+            setImageURL(url)
+          } else {
+            setErrorMessage('다시 시도해주세요.')
+            setShowToast(true)
+          }
+        })
+      }
     }
   }
 
@@ -79,11 +93,22 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
             <div className="w-full aspect-[3/2] bg-gray-200">
-              <Image
-                alt="store default image"
-                src={require('@public/image/store_default_image.png')}
-                style={{ objectFit: 'contain', width: '100%' }}
-              />
+              {isSuccess ? (
+                <Image
+                  alt="store image"
+                  src={imageURL}
+                  className="w-full"
+                  width={100}
+                  height={100}
+                  style={{ objectFit: 'contain' }}
+                />
+              ) : (
+                <Image
+                  alt="store default image"
+                  src={require('@public/image/store_default_image.png')}
+                  style={{ objectFit: 'contain', width: '100%' }}
+                />
+              )}
             </div>
             <FlexBox className="items-start w-full gap-4">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
