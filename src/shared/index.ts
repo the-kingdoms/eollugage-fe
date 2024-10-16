@@ -9,3 +9,4 @@ export { setTokenFromLocalStorage, getTokenFromLocalStorage } from './utils/hand
 export { storeIdAtom, isOwnerAtom } from './atoms/globalAtom'
 export { default as axiosInstance } from './model/network'
 export { default as ToastMessage } from './ui/ToastMessage'
+export { ZINDEX } from './constants/zIndex'
