@@ -8,7 +8,7 @@ import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
 import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
-import { usePostStoreInfo } from '../api/usePostStoreInfo'
+import { usePostStoreInfo } from '../model/usePostStoreInfo'
 
 interface SignupStoreProps {
   name: string
