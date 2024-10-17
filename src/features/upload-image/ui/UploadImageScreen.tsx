@@ -12,6 +12,7 @@ import { ToastMessage } from '@/shared'
 import { getImageFromS3 } from '../api/getImage'
 import { handleImageUpload } from '../utils/handleImageUpload'
 import { OrbitProgress } from 'react-loading-indicators'
+import { useAtom } from 'jotai'
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
 }
@@ -25,13 +26,14 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [imageURL, setImageURL] = useState<string>('')
 
-  const tempStoreId = 'storeId123'
+  const [storeId] = useAtom(storeIdAtom)
 
   const onClickBackButton = () => router.back()
 
   const onClickSelectButton = () => {
     setIsLoading(true)
-    sendRNFunction('accessGallery', tempStoreId)
+    sendRNFunction('accessGallery', storeId)
+  }
   }
 
   const onMessageEvent = (e: MessageEvent) => {
