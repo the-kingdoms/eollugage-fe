@@ -2,12 +2,12 @@
 
 import { useAtom, useAtomValue } from 'jotai'
 import { isOwnerAtom, storeIdAtom } from '@/shared'
-import WorkManagementWorker from './WorkManagementWorker'
 import WorkManagementOwner from './WorkManagementOwner'
+import WorkManagementEmployee from './WorkManagementEmployee'
 
 export default function WorkManagement() {
   const isOwner = useAtom(isOwnerAtom)
   const storeId = useAtomValue(storeIdAtom)
 
-  return isOwner ? <WorkManagementOwner storeId={storeId} /> : <WorkManagementWorker />
+  return isOwner ? <WorkManagementOwner storeId={storeId} /> : <WorkManagementEmployee />
 }

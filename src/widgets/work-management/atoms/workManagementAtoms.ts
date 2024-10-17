@@ -4,4 +4,4 @@
 
 import { atom } from 'jotai'
 
-export const selectedWorkerAtom = atom<string>('')
+export const selectedEmployeeAtom = atom<string>('')

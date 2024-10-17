@@ -10,14 +10,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import Header from './Header'
-import SelectWorkerDrawer from './SelectWorkerDrawer'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import AddAttendanceButton from './AttendanceButton'
+import SelectEmployeeDrawer from './SelectEmployeeDrawer'
 
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘 못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
-  workerID: z.string(),
+  employeeID: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
     start: timeSchema,
@@ -26,15 +26,15 @@ const formSchema = z.object({
 })
 export default function AttendanceForm({
   type,
-  defaultWorkerId,
+  defaultEmployeeId,
 }: {
   type: 'add' | 'edit'
-  defaultWorkerId?: string
+  defaultEmployeeId?: string
 }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      workerID: '',
+      employeeID: '',
       workingDate: undefined,
       workingTime: {
         start: '',
@@ -43,12 +43,12 @@ export default function AttendanceForm({
     },
   })
 
-  const workerID = form.watch('workerID')
+  const employeeID = form.watch('employeeID')
   const workingDate = form.watch('workingDate')
   const workingTime = form.watch('workingTime')
 
   const isFormComplete =
-    workerID !== '' &&
+    employeeID !== '' &&
     workingDate !== undefined &&
     workingTime.end !== '' &&
     workingTime.start !== ''
@@ -60,7 +60,7 @@ export default function AttendanceForm({
       <Form {...form}>
         <form>
           <div className="px-4 space-y-[16px]">
-            <SelectWorkerDrawer form={form} />
+            <SelectEmployeeDrawer form={form} />
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>
