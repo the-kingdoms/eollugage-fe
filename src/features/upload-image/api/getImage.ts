@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { sendRNFunction } from '../utils/rnSender'
 
 async function getImageFromS3(fileFullName: string) {
   try {
