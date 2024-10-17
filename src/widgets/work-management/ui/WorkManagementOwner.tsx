@@ -1,23 +1,16 @@
-'use client'
+import { HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { getEmployees } from '@/entities'
+import WorkManagementOwnerClient from './WorkManagementOwnerClient'
 
-import React from 'react'
-
-import { useSetAtom } from 'jotai'
-import WorkerSelector from './WorkerSelector'
-import { selectedWorkerAtom } from '../atoms/workManagementAtoms'
-import AttendanceInfo from './AttendanceInfo'
-import AddAttendanceLink from './AddAttendanceLink'
-
-export default function WorkManagementOwner() {
-  const setSelectedWorkerID = useSetAtom(selectedWorkerAtom)
-  setSelectedWorkerID('1')
+export default async function WorkManagementOwner({ storeId }: { storeId: string }) {
+  const queryClient = new QueryClient()
+  queryClient.prefetchQuery({
+    queryKey: ['employees', storeId],
+    queryFn: () => getEmployees(storeId),
+  })
   return (
-    <>
-      <WorkerSelector />
-      <AttendanceInfo />
-      <div className="bottom-[84px] right-4 absolute">
-        <AddAttendanceLink />
-      </div>
-    </>
+    <HydrationBoundary queryClient={queryClient}>
+      <WorkManagementOwnerClient />
+    </HydrationBoundary>
   )
 }
