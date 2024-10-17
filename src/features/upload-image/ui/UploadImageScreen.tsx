@@ -5,10 +5,9 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
-import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
-import { ToastMessage } from '@/shared'
+import { ToastMessage, sendRNFunction, storeIdAtom } from '@/shared'
 import { getImageFromS3 } from '../api/getImage'
 import { handleImageUpload } from '../utils/handleImageUpload'
 import { OrbitProgress } from 'react-loading-indicators'
@@ -34,6 +33,12 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
     setIsLoading(true)
     sendRNFunction('accessGallery', storeId)
   }
+
+  const onClickLaterButton = () => {
+    if (page === 'join') {
+      router.prefetch('/home')
+      sendRNFunction('moveToHome')
+    }
   }
 
   const onMessageEvent = (e: MessageEvent) => {
@@ -117,12 +122,9 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <Link
-            href={page === 'join' ? '/home' : '/home'}
-            className="py-3 label-02-bold text-text-disabled"
-          >
+          <button onClick={onClickLaterButton} className="py-3 label-02-bold text-text-disabled">
             나중에 추가하기
-          </Link>
+          </button>
         </FlexBox>
       </FlexBox>
       {showToast && (
