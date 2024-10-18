@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
-import { postStoreInfo } from '../api/postStoreInfo'
 import { StoreInfoT } from '@/entities'
+import { postStoreInfo } from '../api/postStoreInfo'
 
 function usePostStoreInfo(name: string) {
   const storeInfo: StoreInfoT = {
