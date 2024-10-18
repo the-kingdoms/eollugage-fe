@@ -21,7 +21,7 @@ const getHistories = async (
       type,
       year,
       month,
-      weekOfMonth: weekOfMonth || null,
+      weekOfMonth: weekOfMonth || 0,
       histories: [],
     }
   }

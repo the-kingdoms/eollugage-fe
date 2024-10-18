@@ -11,6 +11,6 @@ export interface Histories {
   type: 'weekly' | 'monthly'
   year: number
   month: number
-  weekOfMonth?: number | null
+  weekOfMonth?: number
   histories: History[]
 }
