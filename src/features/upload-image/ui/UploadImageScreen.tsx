@@ -10,9 +10,10 @@ import { ImageUploadResultT } from '../types/imageUploadType'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
+  storeId: string
 }
 
-export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
+export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
   // eslint-disable-next-line
@@ -81,7 +82,7 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
         />
         <FlexBox className="w-full justify-center">
           <Link
-            href={page === 'join' ? '/home' : '/home'}
+            href={page === 'join' ? `/${storeId}/home` : '/home'}
             className="py-3 label-02-bold text-text-disabled"
           >
             나중에 추가하기

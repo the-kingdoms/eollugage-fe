@@ -1,5 +1,5 @@
+import { StoreInfoT } from '@/entities'
 import { DefaultResponseT, axiosInstance } from '@/shared'
-import { StoreInfoT } from './store'
 
 async function postStoreInfo(body: StoreInfoT): Promise<DefaultResponseT> {
   const { data } = await axiosInstance.post('/v1/stores', body)

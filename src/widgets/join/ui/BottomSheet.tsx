@@ -1,22 +1,20 @@
 import { Drawer, DrawerContent } from '@/shared/ui/shadcn/drawer'
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
-import { useAtom } from 'jotai'
-import { storeIdAtom } from '@/shared'
 
 interface BottomSheetProps {
   openBottomSheet: boolean
   setOpenBottomSheet: React.Dispatch<React.SetStateAction<boolean>>
   handleNextStep: () => void
+  storeId: string
 }
 
 export default function BottomSheet({
   openBottomSheet,
   setOpenBottomSheet,
   handleNextStep,
+  storeId,
 }: BottomSheetProps) {
-  const [storeId] = useAtom(storeIdAtom)
-
   return (
     <Drawer open={openBottomSheet} onOpenChange={setOpenBottomSheet}>
       <DrawerContent>
