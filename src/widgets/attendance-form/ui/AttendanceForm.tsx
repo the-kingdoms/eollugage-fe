@@ -13,11 +13,11 @@ import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import AddAttendanceButton from './AttendanceButton'
-import SelectEmployeeDrawer from './SelectEmployeeDrawer'
+import SelectMemberDrawer from './SelectMemberDrawer'
 
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘 못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
-  employeeID: z.string(),
+  memberID: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
     start: timeSchema,
@@ -26,15 +26,15 @@ const formSchema = z.object({
 })
 export default function AttendanceForm({
   type,
-  defaultEmployeeId,
+  defaultMemberId,
 }: {
   type: 'add' | 'edit'
-  defaultEmployeeId?: string
+  defaultMemberId?: string
 }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      employeeID: '',
+      memberID: '',
       workingDate: undefined,
       workingTime: {
         start: '',
@@ -43,12 +43,12 @@ export default function AttendanceForm({
     },
   })
 
-  const employeeID = form.watch('employeeID')
+  const memberID = form.watch('memberID')
   const workingDate = form.watch('workingDate')
   const workingTime = form.watch('workingTime')
 
   const isFormComplete =
-    employeeID !== '' &&
+    memberID !== '' &&
     workingDate !== undefined &&
     workingTime.end !== '' &&
     workingTime.start !== ''
@@ -60,7 +60,7 @@ export default function AttendanceForm({
       <Form {...form}>
         <form>
           <div className="px-4 space-y-[16px]">
-            <SelectEmployeeDrawer form={form} />
+            <SelectMemberDrawer form={form} />
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>

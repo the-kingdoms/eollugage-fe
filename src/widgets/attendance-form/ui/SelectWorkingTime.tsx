@@ -9,7 +9,7 @@ export default function SelectWorkingTime({
 }: {
   form: UseFormReturn<
     {
-      employeeID: string
+      memberID: string
       workingDate: Date
       workingTime: {
         start: string

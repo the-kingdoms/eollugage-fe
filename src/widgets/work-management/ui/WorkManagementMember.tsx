@@ -1,11 +1,11 @@
 import AttendanceInfo from './AttendanceInfo'
 import AttendanceRegister from './AttendanceRegister'
-import WorkManagementEmployeeHeader from './WorkManagementEmployeeHeader'
+import WorkManagementMemberHeader from './WorkManagementMemberHeader'
 
-export default function WorkManagementEmployee() {
+export default function WorkManagementMember() {
   return (
     <div>
-      <WorkManagementEmployeeHeader userName="JaneDoe" />
+      <WorkManagementMemberHeader userName="JaneDoe" />
       <AttendanceRegister />
       <AttendanceInfo />
     </div>

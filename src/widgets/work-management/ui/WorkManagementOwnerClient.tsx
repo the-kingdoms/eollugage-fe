@@ -3,17 +3,17 @@
 import React from 'react'
 
 import { useSetAtom } from 'jotai'
-import { selectedEmployeeAtom } from '../atoms/workManagementAtoms'
+import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import AttendanceInfo from './AttendanceInfo'
 import AddAttendanceLink from './AddAttendanceLink'
-import EmployeeSelector from './EmployeeSelector'
+import MemberSelector from './MemberSelector'
 
 export default function WorkManagementOwnerClient() {
-  const setSelectedEmployeeID = useSetAtom(selectedEmployeeAtom)
-  setSelectedEmployeeID('1')
+  const setSelectedMemberID = useSetAtom(selectedMemberAtom)
+  setSelectedMemberID('1')
   return (
     <>
-      <EmployeeSelector />
+      <MemberSelector />
       <AttendanceInfo />
       <div className="bottom-[84px] right-4 absolute">
         <AddAttendanceLink />

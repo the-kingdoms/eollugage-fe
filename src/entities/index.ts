@@ -1,3 +1,7 @@
-export { default as useEmployee } from './employee/model/useEmployee'
-export { default as getEmployees } from './employee/api/getEmployees'
-export type { Employees, Employee } from './employee/types/employee'
+export { default as useMember } from './member/model/useMember'
+export { default as getMembers } from './member/api/getMembers'
+export type { Members, Member } from './member/types/member'
+
+export { default as useHistory } from './history/model/useHistory'
+export { default as getHistories } from './history/api/getHistories'
+export type { Histories, History } from './history/types/history'

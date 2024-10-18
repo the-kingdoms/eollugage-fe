@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
-import { useEmployee } from '@/entities'
+import { useMember } from '@/entities'
 import { storeIdAtom } from '@/shared'
 import { Button } from '@/shared/ui/shadcn/button'
 import {
@@ -20,12 +20,12 @@ import { Icon } from '@eolluga/eolluga-ui'
 import { useAtomValue } from 'jotai'
 import { UseFormReturn } from 'react-hook-form'
 
-export default function SelectEmployeeDrawer({
+export default function SelectMemberDrawer({
   form,
 }: {
   form: UseFormReturn<
     {
-      employeeID: string
+      memberID: string
       workingDate: Date
       workingTime: {
         start: string
@@ -37,11 +37,11 @@ export default function SelectEmployeeDrawer({
   >
 }) {
   const storeId = useAtomValue(storeIdAtom)
-  const { employees } = useEmployee(storeId)
+  const { members } = useMember(storeId)
   return (
     <FormField
       control={form.control}
-      name="employeeID"
+      name="memberID"
       render={({ field }) => (
         <FormItem className="flex flex-col space-y-1">
           <FormLabel className="body-02-regular text-[#6F6F6F]">근무자 선택</FormLabel>
@@ -56,7 +56,7 @@ export default function SelectEmployeeDrawer({
                   )}
                 >
                   {field.value ? (
-                    employees?.find(employee => employee.id === field.value)?.name
+                    members?.find(member => member.id === field.value)?.name
                   ) : (
                     <span>근무자를 선택해주세요</span>
                   )}
@@ -68,15 +68,15 @@ export default function SelectEmployeeDrawer({
                   <DrawerDescription className="hidden" />
                 </DrawerHeader>
                 <div className="flex flex-col  ">
-                  {employees?.map(employee => (
-                    <DrawerClose key={employee.id} asChild>
+                  {members?.map(member => (
+                    <DrawerClose key={member.id} asChild>
                       <Button
                         variant="ghost"
-                        className={`justify-start ${field.value === employee.id ? 'text-[#161616]' : 'text-[#6F6F6F]'} body-02-medium `}
-                        onClick={() => field.onChange(employee.id)}
+                        className={`justify-start ${field.value === member.id ? 'text-[#161616]' : 'text-[#6F6F6F]'} body-02-medium `}
+                        onClick={() => field.onChange(member.id)}
                       >
-                        {employee.name}
-                        {employee.id === field.value && (
+                        {member.name}
+                        {member.id === field.value && (
                           <span className="ml-auto">
                             <Icon icon="checkmark" />
                           </span>

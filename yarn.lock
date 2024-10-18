@@ -91,7 +91,7 @@
   integrity sha512-bD4WQhbkx80mAyj/WCm4ZHcF4rDxkoLFO6ph8/5/mQ3z4vAzltQXAmbc7GvVJx5H+lk5Mi5EmbTeox5nMGCsbw==
   dependencies:
     "@babel/helper-annotate-as-pure" "^7.25.7"
-    "@babel/helper-member-expression-to-functions" "^7.25.7"
+    "@babel/helper-Member-expression-to-functions" "^7.25.7"
     "@babel/helper-optimise-call-expression" "^7.25.7"
     "@babel/helper-replace-supers" "^7.25.7"
     "@babel/helper-skip-transparent-expression-wrappers" "^7.25.7"
@@ -118,9 +118,9 @@
     lodash.debounce "^4.0.8"
     resolve "^1.14.2"
 
-"@babel/helper-member-expression-to-functions@^7.25.7":
+"@babel/helper-Member-expression-to-functions@^7.25.7":
   version "7.25.7"
-  resolved "https://registry.yarnpkg.com/@babel/helper-member-expression-to-functions/-/helper-member-expression-to-functions-7.25.7.tgz#541a33b071f0355a63a0fa4bdf9ac360116b8574"
+  resolved "https://registry.yarnpkg.com/@babel/helper-Member-expression-to-functions/-/helper-Member-expression-to-functions-7.25.7.tgz#541a33b071f0355a63a0fa4bdf9ac360116b8574"
   integrity sha512-O31Ssjd5K6lPbTX9AAYpSKrZmLeagt9uwschJd+Ixo6QiRyfpvgtVQp8qrDR9UNFjZ8+DO34ZkdrN+BnPXemeA==
   dependencies:
     "@babel/traverse" "^7.25.7"
@@ -170,7 +170,7 @@
   resolved "https://registry.yarnpkg.com/@babel/helper-replace-supers/-/helper-replace-supers-7.25.7.tgz#38cfda3b6e990879c71d08d0fef9236b62bd75f5"
   integrity sha512-iy8JhqlUW9PtZkd4pHM96v6BdJ66Ba9yWSE4z0W4TvSZwLBPkyDsiIU3ENe4SmrzRBs76F7rQXTy1lYC49n6Lw==
   dependencies:
-    "@babel/helper-member-expression-to-functions" "^7.25.7"
+    "@babel/helper-Member-expression-to-functions" "^7.25.7"
     "@babel/helper-optimise-call-expression" "^7.25.7"
     "@babel/traverse" "^7.25.7"
 
@@ -484,9 +484,9 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
 
-"@babel/plugin-transform-member-expression-literals@^7.25.7":
+"@babel/plugin-transform-Member-expression-literals@^7.25.7":
   version "7.25.7"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-member-expression-literals/-/plugin-transform-member-expression-literals-7.25.7.tgz#0a36c3fbd450cc9e6485c507f005fa3d1bc8fca5"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-Member-expression-literals/-/plugin-transform-Member-expression-literals-7.25.7.tgz#0a36c3fbd450cc9e6485c507f005fa3d1bc8fca5"
   integrity sha512-Std3kXwpXfRV0QtQy5JJcRpkqP8/wG4XL7hSKZmGlxPlDqmpXtEPRmhF7ztnlTCtUN3eXRUJp+sBEZjaIBVYaw==
   dependencies:
     "@babel/helper-plugin-utils" "^7.25.7"
@@ -790,7 +790,7 @@
     "@babel/plugin-transform-json-strings" "^7.25.8"
     "@babel/plugin-transform-literals" "^7.25.7"
     "@babel/plugin-transform-logical-assignment-operators" "^7.25.8"
-    "@babel/plugin-transform-member-expression-literals" "^7.25.7"
+    "@babel/plugin-transform-Member-expression-literals" "^7.25.7"
     "@babel/plugin-transform-modules-amd" "^7.25.7"
     "@babel/plugin-transform-modules-commonjs" "^7.25.7"
     "@babel/plugin-transform-modules-systemjs" "^7.25.7"

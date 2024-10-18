@@ -1,9 +1,9 @@
 'use server'
 
 import { axiosInstance } from '@/shared'
-import { Employees } from '../types/employee'
+import { Members } from '../types/member'
 
-const getEmployees = async (storeId: string): Promise<Employees> => {
+const getMembers = async (storeId: string): Promise<Members> => {
   try {
     const { data } = await axiosInstance.get(`/v1/stores/${storeId}/members`)
     return data
@@ -11,4 +11,4 @@ const getEmployees = async (storeId: string): Promise<Employees> => {
     return []
   }
 }
-export default getEmployees
+export default getMembers
