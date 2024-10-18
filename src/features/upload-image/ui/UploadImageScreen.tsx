@@ -7,6 +7,8 @@ import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
+import { useAtom } from 'jotai'
+import { storeIdAtom } from '@/shared'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -17,6 +19,8 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
 
   // eslint-disable-next-line
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
+
+  const [storeId] = useAtom(storeIdAtom)
 
   const onClickBackButton = () => {
     router.back()
