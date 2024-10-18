@@ -1,5 +1,11 @@
 import ImageUploadScreen from '@/features/upload-image/ui/UploadImageScreen'
 
-export default function HomeUploadImagePage() {
-  return <ImageUploadScreen page="home" />
+interface HomeUploadImagePageProps {
+  params: {
+    storeId: string
+  }
+}
+
+export default function HomeUploadImagePage({ params }: HomeUploadImagePageProps) {
+  return <ImageUploadScreen page="home" storeId={params.storeId} />
 }
