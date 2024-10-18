@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getPresignedUrl } from './getPresignedURL'
 
 async function getImageFromS3(fileFullName: string) {
   try {
@@ -7,22 +8,11 @@ async function getImageFromS3(fileFullName: string) {
     const blob = new Blob([response.data], { type: response.headers['content-type'] })
     const imageURL = window.URL.createObjectURL(blob)
 
+    console.log(blob, imageURL)
     return imageURL
   } catch (error) {
     console.log('get image from S3 error', error)
     return ''
-  }
-}
-
-async function getPresignedUrl(fileFullName: string) {
-  try {
-    const res = await axios.post(process.env.NEXT_PUBLIC_PRESIGNED_URL_SERVER, {
-      name: fileFullName,
-      method: 'get',
-    })
-    return res.data.presigned_url
-  } catch (error) {
-    console.log('get presigned url error:', error)
   }
 }
 
