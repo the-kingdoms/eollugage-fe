@@ -14,6 +14,7 @@ export default function JoinPage() {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [store, setStore] = useState('')
+  const [storeId, setStoreId] = useState<string>('')
   const router = useRouter()
 
   useEffect(() => {
@@ -64,6 +65,8 @@ export default function JoinPage() {
           name={name}
           store={store}
           setStore={setStore}
+          storeId={storeId}
+          setStoreId={setStoreId}
           handleNameChange={handleNameChange}
           handleStoreChange={handleStoreChange}
           handleNextStep={handleNextStep}
@@ -71,9 +74,14 @@ export default function JoinPage() {
         />
       )}
       {step === 4 && (
-        <UserProfile name={name} store={store} handlePreviousStep={handlePreviousStep} />
+        <UserProfile
+          name={name}
+          store={store}
+          storeId={storeId}
+          handlePreviousStep={handlePreviousStep}
+        />
       )}
-      {step === 5 && isOwner && <UploadImageScreen page="join" />}
+      {step === 5 && isOwner && <UploadImageScreen page="join" storeId={storeId} />}
     </FlexBox>
   )
 }

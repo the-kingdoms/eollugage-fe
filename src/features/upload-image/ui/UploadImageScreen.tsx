@@ -7,20 +7,17 @@ import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import { sendRNFunction } from '../utils/rnSender'
 import { ImageUploadResultT } from '../types/imageUploadType'
-import { useAtom } from 'jotai'
-import { storeIdAtom } from '@/shared'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
+  storeId: string
 }
 
-export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
+export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
   // eslint-disable-next-line
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
-
-  const [storeId] = useAtom(storeIdAtom)
 
   const onClickBackButton = () => {
     router.back()
@@ -85,7 +82,7 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
         />
         <FlexBox className="w-full justify-center">
           <Link
-            href={page === 'join' ? '/home' : '/home'}
+            href={page === 'join' ? `/${storeId}/home` : '/home'}
             className="py-3 label-02-bold text-text-disabled"
           >
             나중에 추가하기
