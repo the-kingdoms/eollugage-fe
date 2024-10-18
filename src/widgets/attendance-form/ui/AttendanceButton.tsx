@@ -1,4 +1,3 @@
-/* eslint-disable react/style-prop-object */
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 
 export default function AddAttendanceButton() {

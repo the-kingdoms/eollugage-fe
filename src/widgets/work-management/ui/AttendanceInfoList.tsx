@@ -22,7 +22,7 @@ export default function AttendanceInfoList() {
     type,
     type === 'weekly' ? yearWeekly : yearMonthly,
     type === 'weekly' ? monthWeekly : monthMonthly,
-    type === 'weekly' ? weekOfMonthWeekly : null,
+    type === 'weekly' ? weekOfMonthWeekly : 0,
   )
 
   if (histories?.histories.length === 0) {

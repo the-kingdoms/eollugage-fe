@@ -7,7 +7,7 @@ export interface History {
 
 export interface Histories {
   storeId: string
-  memberId: string
+  memberId: string | null
   type: 'weekly' | 'monthly'
   year: number
   month: number
