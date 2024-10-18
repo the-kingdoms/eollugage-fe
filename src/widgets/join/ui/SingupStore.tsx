@@ -6,9 +6,12 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, Dialog, Scrim, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
+import { isValidCodeAtom, storeNameAtom } from '@/shared/atoms/globalAtom'
+import { useAtom } from 'jotai'
 import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
 import { usePostStoreInfo } from '../model/usePostStoreInfo'
+import { useGetStoreInfoPrefix } from '../model/useGetStoreInfoPrefix'
 
 interface SignupStoreProps {
   name: string
@@ -34,22 +37,45 @@ export default function SingupStore({
   const [openBottomSheet, setOpenBottomSheet] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const [approvalFailed, setApprovalFailed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false) // 로딩 상태 추가
 
-  const { mutate } = usePostStoreInfo(name)
+  const [storeName] = useAtom(storeNameAtom)
+  const [isValidCode] = useAtom(isValidCodeAtom)
 
-  const handleOpenDialog = () => setOpenDialog(true)
+  const { mutate: postStoreInfoMutate } = usePostStoreInfo(name)
+  const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(store)
+
+  const handleOpenDialog = () => {
+    setIsLoading(true)
+    setApprovalFailed(false)
+
+    getStoreInfoPrefixMutate(undefined, {
+      onSuccess: () => {
+        setOpenDialog(true)
+        setShowToast(false)
+        setIsLoading(false)
+      },
+      onError: () => {
+        setShowToast(true)
+        setIsLoading(false)
+        setApprovalFailed(true)
+      },
+    })
+  }
+
   const handleCloseDialog = () => {
     setOpenDialog(false)
   }
 
   const handleOpenBottomSheet = () => {
-    mutate()
+    postStoreInfoMutate()
     setOpenBottomSheet(true)
   }
 
   const handleDisagree = () => {
     setShowToast(true)
     setOpenDialog(false)
+    setApprovalFailed(true)
   }
 
   const handleAgree = () => {
@@ -92,7 +118,7 @@ export default function SingupStore({
           label={isOwner ? '가게 이름' : '근무 중인 가게 코드'}
           placeholder={isOwner ? '가게 이름을 입력해주세요' : '가게 코드를 입력해주세요'}
           value={store}
-          state={approvalFailed && store.length === 0 ? 'error' : 'enable'}
+          state={approvalFailed ? 'error' : 'enable'}
           description={approvalFailed ? '가게 코드를 확인해주세요' : ''}
         />
         <TextField
@@ -119,14 +145,14 @@ export default function SingupStore({
             <ButtonMobile
               size="L"
               style="primary"
-              state="enabled"
+              state={isLoading ? 'disabled' : 'enabled'} // 로딩 중에는 버튼 비활성화
               type="text"
               text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}
               onClick={isOwner ? handleOpenBottomSheet : handleOpenDialog}
             />
           )}
         </FlexBox>
-        {openDialog && (
+        {isValidCode && openDialog && (
           <Scrim
             className="fixed inset-0 z-40 flex items-center justify-center"
             onClick={handleCloseDialog}
@@ -135,7 +161,7 @@ export default function SingupStore({
               open={openDialog}
               onClose={handleCloseDialog}
               title="코드 승인"
-              description={`코드가 승인되었습니다. 가게 이름이 ${store}이 맞나요?`}
+              description={`코드가 승인되었습니다. 가게 이름이 ${storeName}이 맞나요?`}
               leftText="아니요"
               rightText="네"
               dismissible
