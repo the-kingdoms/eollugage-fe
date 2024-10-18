@@ -8,10 +8,11 @@ import Link from 'next/link'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
 import { ToastMessage, sendRNFunction, storeIdAtom } from '@/shared'
-import { getImageFromS3 } from '../api/getImage'
+import { getImageFromS3 } from '../api/getStoreImage'
 import { handleImageUpload } from '../utils/handleImageUpload'
 import { OrbitProgress } from 'react-loading-indicators'
 import { useAtom } from 'jotai'
+import { usePutStoreImage } from '../model/usePutStoreImage'
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
 }
@@ -24,8 +25,10 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
   const [showToast, setShowToast] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [imageURL, setImageURL] = useState<string>('')
-
+  const [imageName, setImageName] = useState<string | undefined>(undefined)
   const [storeId] = useAtom(storeIdAtom)
+
+  const { mutate: mutateImageInfo } = usePutStoreImage(imageName)
 
   const onClickBackButton = () => router.back()
 
@@ -55,6 +58,10 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
         setImageURL,
         setIsLoading,
       })
+      if (data.fileFullName) {
+        setImageName(data.fileFullName)
+        mutateImageInfo()
+      }
     }
   }
 
