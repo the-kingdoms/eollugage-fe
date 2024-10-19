@@ -1,6 +1,6 @@
 'use client'
 
-import HomeBundle from '@/features/home/ui/HomeBundle'
+import HomeBundle from '@/widgets/home/ui/HomeBundle'
 import { Icon, Scrim, Dialog } from '@eolluga/eolluga-ui'
 import Header from '@/widgets/home/ui/Header'
 import FlexBox from '@/shared/ui/Flexbox'
@@ -8,9 +8,9 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/shared/atoms/globalAtom'
-import AddPhotoButton from '@/features/home/ui/AddPhotoButton'
-import HomeNotice from '@/features/home/ui/HomeNotice'
-import TodayWork from '@/features/home/ui/TodayWork'
+import AddPhotoButton from '@/widgets/home/ui/AddPhotoButton'
+import HomeNotice from '@/widgets/home/ui/HomeNotice'
+import TodayWork from '@/widgets/home/ui/TodayWork'
 
 const fooddata = [
   {
