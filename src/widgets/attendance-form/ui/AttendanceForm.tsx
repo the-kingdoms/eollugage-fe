@@ -7,8 +7,7 @@ import { Form } from '@/shared/ui/shadcn/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHistory } from '@/entities'
-import { useAtomValue } from 'jotai'
-import { storeIdAtom } from '@/shared'
+
 import useAttendance from '@/widgets/work-management/hooks/useAttendance'
 import { format } from 'date-fns'
 import Header from './Header'
@@ -44,7 +43,7 @@ export default function AttendanceForm({
       },
     },
   })
-  const storeId = useAtomValue(storeIdAtom)
+  const storeId = '123'
   const { memberId } = useAttendance()
   const { createHistory } = useHistory(storeId)
   const memberID = form.watch('memberID')

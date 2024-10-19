@@ -1,7 +1,6 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { storeIdAtom } from '@/shared'
 import {
   monthAtom,
   monthMonthlyAtom,
@@ -13,7 +12,7 @@ import {
 } from '../atoms/workManagementAtoms'
 
 const useAttendance = () => {
-  const [storeId] = useAtom(storeIdAtom)
+  const storeId = '123'
   const [memberId, setMemberId] = useAtom(selectedMemberAtom)
   const [type, setType] = useAtom(selectedTypeAtom)
   const [yearWeekly, setYearWeekly] = useAtom(yearAtom)
