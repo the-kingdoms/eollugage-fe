@@ -1,22 +1,21 @@
 'use client'
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 import { z } from 'zod'
 import { Form } from '@/shared/ui/shadcn/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHistory } from '@/entities'
-
 import useAttendance from '@/widgets/work-management/hooks/useAttendance'
 import { format } from 'date-fns'
+import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import AddAttendanceButton from './AttendanceButton'
 import SelectMemberDrawer from './SelectMemberDrawer'
 
-const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘 못 입력했어요. (예: HH:MM)')
+const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
   memberID: z.string(),
   workingDate: z.date(),
@@ -25,13 +24,23 @@ const formSchema = z.object({
     end: timeSchema,
   }),
 })
+
 export default function AttendanceForm({
   type,
-  defaultMemberId,
+  historyId,
 }: {
   type: 'add' | 'edit'
-  defaultMemberId?: string
+  historyId?: string
 }) {
+  const { data: editingHistory } = useQuery<{
+    memberId: string
+    date: string
+    startTime: string
+    endTime: string
+  }>({
+    queryKey: ['history', historyId],
+  })
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,35 +52,59 @@ export default function AttendanceForm({
       },
     },
   })
+
   const storeId = '123'
   const { memberId } = useAttendance()
-  const { createHistory } = useHistory(storeId)
-  const memberID = form.watch('memberID')
-  const workingDate = form.watch('workingDate')
-  const workingTime = form.watch('workingTime')
+  const { createHistory, updateHistory } = useHistory(storeId)
+
+  useEffect(() => {
+    if (type === 'edit' && editingHistory) {
+      form.setValue('memberID', editingHistory.memberId)
+      form.setValue('workingDate', new Date(editingHistory.date))
+      form.setValue('workingTime', {
+        start: editingHistory.startTime,
+        end: editingHistory.endTime,
+      })
+    }
+  }, [editingHistory])
 
   const isFormComplete =
-    memberID !== '' &&
-    workingDate !== undefined &&
-    workingTime.end !== '' &&
-    workingTime.start !== ''
+    form.watch('memberID') !== '' &&
+    form.watch('workingDate') !== undefined &&
+    form.watch('workingTime').end !== '' &&
+    form.watch('workingTime').start !== ''
 
-  const handleSubmit = () => {
-    createHistory({
-      selectedMemberId: memberId,
-      reqBody: {
-        date: format(workingDate, 'yyyy-MM-dd'),
-        startTime: workingTime.start,
-        endTime: workingTime.end,
-      },
-    })
+  const onSubmit = (data: z.infer<typeof formSchema>) => {
+    if (type === 'add') {
+      createHistory({
+        selectedMemberId: memberId,
+        reqBody: {
+          date: format(data.workingDate, 'yyyy-MM-dd'),
+          startTime: data.workingTime.start,
+          endTime: data.workingTime.end,
+        },
+      })
+    } else {
+      if (!historyId) return
+
+      updateHistory({
+        selectedMemberId: memberId,
+        historyId,
+        reqBody: {
+          currentUserId: memberId,
+          date: format(data.workingDate, 'yyyy-MM-dd'),
+          startTime: data.workingTime.start,
+          endTime: data.workingTime.end,
+        },
+      })
+    }
   }
+
   return (
     <>
       <Header type={type} />
-
       <Form {...form}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="px-4 space-y-[16px]">
             <SelectMemberDrawer form={form} />
             <SelectWorkingDateCalendar form={form} />

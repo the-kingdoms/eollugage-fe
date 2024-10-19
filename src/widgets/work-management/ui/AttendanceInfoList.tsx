@@ -34,7 +34,9 @@ export default function AttendanceInfoList() {
   }
   return (
     <div className="px-[16px]">
-      {histories?.histories?.map(item => <AttendanceInfoItem item={item} key={item.id} />)}
+      {histories?.histories?.map(item => (
+        <AttendanceInfoItem item={item} storeId={storeId} key={item.id} />
+      ))}
     </div>
   )
 }
