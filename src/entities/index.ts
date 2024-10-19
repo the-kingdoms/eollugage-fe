@@ -1,4 +1,4 @@
-export { default as useMember } from './member/model/useMember'
+export { default as useMembers } from './member/model/useMembers'
 export { default as getMembers } from './member/api/getMembers'
 export type { Members, Member } from './member/types/member'
 

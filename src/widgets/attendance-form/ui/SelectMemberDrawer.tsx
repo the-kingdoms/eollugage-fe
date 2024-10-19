@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
-import { useMember } from '@/entities'
+import { useMembers } from '@/entities'
 import { Button } from '@/shared/ui/shadcn/button'
 import {
   Drawer,
@@ -35,7 +35,7 @@ export default function SelectMemberDrawer({
   >
 }) {
   const storeId = '123'
-  const { members } = useMember(storeId)
+  const { members } = useMembers(storeId)
   return (
     <FormField
       control={form.control}

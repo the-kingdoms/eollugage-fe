@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import getMembers from '../api/getMembers'
-import { Members } from '../types/member'
+import { Member } from '../types/member'
+import getMember from '../api/getMember'
 
-const useMember = (storeId: string) => {
-  const { data: members } = useQuery<Members>({
-    queryKey: ['members', storeId],
-    queryFn: () => getMembers(storeId),
+const useMember = (storeId: string, memberId: string) => {
+  const { data: member } = useQuery<Member>({
+    queryKey: ['member', storeId, memberId],
+    queryFn: () => getMember(storeId, memberId),
   })
-  return { members }
+  return { member }
 }
 export default useMember

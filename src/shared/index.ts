@@ -9,3 +9,4 @@ export { setTokenFromLocalStorage, getTokenFromLocalStorage } from './utils/hand
 export { isOwnerAtom } from './atoms/globalAtom'
 export { default as axiosInstance } from './model/network'
 export type { SetAtom } from './types/jotai'
+export { default as AttendanceButtonDialog } from './ui/AttendanceButtonDialog'

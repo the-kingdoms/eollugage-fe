@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { useAtomValue } from 'jotai'
-import { useMember } from '@/entities'
+import { useMembers } from '@/entities'
 import MemberList from './MemberList'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 
@@ -79,7 +79,7 @@ import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 
 export default function MemberSelector() {
   const storeId = '123'
-  const { members } = useMember(storeId)
+  const { members } = useMembers(storeId)
 
   const selectedMemberID = useAtomValue(selectedMemberAtom)
   return (
