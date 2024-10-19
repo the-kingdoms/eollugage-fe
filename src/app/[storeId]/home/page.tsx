@@ -25,7 +25,13 @@ const fooddata = [
   },
 ]
 
-export default function HomePage() {
+interface HomePageProps {
+  params: {
+    storeId: string
+  }
+}
+
+export default function HomePage({ params }: HomePageProps) {
   const [open, setOpen] = useState(false)
   const [nowModal, setNowModal] = useState<{ title: string; description: string } | null>(null)
   const router = useRouter()
@@ -45,7 +51,7 @@ export default function HomePage() {
     <>
       <Header />
       <div className="mt-[76px]">
-        {isOwner && <AddPhotoButton />}
+        {isOwner && <AddPhotoButton storeId={params.storeId} />}
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeNotice />
           <TodayWork />

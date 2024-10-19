@@ -7,10 +7,16 @@ import useJoin from '../hooks/useJoin'
 interface UserProfileProps {
   name: string
   store: string
+  storeId: string
   handlePreviousStep: () => void
 }
 
-export default function UserProfile({ name, store, handlePreviousStep }: UserProfileProps) {
+export default function UserProfile({
+  name,
+  store,
+  storeId,
+  handlePreviousStep,
+}: UserProfileProps) {
   const router = useRouter()
   const { isOwner, handleNextStep } = useJoin()
   return (
@@ -33,7 +39,7 @@ export default function UserProfile({ name, store, handlePreviousStep }: UserPro
             state="enabled"
             type="text"
             text1={isOwner ? '프로필 생성하기' : '출근하기'}
-            onClick={isOwner ? handleNextStep : () => router.push('/home')}
+            onClick={isOwner ? handleNextStep : () => router.push(`/${storeId}/home`)}
           />
         </FlexBox>
       </FlexBox>
