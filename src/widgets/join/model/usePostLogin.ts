@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { setTokenFromLocalStorage } from '@/shared'
-import { postLogin } from './postLogin'
-import { UserInfoT } from './user'
+import { postLogin } from '../api/postLogin'
+import { UserInfoT } from '../api/user'
 
 function usePostLogin(userInfo: UserInfoT) {
   const { mutate } = useMutation({
