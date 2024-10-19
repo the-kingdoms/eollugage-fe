@@ -4,7 +4,7 @@ import { getWeekOfMonth } from '@/shared'
 import { atom } from 'jotai'
 
 const { year, month, weekOfMonth } = getWeekOfMonth(new Date())
-export const selectedMemberAtom = atom<string>('')
+export const selectedMemberAtom = atom<string | null>(null)
 export const selectedTypeAtom = atom<'weekly' | 'monthly'>('weekly')
 export const yearAtom = atom<number>(year)
 export const monthAtom = atom<number>(month)

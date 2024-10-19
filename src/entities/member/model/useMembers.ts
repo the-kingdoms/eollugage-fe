@@ -5,7 +5,7 @@ import { Members } from '../types/member'
 const useMembers = (storeId: string) => {
   const { data: members } = useQuery<Members>({
     queryKey: ['members', storeId],
-    queryFn: () => getMembers(storeId),
+    queryFn: async () => getMembers(storeId),
   })
   return { members }
 }

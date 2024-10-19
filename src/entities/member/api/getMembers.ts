@@ -8,6 +8,7 @@ const getMembers = async (storeId: string): Promise<Members> => {
     const { data } = await axiosInstance.get(`/v1/stores/${storeId}/members`)
     return data
   } catch (e) {
+    console.error(e)
     return []
   }
 }

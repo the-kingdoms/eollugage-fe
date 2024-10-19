@@ -10,7 +10,7 @@ export default function WorkManagementOwner({ storeId }: { storeId: string }) {
   })
   return (
     <HydrationBoundary queryClient={queryClient}>
-      <WorkManagementOwnerClient />
+      <WorkManagementOwnerClient storeId={storeId} />
     </HydrationBoundary>
   )
 }
