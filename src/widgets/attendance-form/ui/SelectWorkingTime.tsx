@@ -36,7 +36,10 @@ export default function SelectWorkingTime({
                 inputMode="numeric"
                 className={cn(
                   'w-1/2 justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
-                  field.value.start === '00:00' && 'border-[hsl(var(--input))]',
+                  (field.value.start === '' ||
+                    (field.value.start.includes(':') &&
+                      field.value.start.split(':')[0] === '00')) &&
+                    'border-[hsl(var(--input))]',
                 )}
                 value={
                   field.value.start.split(':')[0] === '00'
@@ -60,8 +63,10 @@ export default function SelectWorkingTime({
                 inputMode="numeric"
                 className={cn(
                   'w-1/2 justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
-                  !field.value.start ||
-                    (field.value.start === '00:00' && 'border-[hsl(var(--input))]'),
+                  (field.value.start === '' ||
+                    (field.value.start.includes(':') &&
+                      field.value.start.split(':')[1] === '00')) &&
+                    'border-[hsl(var(--input))]',
                 )}
                 value={
                   field.value.start.split(':')[1] === '00'
@@ -91,7 +96,9 @@ export default function SelectWorkingTime({
                 inputMode="numeric"
                 className={cn(
                   'w-1/2 justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
-                  field.value.start === '00:00' && 'border-[hsl(var(--input))]',
+                  (field.value.end === '' ||
+                    (field.value.end.includes(':') && field.value.end.split(':')[0] === '00')) &&
+                    'border-[hsl(var(--input))]',
                 )}
                 value={
                   field.value.end.split(':')[0] === '00' ? '' : `${field.value.end.split(':')[0]}`
@@ -105,7 +112,7 @@ export default function SelectWorkingTime({
                 placeholder="18"
               />
               {/* <span className="text-lg ml-2 mr-4">시</span> */}
-              <span className="mx-2">:</span>{' '}
+              <span className="mx-2">:</span>
               <Input
                 type="number"
                 min={0}
@@ -113,7 +120,9 @@ export default function SelectWorkingTime({
                 inputMode="numeric"
                 className={cn(
                   'w-1/2 justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 placeholder:text-text-placeholder',
-                  field.value.start === '00:00' && 'border-[hsl(var(--input))]',
+                  (field.value.end === '' ||
+                    (field.value.end.includes(':') && field.value.end.split(':')[1] === '00')) &&
+                    'border-[hsl(var(--input))]',
                 )}
                 value={
                   field.value.end.split(':')[1] === '00' ? '' : `${field.value.end.split(':')[1]}`

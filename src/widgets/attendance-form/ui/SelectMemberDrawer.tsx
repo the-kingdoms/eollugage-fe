@@ -3,7 +3,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable arrow-parens */
 import { useMember } from '@/entities'
-import { storeIdAtom } from '@/shared'
 import { Button } from '@/shared/ui/shadcn/button'
 import {
   Drawer,
@@ -17,7 +16,6 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
 import { cn } from '@/shared/utils/cn'
 import { Icon } from '@eolluga/eolluga-ui'
-import { useAtomValue } from 'jotai'
 import { UseFormReturn } from 'react-hook-form'
 
 export default function SelectMemberDrawer({
@@ -36,7 +34,7 @@ export default function SelectMemberDrawer({
     undefined
   >
 }) {
-  const storeId = useAtomValue(storeIdAtom)
+  const storeId = '123'
   const { members } = useMember(storeId)
   return (
     <FormField
