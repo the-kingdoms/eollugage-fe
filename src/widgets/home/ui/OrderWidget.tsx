@@ -27,6 +27,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
 
   const handleClick = () => {
     mutate()
+    router.push(`/${storeId}/home`)
   }
 
   return (

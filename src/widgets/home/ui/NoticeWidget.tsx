@@ -41,6 +41,7 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
       textArea.focus()
     } else {
       mutate()
+      router.push(`/${storeId}/home`)
     }
   }
 
