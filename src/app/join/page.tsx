@@ -8,12 +8,14 @@ import { useRouter } from 'next/navigation'
 import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { UploadImageScreen } from '@/features'
+import { useAtom } from 'jotai'
+import { storeNameAtom } from '@/shared/atoms/globalAtom'
 
 export default function JoinPage() {
   const { isOwner, step, handleNextStep, handlePreviousStep } = useJoin()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
-  const [store, setStore] = useState('')
+  const [store, setStore] = useAtom(storeNameAtom)
   const [storeId, setStoreId] = useState<string>('')
   const router = useRouter()
 
