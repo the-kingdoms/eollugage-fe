@@ -3,7 +3,7 @@ import { Histories } from '../types/history'
 
 const getHistories = async (
   storeId: string,
-  memberId?: string,
+  memberId?: string | null,
   type?: 'weekly' | 'monthly',
   year?: number,
   month?: number,

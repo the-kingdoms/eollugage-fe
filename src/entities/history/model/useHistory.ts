@@ -6,7 +6,7 @@ import postHistory from '../api/postHistory'
 
 const useHistory = (
   storeId: string,
-  memberId?: string,
+  memberId?: string | null,
   type?: 'weekly' | 'monthly',
   year?: number,
   month?: number,
