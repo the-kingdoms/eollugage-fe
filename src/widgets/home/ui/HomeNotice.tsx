@@ -1,27 +1,29 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { Icon, TextField } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import HomeBundle from './HomeBundle'
 
-export default function HomeNotice() {
-  const router = useRouter()
+interface HomeNoticeProps {
+  storeId: string
+  notice: string
+}
 
+export default function HomeNotice({ storeId, notice }: HomeNoticeProps) {
   return (
     <HomeBundle
       title="가게 공지"
       rightChild={
-        <button type="button" onClick={() => router.push('/home/notice')}>
+        <Link href={`/${storeId}/home/notice`} passHref>
           <Icon icon="chevron_right_outlined" size={20} />
-        </button>
+        </Link>
       }
       lowChild={
-        <Link href="/home/notice" className="w-full" passHref>
+        <Link href={`/${storeId}/home/notice`} className="w-full" passHref>
           <TextField
             size="L"
             placeholder="공지가 아직 없어요"
-            value=""
+            value={notice}
             onChange={() => {}}
             style="outlined"
           />
@@ -30,3 +32,5 @@ export default function HomeNotice() {
     />
   )
 }
+
+// use client 고민하기
