@@ -47,6 +47,3 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
     </>
   )
 }
-
-// 버튼 여부
-// prefetch
