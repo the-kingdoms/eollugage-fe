@@ -1,13 +1,14 @@
 import { DefaultResponseT, axiosInstance } from '@/shared'
 
-interface OrderT {
+interface GetOrderT {
   title: string
   content: string
 }
 
-async function postOrder(body: OrderT, storeId: string): Promise<DefaultResponseT> {
+async function postOrder(body: GetOrderT, storeId: string): Promise<DefaultResponseT> {
   const { data } = await axiosInstance.post(`/v1/stores/${storeId}/orders`, body)
   return data
 }
 
 export { postOrder }
+export type { GetOrderT }
