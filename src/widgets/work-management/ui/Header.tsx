@@ -1,7 +1,9 @@
 import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 export default function Header({ type }: { type: 'add' | 'edit' }) {
+  const router = useRouter()
   return (
     <header className="h-[32px] text-center relative flex items-center justify-center  font-medium pt-[18px] mb-[32px]">
       <Link
@@ -9,6 +11,7 @@ export default function Header({ type }: { type: 'add' | 'edit' }) {
         type="button"
         aria-label="뒤로가기"
         href="/manage"
+        onClick={() => router.back()}
       >
         <Icon icon="chevron_left_outlined" />
       </Link>

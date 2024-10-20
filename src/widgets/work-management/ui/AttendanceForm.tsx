@@ -5,7 +5,6 @@ import { Form } from '@/shared/ui/shadcn/form'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useHistory } from '@/entities'
-import useAttendance from '@/widgets/work-management/hooks/useAttendance'
 import { format } from 'date-fns'
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -14,6 +13,7 @@ import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import AddAttendanceButton from './AttendanceButton'
 import SelectMemberDrawer from './SelectMemberDrawer'
+import useAttendance from '../hooks/useAttendance'
 
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
@@ -75,6 +75,7 @@ export default function AttendanceForm({
     form.watch('workingTime').start !== ''
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
+    if (!memberId) return
     if (type === 'add') {
       createHistory({
         selectedMemberId: memberId,

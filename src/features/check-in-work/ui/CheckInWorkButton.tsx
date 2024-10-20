@@ -6,10 +6,11 @@ export default function CheckInWorkButton({
   memberId,
 }: {
   storeId: string
-  memberId: string
+  memberId: string | null
 }) {
   const { checkIn, checkInStatus, checkInError } = useCheckIn()
   const handleClick = async () => {
+    if (!memberId) return
     checkIn({ storeId, memberId })
   }
   return (

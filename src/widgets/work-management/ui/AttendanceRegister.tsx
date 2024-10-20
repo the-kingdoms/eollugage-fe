@@ -1,8 +1,8 @@
 'use client'
 
 import { CheckInWorkButton, CheckOutWorkButton } from '@/features'
-import formatDate from '@/widgets/work-management/utils/getTodayDate'
 import useAttendance from '../hooks/useAttendance'
+import formatDate from '../utils/getTodayDate'
 
 export default function AttendanceRegister({ storeId }: { storeId: string }) {
   const { memberId } = useAttendance()

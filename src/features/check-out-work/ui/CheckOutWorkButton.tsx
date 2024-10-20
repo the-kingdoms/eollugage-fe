@@ -6,10 +6,11 @@ export default function CheckOutWorkButton({
   memberId,
 }: {
   storeId: string
-  memberId: string
+  memberId: string | null
 }) {
   const { checkOut, checkOutError, checkOutStatus } = useCheckOut()
   const handleClick = async () => {
+    if (!memberId) return
     checkOut({ storeId, memberId })
   }
   return (

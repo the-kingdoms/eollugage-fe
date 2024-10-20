@@ -28,7 +28,6 @@ const useAttendance = () => {
     type,
     setType,
 
-    // Weekly values
     yearWeekly,
     setYearWeekly,
     monthWeekly,
@@ -36,7 +35,6 @@ const useAttendance = () => {
     weekOfMonthWeekly,
     setWeekOfMonthWeekly,
 
-    // Monthly values
     yearMonthly,
     setYearMonthly,
     monthMonthly,
