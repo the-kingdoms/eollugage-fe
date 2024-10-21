@@ -22,8 +22,9 @@ export default async function Home() {
   // eslint-disable-next-line prefer-destructuring
   const accountInfo = await fetchAccountInfo()
   if (accountInfo) {
-    const { storeId } = accountInfo.relationList[0].storeId
-    redirect(`/${storeId}/home`)
+    // eslint-disable-next-line prefer-destructuring
+    const storeId = accountInfo.relationList[0].storeId
+    if (storeId) redirect(`/${storeId}/home`)
   }
 
   return (
