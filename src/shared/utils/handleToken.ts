@@ -17,4 +17,9 @@ const setTokenFromCookie = (value: string, days?: number) => {
   document.cookie = `${name}=${value || ''}${expires}; path=/`
 }
 
-export { getTokenFromCookie, setTokenFromCookie }
+const deleteTokenFromCookie = () => {
+  const name = 'access_token'
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+}
+
+export { getTokenFromCookie, setTokenFromCookie, deleteTokenFromCookie }
