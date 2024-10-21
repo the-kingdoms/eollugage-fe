@@ -12,7 +12,11 @@ export default function Quit() {
   const { mutate: deleteUserMutation } = useDeleteUser()
 
   const handleExit = () => {
-    isChecked ? deleteUserMutation() : console.log('동의 확인란이 체크되지 않았습니다.')
+    if (isChecked) {
+      deleteUserMutation()
+    } else {
+      console.log('동의 확인란이 체크되지 않았습니다.')
+    }
   }
 
   return (

@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
@@ -8,13 +8,13 @@ import { PositionItem, PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
 import { useGetPosition } from '@/features/mypage/model/useGetPositions'
-import { usePostPosition } from '@/features/mypage/model/usePostPosition'
+import { usePutPosition } from '@/features/mypage/model/usePutPosition'
 
 export default function PositionWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { data, error } = useGetPosition(storeId)
-  const postPosition = usePostPosition()
+  const putPosition = usePutPosition()
 
   if (error) console.log(error)
 
@@ -33,13 +33,15 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
     )
     return groupedPositions
   }
-
   const [positionList, setPositionList] = useState<PositionGroupType[]>(
     data ? groupByPosition(data) : [],
   )
-  if (data && positionList.length === 0) {
-    setPositionList(groupByPosition(data))
-  }
+
+  useEffect(() => {
+    if (data && positionList.length === 0) {
+      setPositionList(groupByPosition(data))
+    }
+  }, [data])
 
   const openBottomSheet = () => {
     setIsOpen(true)
@@ -69,12 +71,17 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
         destinationGroup.items.splice(destination.index, 0, movedItem)
         if (source.droppableId !== destination.droppableId) {
-          postPosition({ storeId, memberId: movedItem.memberId })
+          movedItem.memberId = destination.droppableId
+          putPosition.mutate({
+            storeId,
+            memberId: movedItem.memberId,
+            position: destination.droppableId,
+          })
         }
         setPositionList(updatedList)
       }
     },
-    [positionList, postPosition, storeId],
+    [positionList, storeId],
   )
 
   const postPositions = () => {
@@ -95,7 +102,7 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
             <PositionGroup
-              key={index}
+              key={group.position + index}
               id={group.position}
               position={group.position}
               items={group.items}
