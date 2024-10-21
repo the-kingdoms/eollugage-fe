@@ -15,9 +15,10 @@ import { useAtom } from 'jotai'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
+  storeId: string
 }
 
-export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
+export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)

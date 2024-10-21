@@ -2,8 +2,27 @@ import Image from 'next/image'
 import LoginButton from '@/widgets/join/ui/LoginButton'
 import FlexBox from '@/shared/ui/Flexbox'
 import styles from './page.module.css'
+import axios from 'axios'
+import { redirect } from 'next/navigation'
+import axiosServerInstance from '@/shared/model/serverNetwork'
 
-export default function Home() {
+async function fetchAccountInfo() {
+  try {
+    const response = await axiosServerInstance.get('/v1/my')
+    const data = response.data
+    return data
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 404) console.log('no access token')
+  }
+}
+
+export default async function Home() {
+  const accountInfo = await fetchAccountInfo()
+  if (accountInfo) {
+    const storeId = accountInfo.relationList[0].storeId
+    redirect(`/${storeId}/home`)
+  }
+
   return (
     <FlexBox
       direction="col"
