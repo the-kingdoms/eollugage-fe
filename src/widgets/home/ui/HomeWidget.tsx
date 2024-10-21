@@ -9,11 +9,10 @@ import OrderList from '@/widgets/home/ui/OrderList'
 import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/shared'
-import { storeNameAtom } from '@/shared/atoms/globalAtom'
+import { useGetStoreInfo } from '@/entities'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
 import { noticeAtom } from '../atoms/homeAtoms'
-import { useGetStoreInfo } from '@/entities'
 
 interface HomeWidgetProps {
   storeId: string
@@ -21,7 +20,6 @@ interface HomeWidgetProps {
 
 export default function HomeWidget({ storeId }: HomeWidgetProps) {
   const [isOwner] = useAtom(isOwnerAtom)
-  const [storeName] = useAtom(storeNameAtom)
   const [notice] = useAtom(noticeAtom)
 
   const { data: orderList } = useGetOrder(storeId)

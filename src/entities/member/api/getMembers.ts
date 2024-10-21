@@ -1,7 +1,7 @@
 'use server'
 
-import { Members } from '../types/member'
 import axiosServerInstance from '@/shared/model/serverNetwork'
+import { Members } from '../types/member'
 
 const getMembers = async (storeId: string): Promise<Members> => {
   try {

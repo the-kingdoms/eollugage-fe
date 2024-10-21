@@ -1,4 +1,4 @@
-import { Icon, TextField } from '@eolluga/eolluga-ui'
+import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import HomeBundle from './HomeBundle'
 

@@ -1,4 +1,4 @@
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import { deleteTokenFromCookie } from '@/shared'
 
