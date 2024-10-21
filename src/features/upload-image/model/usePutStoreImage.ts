@@ -1,26 +1,17 @@
 import { useMutation } from '@tanstack/react-query'
-import { setTokenFromLocalStorage, storeIdAtom } from '@/shared'
-import { StoreInfoT, putStoreInfo, useGetStoreInfo } from '@/entities'
-import { useAtom } from 'jotai'
-import React, { SetStateAction } from 'react'
-
-interface usePutStoreImageParams {
-  setIsLoading: React.Dispatch<SetStateAction<boolean>>
-  storeInfo: StoreInfoT
-}
+import { StoreInfoT, putStoreInfo } from '@/entities'
 
 function usePutStoreImage(
   imageName: string | undefined,
-  { setIsLoading, storeInfo }: usePutStoreImageParams,
+  storeInfo: StoreInfoT | undefined,
+  storeId: string,
 ) {
-  const [storeId] = useAtom(storeIdAtom)
-  let newStoreInfo = storeInfo as StoreInfoT
+  const newStoreInfo = storeInfo as StoreInfoT
   if (imageName) newStoreInfo.image = imageName
 
   const { mutate } = useMutation({
-    mutationKey: ['putStoreInfo', storeId],
+    mutationKey: ['putStoreInfo', storeInfo],
     mutationFn: () => putStoreInfo(newStoreInfo, storeId),
-    onSettled: () => setIsLoading(false),
   })
 
   return { mutate }

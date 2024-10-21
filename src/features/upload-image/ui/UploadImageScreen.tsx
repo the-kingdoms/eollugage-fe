@@ -5,14 +5,15 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
-import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
-import { ToastMessage, sendRNFunction, storeIdAtom } from '@/shared'
-import { handleImageUpload } from '../utils/handleImageUpload'
+import { ToastMessage, sendRNFunction } from '@/shared'
 import { OrbitProgress } from 'react-loading-indicators'
-import { useAtom } from 'jotai'
-import { usePutStoreImage } from '../model/usePutStoreImage'
 import { useGetStoreInfo } from '@/entities'
+import storeDefaultImage from '@public/image/store_default_image.png'
+import { usePutStoreImage } from '../model/usePutStoreImage'
+import { ImageUploadResultT } from '../types/imageUploadType'
+import { useGetStoreImage } from '../model/useGetStoreImage'
+
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
   storeId: string
@@ -22,27 +23,22 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
   const router = useRouter()
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [showToast, setShowToast] = useState<boolean>(false)
-  const [imageURL, setImageURL] = useState<string>('')
   const [imageName, setImageName] = useState<string | undefined>(undefined)
-  const [storeId] = useAtom(storeIdAtom)
 
-  const { data: storeInfo } = useGetStoreInfo()
-  const { mutate: mutateImageInfo } = usePutStoreImage(imageName, { setIsLoading })
+  const { data: storeInfo } = useGetStoreInfo(storeId)
+  const { data: imageInfo } = useGetStoreImage(
+    storeId,
+    storeInfo && storeInfo?.image.length > 0 ? storeInfo?.image : imageName,
+  )
+  const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
 
   const onClickBackButton = () => router.back()
 
   const onClickSelectButton = () => {
-    setIsLoading(true)
+    setShowToast(false)
     sendRNFunction('accessGallery', storeId)
-  }
-
-  const onClickLaterButton = () => {
-    if (page === 'join') {
-      router.prefetch('/home')
-      sendRNFunction('moveToHome')
-    }
+    setIsLoading(true)
   }
 
   const onMessageEvent = (e: MessageEvent) => {
@@ -50,14 +46,19 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
     const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
 
     if (message.type === 'getImageUploadResult') {
+      // eslint-disable-next-line prefer-destructuring
       const data = message.data
       if (!data.isSuccess) {
         setIsLoading(false)
         setShowToast(true)
       } else if (data.fileFullName) {
-        // setImageURL()
         setImageName(data.fileFullName)
-        mutateImageInfo()
+        putStoreImageMutate(undefined, {
+          onError: () => {
+            setIsLoading(false)
+            setShowToast(true)
+          },
+        })
       }
     }
   }
@@ -88,19 +89,20 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
             <div className="w-full aspect-[3/2] bg-gray-200">
-              {isSuccess ? (
+              {imageInfo ? (
                 <Image
                   alt="store image"
-                  src={imageURL}
+                  src={imageInfo}
                   className="w-full"
                   width={100}
                   height={100}
                   style={{ objectFit: 'contain' }}
+                  onLoadingComplete={() => setIsLoading(false)}
                 />
               ) : (
                 <Image
                   alt="store default image"
-                  src={require('@public/image/store_default_image.png')}
+                  src={storeDefaultImage}
                   style={{ objectFit: 'contain', width: '100%' }}
                 />
               )}
@@ -126,9 +128,9 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <button onClick={onClickLaterButton} className="py-3 label-02-bold text-text-disabled">
+          <Link href={`/${storeId}/home`} className="py-3 label-02-bold text-text-disabled">
             나중에 추가하기
-          </button>
+          </Link>
         </FlexBox>
       </FlexBox>
       {showToast && (
