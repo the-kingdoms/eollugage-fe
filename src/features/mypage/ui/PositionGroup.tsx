@@ -1,6 +1,5 @@
 'use client'
 
-/* eslint-disable-next-line react/no-array-index-key */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Icon } from '@eolluga/eolluga-ui'
 import { PositionGroupProps } from '@/shared/types/myPageTypes'
@@ -17,6 +16,7 @@ export default function PositionGroup({ id, position, items, index, length }: Po
           >
             <li className="body-03-bold text-text-primary justify-content">{position}</li>
             {items.map((item, idx) => (
+              // eslint-disable-next-line react/no-array-index-key
               <Draggable key={item.memberId + idx} draggableId={item.memberId} index={idx}>
                 {draggableProvided => (
                   <li
