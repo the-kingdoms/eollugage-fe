@@ -10,11 +10,10 @@ import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/shared'
 import { storeNameAtom } from '@/shared/atoms/globalAtom'
-import { useEffect } from 'react'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
-import { useGetStoreDetail } from '../model/useGetStoreDetail'
 import { noticeAtom } from '../atoms/homeAtoms'
+import { useGetStoreInfo } from '@/entities'
 
 interface HomeWidgetProps {
   storeId: string
@@ -27,15 +26,11 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
 
   const { data: orderList } = useGetOrder(storeId)
   const { data: workList } = useGetTodayDuty(storeId, formatCurrentDate())
-  const { mutate: details } = useGetStoreDetail(storeId)
-
-  useEffect(() => {
-    details()
-  }, [details])
+  const { data: storeInfo } = useGetStoreInfo(storeId)
 
   return (
     <>
-      <Header title={storeName || ''} />
+      <Header title={storeInfo?.name || ''} />
       <div className="mt-[76px]">
         {isOwner && <AddPhotoButton storeId={storeId} />}
         <FlexBox direction="col" className="gap-8 mx-4">
