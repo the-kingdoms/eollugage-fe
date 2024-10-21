@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { TopBar, Icon } from '@eolluga/eolluga-ui'
 import LogoutModal from '@/features/setting/ui/LogoutModal'
 
-export default function SettingsWidget() {
+export default function SettingsWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -14,7 +14,7 @@ export default function SettingsWidget() {
       <TopBar
         leftIcon="chevron_left_outlined"
         title="설정"
-        onClickLeftIcon={() => push('/mypage')}
+        onClickLeftIcon={() => push(`/${storeId}/mypage`)}
       />
       <div>
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
@@ -22,7 +22,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/alarm')}
+              onClick={() => push(`/${storeId}/mypage/setting/alarm`)}
             >
               <span>알림</span>
               <Icon icon="chevron_right_outlined" />
@@ -37,7 +37,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/privacy')}
+              onClick={() => push(`/${storeId}/mypage/setting/privacy`)}
             >
               <span>개인정보 처리방침</span>
               <Icon icon="chevron_right_outlined" />
@@ -47,7 +47,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/inquire')}
+              onClick={() => push(`/${storeId}/mypage/setting/inquire`)}
             >
               <span>문의하기</span>
               <Icon icon="chevron_right_outlined" />
@@ -62,7 +62,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/appInfo')}
+              onClick={() => push(`/${storeId}/mypage/setting/appInfo`)}
             >
               <span>앱 버전</span>
               <Icon icon="chevron_right_outlined" />
@@ -72,7 +72,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/businessInfo')}
+              onClick={() => push(`/${storeId}/mypage/setting/businessInfo`)}
             >
               <span>사업자 정보</span>
               <Icon icon="chevron_right_outlined" />
@@ -97,7 +97,7 @@ export default function SettingsWidget() {
             <button
               type="button"
               className="flex w-full justify-between"
-              onClick={() => push('/mypage/setting/quit')}
+              onClick={() => push(`/${storeId}/mypage/setting/quit`)}
             >
               <span>탈퇴하기</span>
               <Icon icon="chevron_right_outlined" />

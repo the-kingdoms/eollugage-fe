@@ -1,5 +1,4 @@
 import { PositionGroupType } from '@/shared/types/myPageTypes'
-import { v4 as uuidv4 } from 'uuid'
 import { Button } from '@/shared/ui/shadcn/button'
 import {
   Drawer,
@@ -37,7 +36,6 @@ export default function BottomSheet({
   const addNewPosition = (newPosition: string) => {
     if (newPosition.trim() !== '') {
       const newPositionItem: PositionGroupType = {
-        id: uuidv4(),
         position: newPosition,
         items: [],
       }
@@ -69,7 +67,7 @@ export default function BottomSheet({
         </DrawerHeader>
         <div className="flex flex-col space-y-4 justify-between">
           {positionList.map((position, idx) => (
-            <div key={position.id} className="flex justify-between items-center px-5">
+            <div key={position.position} className="flex justify-between items-center px-5">
               <TextField
                 value={positions[idx].position}
                 onChange={e => handlePositionsChange(e.target.value, idx)}
@@ -77,7 +75,7 @@ export default function BottomSheet({
                 style="outlined"
                 placeholder="직책 입력"
               />
-              <button type="button" onClick={() => handleDelete(position.id)} className="p-3">
+              <button type="button" onClick={() => handleDelete(position.position)} className="p-3">
                 <Icon icon="delete" />
               </button>
             </div>
