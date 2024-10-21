@@ -5,8 +5,14 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
-import { sendRNFunction } from '../utils/rnSender'
+import Image from 'next/image'
+import { ToastMessage, sendRNFunction } from '@/shared'
+import { OrbitProgress } from 'react-loading-indicators'
+import { useGetStoreInfo } from '@/entities'
+import storeDefaultImage from '@public/image/store_default_image.png'
+import { usePutStoreImage } from '../model/usePutStoreImage'
 import { ImageUploadResultT } from '../types/imageUploadType'
+import { useGetStoreImage } from '../model/useGetStoreImage'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -16,21 +22,44 @@ interface ImageUploadScreenProps {
 export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
-  // eslint-disable-next-line
-  const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [showToast, setShowToast] = useState<boolean>(false)
+  const [imageName, setImageName] = useState<string | undefined>(undefined)
 
-  const onClickBackButton = () => {
-    router.back()
+  const { data: storeInfo } = useGetStoreInfo(storeId)
+  const { data: imageInfo } = useGetStoreImage(
+    storeId,
+    storeInfo && storeInfo?.image.length > 0 ? storeInfo?.image : imageName,
+  )
+  const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
+
+  const onClickBackButton = () => router.back()
+
+  const onClickSelectButton = () => {
+    setShowToast(false)
+    sendRNFunction('accessGallery', storeId)
+    setIsLoading(true)
   }
-
-  const onClickSelectButton = () => sendRNFunction('accessGallery')
 
   const onMessageEvent = (e: MessageEvent) => {
     e.stopPropagation()
     const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
 
     if (message.type === 'getImageUploadResult') {
-      setIsSuccess(message.data.isSuccess)
+      // eslint-disable-next-line prefer-destructuring
+      const data = message.data
+      if (!data.isSuccess) {
+        setIsLoading(false)
+        setShowToast(true)
+      } else if (data.fileFullName) {
+        setImageName(data.fileFullName)
+        putStoreImageMutate(undefined, {
+          onError: () => {
+            setIsLoading(false)
+            setShowToast(true)
+          },
+        })
+      }
     }
   }
 
@@ -59,7 +88,25 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[4/3] bg-gray-200" />
+            <div className="w-full aspect-[3/2] bg-gray-200">
+              {imageInfo ? (
+                <Image
+                  alt="store image"
+                  src={imageInfo}
+                  className="w-full"
+                  width={100}
+                  height={100}
+                  style={{ objectFit: 'contain' }}
+                  onLoadingComplete={() => setIsLoading(false)}
+                />
+              ) : (
+                <Image
+                  alt="store default image"
+                  src={storeDefaultImage}
+                  style={{ objectFit: 'contain', width: '100%' }}
+                />
+              )}
+            </div>
             <FlexBox className="items-start w-full gap-4">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
               <div className="w-full body-01-medium text-text-helper">
@@ -81,14 +128,24 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <Link
-            href={page === 'join' ? `/${storeId}/home` : '/home'}
-            className="py-3 label-02-bold text-text-disabled"
-          >
+          <Link href={`/${storeId}/home`} className="py-3 label-02-bold text-text-disabled">
             나중에 추가하기
           </Link>
         </FlexBox>
       </FlexBox>
+      {showToast && (
+        <ToastMessage
+          icon="warning"
+          open={showToast}
+          setOpen={setShowToast}
+          message="다시 시도해주세요."
+        />
+      )}
+      {isLoading && (
+        <div className="bg-overlay-default w-full absolute inset-0 flex justify-center items-center">
+          <OrbitProgress color="#fff" size="small" text="" textColor="" />
+        </div>
+      )}
     </FlexBox>
   )
 }
