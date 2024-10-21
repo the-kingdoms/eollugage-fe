@@ -1,50 +1,68 @@
 /* eslint-disable import/no-cycle */
+import { getWeekOfMonth } from '@/shared'
 import { Icon } from '@eolluga/eolluga-ui'
 import { useRef } from 'react'
-
-import { MonthState, WeekState } from './DateSelector'
-import getObjectWeekOfMonth from '../utils/getObjectOfWeekOfMonth'
+import handleNext from '../utils/handleNext'
+import useAttendance from '../hooks/useAttendance'
 
 interface Today {
   month: number
   weekOfMonth: number
   monthOfWeekOfMonth: number
 }
-export default function NextButton({
-  onClick,
-  type,
-  weekState,
-  monthState,
-}: {
-  onClick: () => void
-  type: 'month' | 'week'
-  weekState: WeekState
-  monthState: MonthState
-}) {
+export default function NextButton() {
   const todayRef = useRef<Today>({
     month: new Date().getMonth() + 1,
-    weekOfMonth: getObjectWeekOfMonth(new Date()).weekOfMonth,
-    monthOfWeekOfMonth: getObjectWeekOfMonth(new Date()).month,
+    weekOfMonth: getWeekOfMonth(new Date()).weekOfMonth,
+    monthOfWeekOfMonth: getWeekOfMonth(new Date()).month,
   })
+  const {
+    type,
+    monthMonthly,
+    monthWeekly,
+    yearMonthly,
+    yearWeekly,
+    weekOfMonthWeekly,
+    setMonthMonthly,
+    setMonthWeekly,
+    setWeekOfMonthWeekly,
+    setYearMonthly,
+    setYearWeekly,
+  } = useAttendance()
+
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={() =>
+        handleNext(
+          type,
+          monthMonthly,
+          monthWeekly,
+          yearMonthly,
+          yearWeekly,
+          weekOfMonthWeekly,
+          setYearMonthly,
+          setMonthMonthly,
+          setMonthWeekly,
+          setWeekOfMonthWeekly,
+          setYearWeekly,
+        )
+      }
       aria-label="다음"
       disabled={
-        type === 'month'
-          ? todayRef.current.month === monthState.month
-          : todayRef.current.weekOfMonth === weekState.weekOfMonth &&
-            todayRef.current.monthOfWeekOfMonth === weekState.month
+        type === 'monthly'
+          ? todayRef.current.month === monthMonthly
+          : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
+            todayRef.current.monthOfWeekOfMonth === monthWeekly
       }
     >
       <Icon
         icon="chevron_right_outlined"
         className={`${
-          type === 'month'
-            ? todayRef.current.month === monthState.month && 'fill-text-disabled'
-            : todayRef.current.weekOfMonth === weekState.weekOfMonth &&
-              todayRef.current.monthOfWeekOfMonth === weekState.month &&
+          type === 'monthly'
+            ? todayRef.current.month === monthMonthly && 'fill-text-disabled'
+            : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
+              todayRef.current.monthOfWeekOfMonth === monthWeekly &&
               'fill-text-disabled'
         }`}
       />

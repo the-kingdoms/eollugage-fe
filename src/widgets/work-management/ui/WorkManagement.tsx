@@ -1,12 +1,16 @@
 'use client'
 
-import { isOwnerAtom } from '@/shared/atoms/globalAtom'
 import { useAtom } from 'jotai'
-import WorkManagementWorker from './WorkManagementWorker'
+import { isOwnerAtom } from '@/shared'
 import WorkManagementOwner from './WorkManagementOwner'
+import WorkManagementMember from './WorkManagementMember'
 
-export default function WorkManagement() {
+export default function WorkManagement({ storeId }: { storeId: string }) {
   const isOwner = useAtom(isOwnerAtom)
 
-  return isOwner ? <WorkManagementOwner /> : <WorkManagementWorker />
+  return isOwner ? (
+    <WorkManagementOwner storeId={storeId} />
+  ) : (
+    <WorkManagementMember storeId={storeId} />
+  )
 }
