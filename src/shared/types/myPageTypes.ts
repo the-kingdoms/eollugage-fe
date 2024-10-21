@@ -1,10 +1,11 @@
 export interface PositionItem {
   id: string
   name: string
+  position: string
+  phoneNumber: string
 }
 
 export interface PositionGroupType {
-  id: string
   position: string
   items: PositionItem[]
 }
@@ -16,7 +17,3 @@ export interface PositionGroupProps {
   index: number
   length: number
 }
-
-export type SettingsView = 'alarm' | 'appInfo' | 'businessInfo' | 'privacy' | 'quit' | 'settings'
-
-export type InquireView = 'byPhone' | 'inquire'

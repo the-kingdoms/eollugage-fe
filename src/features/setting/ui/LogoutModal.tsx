@@ -1,6 +1,13 @@
+import { useRouter } from 'next/navigation'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 
 export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => void }) {
+  const { push } = useRouter()
+  const handleLogout = () => {
+    localStorage.remove('access_token')
+    push('/')
+  }
+
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex justify-center items-center">
       <div className="w-[90%]">
@@ -15,7 +22,14 @@ export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => 
               text1="닫기"
               onClick={setIsModalOpen}
             />
-            <ButtonMobile size="M" style="primary" type="text" state="enabled" text1="확인" />
+            <ButtonMobile
+              size="M"
+              style="primary"
+              type="text"
+              state="enabled"
+              text1="확인"
+              onClick={handleLogout}
+            />
           </div>
         </div>
       </div>

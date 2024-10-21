@@ -1,14 +1,20 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { TopBar, Switch } from '@eolluga/eolluga-ui'
 
 export default function AlarmWidget() {
   const { push } = useRouter()
+  const params = useParams()
+  const storeId = params.storeId
 
   return (
     <div className="pt-4">
-      <TopBar leftIcon="close" title="알림" onClickLeftIcon={() => push('/mypage/setting')} />
+      <TopBar
+        leftIcon="close"
+        title="알림"
+        onClickLeftIcon={() => push(`/${storeId}/mypage/setting`)}
+      />
       <div className="mt-4">
         <ul className="flex flex-col gap-spacing-02 p-4">
           <li className="flex justify-between py-spacing-04">
