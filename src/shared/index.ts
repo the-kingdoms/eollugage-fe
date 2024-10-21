@@ -5,6 +5,6 @@ export {
   getWeekOfMonth,
 } from './utils/weekOfMonth'
 export type { DefaultResponseT } from './types/responseType'
-export { setTokenFromLocalStorage, getTokenFromLocalStorage } from './utils/handleToken'
+export { setTokenFromCookie, getTokenFromCookie } from './utils/handleToken'
 export { isOwnerAtom } from './atoms/globalAtom'
 export { default as axiosInstance } from './model/network'
