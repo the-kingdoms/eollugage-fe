@@ -1,45 +1,46 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
-import { v4 as uuidv4 } from 'uuid'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
-import { PositionGroupType } from '@/shared/types/myPageTypes'
+import { PositionItem, PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
+import { useGetPosition } from '@/features/mypage/model/useGetPositions'
+import { usePutPosition } from '@/features/mypage/model/usePutPosition'
 
-export default function PositionWidget() {
+export default function PositionWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
-  const [positionList, setPositionList] = useState<PositionGroupType[]>([])
   const [isOpen, setIsOpen] = useState(false)
+  const { data, error } = useGetPosition(storeId)
+  const putPosition = usePutPosition()
+
+  if (error) console.log(error)
+
+  function groupByPosition(initialPositions: PositionItem[]) {
+    const groupedPositions: PositionGroupType[] = initialPositions.reduce<PositionGroupType[]>(
+      (acc, item) => {
+        const group = acc.find(g => g.position === item.position)
+        if (group) {
+          group.items.push(item)
+        } else {
+          acc.push({ position: item.position, items: [item] })
+        }
+        return acc
+      },
+      [],
+    )
+    return groupedPositions
+  }
+
+  const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
-    setPositionList([
-      {
-        id: uuidv4(),
-        position: '미지정',
-        items: [
-          { id: uuidv4(), name: '이수아' },
-          { id: uuidv4(), name: '오지윤' },
-        ],
-      },
-      {
-        id: uuidv4(),
-        position: '알바생',
-        items: [
-          { id: uuidv4(), name: '윤수민' },
-          { id: uuidv4(), name: '오지윤' },
-          { id: uuidv4(), name: '최주원' },
-        ],
-      },
-      {
-        id: uuidv4(),
-        position: '매니저',
-        items: [{ id: uuidv4(), name: '얼루가' }],
-      },
-    ])
-  }, [])
+    if (data) {
+      setPositionList(groupByPosition(data))
+    }
+  }, [data])
 
   const openBottomSheet = () => {
     setIsOpen(true)
@@ -47,41 +48,44 @@ export default function PositionWidget() {
   const closeBottomSheet = () => {
     setIsOpen(false)
   }
+
   const addPosition = (newPosition: PositionGroupType) => {
     setPositionList(prevList => [...prevList, newPosition])
   }
 
-  const deletePosition = (id: string) => {
-    setPositionList(prevList => prevList.filter(position => position.id !== id))
+  const deletePosition = (position: string) => {
+    setPositionList(prevList => prevList.filter(employee => employee.position !== position))
   }
 
-  const onDragEnd = (result: DropResult) => {
-    const { source, destination } = result
-    if (!destination) return
-    const updatedList = Array.from(positionList)
-    if (source.droppableId === destination.droppableId) {
-      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
-      if (sourceGroup) {
-        const [movedItem] = sourceGroup.items.splice(source.index, 1)
-        movedItem.id = uuidv4()
-        sourceGroup!.items.splice(destination.index, 0, movedItem)
-        setPositionList(updatedList)
-      }
-    } else {
-      const sourceGroup = updatedList.find(group => group.id === source.droppableId)
-      const destinationGroup = updatedList.find(group => group.id === destination.droppableId)
+  const onDragEnd = useCallback(
+    (result: DropResult) => {
+      const { source, destination } = result
+      if (!destination) return
+      const updatedList = Array.from(positionList)
+
+      const sourceGroup = updatedList.find(group => group.position === source.droppableId)
+      const destinationGroup = updatedList.find(group => group.position === destination.droppableId)
+
       if (sourceGroup && destinationGroup) {
-        const [movedItem] = sourceGroup!.items.splice(source.index, 1)
-        movedItem.id = uuidv4()
+        const [movedItem] = sourceGroup.items.splice(source.index, 1)
         destinationGroup.items.splice(destination.index, 0, movedItem)
+        if (source.droppableId !== destination.droppableId) {
+          movedItem.memberId = destination.droppableId
+          putPosition.mutate({
+            storeId,
+            memberId: movedItem.memberId,
+            position: destination.droppableId,
+          })
+        }
         setPositionList(updatedList)
       }
-    }
-  }
+    },
+    [positionList, putPosition, storeId],
+  )
 
   const postPositions = () => {
-    // 최종변경사항 저장하는 로직이 들어갈 예정
-    push('/mypage')
+    // 추후에 전체 근무자 리스트를 수정할 수 있는 엔드포인트가 개발되면 추가 예정
+    console.log('저장')
   }
 
   return (
@@ -89,7 +93,7 @@ export default function PositionWidget() {
       <TopBar
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
-        onClickLeftIcon={() => push('/mypage')}
+        onClickLeftIcon={() => push(`/${storeId}/mypage`)}
         rightText="저장"
         onClickRightText={postPositions}
       />
@@ -97,8 +101,8 @@ export default function PositionWidget() {
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
             <PositionGroup
-              key={group.id}
-              id={group.id}
+              key={group.position}
+              id={group.position}
               position={group.position}
               items={group.items}
               index={index}
