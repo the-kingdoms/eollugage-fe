@@ -33,12 +33,11 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
     )
     return groupedPositions
   }
-  const [positionList, setPositionList] = useState<PositionGroupType[]>(
-    data ? groupByPosition(data) : [],
-  )
+
+  const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
-    if (data && positionList.length === 0) {
+    if (data) {
       setPositionList(groupByPosition(data))
     }
   }, [data])
@@ -81,7 +80,7 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
         setPositionList(updatedList)
       }
     },
-    [positionList, storeId],
+    [positionList, putPosition, storeId],
   )
 
   const postPositions = () => {
