@@ -10,7 +10,11 @@ export default function Quit() {
   const params = useParams()
   const storeId = params.storeId
   const [isChecked, setIsChecked] = useState(false)
-  const deleteUserMutation = useDeleteUser()
+  const { mutate: deleteUserMutation } = useDeleteUser()
+
+  const handleExit = () => {
+    isChecked ? deleteUserMutation() : console.log('동의 확인란이 체크되지 않았습니다.')
+  }
 
   return (
     <div className="pt-4">
@@ -60,7 +64,7 @@ export default function Quit() {
           type="text"
           state={isChecked ? 'enabled' : 'disabled'}
           text1="탈퇴하기"
-          onClick={() => deleteUserMutation()}
+          onClick={handleExit}
         />
       </footer>
     </div>

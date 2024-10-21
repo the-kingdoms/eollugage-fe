@@ -1,8 +1,8 @@
 export interface PositionItem {
-  id: string
+  memberId: string
   name: string
-  position: string
   phoneNumber: string
+  position: string
 }
 
 export interface PositionGroupType {

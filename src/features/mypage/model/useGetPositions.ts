@@ -6,7 +6,6 @@ function useGetPosition(storeId: string) {
     queryKey: ['getPositions', storeId],
     queryFn: () => getPositions(storeId),
   })
-
   return { data, error }
 }
 

@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query'
-import { putPosition } from '../api/putPosition'
+import { postPosition } from '../api/postPosition'
 
-function usePutPosition() {
+function usePostPosition() {
   const { mutate } = useMutation({
-    mutationKey: ['putPostiion'],
+    mutationKey: ['postPostiion'],
     mutationFn: ({ storeId, memberId }: { storeId: string; memberId: string }) =>
-      putPosition(storeId, memberId),
+      postPosition(storeId, memberId),
   })
   return mutate
 }
 
-export { usePutPosition }
+export { usePostPosition }
