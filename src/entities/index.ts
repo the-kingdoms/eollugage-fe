@@ -7,3 +7,5 @@ export { default as getHistories } from './history/api/getHistories'
 export type { Histories, History } from './history/types/history'
 
 export type { StoreInfoT } from './store/api/store'
+export { putStoreInfo } from './store/api/putStoreInfo'
+export { useGetStoreInfo } from './store/model/useGetStoreInfo'

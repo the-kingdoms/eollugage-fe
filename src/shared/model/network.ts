@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getTokenFromLocalStorage } from '../utils/handleToken'
+import { getTokenFromCookie } from '../utils/handleToken'
 
 const axiosInstance = axios.create({
   baseURL: '/API',
@@ -13,8 +13,8 @@ const axiosInstance = axios.create({
 })
 axiosInstance.interceptors.request.use(
   async config => {
-    if (typeof document !== 'undefined') {
-      const token = getTokenFromLocalStorage()
+    if (typeof window !== undefined) {
+      const token = getTokenFromCookie()
       config.headers.set('Authorization', `Bearer ${token}`)
     }
     return config
