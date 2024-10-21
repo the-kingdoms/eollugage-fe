@@ -3,39 +3,17 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { Icon } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
+import { DutyT } from '@/entities/home/api/home'
 import HomeBundle from './HomeBundle'
 
-const workdata = [
-  {
-    id: 1,
-    store: '얼루가게',
-    position: '매니저',
-    time: '08:00',
-  },
-  {
-    id: 2,
-    store: '매장 1',
-    position: '직원',
-    time: '09:00',
-  },
-  {
-    id: 3,
-    store: '매장 2',
-    position: '직원',
-    time: '10:00',
-  },
-  {
-    id: 4,
-    store: '매장 3',
-    position: '매니저',
-    time: '11:00',
-  },
-]
+interface TodayWorkProps {
+  workList: DutyT[]
+}
 
-export default function TodayWork() {
+export default function TodayWork({ workList }: TodayWorkProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const canNext = currentIndex + 2 < workdata.length
+  const canNext = currentIndex + 2 < workList.length
   const canPrev = currentIndex > 0
 
   const nextSlide = () => {
@@ -83,13 +61,13 @@ export default function TodayWork() {
       }
       lowChild={
         <div className="flex flex-row gap-4 w-full">
-          {workdata.slice(currentIndex, currentIndex + 2).map(item => (
+          {workList.slice(currentIndex, currentIndex + 2).map(item => (
             <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
               <div className="w-full">
-                <div className="body-04-medium-compact">{item.store}</div>
+                <div className="body-04-medium-compact">{item.name}</div>
                 <div className="body-01-medium-compact text-text-secondary">{item.position}</div>
               </div>
-              <div className="body-02-medium-compact w-full">{item.time}</div>
+              <div className="body-02-medium-compact w-full">{item.startTime}</div>
             </div>
           ))}
         </div>
