@@ -1,6 +1,6 @@
 import React, { SetStateAction } from 'react'
 import { ImageUploadResultT } from '../types/imageUploadType'
-import { getImageFromS3 } from '../api/getImage'
+import { getImageFromS3 } from '../api/getStoreImage'
 
 interface HandleImageUploadParams {
   data: ImageUploadResultT
@@ -11,7 +11,7 @@ interface HandleImageUploadParams {
   setIsLoading: React.Dispatch<SetStateAction<boolean>>
 }
 
-function handleImageUpload({
+export function handleImageUpload({
   data,
   setErrorMessage,
   setIsSuccess,
@@ -46,5 +46,3 @@ function handleImageUpload({
     })
   }
 }
-
-export { handleImageUpload }

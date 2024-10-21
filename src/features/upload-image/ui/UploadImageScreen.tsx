@@ -8,11 +8,11 @@ import Link from 'next/link'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import Image from 'next/image'
 import { ToastMessage, sendRNFunction, storeIdAtom } from '@/shared'
-import { getImageFromS3 } from '../api/getStoreImage'
 import { handleImageUpload } from '../utils/handleImageUpload'
 import { OrbitProgress } from 'react-loading-indicators'
 import { useAtom } from 'jotai'
 import { usePutStoreImage } from '../model/usePutStoreImage'
+import { useGetStoreInfo } from '@/entities'
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
   storeId: string
@@ -24,12 +24,12 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isSuccess, setIsSuccess] = useState<boolean>(false)
   const [showToast, setShowToast] = useState<boolean>(false)
-  const [errorMessage, setErrorMessage] = useState<string>('')
   const [imageURL, setImageURL] = useState<string>('')
   const [imageName, setImageName] = useState<string | undefined>(undefined)
   const [storeId] = useAtom(storeIdAtom)
 
-  const { mutate: mutateImageInfo } = usePutStoreImage(imageName)
+  const { data: storeInfo } = useGetStoreInfo()
+  const { mutate: mutateImageInfo } = usePutStoreImage(imageName, { setIsLoading })
 
   const onClickBackButton = () => router.back()
 
@@ -51,15 +51,11 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
 
     if (message.type === 'getImageUploadResult') {
       const data = message.data
-      handleImageUpload({
-        data,
-        setErrorMessage,
-        setIsSuccess,
-        setShowToast,
-        setImageURL,
-        setIsLoading,
-      })
-      if (data.fileFullName) {
+      if (!data.isSuccess) {
+        setIsLoading(false)
+        setShowToast(true)
+      } else if (data.fileFullName) {
+        // setImageURL()
         setImageName(data.fileFullName)
         mutateImageInfo()
       }
@@ -140,7 +136,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           icon="warning"
           open={showToast}
           setOpen={setShowToast}
-          message={errorMessage}
+          message="다시 시도해주세요."
         />
       )}
       {isLoading && (

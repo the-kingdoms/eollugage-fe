@@ -8,7 +8,6 @@ async function getImageFromS3(fileFullName: string) {
     const blob = new Blob([response.data], { type: response.headers['content-type'] })
     const imageURL = window.URL.createObjectURL(blob)
 
-    console.log(blob, imageURL)
     return imageURL
   } catch (error) {
     console.log('get image from S3 error', error)

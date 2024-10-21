@@ -4,15 +4,23 @@ import { StoreInfoT, putStoreInfo, useGetStoreInfo } from '@/entities'
 import { useAtom } from 'jotai'
 import React, { SetStateAction } from 'react'
 
-function usePutStoreImage(fileFullName: string | undefined) {
+interface usePutStoreImageParams {
+  setIsLoading: React.Dispatch<SetStateAction<boolean>>
+  storeInfo: StoreInfoT
+}
+
+function usePutStoreImage(
+  imageName: string | undefined,
+  { setIsLoading, storeInfo }: usePutStoreImageParams,
+) {
   const [storeId] = useAtom(storeIdAtom)
-  const { data: storeInfo } = useGetStoreInfo()
   let newStoreInfo = storeInfo as StoreInfoT
-  if (fileFullName) newStoreInfo.image = fileFullName
+  if (imageName) newStoreInfo.image = imageName
 
   const { mutate } = useMutation({
     mutationKey: ['putStoreInfo', storeId],
     mutationFn: () => putStoreInfo(newStoreInfo, storeId),
+    onSettled: () => setIsLoading(false),
   })
 
   return { mutate }
