@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { ZINDEX } from '..'
+import { ZINDEX } from '../constants/zIndex'
 
 interface ToastMessageProps {
   message: string
