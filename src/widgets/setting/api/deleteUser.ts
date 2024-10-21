@@ -1,13 +1,7 @@
-import { axiosInstance, getTokenFromLocalStorage } from '@/shared'
+import { axiosInstance } from '@/shared'
 
 async function deleteUser() {
-  const token = getTokenFromLocalStorage()
-
-  return axiosInstance.delete('/v1/members', {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  return axiosInstance.delete('/v1/members')
 }
 
 export { deleteUser }
