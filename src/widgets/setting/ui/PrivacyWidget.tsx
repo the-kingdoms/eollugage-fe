@@ -18,8 +18,7 @@ export default function PrivacyWidget({
   privacyPolicyData: PrivacyPolicyData
 }) {
   const { push } = useRouter()
-  const params = useParams()
-  const storeId = params.storeId
+  const { storeId } = useParams()
 
   return (
     <div className="pt-4">

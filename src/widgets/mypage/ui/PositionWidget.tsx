@@ -14,12 +14,6 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const { data, error } = useGetPosition(storeId)
-  const [positionList, setPositionList] = useState<PositionGroupType[]>(
-    data ? groupByPosition(data) : [],
-  )
-  if (data && positionList.length === 0) {
-    setPositionList(groupByPosition(data))
-  }
   const postPosition = usePostPosition()
 
   if (error) console.log(error)
@@ -38,6 +32,13 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
       [],
     )
     return groupedPositions
+  }
+
+  const [positionList, setPositionList] = useState<PositionGroupType[]>(
+    data ? groupByPosition(data) : [],
+  )
+  if (data && positionList.length === 0) {
+    setPositionList(groupByPosition(data))
   }
 
   const openBottomSheet = () => {

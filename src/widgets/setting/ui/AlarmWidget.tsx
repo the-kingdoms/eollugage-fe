@@ -5,8 +5,7 @@ import { TopBar, Switch } from '@eolluga/eolluga-ui'
 
 export default function AlarmWidget() {
   const { push } = useRouter()
-  const params = useParams()
-  const storeId = params.storeId
+  const { storeId } = useParams()
 
   return (
     <div className="pt-4">

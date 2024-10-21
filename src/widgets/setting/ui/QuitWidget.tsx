@@ -7,8 +7,7 @@ import { useDeleteUser } from '../model/useDeleteUser'
 
 export default function Quit() {
   const { push } = useRouter()
-  const params = useParams()
-  const storeId = params.storeId
+  const { storeId } = useParams()
   const [isChecked, setIsChecked] = useState(false)
   const { mutate: deleteUserMutation } = useDeleteUser()
 
