@@ -102,7 +102,7 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
         <DragDropContext onDragEnd={onDragEnd}>
           {positionList.map((group, index) => (
             <PositionGroup
-              key={group.position + index}
+              key={group.position}
               id={group.position}
               position={group.position}
               items={group.items}
