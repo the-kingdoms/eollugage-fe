@@ -21,11 +21,8 @@ async function fetchAccountInfo() {
 export default async function Home() {
   // eslint-disable-next-line prefer-destructuring
   const accountInfo = await fetchAccountInfo()
-  if (accountInfo) {
-    // eslint-disable-next-line prefer-destructuring
-    const storeId = accountInfo.relationList[0].storeId
-    if (storeId) redirect(`/${storeId}/home`)
-  }
+  if (accountInfo && accountInfo.relationList.length > 0 && accountInfo.relationList[0].storeId)
+    redirect(`/${accountInfo.relationList[0].storeId}/home`)
 
   return (
     <FlexBox
