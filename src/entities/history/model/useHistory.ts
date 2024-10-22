@@ -18,7 +18,7 @@ const useHistory = (
     queryFn: () => getHistories(storeId, memberId, type, year, month, weekOfMonth),
   })
 
-  const { mutate: createHistory } = useMutation({
+  const { mutate: createHistory, status: createHistoryStatus } = useMutation({
     mutationFn: ({
       selectedMemberId,
       reqBody,
@@ -46,6 +46,6 @@ const useHistory = (
     },
   })
 
-  return { histories, createHistory, updateHistory }
+  return { histories, createHistory, updateHistory, createHistoryStatus }
 }
 export default useHistory

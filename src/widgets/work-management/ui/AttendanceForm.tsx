@@ -8,19 +8,20 @@ import { useHistory } from '@/entities'
 import { format } from 'date-fns'
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import SelectMemberDrawer from './SelectMemberDrawer'
-import useAttendance from '../hooks/useAttendance'
 
-const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
   memberId: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
-    start: timeSchema,
-    end: timeSchema,
+    'start-front': z.string(),
+    'start-back': z.string(),
+    'end-front': z.string(),
+    'end-back': z.string(),
   }),
 })
 
@@ -41,21 +42,22 @@ export default function AttendanceForm({
   }>({
     queryKey: ['history', historyId],
   })
-
+  const { back } = useRouter()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       memberId: '',
       workingDate: undefined,
       workingTime: {
-        start: '',
-        end: '',
+        'start-front': '',
+        'start-back': '',
+        'end-front': '',
+        'end-back': '',
       },
     },
   })
 
-  const { memberId } = useAttendance()
-  const { createHistory, updateHistory } = useHistory(storeId)
+  const { createHistory, updateHistory, createHistoryStatus } = useHistory(storeId)
 
   useEffect(() => {
     if (type === 'edit' && editingHistory) {
@@ -71,8 +73,10 @@ export default function AttendanceForm({
   const isFormComplete =
     form.watch('memberId') !== '' &&
     form.watch('workingDate') !== undefined &&
-    form.watch('workingTime').end !== '' &&
-    form.watch('workingTime').start !== ''
+    form.watch('workingTime')['start-front'] !== '' &&
+    form.watch('workingTime')['start-back'] !== '' &&
+    form.watch('workingTime')['end-front'] !== '' &&
+    form.watch('workingTime')['end-back'] !== ''
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     if (data.memberId === null) return
@@ -81,26 +85,29 @@ export default function AttendanceForm({
         selectedMemberId: data.memberId,
         reqBody: {
           date: format(data.workingDate, 'yyyy-MM-dd'),
-          startTime: data.workingTime.start,
-          endTime: data.workingTime.end,
+          startTime: data.workingTime['start-front'].concat(':', data.workingTime['start-back']),
+          endTime: data.workingTime['end-front'].concat(':', data.workingTime['end-back']),
         },
       })
     } else {
       if (!historyId) return
 
       updateHistory({
-        selectedMemberId: memberId,
+        selectedMemberId: data.memberId,
         historyId,
         reqBody: {
-          currentUserId: memberId,
+          currentUserId: data.memberId,
           date: format(data.workingDate, 'yyyy-MM-dd'),
-          startTime: data.workingTime.start,
-          endTime: data.workingTime.end,
+          startTime: data.workingTime['start-front'].concat(data.workingTime['start-back']),
+          endTime: data.workingTime['end-front'].concat(data.workingTime['end-back']),
         },
       })
     }
   }
 
+  useEffect(() => {
+    if (createHistoryStatus === 'success') back()
+  }, [createHistoryStatus])
   return (
     <>
       <Header type={type} />
@@ -120,6 +127,7 @@ export default function AttendanceForm({
               <button
                 type="submit"
                 className=" label-03-bold w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-button-primary text-text-on-color rounded-radius-04"
+                disabled={createHistoryStatus === 'pending'}
               >
                 근무 추가하기
               </button>

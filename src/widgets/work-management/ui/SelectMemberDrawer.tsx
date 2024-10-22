@@ -16,26 +16,9 @@ import {
 import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
 import { cn } from '@/shared/utils/cn'
 import { Icon } from '@eolluga/eolluga-ui'
-import { UseFormReturn } from 'react-hook-form'
+import { Form } from '../types/work-management'
 
-export default function SelectMemberDrawer({
-  form,
-  storeId,
-}: {
-  form: UseFormReturn<
-    {
-      memberId: string
-      workingDate: Date
-      workingTime: {
-        start: string
-        end: string
-      }
-    },
-    any,
-    undefined
-  >
-  storeId: string
-}) {
+export default function SelectMemberDrawer({ form, storeId }: { form: Form; storeId: string }) {
   const { members } = useMembers(storeId)
   return (
     <FormField
