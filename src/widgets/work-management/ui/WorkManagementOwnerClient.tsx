@@ -21,7 +21,7 @@ export default function WorkManagementOwnerClient({ storeId }: { storeId: string
   return (
     <>
       <MemberSelector storeId={storeId} />
-      <AttendanceInfo />
+      <AttendanceInfo storeId={storeId} />
       <div className="bottom-[84px] right-4 absolute">
         <AddAttendanceLink storeId={storeId} />
       </div>

@@ -7,17 +7,9 @@ import { useHistory } from '@/entities'
 import AttendanceInfoItem from './AttendanceInfoItem'
 import useAttendance from '../hooks/useAttendance'
 
-export default function AttendanceInfoList() {
-  const {
-    storeId,
-    memberId,
-    type,
-    yearMonthly,
-    yearWeekly,
-    monthMonthly,
-    monthWeekly,
-    weekOfMonthWeekly,
-  } = useAttendance()
+export default function AttendanceInfoList({ storeId }: { storeId: string }) {
+  const { memberId, type, yearMonthly, yearWeekly, monthMonthly, monthWeekly, weekOfMonthWeekly } =
+    useAttendance()
 
   const { histories } = useHistory(
     storeId,
@@ -27,7 +19,7 @@ export default function AttendanceInfoList() {
     type === 'weekly' ? monthWeekly : monthMonthly,
     type === 'weekly' ? weekOfMonthWeekly : 0,
   )
-
+  console.log(histories)
   if (histories?.histories.length === 0) {
     return (
       <div className="w-full pt-[120px] flex items-center justify-center">

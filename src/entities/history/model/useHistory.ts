@@ -14,7 +14,7 @@ const useHistory = (
 ) => {
   const queryClient = useQueryClient()
   const { data: histories } = useQuery({
-    queryKey: ['histories', storeId, memberId, type, year, month, weekOfMonth],
+    queryKey: ['histories', memberId, type, year, month, weekOfMonth],
     queryFn: () => getHistories(storeId, memberId, type, year, month, weekOfMonth),
   })
 

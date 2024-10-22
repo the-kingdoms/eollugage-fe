@@ -7,7 +7,7 @@ export default function WorkManagementMember({ storeId }: { storeId: string }) {
     <div>
       <WorkManagementMemberHeader userName="JaneDoe" />
       <AttendanceRegister />
-      <AttendanceInfo />
+      <AttendanceInfo storeId={storeId} />
     </div>
   )
 }
