@@ -5,7 +5,7 @@ const postHistory = async (storeId: string | null, memberId: string, reqBody: Po
   if (!storeId) return false
   try {
     const { status, statusText } = await axiosInstance.post(
-      `/v1/stores/${storeId}/relations/${memberId}/histories`,
+      `/v1/stores/${storeId}/members/${memberId}/histories`,
       reqBody,
     )
 

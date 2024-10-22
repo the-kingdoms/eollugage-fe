@@ -11,13 +11,12 @@ import { useQuery } from '@tanstack/react-query'
 import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
-import AddAttendanceButton from './AttendanceButton'
 import SelectMemberDrawer from './SelectMemberDrawer'
 import useAttendance from '../hooks/useAttendance'
 
 const timeSchema = z.string().regex(/^\d{2}:\d{2}$/, '시간을 잘못 입력했어요. (예: HH:MM)')
 const formSchema = z.object({
-  memberID: z.string(),
+  memberId: z.string(),
   workingDate: z.date(),
   workingTime: z.object({
     start: timeSchema,
@@ -26,9 +25,11 @@ const formSchema = z.object({
 })
 
 export default function AttendanceForm({
+  storeId,
   type,
   historyId,
 }: {
+  storeId: string
   type: 'add' | 'edit'
   historyId?: string
 }) {
@@ -44,7 +45,7 @@ export default function AttendanceForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      memberID: '',
+      memberId: '',
       workingDate: undefined,
       workingTime: {
         start: '',
@@ -53,13 +54,12 @@ export default function AttendanceForm({
     },
   })
 
-  const { storeId } = useAttendance()
   const { memberId } = useAttendance()
   const { createHistory, updateHistory } = useHistory(storeId)
 
   useEffect(() => {
     if (type === 'edit' && editingHistory) {
-      form.setValue('memberID', editingHistory.memberId)
+      form.setValue('memberId', editingHistory.memberId)
       form.setValue('workingDate', new Date(editingHistory.date))
       form.setValue('workingTime', {
         start: editingHistory.startTime,
@@ -69,16 +69,16 @@ export default function AttendanceForm({
   }, [editingHistory])
 
   const isFormComplete =
-    form.watch('memberID') !== '' &&
+    form.watch('memberId') !== '' &&
     form.watch('workingDate') !== undefined &&
     form.watch('workingTime').end !== '' &&
     form.watch('workingTime').start !== ''
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    if (!memberId) return
+    if (data.memberId === null) return
     if (type === 'add') {
       createHistory({
-        selectedMemberId: memberId,
+        selectedMemberId: data.memberId,
         reqBody: {
           date: format(data.workingDate, 'yyyy-MM-dd'),
           startTime: data.workingTime.start,
@@ -107,7 +107,7 @@ export default function AttendanceForm({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="px-4 space-y-[16px]">
-            <SelectMemberDrawer form={form} />
+            <SelectMemberDrawer form={form} storeId={storeId} />
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>
@@ -117,7 +117,12 @@ export default function AttendanceForm({
                 isFormComplete ? 'block' : 'hidden'
               }`}
             >
-              <AddAttendanceButton />
+              <button
+                type="submit"
+                className=" label-03-bold w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-button-primary text-text-on-color rounded-radius-04"
+              >
+                근무 추가하기
+              </button>
             </div>
           </div>
         </form>

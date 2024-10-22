@@ -17,14 +17,14 @@ import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/
 import { cn } from '@/shared/utils/cn'
 import { Icon } from '@eolluga/eolluga-ui'
 import { UseFormReturn } from 'react-hook-form'
-import useAttendance from '../hooks/useAttendance'
 
 export default function SelectMemberDrawer({
   form,
+  storeId,
 }: {
   form: UseFormReturn<
     {
-      memberID: string
+      memberId: string
       workingDate: Date
       workingTime: {
         start: string
@@ -34,14 +34,13 @@ export default function SelectMemberDrawer({
     any,
     undefined
   >
+  storeId: string
 }) {
-  const { storeId } = useAttendance()
-
   const { members } = useMembers(storeId)
   return (
     <FormField
       control={form.control}
-      name="memberID"
+      name="memberId"
       render={({ field }) => (
         <FormItem className="flex flex-col space-y-1">
           <FormLabel className="body-02-regular text-[#6F6F6F]">근무자 선택</FormLabel>
@@ -56,7 +55,7 @@ export default function SelectMemberDrawer({
                   )}
                 >
                   {field.value ? (
-                    members?.find(member => member.id === field.value)?.name
+                    members?.find(member => member.memberId === field.value)?.name
                   ) : (
                     <span>근무자를 선택해주세요</span>
                   )}
@@ -69,14 +68,14 @@ export default function SelectMemberDrawer({
                 </DrawerHeader>
                 <div className="flex flex-col  ">
                   {members?.map(member => (
-                    <DrawerClose key={member.id} asChild>
+                    <DrawerClose key={member.memberId} asChild>
                       <Button
                         variant="ghost"
-                        className={`justify-start ${field.value === member.id ? 'text-[#161616]' : 'text-[#6F6F6F]'} body-02-medium `}
-                        onClick={() => field.onChange(member.id)}
+                        className={`justify-start ${field.value === member.memberId ? 'text-[#161616]' : 'text-[#6F6F6F]'} body-02-medium `}
+                        onClick={() => field.onChange(member.memberId)}
                       >
                         {member.name}
-                        {member.id === field.value && (
+                        {member.memberId === field.value && (
                           <span className="ml-auto">
                             <Icon icon="checkmark" />
                           </span>

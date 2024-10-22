@@ -22,7 +22,7 @@ export default function SelectWorkingDateCalendar({
 }: {
   form: UseFormReturn<
     {
-      memberID: string
+      memberId: string
       workingDate: Date
       workingTime: {
         start: string
