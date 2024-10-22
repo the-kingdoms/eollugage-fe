@@ -2,6 +2,7 @@ import { useAtomValue } from 'jotai'
 import { useMembers } from '@/entities'
 import MemberList from './MemberList'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
+import formatPhoneNumber from '../utils/formatPhoneNumber'
 
 export default function MemberSelector({ storeId }: { storeId: string }) {
   const { members } = useMembers(storeId)
@@ -15,8 +16,10 @@ export default function MemberSelector({ storeId }: { storeId: string }) {
       <MemberList members={members} />
       <p className="body-03-bold-compact mt-[12px] px-[16px]">
         {selectedMemberID === null
-          ? members && members[0].phoneNumber
-          : members?.find(member => member.memberId === selectedMemberID)?.phoneNumber || ''}
+          ? members && formatPhoneNumber(members[0].phoneNumber)
+          : formatPhoneNumber(
+              members?.find(member => member.memberId === selectedMemberID)?.phoneNumber || '',
+            )}
       </p>
     </div>
   )
