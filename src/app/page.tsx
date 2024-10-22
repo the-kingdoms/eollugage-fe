@@ -3,7 +3,7 @@ import LoginButton from '@/widgets/join/ui/LoginButton'
 import FlexBox from '@/shared/ui/Flexbox'
 import axios from 'axios'
 import { redirect } from 'next/navigation'
-import axiosServerInstance from '@/shared/model/serverNetwork'
+import { axiosServerInstance } from '@/shared'
 import styles from './page.module.css'
 
 async function fetchAccountInfo() {
