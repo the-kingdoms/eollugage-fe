@@ -14,7 +14,7 @@ export default function WorkManagementMember({
     <div>
       <WorkManagementMemberHeader userName={userInfo.name} />
       <AttendanceRegister storeId={storeId} userInfo={userInfo} />
-      <AttendanceInfo storeId={storeId} />
+      <AttendanceInfo storeId={storeId} memberId={userInfo.id} />
     </div>
   )
 }
