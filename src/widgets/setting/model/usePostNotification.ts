@@ -1,7 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { postNotification } from '../api/postNotification'
-import { NotificationPayload } from '../api/postNotification'
+import { postNotification, NotificationPayload } from '../api/postNotification'
 
 function usePostNotification() {
   const { storeId }: { storeId: string } = useParams()

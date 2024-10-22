@@ -24,7 +24,10 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
       </div>
 
       <footer className="w-full py-3 px-4 fixed bottom-4 flex flex-col gap-4">
-        <button className="w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-[#FEE500] text-text-on-color rounded-radius-04 shrink-0">
+        <button
+          type="button"
+          className="w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-[#FEE500] text-text-on-color rounded-radius-04 shrink-0"
+        >
           <span className="left-icon">
             <Icon icon="kakaotalk_login" className="fill-text-on-color" />
           </span>

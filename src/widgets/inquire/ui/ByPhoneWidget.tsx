@@ -32,7 +32,6 @@ export default function ByPhoneWidget({ storeId }: { storeId: string }) {
       </div>
 
       <div className="px-4 pt-12">
-        <div></div>
         <TextField
           value={phoneNumber}
           label="고객센터 번호"
