@@ -14,7 +14,9 @@ export default function MemberSelector({ storeId }: { storeId: string }) {
       </div>
       <MemberList members={members} />
       <p className="body-03-bold-compact mt-[12px] px-[16px]">
-        {members?.find(member => member.memberId === selectedMemberID)?.phoneNumber || ''}
+        {selectedMemberID === null
+          ? members && members[0].phoneNumber
+          : members?.find(member => member.memberId === selectedMemberID)?.phoneNumber || ''}
       </p>
     </div>
   )
