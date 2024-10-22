@@ -3,10 +3,12 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
+import useAttendance from '../hooks/useAttendance'
 
-export default function AttendanceInfoItem({ item, storeId }: { item: History; storeId: string }) {
+export default function AttendanceInfoItem({ item }: { item: History }) {
   const queryClient = useQueryClient()
   const selectedMemberId = useAtomValue(selectedMemberAtom)
+  const { storeId } = useAttendance()
   return (
     <Link
       href={`/${storeId}/manage/edit-attendance/${item.id}`}

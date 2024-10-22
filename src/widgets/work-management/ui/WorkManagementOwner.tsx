@@ -1,15 +1,16 @@
-import { HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import { getMembers } from '@/entities'
 import WorkManagementOwnerClient from './WorkManagementOwnerClient'
 
-export default function WorkManagementOwner({ storeId }: { storeId: string }) {
+export default async function WorkManagementOwner({ storeId }: { storeId: string }) {
   const queryClient = new QueryClient()
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ['members', storeId],
     queryFn: () => getMembers(storeId),
   })
+
   return (
-    <HydrationBoundary queryClient={queryClient}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <WorkManagementOwnerClient storeId={storeId} />
     </HydrationBoundary>
   )

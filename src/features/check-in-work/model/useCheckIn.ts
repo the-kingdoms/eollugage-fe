@@ -7,7 +7,7 @@ const useCheckIn = () => {
     status: checkInStatus,
     error: checkInError,
   } = useMutation({
-    mutationFn: async ({ storeId, memberId }: { storeId: string; memberId: string }) =>
+    mutationFn: async ({ storeId, memberId }: { storeId: string | undefined; memberId: string }) =>
       patchCheckInWork(storeId, memberId),
   })
   return { checkIn, checkInStatus, checkInError }

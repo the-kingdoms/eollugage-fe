@@ -2,11 +2,12 @@ import { axiosInstance } from '@/shared'
 import { PutHistory } from '../types/reqBody'
 
 const putHistory = async (
-  storeId: string,
+  storeId: string | null,
   memberId: string,
   historyId: string,
   reqBody: PutHistory,
 ) => {
+  if (!storeId) return false
   try {
     const { status, statusText } = await axiosInstance.put(
       `/v1/stores/${storeId}/relations/${memberId}/histories/${historyId}`,

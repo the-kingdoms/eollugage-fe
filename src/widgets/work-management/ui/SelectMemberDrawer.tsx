@@ -17,6 +17,7 @@ import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/
 import { cn } from '@/shared/utils/cn'
 import { Icon } from '@eolluga/eolluga-ui'
 import { UseFormReturn } from 'react-hook-form'
+import useAttendance from '../hooks/useAttendance'
 
 export default function SelectMemberDrawer({
   form,
@@ -34,7 +35,8 @@ export default function SelectMemberDrawer({
     undefined
   >
 }) {
-  const storeId = '123'
+  const { storeId } = useAttendance()
+
   const { members } = useMembers(storeId)
   return (
     <FormField

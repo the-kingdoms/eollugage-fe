@@ -2,7 +2,8 @@
 
 import { axiosInstance } from '@/shared'
 
-const patchCheckInWork = async (storeId: string, memberId: string) => {
+const patchCheckInWork = async (storeId: string | undefined, memberId: string) => {
+  if (!storeId) return false
   try {
     const { status, statusText } = await axiosInstance.put(
       `/v1/stores/${storeId}/relations/${memberId}/go-work`,

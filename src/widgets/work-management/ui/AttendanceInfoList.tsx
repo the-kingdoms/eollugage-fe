@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable arrow-parens */
 
 import { useHistory } from '@/entities'
@@ -16,6 +18,7 @@ export default function AttendanceInfoList() {
     monthWeekly,
     weekOfMonthWeekly,
   } = useAttendance()
+
   const { histories } = useHistory(
     storeId,
     memberId,
@@ -34,9 +37,7 @@ export default function AttendanceInfoList() {
   }
   return (
     <div className="px-[16px]">
-      {histories?.histories?.map(item => (
-        <AttendanceInfoItem item={item} storeId={storeId} key={item.id} />
-      ))}
+      {histories?.histories?.map(item => <AttendanceInfoItem item={item} key={item.id} />)}
     </div>
   )
 }

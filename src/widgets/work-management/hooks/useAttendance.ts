@@ -6,13 +6,14 @@ import {
   monthMonthlyAtom,
   selectedMemberAtom,
   selectedTypeAtom,
+  storeIdAtom,
   weekAtom,
   yearAtom,
   yearMonthlyAtom,
 } from '../atoms/workManagementAtoms'
 
 const useAttendance = () => {
-  const storeId = '123'
+  const [storeId, setStoreId] = useAtom(storeIdAtom)
   const [memberId, setMemberId] = useAtom(selectedMemberAtom)
   const [type, setType] = useAtom(selectedTypeAtom)
   const [yearWeekly, setYearWeekly] = useAtom(yearAtom)
@@ -23,6 +24,7 @@ const useAttendance = () => {
 
   return {
     storeId,
+    setStoreId,
     memberId,
     setMemberId,
     type,

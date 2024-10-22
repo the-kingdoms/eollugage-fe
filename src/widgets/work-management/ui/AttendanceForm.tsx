@@ -53,7 +53,7 @@ export default function AttendanceForm({
     },
   })
 
-  const storeId = '123'
+  const { storeId } = useAttendance()
   const { memberId } = useAttendance()
   const { createHistory, updateHistory } = useHistory(storeId)
 

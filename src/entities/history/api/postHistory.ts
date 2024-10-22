@@ -1,7 +1,8 @@
 import { axiosInstance } from '@/shared'
 import { PostHistory } from '../types/reqBody'
 
-const postHistory = async (storeId: string, memberId: string, reqBody: PostHistory) => {
+const postHistory = async (storeId: string | null, memberId: string, reqBody: PostHistory) => {
+  if (!storeId) return false
   try {
     const { status, statusText } = await axiosInstance.post(
       `/v1/stores/${storeId}/relations/${memberId}/histories`,

@@ -11,21 +11,21 @@ export default function MemberItem({ member }: { member: Member }) {
     <button
       className="h-[90px] w-[48px] flex flex-col space-y-1 items-center justify-end text-center"
       type="button"
-      onClick={() => setSelectedMemberIDAtom(member.id)}
+      onClick={() => setSelectedMemberIDAtom(member.memberId)}
     >
       <span
-        className={`${selectedMemberIDAtom === member.id ? 'border border-white rounded-full' : 'opacity-70'}`}
+        className={`${selectedMemberIDAtom === member.memberId ? 'border border-white rounded-full' : 'opacity-70'}`}
       >
-        <Avatar size="S" image={member?.image || undefined} />
+        <Avatar size="S" />
       </span>
       <div>
         <p
-          className={`body-02-medium-compact  ${selectedMemberIDAtom === member.id ? 'text-white' : 'text-[#8D8D8D]'}`}
+          className={`body-02-medium-compact  ${selectedMemberIDAtom === member.memberId ? 'text-white' : 'text-[#8D8D8D]'}`}
         >
           {member.name}
         </p>
         <p
-          className={`body-01-medium-compact ${selectedMemberIDAtom === member.id ? 'text-[#6F6F6F]' : 'text-[#8D8D8D]'}`}
+          className={`body-01-medium-compact ${selectedMemberIDAtom === member.memberId ? 'text-[#6F6F6F]' : 'text-[#8D8D8D]'}`}
         >
           {member.position}
         </p>

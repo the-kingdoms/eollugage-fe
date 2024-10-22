@@ -2,7 +2,7 @@ import { axiosInstance } from '@/shared'
 import { Histories } from '../types/history'
 
 const getHistories = async (
-  storeId: string,
+  storeId: string | null,
   memberId?: string | null,
   type?: 'weekly' | 'monthly',
   year?: number,

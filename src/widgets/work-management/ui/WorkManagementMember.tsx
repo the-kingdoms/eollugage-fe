@@ -6,7 +6,7 @@ export default function WorkManagementMember({ storeId }: { storeId: string }) {
   return (
     <div>
       <WorkManagementMemberHeader userName="JaneDoe" />
-      <AttendanceRegister storeId={storeId} />
+      <AttendanceRegister />
       <AttendanceInfo />
     </div>
   )
