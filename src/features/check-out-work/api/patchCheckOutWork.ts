@@ -1,17 +1,19 @@
 'use server'
 
-import { axiosInstance } from '@/shared'
+import { axiosServerInstance } from '@/shared'
 
-const patchCheckOutWork = async (storeId: string, memberId: string) => {
-  const { status, statusText } = await axiosInstance.put(
-    `/v1/stores/${storeId}/relations/${memberId}/leave-work`,
-  )
+const patchCheckOutWork = async (storeId: string) => {
+  try {
+    const { status, statusText } = await axiosServerInstance.patch(`/v1/stores/${storeId}/work/end`)
 
-  if (status !== 200) {
-    throw new Error(statusText)
+    if (status !== 200) {
+      throw new Error(statusText)
+    }
+    return true
+  } catch (error) {
+    console.error(error)
+    return false
   }
-
-  return true
 }
 
 export default patchCheckOutWork

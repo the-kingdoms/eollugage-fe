@@ -43,6 +43,7 @@ export default function AttendanceForm({
     queryKey: ['history', historyId],
   })
   const { back } = useRouter()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,15 +58,18 @@ export default function AttendanceForm({
     },
   })
 
-  const { createHistory, updateHistory, createHistoryStatus } = useHistory(storeId)
+  const { createHistory, updateHistory, createHistoryStatus, updateHistoryStatus } =
+    useHistory(storeId)
 
   useEffect(() => {
     if (type === 'edit' && editingHistory) {
       form.setValue('memberId', editingHistory.memberId)
       form.setValue('workingDate', new Date(editingHistory.date))
       form.setValue('workingTime', {
-        start: editingHistory.startTime,
-        end: editingHistory.endTime,
+        'start-front': editingHistory.startTime.slice(0, 2),
+        'start-back': editingHistory.startTime.slice(3),
+        'end-front': editingHistory.endTime.slice(0, 2),
+        'end-back': editingHistory.endTime.slice(3),
       })
     }
   }, [editingHistory])
@@ -98,16 +102,16 @@ export default function AttendanceForm({
         reqBody: {
           currentUserId: data.memberId,
           date: format(data.workingDate, 'yyyy-MM-dd'),
-          startTime: data.workingTime['start-front'].concat(data.workingTime['start-back']),
-          endTime: data.workingTime['end-front'].concat(data.workingTime['end-back']),
+          startTime: data.workingTime['start-front'].concat(':', data.workingTime['start-back']),
+          endTime: data.workingTime['end-front'].concat(':', data.workingTime['end-back']),
         },
       })
     }
   }
 
   useEffect(() => {
-    if (createHistoryStatus === 'success') back()
-  }, [createHistoryStatus])
+    if (createHistoryStatus === 'success' || updateHistoryStatus === 'success') back()
+  }, [createHistoryStatus, updateHistoryStatus])
   return (
     <>
       <Header type={type} />
@@ -129,7 +133,7 @@ export default function AttendanceForm({
                 className=" label-03-bold w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-button-primary text-text-on-color rounded-radius-04"
                 disabled={createHistoryStatus === 'pending'}
               >
-                근무 추가하기
+                {type === 'add' ? '근무 추가하기' : '근무 수정하기'}
               </button>
             </div>
           </div>

@@ -1,3 +1,6 @@
+'use client'
+
+import { useSearchParams } from 'next/navigation'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,13 +24,16 @@ export default function AttendanceButton({
   status: string
   error?: Error | null
 }) {
+  const searchParams = useSearchParams()
+  const isQr: boolean = searchParams.get('qr') === 'true'
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <button
           type="button"
-          className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold"
+          className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold disabled:bg-button-disabled disabled:text-white disabled:cursor-not-allowed"
           onClick={onClick}
+          disabled={!isQr}
         >
           {buttonText}
         </button>

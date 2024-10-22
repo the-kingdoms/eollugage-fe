@@ -1,4 +1,6 @@
-import { axiosInstance } from '@/shared'
+'use server'
+
+import { axiosServerInstance } from '@/shared'
 import { PutHistory } from '../types/reqBody'
 
 const putHistory = async (
@@ -8,9 +10,10 @@ const putHistory = async (
   reqBody: PutHistory,
 ) => {
   if (!storeId) return false
+  console.log('storeId', storeId, 'memberId', memberId, 'historyId', historyId, 'reqBody', reqBody)
   try {
-    const { status, statusText } = await axiosInstance.put(
-      `/v1/stores/${storeId}/relations/${memberId}/histories/${historyId}`,
+    const { status, statusText } = await axiosServerInstance.put(
+      `/v1/stores/${storeId}/members/${memberId}/histories/${historyId}`,
       reqBody,
     )
 
@@ -19,6 +22,7 @@ const putHistory = async (
     }
     return true
   } catch (error) {
+    console.error(error)
     return false
   }
 }

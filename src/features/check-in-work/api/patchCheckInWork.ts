@@ -1,12 +1,12 @@
 'use server'
 
-import { axiosInstance } from '@/shared'
+import { axiosServerInstance } from '@/shared'
 
-const patchCheckInWork = async (storeId: string | undefined, memberId: string) => {
+const patchCheckInWork = async (storeId: string | undefined) => {
   if (!storeId) return false
   try {
-    const { status, statusText } = await axiosInstance.put(
-      `/v1/stores/${storeId}/relations/${memberId}/go-work`,
+    const { status, statusText } = await axiosServerInstance.patch(
+      `/v1/stores/${storeId}/work/start`,
     )
 
     if (status !== 200) {
@@ -14,6 +14,7 @@ const patchCheckInWork = async (storeId: string | undefined, memberId: string) =
     }
     return true
   } catch (error) {
+    console.error(error)
     return false
   }
 }

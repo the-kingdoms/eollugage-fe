@@ -1,6 +1,6 @@
 'use server'
 
-import { axiosInstance, axiosServerInstance } from '@/shared'
+import { axiosServerInstance } from '@/shared'
 import { Histories } from '../types/history'
 
 const getHistories = async (

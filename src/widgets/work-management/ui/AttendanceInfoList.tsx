@@ -19,7 +19,7 @@ export default function AttendanceInfoList({ storeId }: { storeId: string }) {
     type === 'WEEKLY' ? monthWEEKLY : monthMONTHLY,
     type === 'WEEKLY' ? weekOfMonthWEEKLY : 0,
   )
-  console.log(histories)
+
   if (histories?.histories.length === 0) {
     return (
       <div className="w-full pt-[120px] flex items-center justify-center">
@@ -29,7 +29,9 @@ export default function AttendanceInfoList({ storeId }: { storeId: string }) {
   }
   return (
     <div className="px-[16px]">
-      {histories?.histories?.map(item => <AttendanceInfoItem item={item} key={item.id} />)}
+      {histories?.histories?.map(item => (
+        <AttendanceInfoItem item={item} key={item.id} storeId={storeId} />
+      ))}
     </div>
   )
 }

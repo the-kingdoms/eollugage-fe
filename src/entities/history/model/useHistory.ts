@@ -31,7 +31,7 @@ const useHistory = (
     },
   })
 
-  const { mutate: updateHistory } = useMutation({
+  const { mutate: updateHistory, status: updateHistoryStatus } = useMutation({
     mutationFn: ({
       selectedMemberId,
       historyId,
@@ -46,6 +46,6 @@ const useHistory = (
     },
   })
 
-  return { histories, createHistory, updateHistory, createHistoryStatus }
+  return { histories, createHistory, updateHistory, createHistoryStatus, updateHistoryStatus }
 }
 export default useHistory
