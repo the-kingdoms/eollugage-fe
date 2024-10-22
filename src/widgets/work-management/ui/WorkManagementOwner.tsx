@@ -15,7 +15,7 @@ export default async function WorkManagementOwner({ storeId }: { storeId: string
     await queryClient.prefetchQuery({
       queryKey: ['histories', members[0]?.memberId],
       queryFn: () =>
-        getHistories(storeId, members[0]?.memberId, 'weekly', year, month, weekOfMonth),
+        getHistories(storeId, members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth),
     })
   }
 

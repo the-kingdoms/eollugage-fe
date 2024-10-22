@@ -8,7 +8,7 @@ export interface History {
 export interface Histories {
   storeId: string
   memberId: string | null
-  type: 'weekly' | 'monthly'
+  type: 'WEEKLY' | 'MONTHLY'
   year: number
   month: number
   weekOfMonth?: number

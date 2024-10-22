@@ -3,24 +3,24 @@
 import { useAtom } from 'jotai'
 import {
   monthAtom,
-  monthMonthlyAtom,
+  monthMONTHLYAtom,
   selectedMemberAtom,
   selectedTypeAtom,
   storeIdAtom,
   weekAtom,
   yearAtom,
-  yearMonthlyAtom,
+  yearMONTHLYAtom,
 } from '../atoms/workManagementAtoms'
 
 const useAttendance = () => {
   const [storeId, setStoreId] = useAtom(storeIdAtom)
   const [memberId, setMemberId] = useAtom(selectedMemberAtom)
   const [type, setType] = useAtom(selectedTypeAtom)
-  const [yearWeekly, setYearWeekly] = useAtom(yearAtom)
-  const [monthWeekly, setMonthWeekly] = useAtom(monthAtom)
-  const [weekOfMonthWeekly, setWeekOfMonthWeekly] = useAtom(weekAtom)
-  const [yearMonthly, setYearMonthly] = useAtom(yearMonthlyAtom)
-  const [monthMonthly, setMonthMonthly] = useAtom(monthMonthlyAtom)
+  const [yearWEEKLY, setYearWEEKLY] = useAtom(yearAtom)
+  const [monthWEEKLY, setMonthWEEKLY] = useAtom(monthAtom)
+  const [weekOfMonthWEEKLY, setWeekOfMonthWEEKLY] = useAtom(weekAtom)
+  const [yearMONTHLY, setYearMONTHLY] = useAtom(yearMONTHLYAtom)
+  const [monthMONTHLY, setMonthMONTHLY] = useAtom(monthMONTHLYAtom)
 
   return {
     storeId,
@@ -30,17 +30,17 @@ const useAttendance = () => {
     type,
     setType,
 
-    yearWeekly,
-    setYearWeekly,
-    monthWeekly,
-    setMonthWeekly,
-    weekOfMonthWeekly,
-    setWeekOfMonthWeekly,
+    yearWEEKLY,
+    setYearWEEKLY,
+    monthWEEKLY,
+    setMonthWEEKLY,
+    weekOfMonthWEEKLY,
+    setWeekOfMonthWEEKLY,
 
-    yearMonthly,
-    setYearMonthly,
-    monthMonthly,
-    setMonthMonthly,
+    yearMONTHLY,
+    setYearMONTHLY,
+    monthMONTHLY,
+    setMonthMONTHLY,
   }
 }
 

@@ -8,16 +8,16 @@ import AttendanceInfoItem from './AttendanceInfoItem'
 import useAttendance from '../hooks/useAttendance'
 
 export default function AttendanceInfoList({ storeId }: { storeId: string }) {
-  const { memberId, type, yearMonthly, yearWeekly, monthMonthly, monthWeekly, weekOfMonthWeekly } =
+  const { memberId, type, yearMONTHLY, yearWEEKLY, monthMONTHLY, monthWEEKLY, weekOfMonthWEEKLY } =
     useAttendance()
 
   const { histories } = useHistory(
     storeId,
     memberId,
     type,
-    type === 'weekly' ? yearWeekly : yearMonthly,
-    type === 'weekly' ? monthWeekly : monthMonthly,
-    type === 'weekly' ? weekOfMonthWeekly : 0,
+    type === 'WEEKLY' ? yearWEEKLY : yearMONTHLY,
+    type === 'WEEKLY' ? monthWEEKLY : monthMONTHLY,
+    type === 'WEEKLY' ? weekOfMonthWEEKLY : 0,
   )
   console.log(histories)
   if (histories?.histories.length === 0) {

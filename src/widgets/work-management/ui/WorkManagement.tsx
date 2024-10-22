@@ -10,6 +10,6 @@ export default async function WorkManagement({ storeId }: { storeId: string }) {
     '사장님' ? (
     <WorkManagementOwner storeId={storeId} />
   ) : (
-    <WorkManagementMember storeId={storeId} />
+    <WorkManagementMember storeId={storeId} userInfo={userInfo} />
   )
 }

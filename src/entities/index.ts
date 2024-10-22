@@ -13,3 +13,4 @@ export { useGetStoreInfo } from './store/model/useGetStoreInfo'
 
 export { default as fetchUserInfo } from './user/api/fetchUserInfo'
 export { default as useUser } from './user/model/useUser'
+export type { UserInfo } from './user/types/user'
