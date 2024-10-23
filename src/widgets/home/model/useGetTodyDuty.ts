@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { getTodayDuty } from '../api/getTodayDuty'
 
-function useGetTodayDuty(stordId: string, date: string) {
+function useGetTodayDuty(storeId: string, date: string) {
   const { data } = useQuery({
-    queryKey: ['getTodayDuty'],
-    queryFn: () => getTodayDuty(stordId, date),
+    queryKey: ['getTodayDuty', storeId, date],
+    queryFn: () => getTodayDuty(storeId, date),
   })
 
   return { data }
