@@ -73,7 +73,9 @@ export default function SingupStore({
   }
 
   const handleOpenBottomSheet = () => {
-    postStoreInfoMutate(undefined, { onSuccess: res => setStoreId(res.id) })
+    if (!storeId) {
+      postStoreInfoMutate(undefined, { onSuccess: res => setStoreId(res.id) })
+    }
     setOpenBottomSheet(true)
   }
 
