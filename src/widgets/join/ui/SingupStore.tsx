@@ -46,7 +46,7 @@ export default function SingupStore({
   const [storeName] = useAtom(storeNameAtom)
   const [isValidCode] = useAtom(isValidCodeAtom)
 
-  const { mutate: postStoreInfoMutate } = usePostStoreInfo(name)
+  const { mutate: postStoreInfoMutate } = usePostStoreInfo(storeName)
   const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(store)
 
   const handleOpenDialog = () => {
