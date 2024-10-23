@@ -38,7 +38,7 @@ export default function ToastMessage({ message, icon, open, setOpen }: ToastMess
       initial={{ y: 0, opacity: 0 }}
       animate={open ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
       transition={{ duration: 0.4 }}
-      className={`flex flex-row px-spacing-05 py-spacing-03 bg-layer-inverse rounded-full w-[90%] transition-opacity transjustify-between absolute bottom-[100px] z-[${ZINDEX.TOAST_MESSAGE}]`}
+      className={`flex flex-row px-spacing-05 py-spacing-03 bg-layer-inverse rounded-full w-full max-w-[calc(100%-32px)] transition-opacity justify-between absolute bottom-[100px] z-[${ZINDEX.TOAST_MESSAGE}]`}
     >
       <div className="flex flex-row items-center">
         {icon === 'check' && (
