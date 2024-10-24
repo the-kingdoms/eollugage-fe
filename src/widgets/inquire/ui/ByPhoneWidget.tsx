@@ -38,6 +38,7 @@ export default function ByPhoneWidget({ storeId }: { storeId: string }) {
           onChange={() => {}}
           size="L"
           style="outlined"
+          state="readOnly"
         />
       </div>
 

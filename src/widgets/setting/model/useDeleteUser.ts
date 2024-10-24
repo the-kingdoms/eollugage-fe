@@ -3,12 +3,12 @@ import { useRouter } from 'next/navigation'
 import { deleteUser } from '../api/deleteUser'
 
 function useDeleteUser() {
-  const { push } = useRouter()
+  const { replace } = useRouter()
   const { mutate } = useMutation({
     mutationKey: ['deleteUser'],
     mutationFn: () => deleteUser(),
     onSuccess: () => {
-      push('/')
+      replace('/')
     },
   })
   return { mutate }

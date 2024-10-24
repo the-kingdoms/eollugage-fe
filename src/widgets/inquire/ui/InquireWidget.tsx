@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
+import { TopBar, ButtonMobile, Icon } from '@eolluga/eolluga-ui'
 
 export default function InquireWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
@@ -24,14 +24,15 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
       </div>
 
       <footer className="w-full py-3 px-4 fixed bottom-4 flex flex-col gap-4">
-        <ButtonMobile
-          size="L"
-          style="secondary"
-          type="icon-left"
-          state="enabled"
-          text1="카카오톡으로 문의하기"
-          iconKey="kakaotalk_login"
-        />
+        <button
+          type="button"
+          className="w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-[#FEE500] text-text-on-color rounded-radius-04 shrink-0"
+        >
+          <span className="left-icon">
+            <Icon icon="kakaotalk_login" className="fill-text-on-color" />
+          </span>
+          <span className="text-black shrink-0">카카오톡으로 문의하기</span>
+        </button>
         <ButtonMobile
           size="L"
           style="border"

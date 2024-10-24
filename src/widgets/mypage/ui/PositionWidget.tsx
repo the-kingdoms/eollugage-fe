@@ -10,10 +10,16 @@ import BottomSheet from '@/features/mypage/ui/BottomSheet'
 import { useGetPosition } from '@/features/mypage/model/useGetPositions'
 import { usePutPosition } from '@/features/mypage/model/usePutPosition'
 
-export default function PositionWidget({ storeId }: { storeId: string }) {
+export default function PositionWidget({
+  storeId,
+  initialData,
+}: {
+  storeId: string
+  initialData: PositionItem[]
+}) {
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const { data, error } = useGetPosition(storeId)
+  const { data = initialData, error } = useGetPosition(storeId)
   const putPosition = usePutPosition()
 
   if (error) console.log(error)
@@ -70,7 +76,7 @@ export default function PositionWidget({ storeId }: { storeId: string }) {
         const [movedItem] = sourceGroup.items.splice(source.index, 1)
         destinationGroup.items.splice(destination.index, 0, movedItem)
         if (source.droppableId !== destination.droppableId) {
-          movedItem.memberId = destination.droppableId
+          movedItem.position = destination.droppableId
           putPosition.mutate({
             storeId,
             memberId: movedItem.memberId,
