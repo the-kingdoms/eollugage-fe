@@ -5,7 +5,6 @@ export interface PostHistory {
 }
 
 export interface PutHistory {
-  currentUserId: string
   date: string
   startTime: string
   endTime: string

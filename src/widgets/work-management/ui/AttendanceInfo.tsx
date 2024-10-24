@@ -6,7 +6,7 @@ export default function AttendanceInfo({
   memberId,
 }: {
   storeId: string
-  memberId: string
+  memberId: string | null
 }) {
   return (
     <div>

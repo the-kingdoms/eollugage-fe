@@ -6,16 +6,16 @@ import useAttendance from '../hooks/useAttendance'
 export default function PrevButton() {
   const {
     type,
-    monthMONTHLY,
-    monthWEEKLY,
-    yearMONTHLY,
-    yearWEEKLY,
-    weekOfMonthWEEKLY,
+    monthMonthly,
+    monthWeekly,
+    yearMonthly,
+    yearWeekly,
+    weekOfMonthWeekly,
     setMonthMONTHLY,
-    setMonthWEEKLY,
-    setWeekOfMonthWEEKLY,
+    setMonthWeekly,
+    setWeekOfMonthWeekly,
     setYearMONTHLY,
-    setYearWEEKLY,
+    setYearWeekly,
   } = useAttendance()
   return (
     <button
@@ -23,16 +23,16 @@ export default function PrevButton() {
       onClick={() =>
         handlePrev(
           type,
-          monthMONTHLY,
-          monthWEEKLY,
-          yearMONTHLY,
-          yearWEEKLY,
-          weekOfMonthWEEKLY,
+          monthMonthly,
+          monthWeekly,
+          yearMonthly,
+          yearWeekly,
+          weekOfMonthWeekly,
           setYearMONTHLY,
           setMonthMONTHLY,
-          setMonthWEEKLY,
-          setWeekOfMonthWEEKLY,
-          setYearWEEKLY,
+          setMonthWeekly,
+          setWeekOfMonthWeekly,
+          setYearWeekly,
         )
       }
       aria-label="이전"

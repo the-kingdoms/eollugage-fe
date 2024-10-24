@@ -10,14 +10,24 @@ export default async function WorkManagementOwner({ storeId }: { storeId: string
     queryFn: () => getMembers(storeId),
   })
   const members = queryClient.getQueryData(['members', storeId])
+
   const { year, month, weekOfMonth } = getWeekOfMonth(new Date())
   if (members && Array.isArray(members)) {
     await queryClient.prefetchQuery({
-      queryKey: ['histories', members[0]?.memberId],
+      queryKey: ['histories', members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth],
       queryFn: () =>
         getHistories(storeId, members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth),
     })
   }
+  // const q = queryClient.getQueryData([
+  //   'histories',
+  //   members[0]?.memberId,
+  //   'WEEKLY',
+  //   year,
+  //   month,
+  //   weekOfMonth,
+  // ])
+  // console.log(q)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

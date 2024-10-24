@@ -19,7 +19,7 @@ const getHistories = async (
     )
     return data
   } catch (e) {
-    console.log('error', e)
+    console.error('error', e)
     return {
       storeId: storeId || '',
       memberId: memberId || null,

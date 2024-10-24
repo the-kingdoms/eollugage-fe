@@ -6,41 +6,37 @@ import {
   monthMONTHLYAtom,
   selectedMemberAtom,
   selectedTypeAtom,
-  storeIdAtom,
   weekAtom,
   yearAtom,
   yearMONTHLYAtom,
 } from '../atoms/workManagementAtoms'
 
 const useAttendance = () => {
-  const [storeId, setStoreId] = useAtom(storeIdAtom)
   const [memberId, setMemberId] = useAtom(selectedMemberAtom)
   const [type, setType] = useAtom(selectedTypeAtom)
-  const [yearWEEKLY, setYearWEEKLY] = useAtom(yearAtom)
-  const [monthWEEKLY, setMonthWEEKLY] = useAtom(monthAtom)
-  const [weekOfMonthWEEKLY, setWeekOfMonthWEEKLY] = useAtom(weekAtom)
-  const [yearMONTHLY, setYearMONTHLY] = useAtom(yearMONTHLYAtom)
-  const [monthMONTHLY, setMonthMONTHLY] = useAtom(monthMONTHLYAtom)
+  const [yearWeekly, setYearWeekly] = useAtom(yearAtom)
+  const [monthWeekly, setMonthWeekly] = useAtom(monthAtom)
+  const [weekOfMonthWeekly, setWeekOfMonthWeekly] = useAtom(weekAtom)
+  const [yearMonthly, setYearMonthly] = useAtom(yearMONTHLYAtom)
+  const [monthMonthly, setMonthMonthly] = useAtom(monthMONTHLYAtom)
 
   return {
-    storeId,
-    setStoreId,
     memberId,
     setMemberId,
     type,
     setType,
 
-    yearWEEKLY,
-    setYearWEEKLY,
-    monthWEEKLY,
-    setMonthWEEKLY,
-    weekOfMonthWEEKLY,
-    setWeekOfMonthWEEKLY,
+    yearWeekly,
+    setYearWeekly,
+    monthWeekly,
+    setMonthWeekly,
+    weekOfMonthWeekly,
+    setWeekOfMonthWeekly,
 
-    yearMONTHLY,
-    setYearMONTHLY,
-    monthMONTHLY,
-    setMonthMONTHLY,
+    yearMonthly,
+    setYearMonthly,
+    monthMonthly,
+    setMonthMonthly,
   }
 }
 

@@ -12,19 +12,20 @@ export default function AttendanceInfoList({
   memberId,
 }: {
   storeId: string
-  memberId: string
+  memberId: string | null
 }) {
-  const { type, yearMONTHLY, yearWEEKLY, monthMONTHLY, monthWEEKLY, weekOfMonthWEEKLY } =
+  const { type, yearMonthly, yearWeekly, monthMonthly, monthWeekly, weekOfMonthWeekly } =
     useAttendance()
 
   const { histories } = useHistory(
     storeId,
     memberId,
     type,
-    type === 'WEEKLY' ? yearWEEKLY : yearMONTHLY,
-    type === 'WEEKLY' ? monthWEEKLY : monthMONTHLY,
-    type === 'WEEKLY' ? weekOfMonthWEEKLY : 0,
+    type === 'WEEKLY' ? yearWeekly : yearMonthly,
+    type === 'WEEKLY' ? monthWeekly : monthMonthly,
+    type === 'WEEKLY' ? weekOfMonthWeekly : 0,
   )
+  console.log(histories)
 
   if (histories?.histories.length === 0) {
     return (

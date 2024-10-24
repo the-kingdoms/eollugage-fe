@@ -18,16 +18,16 @@ export default function NextButton() {
   })
   const {
     type,
-    monthMONTHLY,
-    monthWEEKLY,
-    yearMONTHLY,
-    yearWEEKLY,
-    weekOfMonthWEEKLY,
+    monthMonthly,
+    monthWeekly,
+    yearMonthly,
+    yearWeekly,
+    weekOfMonthWeekly,
     setMonthMONTHLY,
-    setMonthWEEKLY,
-    setWeekOfMonthWEEKLY,
+    setMonthWeekly,
+    setWeekOfMonthWeekly,
     setYearMONTHLY,
-    setYearWEEKLY,
+    setYearWeekly,
   } = useAttendance()
 
   return (
@@ -36,33 +36,33 @@ export default function NextButton() {
       onClick={() =>
         handleNext(
           type,
-          monthMONTHLY,
-          monthWEEKLY,
-          yearMONTHLY,
-          yearWEEKLY,
-          weekOfMonthWEEKLY,
+          monthMonthly,
+          monthWeekly,
+          yearMonthly,
+          yearWeekly,
+          weekOfMonthWeekly,
           setYearMONTHLY,
           setMonthMONTHLY,
-          setMonthWEEKLY,
-          setWeekOfMonthWEEKLY,
-          setYearWEEKLY,
+          setMonthWeekly,
+          setWeekOfMonthWeekly,
+          setYearWeekly,
         )
       }
       aria-label="다음"
       disabled={
         type === 'MONTHLY'
-          ? todayRef.current.month === monthMONTHLY
-          : todayRef.current.weekOfMonth === weekOfMonthWEEKLY &&
-            todayRef.current.monthOfWeekOfMonth === monthWEEKLY
+          ? todayRef.current.month === monthMonthly
+          : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
+            todayRef.current.monthOfWeekOfMonth === monthWeekly
       }
     >
       <Icon
         icon="chevron_right_outlined"
         className={`${
           type === 'MONTHLY'
-            ? todayRef.current.month === monthMONTHLY && 'fill-text-disabled'
-            : todayRef.current.weekOfMonth === weekOfMonthWEEKLY &&
-              todayRef.current.monthOfWeekOfMonth === monthWEEKLY &&
+            ? todayRef.current.month === monthMonthly && 'fill-text-disabled'
+            : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
+              todayRef.current.monthOfWeekOfMonth === monthWeekly &&
               'fill-text-disabled'
         }`}
       />

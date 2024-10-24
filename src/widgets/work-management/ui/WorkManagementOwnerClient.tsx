@@ -11,17 +11,17 @@ import MemberSelector from './MemberSelector'
 
 export default function WorkManagementOwnerClient({ storeId }: { storeId: string }) {
   const { members } = useMembers(storeId)
-  const [selectesMemberId, setSelectedMemberID] = useAtom(selectedMemberAtom)
+  const [selectedMemberId, setSelectedMemberID] = useAtom(selectedMemberAtom)
   useEffect(() => {
-    if (selectesMemberId === null) {
+    if (selectedMemberId === null) {
       setSelectedMemberID(members ? members[0]?.memberId : null)
     }
-  }, [selectesMemberId])
+  }, [selectedMemberId])
 
   return (
     <>
       <MemberSelector storeId={storeId} />
-      <AttendanceInfo storeId={storeId} />
+      <AttendanceInfo storeId={storeId} memberId={selectedMemberId} />
       <div className="bottom-[84px] right-4 absolute">
         <AddAttendanceLink storeId={storeId} />
       </div>
