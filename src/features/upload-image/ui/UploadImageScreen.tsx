@@ -13,6 +13,8 @@ import storeDefaultImage from '@public/image/store_default_image.png'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 import { ImageUploadResultT } from '../types/imageUploadType'
 import { useGetStoreImage } from '../model/useGetStoreImage'
+import { useAtom } from 'jotai'
+import { storeInfoAtom } from '../atoms/uploadImageAtoms'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -22,12 +24,13 @@ interface ImageUploadScreenProps {
 export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   const [showToast, setShowToast] = useState<boolean>(false)
   const [imageName, setImageName] = useState<string | undefined>(undefined)
 
-  const { data: storeInfo } = useGetStoreInfo(storeId)
-  const { data: imageInfo } = useGetStoreImage(
+  const [storeInfo] = useAtom(storeInfoAtom)
+
+  const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage(
     storeId,
     storeInfo && storeInfo?.image.length > 0 ? storeInfo?.image : imageName,
   )
@@ -88,8 +91,15 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-              {imageInfo ? (
             <div className="w-full aspect-[3/2] max-h-[400px] relative">
+              {storeInfo?.image.length === 0 || imageInfo === undefined ? (
+                <Image
+                  alt="store default image"
+                  src={storeDefaultImage}
+                  style={{ objectFit: 'contain', width: '100%' }}
+                  onLoadingComplete={() => setIsLoading(false)}
+                />
+              ) : (
                 <Image
                   alt="store image"
                   src={imageInfo}
@@ -99,12 +109,11 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                   style={{ objectFit: 'cover' }}
                   onLoadingComplete={() => setIsLoading(false)}
                 />
-              ) : (
-                <Image
-                  alt="store default image"
-                  src={storeDefaultImage}
-                  style={{ objectFit: 'contain', width: '100%' }}
-                />
+              )}
+              {(isLoadingImage || isLoading) && (
+                <FlexBox className="absolute bg-[#161616]/10 inset-0 justify-center">
+                  <OrbitProgress color="#fff" size="small" text="" textColor="" />
+                </FlexBox>
               )}
             </div>
             <FlexBox className="items-start w-full gap-4">
@@ -140,11 +149,6 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           setOpen={setShowToast}
           message="다시 시도해주세요."
         />
-      )}
-      {isLoading && (
-        <div className="bg-overlay-default w-full absolute inset-0 flex justify-center items-center">
-          <OrbitProgress color="#fff" size="small" text="" textColor="" />
-        </div>
       )}
     </FlexBox>
   )

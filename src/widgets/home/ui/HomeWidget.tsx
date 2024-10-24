@@ -15,6 +15,7 @@ import { storeNameAtom } from '@/shared/atoms/globalAtom'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
 import { noticeAtom } from '../atoms/homeAtoms'
+import { storeInfoAtom } from '@/features/upload-image/atoms/uploadImageAtoms'
 
 interface HomeWidgetProps {
   storeId: string
@@ -24,6 +25,7 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
   const [isOwner] = useAtom(isOwnerAtom)
   const [, setNotice] = useAtom(noticeAtom)
   const [, setStoreName] = useAtom(storeNameAtom)
+  const [, setStoreInfo] = useAtom(storeInfoAtom)
 
   const { data: orderList } = useGetOrder(storeId)
   const { data: workList } = useGetTodayDuty(storeId, formatCurrentDate())
@@ -34,6 +36,7 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
     if (storeInfo) {
       setStoreName(storeInfo.name)
       setNotice(storeInfo.internalNotice)
+      setStoreInfo(storeInfo)
     }
   }, [storeInfo, prefetchStoreInfo])
 
