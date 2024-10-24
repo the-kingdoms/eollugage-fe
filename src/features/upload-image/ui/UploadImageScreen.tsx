@@ -88,8 +88,8 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[3/2] bg-gray-200">
               {imageInfo ? (
+            <div className="w-full aspect-[3/2] max-h-[400px] relative">
                 <Image
                   alt="store image"
                   src={imageInfo}
