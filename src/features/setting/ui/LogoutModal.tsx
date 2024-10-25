@@ -1,11 +1,12 @@
 import { useRouter } from 'next/navigation'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
+import { deleteTokenFromCookie } from '@/shared'
 
 export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => void }) {
-  const { push } = useRouter()
+  const { replace } = useRouter()
   const handleLogout = () => {
-    localStorage.remove('access_token')
-    push('/')
+    deleteTokenFromCookie()
+    replace('/')
   }
 
   return (

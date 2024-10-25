@@ -7,7 +7,7 @@ function useGetStoreInfoPrefix(stordIdPrefix: string) {
   const [, setStoreName] = useAtom(storeNameAtom)
   const [, setIsValidCode] = useAtom(isValidCodeAtom)
   const { mutate } = useMutation({
-    mutationKey: ['getStoreInfoPrefix'],
+    mutationKey: ['getStoreInfoPrefix', stordIdPrefix],
     mutationFn: () => getStoreInfoPrefix(stordIdPrefix),
     onSuccess: res => {
       setIsValidCode(true)
