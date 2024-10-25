@@ -11,11 +11,10 @@ import { useAtom } from 'jotai'
 import { isOwnerAtom } from '@/shared'
 import { useGetStoreInfo } from '@/entities'
 import { useEffect } from 'react'
-import { storeNameAtom } from '@/shared/atoms/globalAtom'
+import { storeInfoAtom, storeNameAtom } from '@/shared/atoms/globalAtom'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
 import { noticeAtom } from '../atoms/homeAtoms'
-import { storeInfoAtom } from '@/features/upload-image/atoms/uploadImageAtoms'
 
 interface HomeWidgetProps {
   storeId: string
@@ -34,8 +33,8 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
   useEffect(() => {
     prefetchStoreInfo()
     if (storeInfo) {
-      setStoreName(storeInfo.name)
-      setNotice(storeInfo.internalNotice)
+      setStoreName(storeInfo.name) // 삭제 예정
+      setNotice(storeInfo.internalNotice) // 삭제 예정
       setStoreInfo(storeInfo)
     }
   }, [storeInfo, prefetchStoreInfo])

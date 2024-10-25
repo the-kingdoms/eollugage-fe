@@ -6,7 +6,7 @@ export {
 } from './utils/weekOfMonth'
 export type { DefaultResponseT } from './types/responseType'
 export { setTokenFromCookie, getTokenFromCookie, deleteTokenFromCookie } from './utils/handleToken'
-export { isOwnerAtom } from './atoms/globalAtom'
+export { isOwnerAtom, storeInfoAtom } from './atoms/globalAtom'
 export { default as axiosInstance } from './model/network'
 export { default as axiosServerInstance } from './model/serverNetwork'
 export type { SetAtom } from './types/jotai'
