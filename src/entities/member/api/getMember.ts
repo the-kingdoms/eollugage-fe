@@ -9,9 +9,8 @@ const getMember = async (storeId: string, memberId: string): Promise<Member> => 
     return data
   } catch (e) {
     return {
-      id: '',
+      memberId: '',
       name: '',
-      image: '',
       position: '',
       phoneNumber: '',
     }
