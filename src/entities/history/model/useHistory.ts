@@ -5,20 +5,20 @@ import putHistory from '../api/putHistory'
 import postHistory from '../api/postHistory'
 
 const useHistory = (
-  storeId: string,
+  storeId: string | null,
   memberId?: string | null,
-  type?: 'weekly' | 'monthly',
+  type?: 'WEEKLY' | 'MONTHLY',
   year?: number,
   month?: number,
   weekOfMonth?: number,
 ) => {
   const queryClient = useQueryClient()
   const { data: histories } = useQuery({
-    queryKey: ['histories', storeId, memberId, type, year, month, weekOfMonth],
+    queryKey: ['histories', memberId, type, year, month, weekOfMonth],
     queryFn: () => getHistories(storeId, memberId, type, year, month, weekOfMonth),
   })
 
-  const { mutate: createHistory } = useMutation({
+  const { mutate: createHistory, status: createHistoryStatus } = useMutation({
     mutationFn: ({
       selectedMemberId,
       reqBody,
@@ -31,7 +31,7 @@ const useHistory = (
     },
   })
 
-  const { mutate: updateHistory } = useMutation({
+  const { mutate: updateHistory, status: updateHistoryStatus } = useMutation({
     mutationFn: ({
       selectedMemberId,
       historyId,
@@ -46,6 +46,6 @@ const useHistory = (
     },
   })
 
-  return { histories, createHistory, updateHistory }
+  return { histories, createHistory, updateHistory, createHistoryStatus, updateHistoryStatus }
 }
 export default useHistory

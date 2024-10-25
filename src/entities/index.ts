@@ -3,10 +3,16 @@ export { default as getMembers } from './member/api/getMembers'
 export type { Members, Member } from './member/types/member'
 
 export { default as useHistory } from './history/model/useHistory'
+export { default as useWorkStatus } from './history/model/useWorkStatus'
 export { default as getHistories } from './history/api/getHistories'
+export { default as getWorkStatus } from './history/api/getWorkStatus'
 export type { Histories, History } from './history/types/history'
 
 export type { StoreInfoT } from './store/api/store'
 export type { OrderT, DutyT } from './home/api/home'
 export { putStoreInfo } from './store/api/putStoreInfo'
 export { useGetStoreInfo } from './store/model/useGetStoreInfo'
+
+export { default as fetchUserInfo } from './user/api/fetchUserInfo'
+export { default as useUser } from './user/model/useUser'
+export type { UserInfo } from './user/types/user'

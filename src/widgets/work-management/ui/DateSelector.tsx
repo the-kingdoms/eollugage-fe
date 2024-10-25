@@ -15,7 +15,7 @@ export default function DateSelector() {
   return (
     <div className="flex space-x-2 justify-between body-04-bold-compact items-center">
       <PrevButton />
-      {type === 'weekly' ? (
+      {type === 'WEEKLY' ? (
         <p>{`${monthWeekly || ''}월 ${weekOfMonthWeekly || ''}주차`}</p>
       ) : (
         <p>

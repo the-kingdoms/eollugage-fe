@@ -9,7 +9,7 @@ export default function MemberList({ members }: { members: Members | undefined }
       {members.map((member, i) => (
         <>
           {i === 0 && <span className="w-[16px] h-1" />}
-          <MemberItem member={member} key={member.id} />
+          <MemberItem member={member} key={member.memberId} isFirstItem={i === 0} />
         </>
       ))}
     </DragScrollWrapper>

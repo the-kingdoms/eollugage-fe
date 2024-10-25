@@ -1,7 +1,6 @@
 export interface Member {
-  id: string
+  memberId: string
   name: string
-  image: string
   position: string
   phoneNumber: string
 }

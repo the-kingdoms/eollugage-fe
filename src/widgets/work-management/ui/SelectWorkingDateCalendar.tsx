@@ -10,29 +10,14 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/shared/ui/shadcn/drawer'
-import { UseFormReturn } from 'react-hook-form'
 import { Button } from '@/shared/ui/shadcn/button'
 import { Icon } from '@eolluga/eolluga-ui'
 import { getNextWeekOfMonth, getPrevWeekOfMonth, getWeekDates, getWeekOfMonth } from '@/shared'
 import { cn } from '@/shared/utils/cn'
 import { useState } from 'react'
+import { Form } from '../types/work-management'
 
-export default function SelectWorkingDateCalendar({
-  form,
-}: {
-  form: UseFormReturn<
-    {
-      memberID: string
-      workingDate: Date
-      workingTime: {
-        start: string
-        end: string
-      }
-    },
-    any,
-    undefined
-  >
-}) {
+export default function SelectWorkingDateCalendar({ form }: { form: Form }) {
   const [curWeekOfMonth, setCurWeekOfMonth] = useState(getWeekOfMonth(new Date()))
 
   const weekDates = getWeekDates(

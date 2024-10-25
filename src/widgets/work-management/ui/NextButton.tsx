@@ -23,11 +23,11 @@ export default function NextButton() {
     yearMonthly,
     yearWeekly,
     weekOfMonthWeekly,
-    setMonthMonthly,
     setMonthWeekly,
     setWeekOfMonthWeekly,
-    setYearMonthly,
     setYearWeekly,
+    setMonthMonthly,
+    setYearMonthly,
   } = useAttendance()
 
   return (
@@ -41,16 +41,16 @@ export default function NextButton() {
           yearMonthly,
           yearWeekly,
           weekOfMonthWeekly,
-          setYearMonthly,
-          setMonthMonthly,
           setMonthWeekly,
           setWeekOfMonthWeekly,
           setYearWeekly,
+          setMonthMonthly, // Add missing argument
+          setYearMonthly, // Add missing argument
         )
       }
       aria-label="다음"
       disabled={
-        type === 'monthly'
+        type === 'MONTHLY'
           ? todayRef.current.month === monthMonthly
           : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
             todayRef.current.monthOfWeekOfMonth === monthWeekly
@@ -59,7 +59,7 @@ export default function NextButton() {
       <Icon
         icon="chevron_right_outlined"
         className={`${
-          type === 'monthly'
+          type === 'MONTHLY'
             ? todayRef.current.month === monthMonthly && 'fill-text-disabled'
             : todayRef.current.weekOfMonth === weekOfMonthWeekly &&
               todayRef.current.monthOfWeekOfMonth === monthWeekly &&
