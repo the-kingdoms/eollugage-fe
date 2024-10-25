@@ -3,7 +3,9 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { usePostLogin } from '../model/usePostLogin'
+import { StoreT } from '../api/store'
 
 interface SignupNameProps {
   name: string
@@ -23,8 +25,17 @@ export default function SignupName({
   handlePreviousStep,
 }: SignupNameProps) {
   const [isNumber, setIsNumber] = useState(true)
+  const router = useRouter() // 리다이렉트에 사용할 router
 
-  const { mutate } = usePostLogin({ name, phone })
+  const handleStoreListCheck = (storelist: StoreT[]) => {
+    if (storelist && storelist.length > 0) {
+      router.push(`/${storelist[0].storeId}/home`)
+    } else {
+      handleNextStep()
+    }
+  }
+
+  const { mutate } = usePostLogin({ name, phone }, handleStoreListCheck)
 
   const handleStartClick = () => {
     const phoneNumberPattern = /^[0-9]+$/
@@ -33,9 +44,9 @@ export default function SignupName({
     } else {
       setIsNumber(true)
       mutate()
-      handleNextStep()
     }
   }
+
   return (
     <>
       <TopBar
