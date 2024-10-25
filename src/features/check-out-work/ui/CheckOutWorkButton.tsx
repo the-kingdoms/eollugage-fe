@@ -1,6 +1,7 @@
+import { useWorkStatus } from '@/entities'
+
 import { AttendanceButtonDialog } from '@/shared'
 import useCheckOut from '../model/useCheckOut'
-import { useWorkStatus } from '@/entities'
 
 export default function CheckOutWorkButton({ storeId }: { storeId: string }) {
   const { workStatus } = useWorkStatus(storeId)

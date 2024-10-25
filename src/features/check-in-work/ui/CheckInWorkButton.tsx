@@ -1,13 +1,12 @@
+import { useWorkStatus } from '@/entities'
 import { AttendanceButtonDialog } from '@/shared'
 import useCheckIn from '../model/useCheckIn'
-import { useWorkStatus } from '@/entities'
 
 export default function CheckInWorkButton({ storeId }: { storeId: string }) {
   const { workStatus } = useWorkStatus(storeId)
   const { checkIn, checkInStatus, checkInError } = useCheckIn()
   const handleClick = async () => {
     checkIn({ storeId })
-    console.log(workStatus)
   }
   return (
     <AttendanceButtonDialog

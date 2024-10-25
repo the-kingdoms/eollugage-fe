@@ -11,10 +11,10 @@ export default function PrevButton() {
     yearMonthly,
     yearWeekly,
     weekOfMonthWeekly,
-    setMonthMONTHLY,
+    setMonthMonthly,
+    setYearMonthly,
     setMonthWeekly,
     setWeekOfMonthWeekly,
-    setYearMONTHLY,
     setYearWeekly,
   } = useAttendance()
   return (
@@ -28,8 +28,8 @@ export default function PrevButton() {
           yearMonthly,
           yearWeekly,
           weekOfMonthWeekly,
-          setYearMONTHLY,
-          setMonthMONTHLY,
+          setMonthMonthly,
+          setYearMonthly,
           setMonthWeekly,
           setWeekOfMonthWeekly,
           setYearWeekly,

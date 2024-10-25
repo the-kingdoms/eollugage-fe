@@ -1,9 +1,9 @@
-import { History, useUser } from '@/entities'
+import { History } from '@/entities'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
-import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import { format } from 'date-fns'
+import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 
 export default function AttendanceInfoItem({
   item,

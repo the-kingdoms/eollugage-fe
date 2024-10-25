@@ -1,16 +1,9 @@
 'use client'
 
 import { CheckInWorkButton, CheckOutWorkButton } from '@/features'
-import { UserInfo } from '@/entities'
 import formatDate from '../utils/getTodayDate'
 
-export default function AttendanceRegister({
-  storeId,
-  userInfo,
-}: {
-  storeId: string
-  userInfo: UserInfo
-}) {
+export default function AttendanceRegister({ storeId }: { storeId: string }) {
   return (
     <div className="bg-[#F4F4F4] p-[16px] flex flex-col space-y-[12px]">
       <div className="flex flex-col space-y-1 ">

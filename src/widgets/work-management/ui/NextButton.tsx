@@ -23,11 +23,11 @@ export default function NextButton() {
     yearMonthly,
     yearWeekly,
     weekOfMonthWeekly,
-    setMonthMONTHLY,
     setMonthWeekly,
     setWeekOfMonthWeekly,
-    setYearMONTHLY,
     setYearWeekly,
+    setMonthMonthly,
+    setYearMonthly,
   } = useAttendance()
 
   return (
@@ -41,11 +41,11 @@ export default function NextButton() {
           yearMonthly,
           yearWeekly,
           weekOfMonthWeekly,
-          setYearMONTHLY,
-          setMonthMONTHLY,
           setMonthWeekly,
           setWeekOfMonthWeekly,
           setYearWeekly,
+          setMonthMonthly, // Add missing argument
+          setYearMonthly, // Add missing argument
         )
       }
       aria-label="다음"

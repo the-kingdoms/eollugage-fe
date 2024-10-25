@@ -1,9 +1,9 @@
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { getWeekOfMonth } from '@/shared'
 import { getHistories, getWorkStatus, UserInfo } from '@/entities'
 import AttendanceInfo from './AttendanceInfo'
 import AttendanceRegister from './AttendanceRegister'
 import WorkManagementMemberHeader from './WorkManagementMemberHeader'
-import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
-import { getWeekOfMonth } from '@/shared'
 
 export default async function WorkManagementMember({
   storeId,
@@ -29,7 +29,7 @@ export default async function WorkManagementMember({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div>
         <WorkManagementMemberHeader userName={userInfo.name} />
-        <AttendanceRegister storeId={storeId} userInfo={userInfo} />
+        <AttendanceRegister storeId={storeId} />
         <AttendanceInfo storeId={storeId} memberId={userInfo.id} isOwner={false} />
       </div>
     </HydrationBoundary>
