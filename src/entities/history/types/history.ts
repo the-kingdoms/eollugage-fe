@@ -1,6 +1,7 @@
 export interface History {
   id: number
   date: string
+  day: string
   startTime: string
   endTime: string | null
 }

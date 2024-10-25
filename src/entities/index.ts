@@ -3,7 +3,9 @@ export { default as getMembers } from './member/api/getMembers'
 export type { Members, Member } from './member/types/member'
 
 export { default as useHistory } from './history/model/useHistory'
+export { default as useWorkStatus } from './history/model/useWorkStatus'
 export { default as getHistories } from './history/api/getHistories'
+export { default as getWorkStatus } from './history/api/getWorkStatus'
 export type { Histories, History } from './history/types/history'
 
 export type { StoreInfoT } from './store/api/store'

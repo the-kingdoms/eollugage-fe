@@ -10,9 +10,11 @@ import useAttendance from '../hooks/useAttendance'
 export default function AttendanceInfoList({
   storeId,
   memberId,
+  isOwner,
 }: {
   storeId: string
   memberId: string | null
+  isOwner: boolean
 }) {
   const { type, yearMonthly, yearWeekly, monthMonthly, monthWeekly, weekOfMonthWeekly } =
     useAttendance()
@@ -25,7 +27,6 @@ export default function AttendanceInfoList({
     type === 'WEEKLY' ? monthWeekly : monthMonthly,
     type === 'WEEKLY' ? weekOfMonthWeekly : 0,
   )
-  console.log(histories)
 
   if (histories?.histories.length === 0) {
     return (
@@ -37,7 +38,7 @@ export default function AttendanceInfoList({
   return (
     <div className="px-[16px]">
       {histories?.histories?.map(item => (
-        <AttendanceInfoItem item={item} key={item.id} storeId={storeId} />
+        <AttendanceInfoItem item={item} key={item.id} storeId={storeId} isOwner={isOwner} />
       ))}
     </div>
   )

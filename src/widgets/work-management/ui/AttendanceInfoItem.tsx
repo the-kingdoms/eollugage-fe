@@ -1,13 +1,23 @@
-import { History } from '@/entities'
+import { History, useUser } from '@/entities'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAtomValue } from 'jotai'
 import Link from 'next/link'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
+import { format } from 'date-fns'
 
-export default function AttendanceInfoItem({ item, storeId }: { item: History; storeId: string }) {
+export default function AttendanceInfoItem({
+  item,
+  storeId,
+  isOwner,
+}: {
+  item: History
+  storeId: string
+  isOwner: boolean
+}) {
   const queryClient = useQueryClient()
   const selectedMemberId = useAtomValue(selectedMemberAtom)
-  return (
+
+  return isOwner ? (
     <Link
       href={`/${storeId}/manage/edit-attendance/${item.id}`}
       onClick={async () => {
@@ -18,10 +28,21 @@ export default function AttendanceInfoItem({ item, storeId }: { item: History; s
       }}
       className="flex justify-between w-full items-center py-4"
     >
-      <p className="body-03-medium-compact">{item.date}</p>
+      <p className="body-03-medium-compact">
+        {format(new Date(item.date), 'MM월 dd일')} ({item.day})
+      </p>
       <p className="body-03-regular-compact text-[#6F6F6F]">
         {item.startTime} - {item.endTime}
       </p>
     </Link>
+  ) : (
+    <article className="flex justify-between w-full items-center py-4">
+      <p className="body-03-medium-compact">
+        {format(new Date(item.date), 'MM월 dd일')} ({item.day})
+      </p>
+      <p className="body-03-regular-compact text-[#6F6F6F]">
+        {item.startTime} - {item.endTime}
+      </p>
+    </article>
   )
 }

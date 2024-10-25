@@ -1,4 +1,4 @@
-import { getHistories, UserInfo } from '@/entities'
+import { getHistories, getWorkStatus, UserInfo } from '@/entities'
 import AttendanceInfo from './AttendanceInfo'
 import AttendanceRegister from './AttendanceRegister'
 import WorkManagementMemberHeader from './WorkManagementMemberHeader'
@@ -14,17 +14,23 @@ export default async function WorkManagementMember({
 }) {
   const queryClient = new QueryClient()
   const { year, month, weekOfMonth } = getWeekOfMonth(new Date())
-  await queryClient.prefetchQuery({
-    queryKey: ['histories', userInfo.id, 'WEEKLY', year, month, weekOfMonth],
-    queryFn: () => getHistories(storeId, userInfo.id, 'WEEKLY', year, month, weekOfMonth),
-  })
+  await Promise.all([
+    queryClient.prefetchQuery({
+      queryKey: ['histories', userInfo.id, 'WEEKLY', year, month, weekOfMonth],
+      queryFn: () => getHistories(storeId, userInfo.id, 'WEEKLY', year, month, weekOfMonth),
+    }),
+    queryClient.prefetchQuery({
+      queryKey: ['workStatus'],
+      queryFn: () => getWorkStatus(storeId),
+    }),
+  ])
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div>
         <WorkManagementMemberHeader userName={userInfo.name} />
         <AttendanceRegister storeId={storeId} userInfo={userInfo} />
-        <AttendanceInfo storeId={storeId} memberId={userInfo.id} />
+        <AttendanceInfo storeId={storeId} memberId={userInfo.id} isOwner={false} />
       </div>
     </HydrationBoundary>
   )

@@ -1,16 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import patchCheckInWork from '../api/patchCheckInWork'
 
 const useCheckIn = () => {
+  const queryClient = useQueryClient()
   const {
     mutate: checkIn,
     status: checkInStatus,
     error: checkInError,
   } = useMutation({
-    mutationFn: async ({ storeId, memberId }: { storeId: string | undefined; memberId: string }) =>
-      patchCheckInWork(storeId),
+    mutationFn: async ({ storeId }: { storeId: string | undefined }) => patchCheckInWork(storeId),
+    onSuccess: () => {
+      queryClient.refetchQueries({ queryKey: ['histories'] })
+      queryClient.setQueryData(['workStatus'], () => {
+        return 'start-working'
+      })
+    },
   })
   return { checkIn, checkInStatus, checkInError }
 }

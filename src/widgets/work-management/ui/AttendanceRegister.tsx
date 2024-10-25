@@ -18,8 +18,8 @@ export default function AttendanceRegister({
         <p className="body-01-medium text-[#6F6F6F]">{formatDate()}</p>
       </div>
       <div className="flex space-x-[14px] pb-[8px]">
-        <CheckInWorkButton storeId={storeId} memberId={userInfo.id} />
-        <CheckOutWorkButton storeId={storeId} memberId={userInfo.id} />
+        <CheckInWorkButton storeId={storeId} />
+        <CheckOutWorkButton storeId={storeId} />
       </div>
     </div>
   )

@@ -18,14 +18,17 @@ export default function AttendanceButton({
   onClick,
   status,
   error,
+  disabled,
 }: {
   buttonText: string
   onClick: () => void
   status: string
   error?: Error | null
+  disabled: boolean
 }) {
   const searchParams = useSearchParams()
   const isQr: boolean = searchParams.get('qr') === 'true'
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -33,7 +36,7 @@ export default function AttendanceButton({
           type="button"
           className="bg-[#161616] h-[80px] w-full rounded-lg text-white body-03-bold disabled:bg-button-disabled disabled:text-white disabled:cursor-not-allowed"
           onClick={onClick}
-          disabled={!isQr}
+          disabled={!isQr || disabled}
         >
           {buttonText}
         </button>
