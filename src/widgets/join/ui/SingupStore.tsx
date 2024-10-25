@@ -21,6 +21,7 @@ interface SignupStoreProps {
   setStoreId: React.Dispatch<React.SetStateAction<string>>
   handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleStoreChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  hadleStoreIdChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   handleNextStep: () => void
   handlePreviousStep: () => void
 }
@@ -31,6 +32,7 @@ export default function SingupStore({
   storeId,
   handleNameChange,
   handleStoreChange,
+  hadleStoreIdChange,
   handleNextStep,
   handlePreviousStep,
   setStore,
@@ -47,7 +49,7 @@ export default function SingupStore({
   const [isValidCode] = useAtom(isValidCodeAtom)
 
   const { mutate: postStoreInfoMutate } = usePostStoreInfo(storeName)
-  const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(store)
+  const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(storeId.slice(0, 4))
 
   const handleOpenDialog = () => {
     setIsLoading(true)
@@ -61,7 +63,6 @@ export default function SingupStore({
         setStoreId(res.storeId)
       },
       onError: () => {
-        setShowToast(true)
         setIsLoading(false)
         setApprovalFailed(true)
       },
@@ -82,7 +83,6 @@ export default function SingupStore({
   const handleDisagree = () => {
     setShowToast(true)
     setOpenDialog(false)
-    setApprovalFailed(true)
   }
 
   const handleAgree = () => {
@@ -119,12 +119,12 @@ export default function SingupStore({
       </div>
       <FlexBox direction="col" className="w-full px-spacing-04 gap-spacing-08">
         <TextField
-          onChange={handleStoreChange}
+          onChange={isOwner ? handleStoreChange : hadleStoreIdChange}
           size="L"
           style="underlined"
           label={isOwner ? '가게 이름' : '근무 중인 가게 코드'}
           placeholder={isOwner ? '가게 이름을 입력해주세요' : '가게 코드를 입력해주세요'}
-          value={store}
+          value={isOwner ? store : storeId.slice(0, 4)}
           state={approvalFailed ? 'error' : 'enable'}
           description={approvalFailed ? '가게 코드를 확인해주세요' : ''}
         />
@@ -148,7 +148,7 @@ export default function SingupStore({
               />
             </div>
           )}
-          {store.length > 0 && (
+          {(store.length > 0 || storeId.length > 0) && (
             <ButtonMobile
               size="L"
               style="primary"

@@ -1,15 +1,36 @@
-import { HydrationBoundary, QueryClient } from '@tanstack/react-query'
-import { getMembers } from '@/entities'
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
+import { getHistories, getMembers } from '@/entities'
+import { getWeekOfMonth } from '@/shared'
 import WorkManagementOwnerClient from './WorkManagementOwnerClient'
 
-export default function WorkManagementOwner({ storeId }: { storeId: string }) {
+export default async function WorkManagementOwner({ storeId }: { storeId: string }) {
   const queryClient = new QueryClient()
-  queryClient.prefetchQuery({
+  await queryClient.prefetchQuery({
     queryKey: ['members', storeId],
     queryFn: () => getMembers(storeId),
   })
+  const members = queryClient.getQueryData(['members', storeId])
+
+  const { year, month, weekOfMonth } = getWeekOfMonth(new Date())
+  if (members && Array.isArray(members)) {
+    await queryClient.prefetchQuery({
+      queryKey: ['histories', members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth],
+      queryFn: () =>
+        getHistories(storeId, members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth),
+    })
+  }
+  // const q = queryClient.getQueryData([
+  //   'histories',
+  //   members[0]?.memberId,
+  //   'WEEKLY',
+  //   year,
+  //   month,
+  //   weekOfMonth,
+  // ])
+  // console.log(q)
+
   return (
-    <HydrationBoundary queryClient={queryClient}>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <WorkManagementOwnerClient storeId={storeId} />
     </HydrationBoundary>
   )

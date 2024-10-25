@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable arrow-parens */
 
 import { useHistory } from '@/entities'
@@ -5,24 +7,25 @@ import { useHistory } from '@/entities'
 import AttendanceInfoItem from './AttendanceInfoItem'
 import useAttendance from '../hooks/useAttendance'
 
-export default function AttendanceInfoList() {
-  const {
-    storeId,
-    memberId,
-    type,
-    yearMonthly,
-    yearWeekly,
-    monthMonthly,
-    monthWeekly,
-    weekOfMonthWeekly,
-  } = useAttendance()
+export default function AttendanceInfoList({
+  storeId,
+  memberId,
+  isOwner,
+}: {
+  storeId: string
+  memberId: string | null
+  isOwner: boolean
+}) {
+  const { type, yearMonthly, yearWeekly, monthMonthly, monthWeekly, weekOfMonthWeekly } =
+    useAttendance()
+
   const { histories } = useHistory(
     storeId,
     memberId,
     type,
-    type === 'weekly' ? yearWeekly : yearMonthly,
-    type === 'weekly' ? monthWeekly : monthMonthly,
-    type === 'weekly' ? weekOfMonthWeekly : 0,
+    type === 'WEEKLY' ? yearWeekly : yearMonthly,
+    type === 'WEEKLY' ? monthWeekly : monthMonthly,
+    type === 'WEEKLY' ? weekOfMonthWeekly : 0,
   )
 
   if (histories?.histories.length === 0) {
@@ -35,7 +38,7 @@ export default function AttendanceInfoList() {
   return (
     <div className="px-[16px]">
       {histories?.histories?.map(item => (
-        <AttendanceInfoItem item={item} storeId={storeId} key={item.id} />
+        <AttendanceInfoItem item={item} key={item.id} storeId={storeId} isOwner={isOwner} />
       ))}
     </div>
   )

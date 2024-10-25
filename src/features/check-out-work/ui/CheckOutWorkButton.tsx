@@ -1,17 +1,13 @@
+import { useWorkStatus } from '@/entities'
+
 import { AttendanceButtonDialog } from '@/shared'
 import useCheckOut from '../model/useCheckOut'
 
-export default function CheckOutWorkButton({
-  storeId,
-  memberId,
-}: {
-  storeId: string
-  memberId: string | null
-}) {
+export default function CheckOutWorkButton({ storeId }: { storeId: string }) {
+  const { workStatus } = useWorkStatus(storeId)
   const { checkOut, checkOutError, checkOutStatus } = useCheckOut()
   const handleClick = async () => {
-    if (!memberId) return
-    checkOut({ storeId, memberId })
+    checkOut({ storeId })
   }
   return (
     <AttendanceButtonDialog
@@ -19,6 +15,7 @@ export default function CheckOutWorkButton({
       onClick={handleClick}
       status={checkOutStatus}
       error={checkOutError}
+      disabled={workStatus === 'END_WORKING' || workStatus === 'NOT_WORKING' || workStatus === null}
     />
   )
 }

@@ -3,14 +3,14 @@ import { SetAtom } from '@/shared'
 import getObjectWeekOfMonth from './getObjectOfWeekOfMonth'
 
 const handleNext = (
-  type: 'monthly' | 'weekly',
+  type: 'MONTHLY' | 'WEEKLY',
   monthMonthly: number,
   monthWeekly: number,
   yearMonthly: number,
   yearWeekly: number,
   weekOfMonthWeekly: number,
-  setYearMonthly: SetAtom<[SetStateAction<number>], void>,
-  setMonthMonthly: SetAtom<[SetStateAction<number>], void>,
+  setYearMONTHLY: SetAtom<[SetStateAction<number>], void>,
+  setMonthMONTHLY: SetAtom<[SetStateAction<number>], void>,
   setMonthWeekly: SetAtom<[SetStateAction<number>], void>,
   setWeekOfMonthWeekly: SetAtom<[SetStateAction<number>], void>,
   setYearWeekly: SetAtom<[SetStateAction<number>], void>,
@@ -28,16 +28,16 @@ const handleNext = (
         ).weekOfMonth
 
   switch (type) {
-    case 'monthly':
+    case 'MONTHLY':
       if (monthMonthly === 12) {
-        setYearMonthly(yearMonthly + 1)
-        setMonthMonthly(1)
+        setYearMONTHLY(yearMonthly + 1)
+        setMonthMONTHLY(1)
       } else {
-        setYearMonthly(yearMonthly)
-        setMonthMonthly(monthMonthly + 1)
+        setYearMONTHLY(yearMonthly)
+        setMonthMONTHLY(monthMonthly + 1)
       }
       break
-    case 'weekly':
+    case 'WEEKLY':
       if (weekOfMonthWeekly === weeksInTheseMonth) {
         setYearWeekly(monthWeekly + 1 > 12 ? yearWeekly + 1 : yearWeekly)
         setMonthWeekly(monthWeekly + 1 > 12 ? 1 : monthWeekly + 1)

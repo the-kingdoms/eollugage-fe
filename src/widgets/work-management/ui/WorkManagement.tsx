@@ -1,16 +1,15 @@
-'use client'
-
-import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/shared'
+import { fetchUserInfo } from '@/entities'
 import WorkManagementOwner from './WorkManagementOwner'
 import WorkManagementMember from './WorkManagementMember'
 
-export default function WorkManagement({ storeId }: { storeId: string }) {
-  const isOwner = useAtom(isOwnerAtom)
+export default async function WorkManagement({ storeId }: { storeId: string }) {
+  const userInfo = await fetchUserInfo()
+  if (userInfo === undefined) return null
 
-  return isOwner ? (
+  return userInfo.relationList.filter(relation => relation.storeId === storeId)[0].position ===
+    '사장님' ? (
     <WorkManagementOwner storeId={storeId} />
   ) : (
-    <WorkManagementMember storeId={storeId} />
+    <WorkManagementMember storeId={storeId} userInfo={userInfo} />
   )
 }

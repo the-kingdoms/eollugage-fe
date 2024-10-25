@@ -45,6 +45,9 @@ export default function JoinPage() {
   const handleStoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStore(e.target.value)
   }
+  const hadleStoreIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStoreId(e.target.value)
+  }
 
   return (
     <FlexBox
@@ -71,6 +74,7 @@ export default function JoinPage() {
           setStoreId={setStoreId}
           handleNameChange={handleNameChange}
           handleStoreChange={handleStoreChange}
+          hadleStoreIdChange={hadleStoreIdChange}
           handleNextStep={handleNextStep}
           handlePreviousStep={handlePreviousStep}
         />

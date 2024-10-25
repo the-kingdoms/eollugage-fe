@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getTokenFromCookie } from '../utils/handleToken'
 
 const axiosInstance = axios.create({
-  baseURL: '/API',
+  baseURL: '/api',
   headers: {
     'Content-Type': 'application/json;charset=UTF-8',
     Accept: 'application/json',
