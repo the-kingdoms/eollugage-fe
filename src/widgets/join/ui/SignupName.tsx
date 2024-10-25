@@ -25,7 +25,7 @@ export default function SignupName({
   handlePreviousStep,
 }: SignupNameProps) {
   const [isNumber, setIsNumber] = useState(true)
-  const router = useRouter() // 리다이렉트에 사용할 router
+  const router = useRouter()
 
   const handleStoreListCheck = (storelist: StoreT[]) => {
     if (storelist && storelist.length > 0) {
