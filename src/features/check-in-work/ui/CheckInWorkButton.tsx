@@ -4,7 +4,6 @@ import { useWorkStatus } from '@/entities'
 
 export default function CheckInWorkButton({ storeId }: { storeId: string }) {
   const { workStatus } = useWorkStatus(storeId)
-  console.log(workStatus)
   const { checkIn, checkInStatus, checkInError } = useCheckIn()
   const handleClick = async () => {
     checkIn({ storeId })
@@ -17,7 +16,7 @@ export default function CheckInWorkButton({ storeId }: { storeId: string }) {
       status={checkInStatus}
       error={checkInError}
       disabled={
-        workStatus === 'end-working' || workStatus === 'start-working' || workStatus === null
+        workStatus === 'END_WORKING' || workStatus === 'START_WORKING' || workStatus === null
       }
     />
   )

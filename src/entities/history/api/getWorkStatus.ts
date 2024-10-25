@@ -3,7 +3,7 @@ import { axiosServerInstance } from '@/shared'
 
 const getWorkStatus = async (
   storeId: string | null,
-): Promise<'not-working' | 'start-working' | 'end-working' | null> => {
+): Promise<'NOT_WORKING' | 'START_WORKING' | 'END_WORKING' | null> => {
   if (storeId === null) return null
   try {
     const { data } = await axiosServerInstance.get(`/v1/stores/${storeId}/work/status`)

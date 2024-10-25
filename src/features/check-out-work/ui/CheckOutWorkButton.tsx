@@ -14,7 +14,7 @@ export default function CheckOutWorkButton({ storeId }: { storeId: string }) {
       onClick={handleClick}
       status={checkOutStatus}
       error={checkOutError}
-      disabled={workStatus === 'end-working' || workStatus === 'not-working' || workStatus === null}
+      disabled={workStatus === 'END_WORKING' || workStatus === 'NOT_WORKING' || workStatus === null}
     />
   )
 }
