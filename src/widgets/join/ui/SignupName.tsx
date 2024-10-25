@@ -2,10 +2,11 @@
 
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { usePostLogin } from '../model/usePostLogin'
 import { StoreT } from '../api/store'
+import { useGetAccountInfo } from '../model/useGetAccountInfo'
 
 interface SignupNameProps {
   name: string
@@ -34,8 +35,8 @@ export default function SignupName({
       handleNextStep()
     }
   }
-
-  const { mutate } = usePostLogin({ name, phone }, handleStoreListCheck)
+  const { data: accountInfo } = useGetAccountInfo()
+  const { mutate } = usePostLogin({ name, phone })
 
   const handleStartClick = () => {
     const phoneNumberPattern = /^[0-9]+$/
@@ -46,6 +47,10 @@ export default function SignupName({
       mutate()
     }
   }
+
+  useEffect(() => {
+    if (accountInfo) handleStoreListCheck(accountInfo.storeList)
+  }, [accountInfo])
 
   return (
     <>
