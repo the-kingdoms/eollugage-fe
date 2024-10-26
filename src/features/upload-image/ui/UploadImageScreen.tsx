@@ -30,7 +30,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
 
   const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage(
     storeId,
-    storeInfo && storeInfo?.image.length > 0 ? storeInfo?.image : imageName,
+    storeInfo && storeInfo?.image !== 'NONE' ? storeInfo?.image : imageName,
   )
   const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
 
@@ -92,8 +92,8 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[3/2] max-h-[400px] relative">
-              {storeInfo?.image.length === 0 || imageInfo === undefined ? (
+            <div className="w-full aspect-[3/2] max-h-[400px] relative overflow-hidden">
+              {storeInfo?.image === 'NONE' || imageInfo === undefined ? (
                 <Image
                   alt="store default image"
                   src={storeDefaultImage}
@@ -104,10 +104,12 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                 <Image
                   alt="store image"
                   src={imageInfo}
-                  className="w-full"
-                  width={100}
-                  height={100}
-                  style={{ objectFit: 'cover' }}
+                  className="w-full h-full"
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  fill
                   onLoadingComplete={() => setIsLoading(false)}
                 />
               )}
