@@ -37,7 +37,7 @@ export default function AttendanceFormClient({
   memberId?: string
 }) {
   const { data: editingHistory } = useQuery<{
-    relation: unknown
+    relation: { member: { id: string } }
     memberId: string
     date: string
     startTime: string
