@@ -76,10 +76,13 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
         title={page === 'home' ? '가게 대표 사진 추가' : ''}
         onClickLeftIcon={onClickBackButton}
       />
-      <FlexBox direction="col" className="w-full h-full px-4 pt-6 justify-between">
+      <FlexBox
+        direction="col"
+        className="w-full h-full px-spacing-04 pt-spacing-06 justify-between"
+      >
         <FlexBox direction="col" className="w-full">
           {page === 'join' && (
-            <div className="w-full head-02-bold mt-6">
+            <div className="w-full head-02-bold mt-spacing-06">
               가게 메뉴판에 사용할
               <br />
               대표 이미지를 추가해주세요
@@ -114,7 +117,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                 </FlexBox>
               )}
             </div>
-            <FlexBox className="items-start w-full gap-4">
+            <FlexBox className="items-start w-full gap-spacing-04">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
               <div className="w-full body-01-medium text-text-helper">
                 예시처럼 매장의 전체 공간이 보이는 사진을 선택해주세요.
@@ -125,7 +128,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           </FlexBox>
         </FlexBox>
       </FlexBox>
-      <FlexBox direction="col" className="w-full gap-2 py-3 px-4">
+      <FlexBox direction="col" className="w-full gap-spacing-02 py-spacing-03 px-spacing-04">
         <ButtonMobile
           size="L"
           style="primary"
@@ -135,7 +138,10 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <Link href={`/${storeId}/home`} className="py-3 label-02-bold text-text-disabled">
+          <Link
+            href={`/${storeId}/home`}
+            className="py-spacing-03 label-02-bold text-text-disabled"
+          >
             나중에 추가하기
           </Link>
         </FlexBox>
