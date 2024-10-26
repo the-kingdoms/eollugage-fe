@@ -8,7 +8,6 @@ export async function getPresignedUrl(fileFullName: string): Promise<string> {
     })
     return res.data.presigned_url
   } catch (error) {
-    console.log('get presigned url error:', error)
     return ''
   }
 }

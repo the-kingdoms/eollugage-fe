@@ -19,15 +19,6 @@ export default async function WorkManagementOwner({ storeId }: { storeId: string
         getHistories(storeId, members[0]?.memberId, 'WEEKLY', year, month, weekOfMonth),
     })
   }
-  // const q = queryClient.getQueryData([
-  //   'histories',
-  //   members[0]?.memberId,
-  //   'WEEKLY',
-  //   year,
-  //   month,
-  //   weekOfMonth,
-  // ])
-  // console.log(q)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
