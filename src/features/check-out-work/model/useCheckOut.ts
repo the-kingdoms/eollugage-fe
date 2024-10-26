@@ -10,9 +10,9 @@ const useCheckOut = () => {
     error: checkOutError,
   } = useMutation({
     mutationFn: async ({ storeId }: { storeId: string }) => patchCheckOutWork(storeId),
-    onSuccess: () => {
-      queryClient.refetchQueries({ queryKey: ['histories'] })
-      queryClient.setQueryData(['workStatus'], () => 'END_WORKING')
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: ['histories'] })
+      await queryClient.setQueryData(['workStatus'], () => 'END_WORKING')
     },
   })
   return { checkOut, checkOutStatus, checkOutError }
