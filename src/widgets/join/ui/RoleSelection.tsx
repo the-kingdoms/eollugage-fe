@@ -10,10 +10,10 @@ interface RoleSelectionProps {
   handlePreviousStep: () => void
 }
 export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps) {
-  const { setEmployeeRole, setOwnerRole, handleNextStep } = useJoin()
+  const { setMemberRole, setOwnerRole, handleNextStep } = useJoin()
 
-  const handleEmployeeClick = () => {
-    setEmployeeRole()
+  const handleMemberClick = () => {
+    setMemberRole()
     handleNextStep()
   }
 
@@ -31,7 +31,7 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
       <BadgeCard />
       <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 gap-spacing-02">
         <ButtonMobile
-          onClick={handleEmployeeClick}
+          onClick={handleMemberClick}
           size="L"
           state="enabled"
           style="primary"
