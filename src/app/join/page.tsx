@@ -8,12 +8,15 @@ import { useRouter } from 'next/navigation'
 import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { UploadImageScreen } from '@/features'
+import { useAtom } from 'jotai'
+import { storeNameAtom } from '@/shared/atoms/globalAtom'
 
 export default function JoinPage() {
   const { isOwner, step, handleNextStep, handlePreviousStep } = useJoin()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
-  const [store, setStore] = useState('')
+  const [store, setStore] = useAtom(storeNameAtom)
+  const [storeId, setStoreId] = useState<string>('')
   const router = useRouter()
 
   useEffect(() => {
@@ -42,6 +45,9 @@ export default function JoinPage() {
   const handleStoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStore(e.target.value)
   }
+  const hadleStoreIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStoreId(e.target.value)
+  }
 
   return (
     <FlexBox
@@ -64,16 +70,24 @@ export default function JoinPage() {
           name={name}
           store={store}
           setStore={setStore}
+          storeId={storeId}
+          setStoreId={setStoreId}
           handleNameChange={handleNameChange}
           handleStoreChange={handleStoreChange}
+          hadleStoreIdChange={hadleStoreIdChange}
           handleNextStep={handleNextStep}
           handlePreviousStep={handlePreviousStep}
         />
       )}
       {step === 4 && (
-        <UserProfile name={name} store={store} handlePreviousStep={handlePreviousStep} />
+        <UserProfile
+          name={name}
+          store={store}
+          storeId={storeId}
+          handlePreviousStep={handlePreviousStep}
+        />
       )}
-      {step === 5 && isOwner && <UploadImageScreen page="join" />}
+      {step === 5 && isOwner && <UploadImageScreen page="join" storeId={storeId} />}
     </FlexBox>
   )
 }
