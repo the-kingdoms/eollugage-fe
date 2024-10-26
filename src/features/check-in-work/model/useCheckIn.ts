@@ -13,7 +13,7 @@ const useCheckIn = () => {
     mutationFn: async ({ storeId }: { storeId: string | undefined }) => patchCheckInWork(storeId),
     onSuccess: () => {
       queryClient.refetchQueries({ queryKey: ['histories'] })
-      queryClient.setQueryData(['workStatus'], () => 'start-working')
+      queryClient.setQueryData(['workStatus'], () => 'START_WORKING')
     },
   })
   return { checkIn, checkInStatus, checkInError }

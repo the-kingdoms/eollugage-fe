@@ -12,7 +12,7 @@ const useCheckOut = () => {
     mutationFn: async ({ storeId }: { storeId: string }) => patchCheckOutWork(storeId),
     onSuccess: () => {
       queryClient.refetchQueries({ queryKey: ['histories'] })
-      queryClient.setQueryData(['workStatus'], () => 'end-working')
+      queryClient.setQueryData(['workStatus'], () => 'END_WORKING')
     },
   })
   return { checkOut, checkOutStatus, checkOutError }
