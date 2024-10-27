@@ -9,8 +9,8 @@ const handleNext = (
   yearMonthly: number,
   yearWeekly: number,
   weekOfMonthWeekly: number,
-  setYearMONTHLY: SetAtom<[SetStateAction<number>], void>,
-  setMonthMONTHLY: SetAtom<[SetStateAction<number>], void>,
+  setYearMonthly: SetAtom<[SetStateAction<number>], void>,
+  setMonthMonthly: SetAtom<[SetStateAction<number>], void>,
   setMonthWeekly: SetAtom<[SetStateAction<number>], void>,
   setWeekOfMonthWeekly: SetAtom<[SetStateAction<number>], void>,
   setYearWeekly: SetAtom<[SetStateAction<number>], void>,
@@ -30,11 +30,11 @@ const handleNext = (
   switch (type) {
     case 'MONTHLY':
       if (monthMonthly === 12) {
-        setYearMONTHLY(yearMonthly + 1)
-        setMonthMONTHLY(1)
+        setYearMonthly(yearMonthly + 1)
+        setMonthMonthly(1)
       } else {
-        setYearMONTHLY(yearMonthly)
-        setMonthMONTHLY(monthMonthly + 1)
+        setYearMonthly(yearMonthly)
+        setMonthMonthly(monthMonthly + 1)
       }
       break
     case 'WEEKLY':

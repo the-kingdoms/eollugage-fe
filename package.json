@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node -r dotenv/config scripts/generateLinkSettingFile.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -28,6 +29,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.7.0",
     "jotai": "^2.10.0",
     "jotai-devtools": "^0.10.1",
