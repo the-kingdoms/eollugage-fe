@@ -4,9 +4,9 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { Icon } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import { DutyT } from '@/entities/home/api/home'
-import HomeBundle from './HomeBundle'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import HomeBundle from './HomeBundle'
 
 dayjs.extend(customParseFormat)
 

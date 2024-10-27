@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { getImageFromS3 } from '../api/getStoreImage'
-import { atom } from 'jotai'
 
 export function useGetStoreImage(storeId: string, fileFullName: string | undefined) {
   const { data, isLoading } = useQuery({
