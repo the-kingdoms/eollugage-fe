@@ -25,25 +25,27 @@ const formSchema = z.object({
   }),
 })
 
-export default function AttendanceForm({
+export default function AttendanceFormClient({
   storeId,
   type,
   historyId,
+  memberId,
 }: {
   storeId: string
   type: 'add' | 'edit'
   historyId?: string
+  memberId?: string
 }) {
   const { data: editingHistory } = useQuery<{
+    relation: { member: { id: string } }
     memberId: string
     date: string
     startTime: string
     endTime: string
   }>({
-    queryKey: ['history', historyId],
+    queryKey: ['history', historyId, memberId],
   })
   const { back } = useRouter()
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -63,7 +65,7 @@ export default function AttendanceForm({
 
   useEffect(() => {
     if (type === 'edit' && editingHistory) {
-      form.setValue('memberId', editingHistory.memberId)
+      form.setValue('memberId', editingHistory?.relation?.member?.id)
       form.setValue('workingDate', new Date(editingHistory.date))
       form.setValue('workingTime', {
         'start-front': editingHistory.startTime.slice(0, 2),

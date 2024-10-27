@@ -11,7 +11,6 @@ async function getImageFromS3(fileFullName: string) {
 
     return imageURL
   } catch (error) {
-    console.log('get image from S3 error', error)
     return ''
   }
 }
