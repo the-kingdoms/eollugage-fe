@@ -9,7 +9,7 @@ import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { UploadImageScreen } from '@/features'
 import { useAtom } from 'jotai'
-import { storeNameAtom } from '@/shared/atoms/globalAtom'
+import { storeNameAtom } from '@/shared'
 
 export default function JoinPage() {
   const { isOwner, step, handleNextStep, handlePreviousStep } = useJoin()

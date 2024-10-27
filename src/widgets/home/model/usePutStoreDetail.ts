@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { StoreInfoT } from '@/entities'
-import { storeNameAtom } from '@/shared/atoms/globalAtom'
+import { storeNameAtom } from '@/shared'
 import { useAtom } from 'jotai'
 import { putStoreDetail } from '../api/putStoreDetail'
 
