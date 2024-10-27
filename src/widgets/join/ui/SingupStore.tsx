@@ -6,12 +6,12 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, Dialog, Scrim, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
-import { isValidCodeAtom, storeNameAtom } from '@/shared'
 import { useAtom } from 'jotai'
 import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
 import { usePostStoreInfo } from '../model/usePostStoreInfo'
 import { useGetStoreInfoPrefix } from '../model/useGetStoreInfoPrefix'
+import { isValidCodeAtom, storeNameAtom } from '../atoms/joinAtoms'
 
 interface SignupStoreProps {
   name: string

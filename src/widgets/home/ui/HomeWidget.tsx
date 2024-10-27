@@ -8,8 +8,8 @@ import TodayWork from '@/widgets/home/ui/TodayWork'
 import OrderList from '@/widgets/home/ui/OrderList'
 import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
-import { isOwnerAtom, storeNameAtom, storeInfoAtom } from '@/shared'
-import { useGetStoreInfo } from '@/entities'
+import { isOwnerAtom } from '@/shared'
+import { storeInfoAtom, useGetStoreInfo } from '@/entities'
 import { useEffect } from 'react'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
@@ -22,7 +22,6 @@ interface HomeWidgetProps {
 export default function HomeWidget({ storeId }: HomeWidgetProps) {
   const [isOwner] = useAtom(isOwnerAtom)
   const [, setNotice] = useAtom(noticeAtom)
-  const [, setStoreName] = useAtom(storeNameAtom)
   const [, setStoreInfo] = useAtom(storeInfoAtom)
 
   const { data: orderList } = useGetOrder(storeId)
@@ -32,7 +31,6 @@ export default function HomeWidget({ storeId }: HomeWidgetProps) {
   useEffect(() => {
     prefetchStoreInfo()
     if (storeInfo) {
-      setStoreName(storeInfo.name) // 삭제 예정
       setNotice(storeInfo.internalNotice) // 삭제 예정
       setStoreInfo(storeInfo)
     }
