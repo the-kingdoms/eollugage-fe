@@ -4,31 +4,64 @@ import { useEffect, useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
 import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
-import { sendRNFunction } from '../utils/rnSender'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ToastMessage, sendRNFunction } from '@/shared'
+import { OrbitProgress } from 'react-loading-indicators'
+import storeDefaultImage from '@public/image/store_default_image.png'
+import { useAtom } from 'jotai'
+import { storeInfoAtom } from '@/entities'
+import { usePutStoreImage } from '../model/usePutStoreImage'
 import { ImageUploadResultT } from '../types/imageUploadType'
+import { useGetStoreImage } from '../model/useGetStoreImage'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
+  storeId: string
 }
 
-export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
+export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
   const router = useRouter()
 
-  // eslint-disable-next-line
-  const [isSuccess, setIsSuccess] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [showToast, setShowToast] = useState<boolean>(false)
+  const [imageName, setImageName] = useState<string | undefined>(undefined)
 
-  const onClickBackButton = () => {
-    router.back()
+  const [storeInfo] = useAtom(storeInfoAtom)
+
+  const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage(
+    storeId,
+    storeInfo && storeInfo?.image !== 'NONE' ? storeInfo?.image : imageName,
+  )
+  const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
+
+  const onClickBackButton = () => router.back()
+
+  const onClickSelectButton = () => {
+    setShowToast(false)
+    sendRNFunction('accessGallery', storeId)
+    setIsLoading(true)
   }
-
-  const onClickSelectButton = () => sendRNFunction('accessGallery')
 
   const onMessageEvent = (e: MessageEvent) => {
     e.stopPropagation()
     const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
 
     if (message.type === 'getImageUploadResult') {
-      setIsSuccess(message.data.isSuccess)
+      // eslint-disable-next-line prefer-destructuring
+      const data = message.data
+      if (!data.isSuccess) {
+        setIsLoading(false)
+        setShowToast(true)
+      } else if (data.fileFullName) {
+        setImageName(data.fileFullName)
+        putStoreImageMutate(undefined, {
+          onError: () => {
+            setIsLoading(false)
+            setShowToast(true)
+          },
+        })
+      }
     }
   }
 
@@ -44,10 +77,13 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
         title={page === 'home' ? '가게 대표 사진 추가' : ''}
         onClickLeftIcon={onClickBackButton}
       />
-      <FlexBox direction="col" className="w-full h-full px-4 pt-6 justify-between">
+      <FlexBox
+        direction="col"
+        className="w-full h-full px-spacing-04 pt-spacing-06 justify-between"
+      >
         <FlexBox direction="col" className="w-full">
           {page === 'join' && (
-            <div className="w-full head-02-bold mt-6">
+            <div className="w-full head-02-bold mt-spacing-06">
               가게 메뉴판에 사용할
               <br />
               대표 이미지를 추가해주세요
@@ -57,8 +93,34 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
             direction="col"
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
-            <div className="w-full aspect-[4/3] bg-gray-200" />
-            <FlexBox className="items-start w-full gap-4">
+            <div className="w-full aspect-[3/2] max-h-[400px] relative overflow-hidden">
+              {storeInfo?.image === 'NONE' || imageInfo === undefined ? (
+                <Image
+                  alt="store default image"
+                  src={storeDefaultImage}
+                  style={{ objectFit: 'contain', width: '100%' }}
+                  onLoadingComplete={() => setIsLoading(false)}
+                />
+              ) : (
+                <Image
+                  alt="store image"
+                  src={imageInfo}
+                  className="w-full h-full"
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  fill
+                  onLoadingComplete={() => setIsLoading(false)}
+                />
+              )}
+              {(isLoadingImage || isLoading) && (
+                <FlexBox className="absolute bg-[#161616]/10 inset-0 justify-center">
+                  <OrbitProgress color="#fff" size="small" text="" textColor="" />
+                </FlexBox>
+              )}
+            </div>
+            <FlexBox className="items-start w-full gap-spacing-04">
               <Icon icon="info_circle_filled" size={20} className="fill-support-info shrink-0" />
               <div className="w-full body-01-medium text-text-helper">
                 예시처럼 매장의 전체 공간이 보이는 사진을 선택해주세요.
@@ -69,7 +131,7 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           </FlexBox>
         </FlexBox>
       </FlexBox>
-      <FlexBox direction="col" className="w-full gap-2 py-3 px-4">
+      <FlexBox direction="col" className="w-full gap-spacing-02 py-spacing-03 px-spacing-04">
         <ButtonMobile
           size="L"
           style="primary"
@@ -79,11 +141,22 @@ export default function ImageUploadScreen({ page }: ImageUploadScreenProps) {
           onClick={onClickSelectButton}
         />
         <FlexBox className="w-full justify-center">
-          <button type="button" className="py-3 label-02-bold text-text-disabled">
+          <Link
+            href={`/${storeId}/home`}
+            className="py-spacing-03 label-02-bold text-text-disabled"
+          >
             나중에 추가하기
-          </button>
+          </Link>
         </FlexBox>
       </FlexBox>
+      {showToast && (
+        <ToastMessage
+          icon="warning"
+          open={showToast}
+          setOpen={setShowToast}
+          message="다시 시도해주세요."
+        />
+      )}
     </FlexBox>
   )
 }

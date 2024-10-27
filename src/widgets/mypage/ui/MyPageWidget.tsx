@@ -3,9 +3,9 @@
 import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
-import { isOwnerAtom } from '@/shared/atoms/globalAtom'
+import { isOwnerAtom } from '@/shared'
 
-export default function MyPageWidget() {
+export default function MyPageWidget({ storeId }: { storeId: string }) {
   const router = useRouter()
   const [isOwner] = useAtom(isOwnerAtom)
 
@@ -14,10 +14,10 @@ export default function MyPageWidget() {
       {isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push('/mypage/position')}>
+            <button type="button" onClick={() => router.push(`/${storeId}/mypage/position`)}>
               <Icon icon="id" />
             </button>
-            <button type="button" onClick={() => router.push('/mypage/setting')}>
+            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
               <Icon icon="gear" />
             </button>
           </div>
@@ -34,7 +34,7 @@ export default function MyPageWidget() {
       {!isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push('/mypage/setting')}>
+            <button type="button" onClick={() => router.push(`${storeId}/mypage/setting`)}>
               <Icon icon="gear" />
             </button>
           </div>
