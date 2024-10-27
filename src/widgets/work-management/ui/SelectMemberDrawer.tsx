@@ -31,9 +31,10 @@ export default function SelectMemberDrawer({ form, storeId }: { form: Form; stor
             <Drawer>
               <DrawerTrigger asChild>
                 <Button
+                  disabled
                   variant="outline"
                   className={cn(
-                    'w-full justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01',
+                    'w-full justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 disabled:text-text-secondary disabled:border-[#E0E0E0]',
                     !field.value && 'text-[#A8A8A8] border-[hsl(var(--input))]',
                   )}
                 >

@@ -10,7 +10,6 @@ const putHistory = async (
   reqBody: PutHistory,
 ) => {
   if (!storeId) return false
-  console.log('storeId', storeId, 'memberId', memberId, 'historyId', historyId, 'reqBody', reqBody)
   try {
     const { status, statusText } = await axiosServerInstance.put(
       `/v1/stores/${storeId}/members/${memberId}/histories/${historyId}`,
