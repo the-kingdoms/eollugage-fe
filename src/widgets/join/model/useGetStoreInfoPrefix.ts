@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { useAtom } from 'jotai'
-import { isValidCodeAtom, storeNameAtom } from '@/shared/atoms/globalAtom'
 import { getStoreInfoPrefix } from '../api/getStoreInfoPrefix'
+import { isValidCodeAtom, storeNameAtom } from '../atoms/joinAtoms'
 
 function useGetStoreInfoPrefix(stordIdPrefix: string) {
   const [, setStoreName] = useAtom(storeNameAtom)

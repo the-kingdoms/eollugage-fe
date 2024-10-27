@@ -4,7 +4,11 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { Icon } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import { DutyT } from '@/entities/home/api/home'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import HomeBundle from './HomeBundle'
+
+dayjs.extend(customParseFormat)
 
 interface TodayWorkProps {
   workList: DutyT[]
@@ -60,14 +64,16 @@ export default function TodayWork({ workList }: TodayWorkProps) {
         </FlexBox>
       }
       lowChild={
-        <div className="flex flex-row gap-4 w-full">
+        <div className="grid grid-cols-2 gap-spacing-04 w-full">
           {workList.slice(currentIndex, currentIndex + 2).map(item => (
             <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
               <div className="w-full">
                 <div className="body-04-medium-compact">{item.name}</div>
                 <div className="body-01-medium-compact text-text-secondary">{item.position}</div>
               </div>
-              <div className="body-02-medium-compact w-full">{item.startTime}</div>
+              <div className="body-02-medium-compact w-full">
+                {dayjs(item.startTime, 'HH:mm:ss.SSS').format('HH:mm:ss')}
+              </div>
             </div>
           ))}
         </div>

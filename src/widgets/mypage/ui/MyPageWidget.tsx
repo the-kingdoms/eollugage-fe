@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
-import { isOwnerAtom } from '@/shared/atoms/globalAtom'
+import { isOwnerAtom } from '@/shared'
 
 export default function MyPageWidget({ storeId }: { storeId: string }) {
   const router = useRouter()

@@ -11,6 +11,8 @@ async function getImageFromS3(fileFullName: string) {
 
     return imageURL
   } catch (error) {
+    if (axios.isAxiosError(error) && error.status === 404) console.log('no such key for image')
+    else console.log('get image from S3 error', error)
     return ''
   }
 }

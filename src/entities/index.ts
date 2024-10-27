@@ -12,6 +12,7 @@ export type { StoreInfoT } from './store/api/store'
 export type { OrderT, DutyT } from './home/api/home'
 export { putStoreInfo } from './store/api/putStoreInfo'
 export { useGetStoreInfo } from './store/model/useGetStoreInfo'
+export { storeInfoAtom } from './store/atoms/storeInfoAtom'
 
 export { default as fetchUserInfo } from './user/api/fetchUserInfo'
 export { default as useUser } from './user/model/useUser'

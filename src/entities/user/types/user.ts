@@ -1,7 +1,7 @@
 interface Relation {
   id: string
   storeId: string
-  role: string
+  role: 'OWNER' | 'STAFF'
   position: string
   member: string | null
 }
