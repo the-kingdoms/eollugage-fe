@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { useParams, useRouter } from 'next/navigation'
 import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
-import { useDeleteUser } from '../model/useDeleteUser'
 import { userNameAtom } from '@/shared/atoms/globalAtom'
+import { useDeleteUser } from '@/widgets/setting/model/useDeleteUser'
 
 export default function Quit() {
   const { push } = useRouter()
