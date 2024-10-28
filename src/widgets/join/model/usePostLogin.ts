@@ -7,7 +7,7 @@ import { StoreT } from '../api/store'
 
 function usePostLogin(
   userInfo: UserInfoT,
-  handleStoreListCheck: (storelist: StoreT[]) => void,
+  handleStoreListCheck: (storelist: StoreT[], memberId: string) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onErrorCallback: (error: any) => void,
 ) {
@@ -24,9 +24,8 @@ function usePostLogin(
           },
         })
 
-        console.log(response)
-        const { storeList } = response.data
-        handleStoreListCheck(storeList)
+        const { storeList, id } = response.data
+        handleStoreListCheck(storeList, id)
       } catch (error) {
         console.error('Failed to fetch storelist:', error)
       }

@@ -11,7 +11,8 @@ import useJoin from '../hooks/useJoin'
 import BottomSheet from './BottomSheet'
 import { usePostStoreInfo } from '../model/usePostStoreInfo'
 import { useGetStoreInfoPrefix } from '../model/useGetStoreInfoPrefix'
-import { isValidCodeAtom, storeNameAtom } from '../atoms/joinAtoms'
+import { isValidCodeAtom, memberIdAtom, storeNameAtom } from '../atoms/joinAtoms'
+import { usePostMember } from '../model/usePostMember'
 
 interface SignupStoreProps {
   name: string
@@ -47,10 +48,11 @@ export default function SingupStore({
 
   const [storeName] = useAtom(storeNameAtom)
   const [isValidCode] = useAtom(isValidCodeAtom)
+  const [memberId] = useAtom(memberIdAtom)
 
   const { mutate: postStoreInfoMutate } = usePostStoreInfo(storeName)
   const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(storeId.slice(0, 4))
-
+  const { mutate: postMemberMutate } = usePostMember(storeId, memberId)
   const handleOpenDialog = () => {
     setIsLoading(true)
     setApprovalFailed(false)
@@ -86,17 +88,19 @@ export default function SingupStore({
   }
 
   const handleAgree = () => {
-    const isApproved = true
-
-    if (isApproved) {
-      handleNextStep()
-    } else {
-      setApprovalFailed(true)
-      setStore('')
-      setOpenDialog(false)
-    }
+    postMemberMutate(undefined, {
+      onSuccess: () => {
+        handleNextStep()
+      },
+      onError: error => {
+        setApprovalFailed(true)
+        setStore('')
+        setOpenDialog(false)
+        setShowToast(true)
+        console.error('멤버 추가 실패:', error)
+      },
+    })
   }
-
   const getGreetingText = () =>
     isOwner ? (
       <>
