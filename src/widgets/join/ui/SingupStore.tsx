@@ -141,7 +141,7 @@ export default function SingupStore({
           {showToast && (
             <div className="w-full mb-spacing-03">
               <ToastMessage
-                message="가게 이름이 일치하지 않습니다. 다시 확인해주세요."
+                message="가게 코드를 확인해주세요"
                 icon="warning"
                 open={showToast}
                 setOpen={setShowToast}

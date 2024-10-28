@@ -20,7 +20,6 @@ function usePostLogin(userInfo: UserInfoT, handleStoreListCheck: (storelist: Sto
         })
 
         const { storeList } = response.data
-
         handleStoreListCheck(storeList)
       } catch (error) {
         console.error('Failed to fetch storelist:', error)
