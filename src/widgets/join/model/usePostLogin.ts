@@ -5,7 +5,12 @@ import { postLogin } from '../api/postLogin'
 import { UserInfoT } from '../api/user'
 import { StoreT } from '../api/store'
 
-function usePostLogin(userInfo: UserInfoT, handleStoreListCheck: (storelist: StoreT[]) => void) {
+function usePostLogin(
+  userInfo: UserInfoT,
+  handleStoreListCheck: (storelist: StoreT[]) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onErrorCallback: (error: any) => void,
+) {
   const { mutate } = useMutation({
     mutationKey: ['postLogin'],
     mutationFn: () => postLogin(userInfo),
@@ -19,11 +24,15 @@ function usePostLogin(userInfo: UserInfoT, handleStoreListCheck: (storelist: Sto
           },
         })
 
+        console.log(response)
         const { storeList } = response.data
         handleStoreListCheck(storeList)
       } catch (error) {
         console.error('Failed to fetch storelist:', error)
       }
+    },
+    onError: error => {
+      onErrorCallback(error)
     },
   })
 

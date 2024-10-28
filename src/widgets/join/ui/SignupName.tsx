@@ -4,6 +4,7 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { ToastMessage } from '@/shared'
 import { usePostLogin } from '../model/usePostLogin'
 import { StoreT } from '../api/store'
 
@@ -24,7 +25,10 @@ export default function SignupName({
   handleNextStep,
   handlePreviousStep,
 }: SignupNameProps) {
-  const [isNumber, setIsNumber] = useState(true)
+  const [isValid, setIsValid] = useState(true) // 전화번호 유효성 에러 상태
+  const [showToast, setShowToast] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('') // 토스트 메시지의 에러 내용
+
   const router = useRouter()
 
   const handleStoreListCheck = (storelist: StoreT[]) => {
@@ -35,16 +39,21 @@ export default function SignupName({
     }
   }
 
-  const { mutate } = usePostLogin({ name, phone }, handleStoreListCheck)
+  const { mutate } = usePostLogin({ name, phone }, handleStoreListCheck, error => {
+    const reason = error?.response?.data?.reason || '로그인에 실패했습니다.'
+
+    if (reason.includes('유효하지 않은 형식의 휴대폰 번호')) {
+      setIsValid(false)
+    } else {
+      setIsValid(true)
+      setErrorMessage(reason)
+      setShowToast(true)
+    }
+  })
 
   const handleStartClick = () => {
-    const phoneNumberPattern = /^[0-9]+$/
-    if (!phoneNumberPattern.test(phone)) {
-      setIsNumber(false)
-    } else {
-      setIsNumber(true)
-      mutate()
-    }
+    setIsValid(true)
+    mutate()
   }
 
   return (
@@ -71,8 +80,8 @@ export default function SignupName({
           label="전화번호"
           placeholder="전화번호를 입력해주세요"
           value={phone}
-          state={isNumber ? 'enable' : 'error'}
-          description={isNumber ? '' : '숫자만 입력해주세요'}
+          state={isValid ? 'enable' : 'error'} // 전화번호 유효성 에러 시 에러 상태 표시
+          description={isValid ? '' : '유효하지 않은 전화번호 형식입니다.'}
         />
       </FlexBox>
       <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
@@ -85,6 +94,15 @@ export default function SignupName({
           onClick={handleStartClick}
         />
       </FlexBox>
+
+      {showToast && (
+        <ToastMessage
+          message={errorMessage}
+          icon="warning"
+          open={showToast}
+          setOpen={setShowToast}
+        />
+      )}
     </>
   )
 }
