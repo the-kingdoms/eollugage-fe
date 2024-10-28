@@ -5,8 +5,10 @@ import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ToastMessage } from '@/shared'
+import { useAtom } from 'jotai'
 import { usePostLogin } from '../model/usePostLogin'
 import { StoreT } from '../api/store'
+import { memberIdAtom } from '../atoms/joinAtoms'
 
 interface SignupNameProps {
   name: string
@@ -28,10 +30,11 @@ export default function SignupName({
   const [isValid, setIsValid] = useState(true) // 전화번호 유효성 에러 상태
   const [showToast, setShowToast] = useState(false)
   const [errorMessage, setErrorMessage] = useState('') // 토스트 메시지의 에러 내용
-
+  const [, setMemberId] = useAtom(memberIdAtom)
   const router = useRouter()
 
-  const handleStoreListCheck = (storelist: StoreT[]) => {
+  const handleStoreListCheck = (storelist: StoreT[], memberId: string) => {
+    setMemberId(memberId)
     if (storelist && storelist.length > 0) {
       router.push(`/${storelist[0].storeId}/home`)
     } else {
