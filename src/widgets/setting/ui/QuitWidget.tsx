@@ -1,13 +1,16 @@
 'use client'
 
 import { useState } from 'react'
+import { useAtom } from 'jotai'
 import { useParams, useRouter } from 'next/navigation'
 import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
 import { useDeleteUser } from '../model/useDeleteUser'
+import { userNameAtom } from '@/shared/atoms/globalAtom'
 
 export default function Quit() {
   const { push } = useRouter()
   const { storeId } = useParams()
+  const [userName] = useAtom(userNameAtom)
   const [isChecked, setIsChecked] = useState(false)
   const { mutate: deleteUserMutation } = useDeleteUser()
 
@@ -29,7 +32,7 @@ export default function Quit() {
       <div className="mt-4">
         <div className="flex flex-col gap-spacing-02 p-4">
           <h2 className="body-05-bold">
-            얼루가님, <br />
+            {userName}님, <br />
             탈퇴하기 전에 확인해주세요
           </h2>
           <ul className="flex flex-col gap-4 py-spacing-04 body-02-medium text-text-secondary">
