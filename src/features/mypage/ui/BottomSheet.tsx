@@ -54,11 +54,10 @@ export default function BottomSheet({
       onAddPosition(newPositionItem)
       setInputValue('')
     }
-    const updatedPositions = [...positionList]
-    updatedPositions.forEach((position, idx) => {
-      position.position = positionStates[idx] || position.position
-      positionList[idx].position = positionStates[idx] || position.position
-    })
+    positionList.map((position, idx) => ({
+      ...position,
+      position: positionStates[idx] || position.position,
+    }))
     closeBottomSheet()
   }
 
