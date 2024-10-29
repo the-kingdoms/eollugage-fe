@@ -1,4 +1,4 @@
-interface Relation {
+export interface Relation {
   id: string
   storeId: string
   role: 'OWNER' | 'STAFF'

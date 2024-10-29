@@ -7,7 +7,6 @@ import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
 import { PositionItem, PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
-import { useGetPosition } from '@/features/mypage/model/useGetPositions'
 import { usePutPosition } from '@/features/mypage/model/usePutPosition'
 import { usePostPosition } from '@/features/mypage/model/usePostPosition'
 
@@ -21,11 +20,8 @@ export default function PositionWidget({
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isModified, setIsModified] = useState(false)
-  const { data = initialData, error } = useGetPosition(storeId)
   const putPosition = usePutPosition()
-  const postPostion = usePostPosition()
-
-  if (error) console.log(error)
+  const postPosition = usePostPosition()
 
   function groupByPosition(initialPositions: PositionItem[]) {
     const groupedPositions: PositionGroupType[] = initialPositions.reduce<PositionGroupType[]>(
@@ -46,9 +42,8 @@ export default function PositionWidget({
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
-    if (data) {
-      setPositionList(groupByPosition(data))
-    }
+    const data = groupByPosition(initialData)
+    setPositionList(data)
   }, [])
 
   const openBottomSheet = () => {
@@ -106,7 +101,7 @@ export default function PositionWidget({
   const updatePositions = async () => {
     if (isModified) {
       const updatePromises = positionList.map((position, idx) =>
-        postPostion.mutate({
+        postPosition.mutate({
           storeId,
           memberId: position.items[idx].memberId,
           position: position.items[idx].position,

@@ -18,14 +18,6 @@ export interface PositionGroupProps {
   length: number
 }
 
-export interface Relation {
-  id: string
-  storeId: string
-  role: 'OWNER' | 'MANAGER' | 'EMPLOYEE'
-  position: string
-  member: string
-}
-
 export interface Store {
   storeId: string
   name: string
@@ -37,13 +29,4 @@ export interface Store {
   originalInfo: string
   externalNotice: string
   internalNotice: string
-}
-
-export interface UserData {
-  id: string
-  name: string
-  phone: string
-  providerType: 'GOOGLE' | 'FACEBOOK' | 'EMAIL'
-  relationList: Relation[]
-  storeList: Store[]
 }

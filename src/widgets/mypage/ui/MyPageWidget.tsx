@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
 import { isOwnerAtom, storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
-import { UserData } from '@/shared/types/myPageTypes'
+import { UserInfo } from '@/entities'
 import { useEffect } from 'react'
 
 export default function MyPageWidget({
@@ -12,7 +12,7 @@ export default function MyPageWidget({
   userData,
 }: {
   storeId: string
-  userData: UserData
+  userData: UserInfo | undefined
 }) {
   const router = useRouter()
   const [isOwner] = useAtom(isOwnerAtom)
@@ -41,9 +41,9 @@ export default function MyPageWidget({
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="A" />
             <div className="ml-4">
-              <h2 className="body-03-bold text-text-primary">{userData.storeList[0].name}</h2>
+              <h2 className="body-03-bold text-text-primary">{userData?.storeList[0].name}</h2>
               <p className="text-text-secondary body-01-bold">
-                {userData.relationList[0].position}
+                {userData?.relationList[0].position}
               </p>
             </div>
           </div>
@@ -60,9 +60,9 @@ export default function MyPageWidget({
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="A" />
             <div className="ml-4">
-              <h2 className="body-03-bold text-text-primary">{userData.storeList[0].name}</h2>
+              <h2 className="body-03-bold text-text-primary">{userData?.storeList[0].name}</h2>
               <p className="text-text-secondary body-01-bold">
-                {userData.relationList[0].position}
+                {userData?.relationList[0].position}
               </p>
             </div>
           </div>
