@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
-import { PositionItem, PositionGroupType } from '@/shared/types/myPageTypes'
+import { PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
 import { usePutPosition } from '@/features/mypage/model/usePutPosition'
@@ -12,37 +12,19 @@ import { usePostPosition } from '@/features/mypage/model/usePostPosition'
 
 export default function PositionWidget({
   storeId,
-  initialData,
+  data,
 }: {
   storeId: string
-  initialData: PositionItem[]
+  data: PositionGroupType[]
 }) {
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isModified, setIsModified] = useState(false)
   const putPosition = usePutPosition()
   const postPosition = usePostPosition()
-
-  function groupByPosition(initialPositions: PositionItem[]) {
-    const groupedPositions: PositionGroupType[] = initialPositions.reduce<PositionGroupType[]>(
-      (acc, item) => {
-        const group = acc.find(g => g.position === item.position && g.position !== '사장님')
-        if (group) {
-          group.items.push(item)
-        } else if (item.position !== '사장님' || acc.some(g => g.position === '사장님')) {
-          acc.push({ position: item.position, items: [item] })
-        }
-        return acc
-      },
-      [],
-    )
-    return groupedPositions
-  }
-
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
-    const data = groupByPosition(initialData)
     setPositionList(data)
   }, [])
 
