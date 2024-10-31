@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { TopBar, Icon } from '@eolluga/eolluga-ui'
 import LogoutModal from '@/features/setting/ui/LogoutModal'
@@ -19,14 +20,10 @@ export default function SettingsWidget({ storeId }: { storeId: string }) {
       <div>
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
-              className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/alarm`)}
-            >
+            <Link href={`/${storeId}/mypage/setting/alarm`} className="flex w-full justify-between">
               <span>알림</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
         </ul>
 
@@ -34,24 +31,22 @@ export default function SettingsWidget({ storeId }: { storeId: string }) {
 
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
+            <Link
+              href={`/${storeId}/mypage/setting/privacy`}
               className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/privacy`)}
             >
               <span>개인정보 처리방침</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
+            <Link
+              href={`/${storeId}/mypage/setting/inquire`}
               className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/inquire`)}
             >
               <span>문의하기</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
         </ul>
 
@@ -59,24 +54,22 @@ export default function SettingsWidget({ storeId }: { storeId: string }) {
 
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
+            <Link
+              href={`/${storeId}/mypage/setting/appInfo`}
               className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/appInfo`)}
             >
               <span>앱 버전</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
+            <Link
+              href={`/${storeId}/mypage/setting/businessInfo`}
               className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/businessInfo`)}
             >
               <span>사업자 정보</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
         </ul>
 
@@ -94,14 +87,10 @@ export default function SettingsWidget({ storeId }: { storeId: string }) {
             </button>
           </li>
           <li className="flex justify-between py-spacing-04">
-            <button
-              type="button"
-              className="flex w-full justify-between"
-              onClick={() => push(`/${storeId}/mypage/setting/quit`)}
-            >
+            <Link href={`/${storeId}/mypage/setting/quit`} className="flex w-full justify-between">
               <span>탈퇴하기</span>
               <Icon icon="chevron_right_outlined" />
-            </button>
+            </Link>
           </li>
         </ul>
       </div>
