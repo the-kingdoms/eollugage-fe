@@ -6,7 +6,7 @@ function usePostStoreInfo(name: string) {
   const storeInfo: StoreInfoT = {
     name,
     introduction: 'asdf',
-    image: '',
+    image: 'NONE',
     phone: 'asdf',
     address: 'asdf',
     openingHour: 'asdf',
