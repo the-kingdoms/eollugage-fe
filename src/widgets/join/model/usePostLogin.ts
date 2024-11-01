@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
-import { setTokenFromCookie } from '@/shared'
+import { sendRNFunction, setTokenFromCookie } from '@/shared'
 import { postLogin } from '../api/postLogin'
 import { UserInfoT } from '../api/user'
 import { StoreT } from '../api/store'
@@ -16,6 +16,7 @@ function usePostLogin(
     mutationFn: () => postLogin(userInfo),
     onSuccess: async res => {
       setTokenFromCookie(res.token, 7)
+      sendRNFunction('setLoginToken', res.token)
 
       try {
         const response = await axios.get('/api/v1/my', {
