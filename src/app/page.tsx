@@ -1,14 +1,11 @@
 import Image from 'next/image'
 import LoginButton from '@/widgets/join/ui/LoginButton'
 import FlexBox from '@/shared/ui/Flexbox'
-import axios from 'axios'
 import { redirect } from 'next/navigation'
-import { axiosServerInstance } from '@/shared'
-import styles from './page.module.css'
 import { fetchUserInfo } from '@/entities'
+import styles from './page.module.css'
 
 export default async function Home() {
-  // eslint-disable-next-line prefer-destructuring
   const accountInfo = await fetchUserInfo()
   if (accountInfo && accountInfo.relationList.length > 0 && accountInfo.relationList[0].storeId)
     redirect(`/${accountInfo.relationList[0].storeId}/home`)
