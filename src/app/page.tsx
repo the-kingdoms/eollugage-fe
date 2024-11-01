@@ -5,22 +5,11 @@ import axios from 'axios'
 import { redirect } from 'next/navigation'
 import { axiosServerInstance } from '@/shared'
 import styles from './page.module.css'
-
-async function fetchAccountInfo() {
-  try {
-    const response = await axiosServerInstance.get('/v1/my')
-    // eslint-disable-next-line prefer-destructuring
-    const data = response.data
-    return data
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 404) console.log('no access token')
-    return undefined
-  }
-}
+import { fetchUserInfo } from '@/entities'
 
 export default async function Home() {
   // eslint-disable-next-line prefer-destructuring
-  const accountInfo = await fetchAccountInfo()
+  const accountInfo = await fetchUserInfo()
   if (accountInfo && accountInfo.relationList.length > 0 && accountInfo.relationList[0].storeId)
     redirect(`/${accountInfo.relationList[0].storeId}/home`)
 
