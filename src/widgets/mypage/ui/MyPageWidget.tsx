@@ -10,17 +10,20 @@ import { useEffect } from 'react'
 export default function MyPageWidget({
   storeId,
   userData,
+  isOwner,
 }: {
   storeId: string
   userData: UserInfo | undefined
+  isOwner: boolean
 }) {
   const router = useRouter()
-  const [isOwner] = useAtom(isOwnerAtom)
+  const [, setIsOwner] = useAtom(isOwnerAtom)
   const [, setStoreName] = useAtom(storeNameAtom)
   const [, setUserName] = useAtom(userNameAtom)
 
   useEffect(() => {
     if (userData) {
+      setIsOwner(isOwner)
       setStoreName(userData.storeList[0]?.name || '')
       setUserName(userData.name || '')
     }
@@ -53,14 +56,14 @@ export default function MyPageWidget({
       {!isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push(`${storeId}/mypage/setting`)}>
+            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
               <Icon icon="gear" />
             </button>
           </div>
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="A" />
             <div className="ml-4">
-              <h2 className="body-03-bold text-text-primary">{userData?.storeList[0].name}</h2>
+              <h2 className="body-03-bold text-text-primary">{userData?.name}</h2>
               <p className="text-text-secondary body-01-bold">
                 {userData?.relationList[0].position}
               </p>
