@@ -10,5 +10,5 @@ interface HomeUploadImagePageProps {
 export default async function HomeUploadImagePage({ params }: HomeUploadImagePageProps) {
   const { image } = await getStoreInfo(params.storeId)
 
-  return <ImageUploadScreen storeId={params.storeId} initialImageName={image} />
+  return <ImageUploadScreen page="home" storeId={params.storeId} initialImageName={image} />
 }

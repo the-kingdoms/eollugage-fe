@@ -1,10 +1,13 @@
+'use client'
+
 import { useUser } from '@/entities'
 import { sendRNFunction, setTokenFromCookie } from '@/shared'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function useLoginToken() {
   const router = useRouter()
+  const pathname = usePathname()
   const [enabled, setEnabled] = useState<boolean>(false)
   const { userInfo } = useUser(enabled)
 
@@ -20,12 +23,12 @@ export function useLoginToken() {
   }, [])
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo && pathname === '/') {
       if (userInfo.storeList.length > 0) router.replace(`/${userInfo.storeList[0].storeId}/home`)
       else if (userInfo.relationList.length > 0)
         router.replace(`/${userInfo.relationList[0].storeId}/home`)
     }
-  }, [userInfo])
+  }, [userInfo, pathname])
 
   return { onSuccessGetToken }
 }

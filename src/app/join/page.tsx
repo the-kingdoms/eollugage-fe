@@ -7,7 +7,7 @@ import { RoleSelection, storeNameAtom, useJoin } from '@/widgets'
 import { useRouter } from 'next/navigation'
 import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
-import { UploadImageScreen } from '@/features'
+import { UploadImageClient } from '@/features'
 import { useAtom } from 'jotai'
 import { storeIdAtom } from '@/widgets/join/atoms/joinAtoms'
 
@@ -87,7 +87,7 @@ export default function JoinPage() {
           handlePreviousStep={handlePreviousStep}
         />
       )}
-      {step === 5 && isOwner && <UploadImageScreen page="join" storeId={storeId} />}
+      {step === 5 && isOwner && <UploadImageClient page="join" storeId={storeId} />}
     </FlexBox>
   )
 }

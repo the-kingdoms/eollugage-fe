@@ -11,6 +11,8 @@ import { OrbitProgress } from 'react-loading-indicators'
 import storeDefaultImage from '@public/image/store_default_image.png'
 import { useAtom } from 'jotai'
 import { useGetStoreInfo } from '@/entities'
+// eslint-disable-next-line import/no-cycle
+import { useJoin } from '@/widgets'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 import { useGetStoreImage } from '../model/useGetStoreImage'
 import { useGetPresignedURL } from '../model/useGetPresignedURL'
@@ -20,7 +22,7 @@ import { imageNameAtom, isImageLoadingAtom, isSuccessAtom } from '../atoms/uploa
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
   storeId: string
-  initialImageName: string
+  initialImageName?: string
 }
 
 export default function ImageUploadClient({
@@ -34,6 +36,7 @@ export default function ImageUploadClient({
   const [isShownToast, setIsShownToast] = useState<boolean>(false)
 
   const router = useRouter()
+  const { handlePreviousStep } = useJoin()
   const { initImageUploadStatus, onImageLoadComplete } = useHandleImageStatus()
   const { data: presignedURL } = useGetPresignedURL(storeId, imageName)
   const { data: storeInfo } = useGetStoreInfo(storeId)
@@ -41,7 +44,10 @@ export default function ImageUploadClient({
   const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage( storeId, presignedURL, imageName )
   const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
 
-  const onClickBackButton = () => router.back()
+  const onClickBackButton = () => {
+    if (page === 'home') router.back()
+    else handlePreviousStep()
+  }
 
   const onClickSelectButton = () => {
     setIsShownToast(false)
@@ -50,12 +56,17 @@ export default function ImageUploadClient({
   }
 
   useEffect(() => {
-    if (isSuccess === true) putStoreImageMutate()
+    if (isSuccess === true)
+      putStoreImageMutate(undefined, {
+        onSuccess: () => {
+          if (page === 'join') router.push(`/${storeId}/home`)
+        },
+      })
     else if (isSuccess === false) setIsShownToast(true)
   }, [isSuccess])
 
   useEffect(() => {
-    setImageName(initialImageName)
+    if (initialImageName) setImageName(initialImageName)
   }, [])
 
   return (
