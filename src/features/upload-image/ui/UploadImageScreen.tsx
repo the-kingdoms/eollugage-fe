@@ -99,7 +99,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                   alt="store default image"
                   src={storeDefaultImage}
                   style={{ objectFit: 'contain', width: '100%' }}
-                  onLoadingComplete={() => setIsLoading(false)}
+                  onLoad={() => setIsLoading(false)}
                 />
               ) : (
                 <Image
@@ -111,7 +111,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                     objectPosition: 'center',
                   }}
                   fill
-                  onLoadingComplete={() => setIsLoading(false)}
+                  onLoad={() => setIsLoading(false)}
                 />
               )}
               {(isLoadingImage || isLoading) && (
