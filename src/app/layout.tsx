@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import '@eolluga/eolluga-ui/dist/index.css'
 import ProviderLayout from '@/shared/ui/ProviderLayout'
-import { RNListener } from '@/shared'
+import RNListener from '@/shared/ui/RNListener'
 
 export const metadata: Metadata = {
   title: '얼루가게',

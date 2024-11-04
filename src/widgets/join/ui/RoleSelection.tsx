@@ -1,8 +1,7 @@
 'use client'
 
-import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
-import React from 'react'
+import { Flexbox } from '@/shared'
 import BadgeCard from './BadgeCard'
 import useJoin from '../hooks/useJoin'
 
@@ -29,7 +28,7 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
         직원으로 근무 중인가요?
       </div>
       <BadgeCard />
-      <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 gap-spacing-02">
+      <Flexbox direction="col" className="w-full px-spacing-04 py-spacing-03 gap-spacing-02">
         <ButtonMobile
           onClick={handleMemberClick}
           size="L"
@@ -38,7 +37,7 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
           text1="네 직원이에요"
           type="text"
         />
-        <FlexBox className="w-full justify-center">
+        <Flexbox className="w-full justify-center">
           <button
             type="button"
             onClick={handleOwnerClick}
@@ -46,8 +45,8 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
           >
             아니요 사장님이에요
           </button>
-        </FlexBox>
-      </FlexBox>
+        </Flexbox>
+      </Flexbox>
     </>
   )
 }

@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import { ImageUploadResultT, useHandleStoreImage } from '@/features'
-import { setTokenFromCookie } from '..'
 import { useLoginToken } from '@/widgets'
 
 interface TokenResultT {
