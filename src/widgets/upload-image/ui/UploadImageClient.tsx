@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable import/no-cycle */
 import { useEffect, useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
@@ -10,64 +11,62 @@ import { ToastMessage, sendRNFunction } from '@/shared'
 import { OrbitProgress } from 'react-loading-indicators'
 import storeDefaultImage from '@public/image/store_default_image.png'
 import { useAtom } from 'jotai'
-import { storeInfoAtom } from '@/entities'
+import { useJoin } from '@/widgets'
+import { useGetStoreInfo } from '@/entities'
 import { usePutStoreImage } from '../model/usePutStoreImage'
-import { ImageUploadResultT } from '../types/imageUploadType'
 import { useGetStoreImage } from '../model/useGetStoreImage'
+import { useGetPresignedURL } from '../model/useGetPresignedURL'
+import useHandleImageStatus from '../model/useHandleStoreImage'
+import { imageNameAtom, isImageLoadingAtom, isSuccessAtom } from '../atoms/uploadImageAtoms'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
   storeId: string
+  initialImageName?: string
 }
 
-export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenProps) {
+export default function ImageUploadClient({
+  page,
+  storeId,
+  initialImageName,
+}: ImageUploadScreenProps) {
+  const [isSuccess] = useAtom(isSuccessAtom)
+  const [imageName, setImageName] = useAtom(imageNameAtom)
+  const [isLoading] = useAtom(isImageLoadingAtom)
+  const [isShownToast, setIsShownToast] = useState<boolean>(false)
+
   const router = useRouter()
-
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [showToast, setShowToast] = useState<boolean>(false)
-  const [imageName, setImageName] = useState<string | undefined>(undefined)
-
-  const [storeInfo] = useAtom(storeInfoAtom)
-
-  const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage(
-    storeId,
-    storeInfo && storeInfo?.image !== 'NONE' ? storeInfo?.image : imageName,
-  )
+  const { handlePreviousStep } = useJoin()
+  const { initImageUploadStatus, onImageLoadComplete } = useHandleImageStatus()
+  const { data: presignedURL } = useGetPresignedURL(storeId, imageName)
+  const { data: storeInfo } = useGetStoreInfo(storeId)
+  // prettier-ignore
+  const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage( storeId, presignedURL, imageName )
   const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
 
-  const onClickBackButton = () => router.back()
-
-  const onClickSelectButton = () => {
-    setShowToast(false)
-    sendRNFunction('accessGallery', storeId)
-    setIsLoading(true)
+  const onClickBackButton = () => {
+    if (page === 'home') router.back()
+    else handlePreviousStep()
   }
 
-  const onMessageEvent = (e: MessageEvent) => {
-    e.stopPropagation()
-    const message: { type: string; data: ImageUploadResultT } = JSON.parse(String(e.data))
-
-    if (message.type === 'getImageUploadResult') {
-      // eslint-disable-next-line prefer-destructuring
-      const data = message.data
-      if (!data.isSuccess) {
-        setIsLoading(false)
-        setShowToast(true)
-      } else if (data.fileFullName) {
-        setImageName(data.fileFullName)
-        putStoreImageMutate(undefined, {
-          onError: () => {
-            setIsLoading(false)
-            setShowToast(true)
-          },
-        })
-      }
-    }
+  const onClickSelectButton = () => {
+    setIsShownToast(false)
+    initImageUploadStatus()
+    sendRNFunction('accessGallery', storeId)
   }
 
   useEffect(() => {
-    window.addEventListener('message', onMessageEvent)
-    document.addEventListener('message', onMessageEvent as EventListener)
+    if (isSuccess === true)
+      putStoreImageMutate(undefined, {
+        onSuccess: () => {
+          if (page === 'join') router.push(`/${storeId}/home`)
+        },
+      })
+    else if (isSuccess === false) setIsShownToast(true)
+  }, [isSuccess])
+
+  useEffect(() => {
+    if (initialImageName) setImageName(initialImageName)
   }, [])
 
   return (
@@ -94,12 +93,12 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
             className={`w-full gap-spacing-03 ${page === 'join' && 'mt-12'}`}
           >
             <div className="w-full aspect-[3/2] max-h-[400px] relative overflow-hidden">
-              {storeInfo?.image === 'NONE' || imageInfo === undefined ? (
+              {storeInfo?.image === 'NONE' || imageInfo === undefined || imageInfo.length === 0 ? (
                 <Image
                   alt="store default image"
                   src={storeDefaultImage}
                   style={{ objectFit: 'contain', width: '100%' }}
-                  onLoadingComplete={() => setIsLoading(false)}
+                  onLoad={onImageLoadComplete}
                 />
               ) : (
                 <Image
@@ -111,7 +110,7 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
                     objectPosition: 'center',
                   }}
                   fill
-                  onLoadingComplete={() => setIsLoading(false)}
+                  onLoad={onImageLoadComplete}
                 />
               )}
               {(isLoadingImage || isLoading) && (
@@ -149,11 +148,11 @@ export default function ImageUploadScreen({ page, storeId }: ImageUploadScreenPr
           </Link>
         </FlexBox>
       </FlexBox>
-      {showToast && (
+      {isShownToast && (
         <ToastMessage
           icon="warning"
-          open={showToast}
-          setOpen={setShowToast}
+          open={isShownToast}
+          setOpen={setIsShownToast}
           message="다시 시도해주세요."
         />
       )}
