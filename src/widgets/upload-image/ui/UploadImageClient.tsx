@@ -1,5 +1,6 @@
 'use client'
 
+/* eslint-disable import/no-cycle */
 import { useEffect, useState } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
@@ -10,9 +11,8 @@ import { ToastMessage, sendRNFunction } from '@/shared'
 import { OrbitProgress } from 'react-loading-indicators'
 import storeDefaultImage from '@public/image/store_default_image.png'
 import { useAtom } from 'jotai'
-import { useGetStoreInfo } from '@/entities'
-// eslint-disable-next-line import/no-cycle
 import { useJoin } from '@/widgets'
+import { useGetStoreInfo } from '@/entities'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 import { useGetStoreImage } from '../model/useGetStoreImage'
 import { useGetPresignedURL } from '../model/useGetPresignedURL'

@@ -1,8 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ImageUploadResultT, useHandleStoreImage } from '@/features'
-import { useLoginToken } from '@/widgets'
+import { useLoginToken, useHandleStoreImage, ImageUploadResultT } from '@/widgets'
 
 interface TokenResultT {
   isSuccess: boolean

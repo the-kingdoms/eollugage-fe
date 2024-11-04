@@ -1,5 +1,5 @@
 import { getStoreInfo } from '@/entities/store/api/getStoreInfo'
-import ImageUploadScreen from '@/features/upload-image/ui/UploadImageScreen'
+import ImageUploadScreen from '@/widgets/upload-image/ui/UploadImageScreen'
 
 interface HomeUploadImagePageProps {
   params: {
