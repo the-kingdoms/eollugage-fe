@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 import { ImageUploadResultT, useHandleStoreImage } from '@/features'
 import { setTokenFromCookie } from '..'
+import { useLoginToken } from '@/widgets'
 
 interface TokenResultT {
   isSuccess: boolean
@@ -13,6 +14,7 @@ type MessageTypeT = 'getLoginToken' | 'getImageUploadResult'
 
 export default function RNListener() {
   const { onSuccessImageDownload, onFailImageDownload } = useHandleStoreImage()
+  const { onSuccessGetToken } = useLoginToken()
 
   const onMessageEvent = (e: MessageEvent) => {
     e.stopPropagation()
@@ -22,7 +24,7 @@ export default function RNListener() {
     switch (message.type) {
       case 'getLoginToken': {
         const tokenData = message.data as TokenResultT
-        if (tokenData.isSuccess && tokenData.token) setTokenFromCookie(tokenData.token, 7)
+        if (tokenData.isSuccess && tokenData.token) onSuccessGetToken(tokenData.token)
         break
       }
       case 'getImageUploadResult':

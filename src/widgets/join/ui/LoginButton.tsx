@@ -3,11 +3,9 @@
 import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import useJoin from '../hooks/useJoin'
-import { useLoginToken } from '../hooks/useLoginToken'
 
 export default function LoginButton() {
   const { handleNextStep } = useJoin()
-  useLoginToken()
 
   return (
     <Link
