@@ -1,4 +1,4 @@
-interface Relation {
+export interface RelationT {
   id: string
   storeId: string
   role: 'OWNER' | 'STAFF'
@@ -24,6 +24,6 @@ export interface UserInfo {
   name: string
   phone: string
   providerType: string
-  relationList: Relation[]
+  relationList: RelationT[]
   storeList: Store[]
 }

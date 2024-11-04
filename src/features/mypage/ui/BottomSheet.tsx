@@ -9,7 +9,7 @@ import {
   DrawerTrigger,
 } from '@/shared/ui/shadcn/drawer'
 import { TextField, Icon } from '@eolluga/eolluga-ui'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function BottomSheet({
   positionList,
@@ -24,23 +24,40 @@ export default function BottomSheet({
   isOpen: boolean
   closeBottomSheet: () => void
 }) {
-  const [positions, setPositions] = useState<PositionGroupType[]>(positionList)
+  const [positionStates, setPositionStates] = useState<{ [key: number]: string }>({})
   const [inputValue, setInputValue] = useState<string>('')
 
-  const handlePositionsChange = (value: string, index: number) => {
-    const updatedList = [...positionList]
-    updatedList[index].position = value
-    setPositions(updatedList)
+  useEffect(() => {
+    const initialStates = positionList.reduce(
+      (acc, position, idx) => {
+        acc[idx] = position.position
+        return acc
+      },
+      {} as { [key: number]: string },
+    )
+    setPositionStates(initialStates)
+  }, [positionList])
+
+  const handlePositionChange = (value: string, index: number) => {
+    setPositionStates(prevStates => ({
+      ...prevStates,
+      [index]: value,
+    }))
   }
 
-  const addNewPosition = (newPosition: string) => {
-    if (newPosition.trim() !== '') {
+  const updatePosition = () => {
+    if (inputValue.trim() !== '') {
       const newPositionItem: PositionGroupType = {
-        position: newPosition,
+        position: inputValue,
         items: [],
       }
       onAddPosition(newPositionItem)
+      setInputValue('')
     }
+    positionList.map((position, idx) => ({
+      ...position,
+      position: positionStates[idx] || position.position,
+    }))
     closeBottomSheet()
   }
 
@@ -57,11 +74,7 @@ export default function BottomSheet({
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
           <DrawerDescription />
-          <button
-            type="button"
-            onClick={() => addNewPosition(inputValue)}
-            className="absolute top-5 right-7"
-          >
+          <button type="button" onClick={updatePosition} className="absolute top-5 right-7">
             <span className="text-support-info body-03-medium">저장</span>
           </button>
         </DrawerHeader>
@@ -69,8 +82,8 @@ export default function BottomSheet({
           {positionList.map((position, idx) => (
             <div key={position.position} className="flex justify-between items-center px-5">
               <TextField
-                value={positions[idx].position}
-                onChange={e => handlePositionsChange(e.target.value, idx)}
+                value={positionStates[idx] || ''}
+                onChange={e => handlePositionChange(e.target.value, idx)}
                 size="M"
                 style="outlined"
                 placeholder="직책 입력"
@@ -83,7 +96,7 @@ export default function BottomSheet({
         </div>
 
         <div className="w-full border-t-2 fixed bottom-4 pt-3">
-          <div className=" px-4">
+          <div className="px-4">
             <TextField
               value={inputValue}
               onChange={e => setInputValue(e.target.value)}

@@ -16,5 +16,5 @@ export { storeInfoAtom } from './store/atoms/storeInfoAtom'
 
 export { default as fetchUserInfo } from './user/api/fetchUserInfo'
 export { default as useUser } from './user/model/useUser'
-export type { UserInfo } from './user/types/user'
+export type { UserInfo, RelationT } from './user/types/user'
 export { default as getHistory } from './history/api/getHistory'

@@ -4,49 +4,29 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
 import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
-import { PositionItem, PositionGroupType } from '@/shared/types/myPageTypes'
+import { PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
-import { useGetPosition } from '@/features/mypage/model/useGetPositions'
 import { usePutPosition } from '@/features/mypage/model/usePutPosition'
+import { usePostPosition } from '@/features/mypage/model/usePostPosition'
 
 export default function PositionWidget({
   storeId,
-  initialData,
+  data,
 }: {
   storeId: string
-  initialData: PositionItem[]
+  data: PositionGroupType[]
 }) {
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
-  const { data = initialData, error } = useGetPosition(storeId)
+  const [isModified, setIsModified] = useState(false)
   const putPosition = usePutPosition()
-
-  if (error) console.log(error)
-
-  function groupByPosition(initialPositions: PositionItem[]) {
-    const groupedPositions: PositionGroupType[] = initialPositions.reduce<PositionGroupType[]>(
-      (acc, item) => {
-        const group = acc.find(g => g.position === item.position)
-        if (group) {
-          group.items.push(item)
-        } else {
-          acc.push({ position: item.position, items: [item] })
-        }
-        return acc
-      },
-      [],
-    )
-    return groupedPositions
-  }
-
+  const postPosition = usePostPosition()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
-    if (data) {
-      setPositionList(groupByPosition(data))
-    }
-  }, [data])
+    setPositionList(data)
+  }, [])
 
   const openBottomSheet = () => {
     setIsOpen(true)
@@ -57,10 +37,24 @@ export default function PositionWidget({
 
   const addPosition = (newPosition: PositionGroupType) => {
     setPositionList(prevList => [...prevList, newPosition])
+    setIsModified(true)
   }
 
   const deletePosition = (position: string) => {
-    setPositionList(prevList => prevList.filter(employee => employee.position !== position))
+    setPositionList(prevList =>
+      prevList
+        .map(group =>
+          group.position === position
+            ? {
+                ...group,
+                position: '미지정',
+                items: group.items.map(item => ({ ...item, position: '미지정' })),
+              }
+            : group,
+        )
+        .filter(group => group.position !== position || group.position === '미지정'),
+    )
+    setIsModified(true)
   }
 
   const onDragEnd = useCallback(
@@ -77,21 +71,26 @@ export default function PositionWidget({
         destinationGroup.items.splice(destination.index, 0, movedItem)
         if (source.droppableId !== destination.droppableId) {
           movedItem.position = destination.droppableId
-          putPosition.mutate({
-            storeId,
-            memberId: movedItem.memberId,
-            position: destination.droppableId,
-          })
         }
         setPositionList(updatedList)
+        setIsModified(true)
       }
     },
     [positionList, putPosition, storeId],
   )
 
-  const postPositions = () => {
-    // 추후에 전체 근무자 리스트를 수정할 수 있는 엔드포인트가 개발되면 추가 예정
-    console.log('저장')
+  /* 저장을 눌렀을때 최종적으로 반영 */
+  const updatePositions = async () => {
+    if (isModified) {
+      const updatePromises = positionList.map((position, idx) =>
+        postPosition.mutate({
+          storeId,
+          memberId: position.items[idx].memberId,
+          position: position.items[idx].position,
+        }),
+      )
+      await Promise.all(updatePromises)
+    }
   }
 
   return (
@@ -100,8 +99,8 @@ export default function PositionWidget({
         leftIcon="chevron_left_outlined"
         title="근무자 직책 설정"
         onClickLeftIcon={() => push(`/${storeId}/mypage`)}
-        rightText="저장"
-        onClickRightText={postPositions}
+        rightText={isModified ? '저장' : ''}
+        onClickRightText={updatePositions}
       />
       <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
         <DragDropContext onDragEnd={onDragEnd}>
