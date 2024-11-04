@@ -6,10 +6,10 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ToastMessage } from '@/shared'
 import { useAtom } from 'jotai'
+import { RelationT } from '@/entities'
 import { usePostLogin } from '../model/usePostLogin'
 import { StoreT } from '../api/store'
 import { memberIdAtom } from '../atoms/joinAtoms'
-import { RelationT } from '@/entities'
 
 interface SignupNameProps {
   name: string

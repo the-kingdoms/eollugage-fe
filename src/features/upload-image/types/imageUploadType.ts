@@ -1,7 +1,9 @@
 interface ImageUploadResultT {
   isSuccess: boolean
-  reason?: string
+  reason?: UploadFailReasonT
   fileFullName?: string
 }
 
-export { type ImageUploadResultT }
+type UploadFailReasonT = 'upload-fail' | 'not-select' | 'presigned-url-error'
+
+export { type ImageUploadResultT, type UploadFailReasonT }

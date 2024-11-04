@@ -1,3 +1,4 @@
+import { getStoreInfo } from '@/entities/store/api/getStoreInfo'
 import ImageUploadScreen from '@/features/upload-image/ui/UploadImageScreen'
 
 interface HomeUploadImagePageProps {
@@ -6,6 +7,8 @@ interface HomeUploadImagePageProps {
   }
 }
 
-export default function HomeUploadImagePage({ params }: HomeUploadImagePageProps) {
-  return <ImageUploadScreen page="home" storeId={params.storeId} />
+export default async function HomeUploadImagePage({ params }: HomeUploadImagePageProps) {
+  const { image } = await getStoreInfo(params.storeId)
+
+  return <ImageUploadScreen storeId={params.storeId} initialImageName={image} />
 }

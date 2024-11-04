@@ -1,11 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { getImageFromS3 } from '../api/getStoreImage'
 
-export function useGetStoreImage(storeId: string, fileFullName: string | undefined) {
+export function useGetStoreImage(
+  storeId: string,
+  presignedURL: string | undefined,
+  fileFullName: string,
+) {
   const { data, isLoading } = useQuery({
-    queryKey: ['getStoreImage', storeId],
-    queryFn: () => getImageFromS3(fileFullName as string),
-    enabled: typeof fileFullName === 'string' && fileFullName !== 'NONE',
+    queryKey: ['getStoreImage', storeId, fileFullName],
+    queryFn: () => getImageFromS3(presignedURL ?? ''),
+    enabled: presignedURL !== undefined && presignedURL.length > 0 && fileFullName !== 'NONE',
   })
   return { data, isLoading }
 }

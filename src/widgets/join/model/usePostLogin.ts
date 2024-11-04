@@ -1,10 +1,10 @@
 import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { sendRNFunction, setTokenFromCookie } from '@/shared'
+import { RelationT } from '@/entities'
 import { postLogin } from '../api/postLogin'
 import { UserInfoT } from '../api/user'
 import { StoreT } from '../api/store'
-import { RelationT } from '@/entities'
 
 function usePostLogin(
   userInfo: UserInfoT,
