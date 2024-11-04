@@ -9,6 +9,7 @@ import { useAtom } from 'jotai'
 import { usePostLogin } from '../model/usePostLogin'
 import { StoreT } from '../api/store'
 import { memberIdAtom } from '../atoms/joinAtoms'
+import { RelationT } from '@/entities'
 
 interface SignupNameProps {
   name: string
@@ -33,11 +34,17 @@ export default function SignupName({
   const [, setMemberId] = useAtom(memberIdAtom)
   const router = useRouter()
 
-  const handleStoreListCheck = (storelist: StoreT[], memberId: string) => {
+  const handleStoreListCheck = (
+    storeList: StoreT[],
+    relationList: RelationT[],
+    memberId: string,
+  ) => {
     setMemberId(memberId)
-    if (storelist && storelist.length > 0) {
-      router.push(`/${storelist[0].storeId}/home`)
-    } else {
+    if (storeList && storeList.length > 0) {
+      router.push(`/${storeList[0].storeId}/home`)
+    } else if (relationList && relationList.length > 0)
+      router.push(`/${relationList[0].storeId}/home`)
+    else {
       handleNextStep()
     }
   }

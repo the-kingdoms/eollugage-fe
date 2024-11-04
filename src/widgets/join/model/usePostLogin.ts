@@ -4,10 +4,11 @@ import { sendRNFunction, setTokenFromCookie } from '@/shared'
 import { postLogin } from '../api/postLogin'
 import { UserInfoT } from '../api/user'
 import { StoreT } from '../api/store'
+import { RelationT } from '@/entities'
 
 function usePostLogin(
   userInfo: UserInfoT,
-  handleStoreListCheck: (storelist: StoreT[], memberId: string) => void,
+  handleStoreListCheck: (storelist: StoreT[], relationList: RelationT[], memberId: string) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onErrorCallback: (error: any) => void,
 ) {
@@ -25,8 +26,8 @@ function usePostLogin(
           },
         })
 
-        const { storeList, id } = response.data
-        handleStoreListCheck(storeList, id)
+        const { storeList, id, relationList } = response.data
+        handleStoreListCheck(storeList, relationList, id)
       } catch (error) {
         console.error('Failed to fetch storelist:', error)
       }
