@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
 import { isOwnerAtom, storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
@@ -16,7 +16,6 @@ export default function MyPageWidget({
   userData: UserInfo | undefined
   isOwner: boolean
 }) {
-  const router = useRouter()
   const [, setIsOwner] = useAtom(isOwnerAtom)
   const [, setStoreName] = useAtom(storeNameAtom)
   const [, setUserName] = useAtom(userNameAtom)
@@ -34,12 +33,12 @@ export default function MyPageWidget({
       {isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/position`)}>
+            <Link href={`/${storeId}/mypage/position`}>
               <Icon icon="id" />
-            </button>
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
+            </Link>
+            <Link href={`/${storeId}/mypage/setting`}>
               <Icon icon="gear" />
-            </button>
+            </Link>
           </div>
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="A" />
@@ -56,9 +55,9 @@ export default function MyPageWidget({
       {!isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
+            <Link href={`/${storeId}/mypage/setting`}>
               <Icon icon="gear" />
-            </button>
+            </Link>
           </div>
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="A" />
