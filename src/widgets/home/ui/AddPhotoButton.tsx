@@ -1,5 +1,5 @@
 import FlexBox from '@/shared/ui/Flexbox'
-import { Icon } from '@eolluga/eolluga-ui'
+import { Chip, Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 
 interface AddPhotoButtonProps {
@@ -14,6 +14,7 @@ export default function AddPhotoButton({ storeId }: AddPhotoButtonProps) {
       href={`/${storeId}/home/upload-image`}
     >
       <FlexBox direction="col" className="gap-2 w-full items-start">
+        <Chip size="S" state="enable" dismissible={false} label="권장" color="blue" readOnly />
         <div className="body-02-bold-compact">가게 사진을 손님들이 보고싶어 해요</div>
         <div className="body-01-medium-compact text-text-helper">가게 사진 추가하러 가기</div>
       </FlexBox>
