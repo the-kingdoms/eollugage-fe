@@ -5,7 +5,7 @@ import { ButtonMobile, TextArea, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'
-import { noticeAtom } from '../atoms/homeAtoms'
+import { storeInfoAtom } from '@/entities'
 import { usePutStoreDetail } from '../model/usePutStoreDetail'
 
 interface NoticeWidgetProps {
@@ -14,10 +14,11 @@ interface NoticeWidgetProps {
 
 export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
   const router = useRouter()
-  const [noticeText, setNoticeText] = useAtom(noticeAtom)
+  const [storeInfo] = useAtom(storeInfoAtom)
   const [buttonText, setButtonText] = useState('추가하기')
 
-  const { mutate } = usePutStoreDetail(noticeText, storeId)
+  const { mutate, updateNotice } = usePutStoreDetail(storeId)
+  const noticeText = storeInfo.internalNotice || ''
 
   useEffect(() => {
     if (noticeText.trim()) {
@@ -28,7 +29,7 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
   }, [])
 
   const handleTextChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setNoticeText(event.target.value)
+    updateNotice(event.target.value)
   }
 
   const handleFocus = () => {
