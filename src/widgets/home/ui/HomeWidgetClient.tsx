@@ -8,7 +8,6 @@ import TodayWork from '@/widgets/home/ui/TodayWork'
 import OrderList from '@/widgets/home/ui/OrderList'
 import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/shared'
 import { storeInfoAtom, StoreInfoT } from '@/entities'
 import { useHydrateAtoms } from 'jotai/utils'
 import { useGetOrder } from '../model/useGetOrder'
@@ -17,10 +16,14 @@ import { useGetTodayDuty } from '../model/useGetTodyDuty'
 interface HomeWidgetClientProps {
   storeId: string
   initialStoreInfo: StoreInfoT
+  isOwner: boolean
 }
 
-export default function HomeWidgetClient({ storeId, initialStoreInfo }: HomeWidgetClientProps) {
-  const [isOwner] = useAtom(isOwnerAtom)
+export default function HomeWidgetClient({
+  storeId,
+  initialStoreInfo,
+  isOwner = false,
+}: HomeWidgetClientProps) {
   useHydrateAtoms([[storeInfoAtom, initialStoreInfo]])
 
   const { data: orderList } = useGetOrder(storeId)

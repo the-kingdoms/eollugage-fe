@@ -1,15 +1,20 @@
 import { getStoreInfo } from '@/entities/store/api/getStoreInfo'
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
-import { StoreInfoT } from '@/entities'
+import { fetchUserInfo, StoreInfoT } from '@/entities'
 import HomeWidgetClient from './HomeWidgetClient'
+import { redirect } from 'next/navigation'
 
 interface HomeWidgetServerProps {
   storeId: string
 }
 
 export async function HomeWidgetServer({ storeId }: HomeWidgetServerProps) {
-  const queryClient = new QueryClient()
+  const userInfo = await fetchUserInfo()
+  if (userInfo === undefined) return null
 
+  const isOwner = userInfo.storeList.length > 0
+
+  const queryClient = new QueryClient()
   await queryClient.prefetchQuery({
     queryKey: ['getStoreInfo', storeId],
     queryFn: () => getStoreInfo(storeId),
@@ -18,7 +23,7 @@ export async function HomeWidgetServer({ storeId }: HomeWidgetServerProps) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <HomeWidgetClient storeId={storeId} initialStoreInfo={storeInfo} />
+      <HomeWidgetClient storeId={storeId} initialStoreInfo={storeInfo} isOwner={isOwner} />
     </HydrationBoundary>
   )
 }
