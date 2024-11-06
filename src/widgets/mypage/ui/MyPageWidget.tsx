@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
-import { isOwnerAtom, storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
+import { storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
 import { UserInfo } from '@/entities'
 import { useEffect } from 'react'
 import Link from 'next/link'
@@ -18,13 +18,11 @@ export default function MyPageWidget({
   isOwner: boolean
 }) {
   const router = useRouter()
-  const [, setIsOwner] = useAtom(isOwnerAtom)
   const [, setStoreName] = useAtom(storeNameAtom)
   const [, setUserName] = useAtom(userNameAtom)
 
   useEffect(() => {
     if (userData) {
-      setIsOwner(isOwner)
       setStoreName(userData.storeList[0]?.name || '')
       setUserName(userData.name || '')
     }
