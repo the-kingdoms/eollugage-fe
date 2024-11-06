@@ -2,7 +2,6 @@ import { getStoreInfo } from '@/entities/store/api/getStoreInfo'
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 import { fetchUserInfo, StoreInfoT } from '@/entities'
 import HomeWidgetClient from './HomeWidgetClient'
-import { redirect } from 'next/navigation'
 
 interface HomeWidgetServerProps {
   storeId: string

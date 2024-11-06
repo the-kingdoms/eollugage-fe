@@ -6,7 +6,6 @@ import { useParams, useRouter } from 'next/navigation'
 import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
 import { userNameAtom } from '@/shared/atoms/globalAtom'
 import { useDeleteUser } from '@/widgets/setting/model/useDeleteUser'
-import { deleteTokenFromCookie, sendRNFunction } from '@/shared'
 
 export default function Quit() {
   const { push } = useRouter()

@@ -8,7 +8,7 @@ interface JoinUploadImagePageProps {
 }
 
 export default async function JoinUploadImagePage({ searchParams }: JoinUploadImagePageProps) {
-  const storeId = searchParams.storeId
+  const { storeId } = searchParams
   const { image } = await getStoreInfo(storeId)
 
   return <ImageUploadScreen page="join" storeId={storeId} initialImageName={image} />

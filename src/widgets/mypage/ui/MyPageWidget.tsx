@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
 import { storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
@@ -17,7 +16,6 @@ export default function MyPageWidget({
   userData: UserInfo | undefined
   isOwner: boolean
 }) {
-  const router = useRouter()
   const [, setStoreName] = useAtom(storeNameAtom)
   const [, setUserName] = useAtom(userNameAtom)
 
