@@ -18,7 +18,7 @@ export default function UserProfile({
   handlePreviousStep,
 }: UserProfileProps) {
   const router = useRouter()
-  const { isOwner, handleNextStep } = useJoin()
+  const { isOwner } = useJoin()
   return (
     <>
       <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={handlePreviousStep} />
@@ -39,7 +39,11 @@ export default function UserProfile({
             state="enabled"
             type="text"
             text1={isOwner ? '프로필 생성하기' : '출근하기'}
-            onClick={isOwner ? handleNextStep : () => router.push(`/${storeId}/home`)}
+            onClick={
+              isOwner
+                ? () => router.push(`join/upload-image?storeId=${storeId}`)
+                : () => router.push(`/${storeId}/home`)
+            }
           />
         </FlexBox>
       </FlexBox>

@@ -86,7 +86,6 @@ export default function JoinPage() {
           handlePreviousStep={handlePreviousStep}
         />
       )}
-      {step === 5 && isOwner && <UploadImageScreen page="join" storeId={storeId} />}
     </FlexBox>
   )
 }

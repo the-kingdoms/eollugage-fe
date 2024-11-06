@@ -46,7 +46,7 @@ export default function ImageUploadClient({
 
   const onClickBackButton = () => {
     if (page === 'home') router.back()
-    else handlePreviousStep()
+    else router.replace('/join')
   }
 
   const onClickSelectButton = () => {
