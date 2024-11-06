@@ -6,6 +6,7 @@ import { Icon, Avatar } from '@eolluga/eolluga-ui'
 import { isOwnerAtom, storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
 import { UserInfo } from '@/entities'
 import { useEffect } from 'react'
+import Link from 'next/link'
 
 export default function MyPageWidget({
   storeId,
@@ -33,16 +34,16 @@ export default function MyPageWidget({
     <div className="flex flex-col min-h-screen justify-between">
       {isOwner && (
         <main className="flex-grow">
-          <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/position`)}>
+          <div className="h-8 flex justify-end gap-4 mt-4 mr-4">
+            <Link href={`/${storeId}/mypage/position`}>
               <Icon icon="id" />
-            </button>
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
+            </Link>
+            <Link href={`/${storeId}/mypage/setting`}>
               <Icon icon="gear" />
-            </button>
+            </Link>
           </div>
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
-            <Avatar icon="account" input="text" size="M" text="A" />
+            <Avatar icon="account" input="text" size="M" text="" />
             <div className="ml-4">
               <h2 className="body-03-bold text-text-primary">{userData?.storeList[0].name}</h2>
               <p className="text-text-secondary body-01-bold">
@@ -56,12 +57,12 @@ export default function MyPageWidget({
       {!isOwner && (
         <main className="flex-grow">
           <div className="h-[32px] flex justify-end gap-4 mt-4 mr-4">
-            <button type="button" onClick={() => router.push(`/${storeId}/mypage/setting`)}>
+            <Link href={`/${storeId}/mypage/setting`}>
               <Icon icon="gear" />
-            </button>
+            </Link>
           </div>
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
-            <Avatar icon="account" input="text" size="M" text="A" />
+            <Avatar icon="account" input="text" size="M" text="" />
             <div className="ml-4">
               <h2 className="body-03-bold text-text-primary">{userData?.name}</h2>
               <p className="text-text-secondary body-01-bold">
