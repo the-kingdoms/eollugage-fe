@@ -40,13 +40,10 @@ export default function SignupName({
     memberId: string,
   ) => {
     setMemberId(memberId)
-    if (storeList && storeList.length > 0) {
-      router.push(`/${storeList[0].storeId}/home`)
-    } else if (relationList && relationList.length > 0)
+    if (storeList && storeList.length > 0) router.push(`/${storeList[0].storeId}/home`)
+    else if (relationList && relationList.length > 0)
       router.push(`/${relationList[0].storeId}/home`)
-    else {
-      handleNextStep()
-    }
+    else handleNextStep()
   }
 
   const { mutate } = usePostLogin({ name, phone }, handleStoreListCheck, error => {

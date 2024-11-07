@@ -3,7 +3,7 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import SignupName from '@/widgets/join/ui/SignupName'
 import { useEffect, useState } from 'react'
-import { RoleSelection, storeNameAtom, useJoin, UploadImageScreen } from '@/widgets'
+import { RoleSelection, storeNameAtom, useJoin } from '@/widgets'
 import { useRouter } from 'next/navigation'
 import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
@@ -11,7 +11,7 @@ import { useAtom } from 'jotai'
 import { storeIdAtom } from '@/widgets/join/atoms/joinAtoms'
 
 export default function JoinPage() {
-  const { isOwner, step, handleNextStep, handlePreviousStep } = useJoin()
+  const { step, handleNextStep, handlePreviousStep } = useJoin()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [store, setStore] = useAtom(storeNameAtom)
@@ -86,7 +86,6 @@ export default function JoinPage() {
           handlePreviousStep={handlePreviousStep}
         />
       )}
-      {step === 5 && isOwner && <UploadImageScreen page="join" storeId={storeId} />}
     </FlexBox>
   )
 }

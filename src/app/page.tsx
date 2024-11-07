@@ -6,9 +6,10 @@ import { fetchUserInfo } from '@/entities'
 import styles from './page.module.css'
 
 export default async function Home() {
-  const accountInfo = await fetchUserInfo()
-  if (accountInfo && accountInfo.relationList.length > 0 && accountInfo.relationList[0].storeId)
-    redirect(`/${accountInfo.relationList[0].storeId}/home`)
+  const userInfo = await fetchUserInfo()
+  if (userInfo && userInfo.storeList.length > 0) redirect(`/${userInfo.storeList[0].storeId}/home`)
+  if (userInfo && userInfo.relationList.length > 0 && userInfo.relationList[0].storeId)
+    redirect(`/${userInfo.relationList[0].storeId}/home`)
 
   return (
     <FlexBox
