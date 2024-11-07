@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { deleteTokenFromCookie, sendRNFunction } from '@/shared'
 import { deleteUser } from '../api/deleteUser'
 
 function useDeleteUser() {
@@ -8,6 +9,8 @@ function useDeleteUser() {
     mutationKey: ['deleteUser'],
     mutationFn: () => deleteUser(),
     onSuccess: () => {
+      deleteTokenFromCookie()
+      sendRNFunction('deleteLoginToken')
       replace('/')
     },
   })

@@ -1,7 +1,6 @@
 import { useCallback } from 'react'
 import { useAtom } from 'jotai'
-import { isOwnerAtom } from '@/shared'
-import { stepAtom } from '../atoms/joinAtoms'
+import { isOwnerAtom, stepAtom } from '../atoms/joinAtoms'
 
 export default function useJoin() {
   const [step, setStep] = useAtom(stepAtom)
