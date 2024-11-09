@@ -11,7 +11,6 @@ import { ToastMessage, sendRNFunction } from '@/shared'
 import { OrbitProgress } from 'react-loading-indicators'
 import storeDefaultImage from '@public/image/store_default_image.png'
 import { useAtom } from 'jotai'
-import { useJoin } from '@/widgets'
 import { useGetStoreInfo } from '@/entities'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 import { useGetStoreImage } from '../model/useGetStoreImage'
@@ -36,7 +35,6 @@ export default function ImageUploadClient({
   const [isShownToast, setIsShownToast] = useState<boolean>(false)
 
   const router = useRouter()
-  const { handlePreviousStep } = useJoin()
   const { initImageUploadStatus, onImageLoadComplete } = useHandleImageStatus()
   const { data: presignedURL } = useGetPresignedURL(storeId, imageName)
   const { data: storeInfo } = useGetStoreInfo(storeId)
@@ -46,7 +44,7 @@ export default function ImageUploadClient({
 
   const onClickBackButton = () => {
     if (page === 'home') router.back()
-    else handlePreviousStep()
+    else router.replace('/join')
   }
 
   const onClickSelectButton = () => {

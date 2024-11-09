@@ -1,4 +1,4 @@
-import HomeWidget from '@/widgets/home/ui/HomeWidget'
+import { HomeWidgetServer } from '@/widgets'
 
 interface HomePageProps {
   params: {
@@ -7,5 +7,5 @@ interface HomePageProps {
 }
 
 export default function HomePage({ params }: HomePageProps) {
-  return <HomeWidget storeId={params.storeId} />
+  return <HomeWidgetServer storeId={params.storeId} />
 }
