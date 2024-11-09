@@ -8,7 +8,6 @@ import { PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
 import { usePutPosition } from '@/features/mypage/model/usePutPosition'
-import { usePostPosition } from '@/features/mypage/model/usePostPosition'
 
 export default function PositionWidget({
   storeId,
@@ -21,12 +20,11 @@ export default function PositionWidget({
   const [isOpen, setIsOpen] = useState(false)
   const [isModified, setIsModified] = useState(false)
   const putPosition = usePutPosition()
-  const postPosition = usePostPosition()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
     setPositionList(data)
-  }, [])
+  }, [data])
 
   const openBottomSheet = () => {
     setIsOpen(true)
@@ -41,19 +39,33 @@ export default function PositionWidget({
   }
 
   const deletePosition = (position: string) => {
-    setPositionList(prevList =>
-      prevList
-        .map(group =>
+    setPositionList(prevList => {
+      let unassignedGroup = prevList.find(group => group.position === '미지정')
+      const itemsToMove = prevList.find(group => group.position === position)!.items || []
+
+      if (unassignedGroup) {
+        // '미지정' 그룹이 이미 존재하는 경우, 삭제 대상 그룹의 아이템들을 미지정 그룹으로 이동
+        unassignedGroup = {
+          ...unassignedGroup,
+          items: [...unassignedGroup.items, ...itemsToMove],
+        }
+
+        // 기존 리스트에서 삭제하려는 그룹을 제거하고, '미지정' 그룹을 업데이트하여 반환
+        return prevList
+          .filter(group => group.position !== position)
+          .map(group => (group.position === '미지정' ? unassignedGroup : group))
+      } else {
+        // '미지정' 그룹이 없는 경우, 삭제 대상 그룹의 포지션을 '미지정'으로 변경
+        return prevList.map(group =>
           group.position === position
             ? {
                 ...group,
                 position: '미지정',
-                items: group.items.map(item => ({ ...item, position: '미지정' })),
               }
             : group,
         )
-        .filter(group => group.position !== position || group.position === '미지정'),
-    )
+      }
+    })
     setIsModified(true)
   }
 
@@ -81,15 +93,24 @@ export default function PositionWidget({
 
   /* 저장을 눌렀을때 최종적으로 반영 */
   const updatePositions = async () => {
-    if (isModified) {
-      const updatePromises = positionList.map((position, idx) =>
-        postPosition.mutate({
-          storeId,
-          memberId: position.items[idx].memberId,
-          position: position.items[idx].position,
-        }),
+    // 현재 상태의 positionList와 props로 받아온 data를 비교하여 변경된 포지션만 업데이트
+    const changedPositions = positionList.filter(group => {
+      return data.filter(e => e.position !== group.position)
+    })
+    console.log(changedPositions)
+    if (isModified && changedPositions.length > 0) {
+      const updatePromises = changedPositions.flatMap(group =>
+        group.items.map(item =>
+          putPosition.mutate({
+            storeId,
+            memberId: item.memberId,
+            position: group.position,
+          }),
+        ),
       )
+
       await Promise.all(updatePromises)
+      setIsModified(false)
     }
   }
 
