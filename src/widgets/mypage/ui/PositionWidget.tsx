@@ -19,7 +19,7 @@ export default function PositionWidget({
   const { push } = useRouter()
   const [isOpen, setIsOpen] = useState(false)
   const [isModified, setIsModified] = useState(false)
-  const putPosition = usePutPosition()
+  const { mutate } = usePutPosition()
   const [positionList, setPositionList] = useState<PositionGroupType[]>([])
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function PositionWidget({
 
   const deletePosition = (position: string) => {
     setPositionList(prevList => {
-      let unassignedGroup = prevList.find(group => group.position === '미지정')
+      let unassignedGroup = prevList.find(group => group.position === '미지정') as PositionGroupType
       const itemsToMove = prevList.find(group => group.position === position)!.items || []
 
       if (unassignedGroup) {
@@ -88,7 +88,7 @@ export default function PositionWidget({
         setIsModified(true)
       }
     },
-    [positionList, putPosition, storeId],
+    [positionList, storeId],
   )
 
   /* 저장을 눌렀을때 최종적으로 반영 */
@@ -101,7 +101,7 @@ export default function PositionWidget({
     if (isModified && changedPositions.length > 0) {
       const updatePromises = changedPositions.flatMap(group =>
         group.items.map(item =>
-          putPosition.mutate({
+          mutate({
             storeId,
             memberId: item.memberId,
             position: group.position,
