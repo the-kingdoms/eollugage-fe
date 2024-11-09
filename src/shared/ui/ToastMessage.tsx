@@ -12,7 +12,7 @@ interface ToastMessageProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ToastMessage = ({ message, icon, open, setOpen }: ToastMessageProps) => {
+function ToastMessage({ message, icon, open, setOpen }: ToastMessageProps) {
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   useEffect(() => {

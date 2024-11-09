@@ -41,7 +41,7 @@ export default function PositionWidget({
   const deletePosition = (position: string) => {
     setPositionList(prevList => {
       let unassignedGroup = prevList.find(group => group.position === '미지정') as PositionGroupType
-      const itemsToMove = prevList.find(group => group.position === position)!.items || []
+      const itemsToMove = prevList.find(group => group.position === position)?.items || []
 
       if (unassignedGroup) {
         // '미지정' 그룹이 이미 존재하는 경우, 삭제 대상 그룹의 아이템들을 미지정 그룹으로 이동
@@ -49,22 +49,20 @@ export default function PositionWidget({
           ...unassignedGroup,
           items: [...unassignedGroup.items, ...itemsToMove],
         }
-
         // 기존 리스트에서 삭제하려는 그룹을 제거하고, '미지정' 그룹을 업데이트하여 반환
         return prevList
           .filter(group => group.position !== position)
           .map(group => (group.position === '미지정' ? unassignedGroup : group))
-      } else {
-        // '미지정' 그룹이 없는 경우, 삭제 대상 그룹의 포지션을 '미지정'으로 변경
-        return prevList.map(group =>
-          group.position === position
-            ? {
-                ...group,
-                position: '미지정',
-              }
-            : group,
-        )
       }
+      // '미지정' 그룹이 없는 경우, 삭제 대상 그룹의 포지션을 '미지정'으로 변경
+      return prevList.map(group =>
+        group.position === position
+          ? {
+              ...group,
+              position: '미지정',
+            }
+          : group,
+      )
     })
     setIsModified(true)
   }
@@ -94,10 +92,9 @@ export default function PositionWidget({
   /* 저장을 눌렀을때 최종적으로 반영 */
   const updatePositions = async () => {
     // 현재 상태의 positionList와 props로 받아온 data를 비교하여 변경된 포지션만 업데이트
-    const changedPositions = positionList.filter(group => {
-      return data.filter(e => e.position !== group.position)
-    })
-    console.log(changedPositions)
+    const changedPositions = positionList.filter(group =>
+      data.some(e => e.position !== group.position),
+    )
     if (isModified && changedPositions.length > 0) {
       const updatePromises = changedPositions.flatMap(group =>
         group.items.map(item =>

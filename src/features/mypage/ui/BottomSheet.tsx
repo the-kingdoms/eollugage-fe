@@ -28,9 +28,7 @@ export default function BottomSheet({
   const [inputValue, setInputValue] = useState<string>('')
 
   useEffect(() => {
-    const initialStates = positionList.map(e => {
-      return e.position
-    })
+    const initialStates = positionList.map(e => e.position)
     setPositionStates(initialStates)
   }, [])
 
