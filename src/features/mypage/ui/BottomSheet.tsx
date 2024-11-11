@@ -65,7 +65,7 @@ export default function BottomSheet({
       <DrawerTrigger asChild>
         <Button variant="outline">직책 선택</Button>
       </DrawerTrigger>
-      <DrawerContent className="h-5/6" aria-describedby="set-positions">
+      <DrawerContent className="top-0 left-0 w-full" aria-describedby="set-positions">
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
           <DrawerDescription />
@@ -89,8 +89,7 @@ export default function BottomSheet({
             </div>
           ))}
         </div>
-
-        <div className="w-full border-t-2 fixed bottom-4 pt-3">
+        <div className="w-full border-t-2 fixed bottom-4 pt-3 bg-white">
           <div className="px-4">
             <TextField
               value={inputValue}
