@@ -122,16 +122,25 @@ export default function PositionWidget({
       />
       <div style={{ height: 'calc(100vh - 150px)' }} className="mt-4 overflow-y-auto">
         <DragDropContext onDragEnd={onDragEnd}>
-          {positionList.map((group, index) => (
-            <PositionGroup
-              key={group.position}
-              id={group.position}
-              position={group.position}
-              items={group.items}
-              index={index}
-              length={positionList.length}
-            />
-          ))}
+          {positionList.length > 0 ? (
+            positionList.map((group, index) => (
+              <PositionGroup
+                key={group.position}
+                id={group.position}
+                position={group.position}
+                items={group.items}
+                index={index}
+                length={positionList.length}
+              />
+            ))
+          ) : (
+            <div
+              style={{ height: 'calc(100vh - 200px)' }}
+              className="flex justify-center items-center"
+            >
+              <p className="text-text-secondary">가게에 직원이 아직 없어요</p>
+            </div>
+          )}
         </DragDropContext>
       </div>
       <footer className="w-full py-3 px-4 fixed bottom-4">

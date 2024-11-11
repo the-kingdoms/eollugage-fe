@@ -65,7 +65,7 @@ export default function BottomSheet({
       <DrawerTrigger asChild>
         <Button variant="outline">직책 선택</Button>
       </DrawerTrigger>
-      <DrawerContent className="top-0 left-0 w-full" aria-describedby="set-positions">
+      <DrawerContent className="h-3/5 w-full" aria-describedby="set-positions">
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
           <DrawerDescription />
@@ -73,21 +73,27 @@ export default function BottomSheet({
             <span className="text-support-info body-03-medium">저장</span>
           </button>
         </DrawerHeader>
-        <div className="flex flex-col space-y-4 justify-between">
-          {positionStates.map(position => (
-            <div key={position} className="flex justify-between items-center px-5">
-              <TextField
-                value={position}
-                onChange={e => handlePositionChange(e.target.value)}
-                size="M"
-                style="outlined"
-                placeholder="직책 입력"
-              />
-              <button type="button" onClick={() => handleDelete(position)} className="p-3">
-                <Icon icon="delete" />
-              </button>
+        <div className="flex flex-col space-y-4 justify-between h-full">
+          {positionStates.length > 0 ? (
+            positionStates.map(position => (
+              <div key={position} className="flex justify-between items-center px-5">
+                <TextField
+                  value={position}
+                  onChange={e => handlePositionChange(e.target.value)}
+                  size="M"
+                  style="outlined"
+                  placeholder="직책 입력"
+                />
+                <button type="button" onClick={() => handleDelete(position)} className="p-3">
+                  <Icon icon="delete" />
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="flex justify-center items-center h-3/4">
+              <p className="text-text-secondary">추가된 직책이 아직 없어요</p>
             </div>
-          ))}
+          )}
         </div>
         <div className="w-full border-t-2 fixed bottom-4 pt-3 bg-white">
           <div className="px-4">
