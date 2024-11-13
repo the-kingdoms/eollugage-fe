@@ -24,24 +24,18 @@ export default function BottomSheet({
   isOpen: boolean
   closeBottomSheet: () => void
 }) {
-  const [positionStates, setPositionStates] = useState<{ [key: number]: string }>({})
+  const [positionStates, setPositionStates] = useState<string[]>([])
   const [inputValue, setInputValue] = useState<string>('')
 
   useEffect(() => {
-    const initialStates = positionList.reduce(
-      (acc, position, idx) => {
-        acc[idx] = position.position
-        return acc
-      },
-      {} as { [key: number]: string },
-    )
+    const initialStates = positionList.map(e => e.position)
     setPositionStates(initialStates)
-  }, [positionList])
+  }, [])
 
-  const handlePositionChange = (value: string, index: number) => {
+  const handlePositionChange = (value: string) => {
     setPositionStates(prevStates => ({
       ...prevStates,
-      [index]: value,
+      value,
     }))
   }
 
@@ -62,6 +56,7 @@ export default function BottomSheet({
   }
 
   const handleDelete = (id: string) => {
+    setPositionStates(prevStates => prevStates.filter(position => position !== id))
     onDeletePosition(id)
   }
 
@@ -79,16 +74,16 @@ export default function BottomSheet({
           </button>
         </DrawerHeader>
         <div className="flex flex-col space-y-4 justify-between">
-          {positionList.map((position, idx) => (
-            <div key={position.position} className="flex justify-between items-center px-5">
+          {positionStates.map(position => (
+            <div key={position} className="flex justify-between items-center px-5">
               <TextField
-                value={positionStates[idx] || ''}
-                onChange={e => handlePositionChange(e.target.value, idx)}
+                value={position}
+                onChange={e => handlePositionChange(e.target.value)}
                 size="M"
                 style="outlined"
                 placeholder="직책 입력"
               />
-              <button type="button" onClick={() => handleDelete(position.position)} className="p-3">
+              <button type="button" onClick={() => handleDelete(position)} className="p-3">
                 <Icon icon="delete" />
               </button>
             </div>
