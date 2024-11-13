@@ -1,26 +1,18 @@
 'use client'
 
 /* eslint-disable import/no-cycle */
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
-import { ButtonMobile, Icon, TopBar } from '@eolluga/eolluga-ui'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ToastMessage, sendRNFunction } from '@/shared'
-import { OrbitProgress } from 'react-loading-indicators'
-import storeDefaultImage from '@public/image/store_default_image.png'
+import { TopBar } from '@eolluga/eolluga-ui'
 import { useAtom } from 'jotai'
 import { useGetStoreInfo } from '@/entities'
-import { usePutStoreImage } from '../model/usePutStoreImage'
 import { useGetStoreImage } from '../model/useGetStoreImage'
 import { useGetPresignedURL } from '../model/useGetPresignedURL'
-import useHandleImageStatus from '../model/useHandleStoreImage'
-import { imageNameAtom, isImageLoadingAtom, isSuccessAtom } from '../atoms/uploadImageAtoms'
+import { imageNameAtom, isImageLoadingAtom } from '../atoms/uploadImageAtoms'
 import ImageTitle from './ImageTitle'
 import ImageContainer from './ImageContainer'
 import ImageControlButtons from './ImageControlButtons'
-import ImageToastMessage from './ImageToastMessage'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -33,17 +25,14 @@ export default function ImageUploadClient({
   storeId,
   initialImageName,
 }: ImageUploadScreenProps) {
-  const [isSuccess] = useAtom(isSuccessAtom)
   const [imageName, setImageName] = useAtom(imageNameAtom)
   const [isLoading] = useAtom(isImageLoadingAtom)
 
   const router = useRouter()
-  const { initImageUploadStatus, onImageLoadComplete } = useHandleImageStatus()
   const { data: presignedURL } = useGetPresignedURL(storeId, imageName)
   const { data: storeInfo } = useGetStoreInfo(storeId)
   // prettier-ignore
   const { data: imageInfo, isLoading: isLoadingImage } = useGetStoreImage( storeId, presignedURL, imageName )
-  const { mutate: putStoreImageMutate } = usePutStoreImage(imageName, storeInfo, storeId)
 
   const onClickBackButton = () => {
     if (page === 'home') router.replace(`/${storeId}/home`)
@@ -75,8 +64,7 @@ export default function ImageUploadClient({
           />
         </FlexBox>
       </FlexBox>
-      <ImageControlButtons storeId={storeId} imageInfo={storeInfo?.image} />
-      <ImageToastMessage />
+      <ImageControlButtons storeId={storeId} imageInfo={storeInfo?.image} storeInfo={storeInfo} />
     </FlexBox>
   )
 }
