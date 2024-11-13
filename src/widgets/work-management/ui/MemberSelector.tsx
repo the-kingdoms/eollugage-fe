@@ -1,9 +1,9 @@
 import { useAtomValue } from 'jotai'
 import { useMembers } from '@/entities'
+import { Flexbox } from '@/shared'
 import MemberList from './MemberList'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import formatPhoneNumber from '../utils/formatPhoneNumber'
-import { Flexbox } from '@/shared'
 
 export default function MemberSelector({ storeId }: { storeId: string }) {
   const { members } = useMembers(storeId)
