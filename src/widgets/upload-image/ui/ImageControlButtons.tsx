@@ -2,23 +2,36 @@ import { Flexbox, sendRNFunction } from '@/shared'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import { StoreInfoT } from '@/entities'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import useHandleStoreImage from '../model/useHandleStoreImage'
 import { usePutStoreImage } from '../model/usePutStoreImage'
 import ImageErrorDialog from './ImageErrorDialog'
+import ImageSkipDialog from './ImageSkipDialog'
 
 interface ImageControlButtonsProps {
+  page: 'home' | 'join'
   storeId: string
   imageInfo: undefined | string
   storeInfo: undefined | StoreInfoT
 }
 
 export default function ImageControlButtons({
+  page,
   storeId,
   imageInfo,
   storeInfo,
 }: ImageControlButtonsProps) {
+  const [showSkipDialog, setShowSkipDialog] = useState<boolean>(false)
+
+  const router = useRouter()
   const { initImageUploadStatus } = useHandleStoreImage()
   const { mutate: putStoreImageMutate } = usePutStoreImage(imageInfo, storeInfo, storeId)
+
+  const onClickLaterButton = () => {
+    router.prefetch(`/${storeId}/home`)
+    setShowSkipDialog(true)
+  }
 
   const onClickSelectButton = () => {
     initImageUploadStatus()
@@ -40,13 +53,22 @@ export default function ImageControlButtons({
             onClick={onClickSelectButton}
           />
           <Flexbox className="w-full justify-center">
-            <Link
-              href={`/${storeId}/home`}
-              replace
-              className="py-spacing-03 label-02-bold text-text-disabled"
-            >
-              나중에 추가하기
-            </Link>
+            {page === 'join' ? (
+              <button
+                type="button"
+                onClick={onClickLaterButton}
+                className="py-spacing-03 label-02-bold text-text-disabled"
+              >
+                나중에 추가하기
+              </button>
+            ) : (
+              <Link
+                href={`/${storeId}/home`}
+                className="py-spacing-03 label-02-bold text-text-disabled"
+              >
+                나중에 추가하기
+              </Link>
+            )}
           </Flexbox>
         </Flexbox>
       ) : (
@@ -70,7 +92,14 @@ export default function ImageControlButtons({
           </Flexbox>
         </Flexbox>
       )}
+
       <ImageErrorDialog onRetry={onClickSelectButton} />
+      <ImageSkipDialog
+        storeId={storeId}
+        isShowDialog={showSkipDialog}
+        setIsShowDialog={setShowSkipDialog}
+        onSelectImage={onClickSelectButton}
+      />
     </Flexbox>
   )
 }

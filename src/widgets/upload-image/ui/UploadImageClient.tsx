@@ -64,7 +64,12 @@ export default function ImageUploadClient({
           />
         </FlexBox>
       </FlexBox>
-      <ImageControlButtons storeId={storeId} imageInfo={storeInfo?.image} storeInfo={storeInfo} />
+      <ImageControlButtons
+        page={page}
+        storeId={storeId}
+        imageInfo={storeInfo?.image}
+        storeInfo={storeInfo}
+      />
     </FlexBox>
   )
 }
