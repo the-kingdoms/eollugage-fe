@@ -7,7 +7,7 @@ export default async function WorkManagement({ storeId }: { storeId: string }) {
   if (userInfo === undefined) return null
 
   return userInfo.relationList.filter(relation => relation.storeId === storeId)[0].role ===
-    'OWNER' ? (
+    'Member' ? (
     <WorkManagementOwner storeId={storeId} />
   ) : (
     <WorkManagementMember storeId={storeId} userInfo={userInfo} />
