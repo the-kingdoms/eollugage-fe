@@ -1,8 +1,8 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { axiosServerInstance } from '@/shared'
 import { PutHistory } from '../types/reqBody'
-import { revalidatePath } from 'next/cache'
 
 const putHistory = async (
   storeId: string | null,
