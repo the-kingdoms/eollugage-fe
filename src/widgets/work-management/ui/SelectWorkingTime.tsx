@@ -33,7 +33,7 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
       {/* 출근 시간 */}
       <div className="space-y-1">
         <FormLabel className="body-02-regular text-[#6F6F6F]">출근 시간</FormLabel>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           {/* 출근 시간: 시 */}
           <FormField
             control={form.control}
@@ -52,7 +52,7 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
               />
             )}
           />
-          <span className="mx-2">:</span>
+
           {/* 출근 시간: 분 */}
           <FormField
             control={form.control}
@@ -77,7 +77,7 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
       {/* 퇴근 시간 */}
       <div className="space-y-1">
         <FormLabel className="body-02-regular mt-4 text-[#6F6F6F]">퇴근 시간</FormLabel>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           {/* 퇴근 시간: 시 */}
           <FormField
             control={form.control}
@@ -96,7 +96,7 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
               />
             )}
           />
-          <span className="mx-2">:</span>
+
           {/* 퇴근 시간: 분 */}
           <FormField
             control={form.control}
