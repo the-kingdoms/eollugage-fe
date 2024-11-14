@@ -68,10 +68,10 @@ export default function AttendanceFormClient({
       form.setValue('memberId', editingHistory?.relation?.member?.id)
       form.setValue('workingDate', new Date(editingHistory.date))
       form.setValue('workingTime', {
-        'start-front': editingHistory.startTime.slice(0, 2),
-        'start-back': editingHistory.startTime.slice(3),
-        'end-front': editingHistory.endTime.slice(0, 2),
-        'end-back': editingHistory.endTime.slice(3),
+        'start-front': editingHistory.startTime?.slice(0, 2),
+        'start-back': editingHistory.startTime?.slice(3),
+        'end-front': editingHistory.endTime?.slice(0, 2),
+        'end-back': editingHistory.endTime?.slice(3),
       })
     }
   }, [editingHistory])
