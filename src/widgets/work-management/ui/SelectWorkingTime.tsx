@@ -29,7 +29,7 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
   }
 
   return (
-    <FormItem className="flex flex-col space-y-4">
+    <FormItem className="flex flex-col space-y-2">
       {/* 출근 시간 */}
       <div className="space-y-1">
         <FormLabel className="body-02-regular text-[#6F6F6F]">출근 시간</FormLabel>
