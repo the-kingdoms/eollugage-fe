@@ -119,7 +119,7 @@ export default function AttendanceFormClient({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="px-4 space-y-[16px]">
-            <SelectMemberDrawer form={form} storeId={storeId} />
+            <SelectMemberDrawer form={form} storeId={storeId} type={type} />
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>
