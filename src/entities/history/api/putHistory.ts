@@ -2,6 +2,7 @@
 
 import { axiosServerInstance } from '@/shared'
 import { PutHistory } from '../types/reqBody'
+import { revalidatePath } from 'next/cache'
 
 const putHistory = async (
   storeId: string | null,
@@ -19,6 +20,7 @@ const putHistory = async (
     if (status !== 200) {
       throw new Error(statusText)
     }
+    revalidatePath(`/${storeId}/manage/edit-attendance`, 'layout')
     return true
   } catch (error) {
     console.error(error)
