@@ -39,17 +39,22 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
             control={form.control}
             name="workingTime.start-front"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 23)}
+                  placeholder="12시"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">시</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 23)}
-                placeholder="12"
-              />
+              </div>
             )}
           />
 
@@ -58,17 +63,22 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
             control={form.control}
             name="workingTime.start-back"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 59)}
+                  placeholder="00분"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">분</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 59)}
-                placeholder="00"
-              />
+              </div>
             )}
           />
         </div>
@@ -83,17 +93,22 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
             control={form.control}
             name="workingTime.end-front"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 23)}
+                  placeholder="18시"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">시</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 23)}
-                placeholder="18"
-              />
+              </div>
             )}
           />
 
@@ -102,17 +117,22 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
             control={form.control}
             name="workingTime.end-back"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 59)}
+                  placeholder="30분"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">분</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 59)}
-                placeholder="30"
-              />
+              </div>
             )}
           />
         </div>
