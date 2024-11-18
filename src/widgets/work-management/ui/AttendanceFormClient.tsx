@@ -68,10 +68,10 @@ export default function AttendanceFormClient({
       form.setValue('memberId', editingHistory?.relation?.member?.id)
       form.setValue('workingDate', new Date(editingHistory.date))
       form.setValue('workingTime', {
-        'start-front': editingHistory.startTime.slice(0, 2),
-        'start-back': editingHistory.startTime.slice(3),
-        'end-front': editingHistory.endTime.slice(0, 2),
-        'end-back': editingHistory.endTime.slice(3),
+        'start-front': editingHistory.startTime?.slice(0, 2),
+        'start-back': editingHistory.startTime?.slice(3),
+        'end-front': editingHistory.endTime?.slice(0, 2),
+        'end-back': editingHistory.endTime?.slice(3),
       })
     }
   }, [editingHistory])
@@ -118,8 +118,8 @@ export default function AttendanceFormClient({
       <Header type={type} />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="px-4 space-y-[16px]">
-            <SelectMemberDrawer form={form} storeId={storeId} />
+          <div className="px-4 space-y-2">
+            <SelectMemberDrawer form={form} storeId={storeId} type={type} />
             <SelectWorkingDateCalendar form={form} />
             <SelectWorkingTime form={form} />
           </div>
