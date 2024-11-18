@@ -1,6 +1,5 @@
 import { useAtomValue } from 'jotai'
 import { useMembers } from '@/entities'
-import { Flexbox } from '@/shared'
 import MemberList from './MemberList'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import formatPhoneNumber from '../utils/formatPhoneNumber'
