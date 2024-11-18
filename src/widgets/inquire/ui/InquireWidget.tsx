@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { TopBar, ButtonMobile, Icon } from '@eolluga/eolluga-ui'
+import { sendRNFunction } from '@/shared'
 
 export default function InquireWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
@@ -25,6 +26,7 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
 
       <footer className="w-full py-3 px-4 fixed bottom-4 flex flex-col gap-4">
         <button
+          onClick={() => sendRNFunction('openKakaoInquire')}
           type="button"
           className="w-full h-[64px] py-spacing-05 px-spacing-07 gap-spacing-04 flex justify-center items-center bg-[#FEE500] text-text-on-color rounded-radius-04 shrink-0"
         >
