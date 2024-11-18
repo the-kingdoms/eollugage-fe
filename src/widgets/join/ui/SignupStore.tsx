@@ -27,7 +27,7 @@ interface SignupStoreProps {
   handlePreviousStep: () => void
 }
 
-export default function SingupStore({
+export default function SignupStore({
   name,
   store,
   storeId,
