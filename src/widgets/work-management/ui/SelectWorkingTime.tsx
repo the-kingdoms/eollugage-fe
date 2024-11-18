@@ -29,46 +29,56 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
   }
 
   return (
-    <FormItem className="flex flex-col space-y-4">
+    <FormItem className="flex flex-col space-y-2">
       {/* 출근 시간 */}
       <div className="space-y-1">
         <FormLabel className="body-02-regular text-[#6F6F6F]">출근 시간</FormLabel>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           {/* 출근 시간: 시 */}
           <FormField
             control={form.control}
             name="workingTime.start-front"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 23)}
+                  placeholder="12시"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">시</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 23)}
-                placeholder="12"
-              />
+              </div>
             )}
           />
-          <span className="mx-2">:</span>
+
           {/* 출근 시간: 분 */}
           <FormField
             control={form.control}
             name="workingTime.start-back"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 59)}
+                  placeholder="00분"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">분</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 59)}
-                placeholder="00"
-              />
+              </div>
             )}
           />
         </div>
@@ -77,42 +87,52 @@ export default function SelectWorkingTime({ form }: { form: Form }) {
       {/* 퇴근 시간 */}
       <div className="space-y-1">
         <FormLabel className="body-02-regular mt-4 text-[#6F6F6F]">퇴근 시간</FormLabel>
-        <div className="flex items-center">
+        <div className="flex items-center space-x-4">
           {/* 퇴근 시간: 시 */}
           <FormField
             control={form.control}
             name="workingTime.end-front"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 23)}
+                  placeholder="18시"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">시</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 23)}
-                placeholder="18"
-              />
+              </div>
             )}
           />
-          <span className="mx-2">:</span>
+
           {/* 퇴근 시간: 분 */}
           <FormField
             control={form.control}
             name="workingTime.end-back"
             render={({ field }) => (
-              <Input
-                type="text"
-                inputMode="numeric"
-                className={cn(
-                  'w-1/2 justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
-                  field.value !== '' && 'border-border-strong-01',
+              <div className="relative w-1/2 label-04-medium">
+                <Input
+                  type="text"
+                  inputMode="numeric"
+                  className={cn(
+                    'w-full justify-start label-04-medium h-[56px] placeholder:text-text-placeholder',
+                    field.value !== '' && 'border-border-strong-01',
+                  )}
+                  value={field.value === '' ? '' : field.value}
+                  onChange={e => handleInputChange(field, e.target.value, 59)}
+                  placeholder="30분"
+                />
+                {field.value !== '' && (
+                  <span className="absolute left-[36px] top-1/2 -translate-y-1/2">분</span>
                 )}
-                value={field.value === '' ? '' : field.value}
-                onChange={e => handleInputChange(field, e.target.value, 59)}
-                placeholder="30"
-              />
+              </div>
             )}
           />
         </div>
