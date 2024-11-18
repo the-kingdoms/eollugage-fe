@@ -11,7 +11,7 @@ const aasaContent = {
     details: [
       {
         appID: appID,
-        paths: ['*'],
+        paths: ['/[a-zA-Z0-9_-]+/work'],
       },
     ],
   },
