@@ -15,7 +15,7 @@ export default function MemberItem({
   const [selectedMemberIDAtom, setSelectedMemberIDAtom] = useAtom(selectedMemberAtom)
   return (
     <button
-      className="h-[90px] w-[48px] flex flex-col space-y-1 items-center justify-end text-center"
+      className=" w-[48px] flex flex-col space-y-1 items-center justify-end text-center"
       type="button"
       onClick={() => setSelectedMemberIDAtom(member.memberId)}
     >

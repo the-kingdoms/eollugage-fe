@@ -41,7 +41,7 @@ export default function MyPageWidget({
           <div className="flex p-spacing-04 gap-spacing-01 items-center">
             <Avatar icon="account" input="text" size="M" text="" />
             <div className="ml-4">
-              <h2 className="body-03-bold text-text-primary">{userData?.storeList[0].name}</h2>
+              <h2 className="body-03-bold text-text-primary">{userData?.name}</h2>
               <p className="text-text-secondary body-01-bold">
                 {userData?.relationList[0].position}
               </p>

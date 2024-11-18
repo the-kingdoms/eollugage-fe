@@ -18,7 +18,15 @@ import { cn } from '@/shared/utils/cn'
 import { Icon } from '@eolluga/eolluga-ui'
 import { Form } from '../types/work-management'
 
-export default function SelectMemberDrawer({ form, storeId }: { form: Form; storeId: string }) {
+export default function SelectMemberDrawer({
+  form,
+  storeId,
+  type,
+}: {
+  form: Form
+  storeId: string
+  type: 'add' | 'edit'
+}) {
   const { members } = useMembers(storeId)
   return (
     <FormField
@@ -31,7 +39,7 @@ export default function SelectMemberDrawer({ form, storeId }: { form: Form; stor
             <Drawer>
               <DrawerTrigger asChild>
                 <Button
-                  disabled
+                  disabled={type === 'edit'}
                   variant="outline"
                   className={cn(
                     'w-full justify-start label-04-medium h-[56px] border-border-strong-01 focus:border-border-strong-01 disabled:text-text-secondary disabled:border-[#E0E0E0]',
