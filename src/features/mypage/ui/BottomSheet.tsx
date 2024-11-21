@@ -28,8 +28,8 @@ export default function BottomSheet({
   const [inputValue, setInputValue] = useState<string>('')
 
   useEffect(() => {
-    const initialStates = positionList.map(e => e.position)
-    setPositionStates(initialStates)
+    const updatePositions = positionList.map(e => e.position)
+    setPositionStates(updatePositions)
   }, [])
 
   const handlePositionChange = (value: string) => {
@@ -73,7 +73,7 @@ export default function BottomSheet({
             <span className="text-support-info body-03-medium">저장</span>
           </button>
         </DrawerHeader>
-        <div className="flex flex-col space-y-4 justify-between h-full">
+        <div className="flex flex-col space-y-2 justify-between h-full">
           {positionStates.length > 0 ? (
             positionStates.map(position => (
               <div key={position} className="flex justify-between items-center px-5">
@@ -90,21 +90,19 @@ export default function BottomSheet({
               </div>
             ))
           ) : (
-            <div className="flex justify-center items-center h-3/4">
+            <div className="flex justify-center items-center">
               <p className="text-text-secondary">추가된 직책이 아직 없어요</p>
             </div>
           )}
         </div>
-        <div className="w-full border-t-2 fixed bottom-4 pt-3 bg-white">
-          <div className="px-4">
-            <TextField
-              value={inputValue}
-              onChange={e => setInputValue(e.target.value)}
-              size="M"
-              style="outlined"
-              placeholder="직책 추가하기"
-            />
-          </div>
+        <div className="w-full border-t-2 fixed bottom-4 pt-3 px-4 bg-white">
+          <TextField
+            value={inputValue}
+            onChange={e => setInputValue(e.target.value)}
+            size="M"
+            style="outlined"
+            placeholder="직책 추가하기"
+          />
         </div>
       </DrawerContent>
     </Drawer>
