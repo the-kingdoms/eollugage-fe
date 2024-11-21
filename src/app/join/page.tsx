@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { useAtom } from 'jotai'
 import { storeIdAtom } from '@/widgets/join/atoms/joinAtoms'
+import { sendRNFunction } from '@/shared'
 
 export default function JoinPage() {
   const { step, handleNextStep, handlePreviousStep } = useJoin()
@@ -18,8 +19,12 @@ export default function JoinPage() {
   const router = useRouter()
 
   useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
+
+  useEffect(() => {
     if (step === 0) {
-      router.push('/')
+      router.replace('/')
     }
   }, [step, router])
 

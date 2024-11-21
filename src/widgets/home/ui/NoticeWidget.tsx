@@ -7,6 +7,7 @@ import { ChangeEvent, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { storeInfoAtom } from '@/entities'
 import { usePutStoreDetail } from '../model/usePutStoreDetail'
+import { sendRNFunction } from '@/shared'
 
 interface NoticeWidgetProps {
   storeId: string
@@ -21,6 +22,8 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
   const noticeText = storeInfo.internalNotice || ''
 
   useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+
     if (noticeText.trim()) {
       setButtonText('수정하기')
     } else {

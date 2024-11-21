@@ -8,6 +8,7 @@ import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import AttendanceInfo from './AttendanceInfo'
 import AddAttendanceLink from './AddAttendanceLink'
 import MemberSelector from './MemberSelector'
+import { sendRNFunction } from '@/shared'
 
 export default function WorkManagementOwnerClient({ storeId }: { storeId: string }) {
   const { members } = useMembers(storeId)
@@ -17,6 +18,10 @@ export default function WorkManagementOwnerClient({ storeId }: { storeId: string
       setSelectedMemberID(members ? members[0]?.memberId : null)
     }
   }, [selectedMemberId])
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#131313', style: 'light' })
+  }, [])
 
   return (
     <>

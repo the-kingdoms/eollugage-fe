@@ -13,6 +13,7 @@ import { imageNameAtom, isImageLoadingAtom } from '../atoms/uploadImageAtoms'
 import ImageTitle from './ImageTitle'
 import ImageContainer from './ImageContainer'
 import ImageControlButtons from './ImageControlButtons'
+import { sendRNFunction } from '@/shared'
 
 interface ImageUploadScreenProps {
   page: 'home' | 'join'
@@ -40,6 +41,7 @@ export default function ImageUploadClient({
   }
 
   useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
     if (initialImageName) setImageName(initialImageName)
   }, [])
 

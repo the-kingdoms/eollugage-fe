@@ -13,6 +13,7 @@ import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
 import SelectMemberDrawer from './SelectMemberDrawer'
+import { sendRNFunction } from '@/shared'
 
 const formSchema = z.object({
   memberId: z.string(),
@@ -113,6 +114,11 @@ export default function AttendanceFormClient({
   useEffect(() => {
     if (createHistoryStatus === 'success' || updateHistoryStatus === 'success') back()
   }, [createHistoryStatus, updateHistoryStatus])
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
+
   return (
     <>
       <Header type={type} />

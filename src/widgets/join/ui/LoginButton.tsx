@@ -3,9 +3,15 @@
 import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
 import useJoin from '../hooks/useJoin'
+import { sendRNFunction } from '@/shared'
+import { useEffect } from 'react'
 
 export default function LoginButton() {
   const { handleNextStep } = useJoin()
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#000', style: 'light' })
+  }, [])
 
   return (
     <Link

@@ -3,8 +3,9 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextArea, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { usePostOrder } from '../model/usePostOrder'
+import { sendRNFunction } from '@/shared'
 
 interface OrderWidgetProps {
   storeId: string
@@ -29,6 +30,10 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
     mutate()
     router.push(`/${storeId}/home`)
   }
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
 
   return (
     <FlexBox direction="col" className="py-3 h-full">
