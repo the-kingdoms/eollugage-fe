@@ -33,6 +33,18 @@ export default function PositionWidget({
     setIsOpen(false)
   }
 
+  const handlePositionChange = useCallback((index: number, newPosition: string) => {
+    setPositionList(prevList => {
+      const updatedList = [...prevList]
+      updatedList[index] = {
+        ...updatedList[index],
+        position: newPosition,
+      }
+      return updatedList
+    })
+    setIsModified(true)
+  }, [])
+
   const addPosition = (newPosition: PositionGroupType) => {
     setPositionList(prevList => [...prevList, newPosition])
     setIsModified(true)
@@ -158,6 +170,7 @@ export default function PositionWidget({
           positionList={positionList}
           onAddPosition={addPosition}
           isOpen={isOpen}
+          onChangePosition={handlePositionChange}
           onDeletePosition={deletePosition}
           closeBottomSheet={closeBottomSheet}
         />
