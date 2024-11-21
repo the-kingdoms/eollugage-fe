@@ -30,8 +30,8 @@ export default function BottomSheet({
   const [inputValue, setInputValue] = useState<string>('')
 
   useEffect(() => {
-    const updatePositions = positionList.map(e => e.position)
-    setPositionStates(updatePositions)
+    const updatedPositions = positionList.map(e => e.position)
+    setPositionStates(updatedPositions)
   }, [positionList])
 
   const handlePositionChange = useCallback(
@@ -80,7 +80,7 @@ export default function BottomSheet({
         <div className="flex flex-col space-y-2 justify-between h-full overflow-y-scroll">
           {positionStates.length > 0 ? (
             positionStates.map((position, index) => (
-              <div key={index} className="flex justify-between px-5">
+              <div key={position} className="flex justify-between px-5">
                 <TextField
                   value={position}
                   onChange={e => handlePositionChange(e.target.value, index)}
