@@ -69,7 +69,10 @@ export default function BottomSheet({
       <DrawerTrigger asChild>
         <Button variant="outline">직책 선택</Button>
       </DrawerTrigger>
-      <DrawerContent className="w-full min-h-[60dvh]" aria-describedby="set-positions">
+      <DrawerContent
+        className="w-full h-4/5 max-h-[75dvh] flex flex-col"
+        aria-describedby="set-positions"
+      >
         <DrawerHeader className="relative">
           <DrawerTitle>가게 직책</DrawerTitle>
           <DrawerDescription />
@@ -77,7 +80,7 @@ export default function BottomSheet({
             <span className="text-support-info body-03-medium">저장</span>
           </button>
         </DrawerHeader>
-        <div className="flex flex-col space-y-2 justify-between h-full overflow-y-scroll">
+        <div className="flex-1 overflow-y-scroll pb-32 flex flex-col gap-2">
           {positionStates.length > 0 ? (
             positionStates.map((position, index) => (
               <div key={position} className="flex justify-between px-5">
