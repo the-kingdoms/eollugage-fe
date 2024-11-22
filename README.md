@@ -15,9 +15,8 @@
   - [시작 가이드](#시작-가이드)
   - [프로젝트 구조](#프로젝트-구조)
   - [페이지별 기능](#페이지별-기능)
-  - [신경 쓴 부분](#신경-쓴-부분)
   - [트러블 슈팅](#트러블-슈팅)
-  - [개선 목표](#개선-목표)
+  - [개선된 점](#개선된-점)
 
 <br>
 
@@ -27,7 +26,6 @@
 - 가게마다 비치된 QR을 통해 직원들은 출퇴근 현황을 기록할 수 있습니다.
 - 사장님은 직원들의 출퇴근 현황을 한 눈에 파악하고 수정/추가할 수 있습니다.
 - 사장님은 직원들의 직책을 설정하고 변경할 수 있습니다.
-
 
 <br>
 
@@ -40,33 +38,6 @@
 | [<img src="https://avatars.githubusercontent.com/iodio89?v=4" height=150 width=150> <br/> @iodio89](https://github.com/iodio89) | [<img src="https://avatars.githubusercontent.com/tptkds?v=4" height=150 width=150> <br/> @tptkds](https://github.com/tptkds) | [<img src="https://avatars.githubusercontent.com/PangKiYeon?v=4" height=150 width=150> <br/> @PangKiYeon](https://github.com/PangKiYeon) | [<img src="https://avatars.githubusercontent.com/Wonchang0314?v=4" height=150 width=150> <br/> @Wonchang0314](https://github.com/Wonchang0314) |
 
 </div>
-
-### 정선아
-
-- **UI**
-    - 페이지 : 초기화면, 가게 대표 이미지 설정 페이지, Global Error 페이지, 앱 버전 확인 페이지, App Linking 페이지
-    - 공통 컴포넌트 : Bottom Tab Navigation
-- **기능**
-    - **사용자 기능** : 가게 대표 이미지 설정
-    - **시스템 기능** : 페이지에 따른 Status bar 제어
-
-<br>
-    
-### 김유경
-
-
-
-<br>
-
-### 방기연
-
-
-
-<br>
-
-### 장원석
-
-
 
 <br>
 
@@ -180,18 +151,13 @@
 
 <br>
 
-## 신경 쓴 부분
-
-
-<br>
-
 ## 트러블 슈팅
 
 - [제목]
 
 <br>
 
-## 개선 목표
+## 개선된 점
 
 
     
