@@ -3,9 +3,8 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import SignupName from '@/widgets/join/ui/SignupName'
 import { useEffect, useState } from 'react'
-import { RoleSelection, storeNameAtom, useJoin } from '@/widgets'
+import { RoleSelection, storeNameAtom, useJoin, SignupStore } from '@/widgets'
 import { useRouter } from 'next/navigation'
-import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { useAtom } from 'jotai'
 import { storeIdAtom } from '@/widgets/join/atoms/joinAtoms'
@@ -65,7 +64,7 @@ export default function JoinPage() {
       )}
       {step === 2 && <RoleSelection handlePreviousStep={handlePreviousStep} />}
       {step === 3 && (
-        <SingupStore
+        <SignupStore
           name={name}
           store={store}
           setStore={setStore}
