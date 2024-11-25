@@ -67,13 +67,10 @@ export default function TodayWork({ workList }: TodayWorkProps) {
       }
       lowChild={
         <div className="grid grid-cols-2 gap-spacing-04 w-full">
-          {paddedWorkList.slice(currentIndex, currentIndex + 2).map((item, index) => (
-            <>
+          {paddedWorkList.slice(currentIndex, currentIndex + 2).map(item => (
+            <div key={item ? item.id : `empty-${currentIndex}`}>
               {item ? (
-                <div
-                  key={index}
-                  className="flex flex-col gap-2 py-3 px-4 rounded w-full bg-layer-01"
-                >
+                <div className="flex flex-col gap-2 py-3 px-4 rounded w-full bg-layer-01">
                   <div className="w-full ">
                     <div className="body-04-medium-compact">{item.name}</div>
                     <div className="body-01-medium-compact text-text-secondary">
@@ -85,7 +82,7 @@ export default function TodayWork({ workList }: TodayWorkProps) {
               ) : (
                 <div className="w-full min-h-[88px] h-full" />
               )}
-            </>
+            </div>
           ))}
         </div>
       }
