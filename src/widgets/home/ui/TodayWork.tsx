@@ -20,6 +20,8 @@ export default function TodayWork({ workList }: TodayWorkProps) {
   const canNext = currentIndex + 2 < workList.length
   const canPrev = currentIndex > 0
 
+  const paddedWorkList = [...workList, ...Array(2).fill(null)]
+
   const nextSlide = () => {
     if (canNext) {
       setCurrentIndex(prevIndex => prevIndex + 2)
@@ -65,16 +67,25 @@ export default function TodayWork({ workList }: TodayWorkProps) {
       }
       lowChild={
         <div className="grid grid-cols-2 gap-spacing-04 w-full">
-          {workList.slice(currentIndex, currentIndex + 2).map(item => (
-            <div key={item.id} className="flex flex-col gap-2 py-3 px-4 rounded bg-layer-01 w-full">
-              <div className="w-full">
-                <div className="body-04-medium-compact">{item.name}</div>
-                <div className="body-01-medium-compact text-text-secondary">{item.position}</div>
-              </div>
-              <div className="body-02-medium-compact w-full">
-                {dayjs(item.startTime, 'HH:mm:ss.SSS').format('HH:mm:ss')}
-              </div>
-            </div>
+          {paddedWorkList.slice(currentIndex, currentIndex + 2).map((item, index) => (
+            <>
+              {item ? (
+                <div
+                  key={index}
+                  className="flex flex-col gap-2 py-3 px-4 rounded w-full bg-layer-01"
+                >
+                  <div className="w-full ">
+                    <div className="body-04-medium-compact">{item.name}</div>
+                    <div className="body-01-medium-compact text-text-secondary">
+                      {item.position}
+                    </div>
+                  </div>
+                  <div className="body-02-medium-compact w-full">{item.startTime} </div>
+                </div>
+              ) : (
+                <div className="w-full min-h-[88px] h-full" />
+              )}
+            </>
           ))}
         </div>
       }
