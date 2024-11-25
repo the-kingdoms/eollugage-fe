@@ -152,16 +152,22 @@ export default function SignupStore({
               />
             </div>
           )}
-          {(store.length > 0 || storeId.length > 0) && (
-            <ButtonMobile
-              size="L"
-              style="primary"
-              state={isLoading ? 'disabled' : 'enabled'} // 로딩 중에는 버튼 비활성화
-              type="text"
-              text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}
-              onClick={isOwner ? handleOpenBottomSheet : handleOpenDialog}
-            />
-          )}
+          <ButtonMobile
+            size="L"
+            style="primary"
+            state={
+              isOwner
+                ? store.length >= 1
+                  ? 'enabled'
+                  : 'disabled'
+                : storeId.length === 4
+                  ? 'enabled'
+                  : 'disabled'
+            }
+            type="text"
+            text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}
+            onClick={isOwner ? handleOpenBottomSheet : handleOpenDialog}
+          />
         </FlexBox>
         {isValidCode && openDialog && (
           <Scrim
