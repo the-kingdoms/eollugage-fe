@@ -10,6 +10,8 @@ import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
 import { storeInfoAtom, StoreInfoT } from '@/entities'
 import { useHydrateAtoms } from 'jotai/utils'
+import { useEffect } from 'react'
+import { sendRNFunction } from '@/shared'
 import { useGetOrder } from '../model/useGetOrder'
 import { useGetTodayDuty } from '../model/useGetTodyDuty'
 
@@ -29,6 +31,10 @@ export default function HomeWidgetClient({
   const { data: orderList } = useGetOrder(storeId)
   const { data: workList } = useGetTodayDuty(storeId, formatCurrentDate())
   const [storeInfo] = useAtom(storeInfoAtom)
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#000', style: 'light' })
+  }, [])
 
   return (
     <>

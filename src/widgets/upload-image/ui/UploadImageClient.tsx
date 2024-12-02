@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { TopBar } from '@eolluga/eolluga-ui'
 import { useAtom } from 'jotai'
 import { useGetStoreInfo } from '@/entities'
+import { sendRNFunction } from '@/shared'
 import { useGetStoreImage } from '../model/useGetStoreImage'
 import { useGetPresignedURL } from '../model/useGetPresignedURL'
 import { imageNameAtom, isImageLoadingAtom } from '../atoms/uploadImageAtoms'
@@ -40,6 +41,7 @@ export default function ImageUploadClient({
   }
 
   useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
     if (initialImageName) setImageName(initialImageName)
   }, [])
 
