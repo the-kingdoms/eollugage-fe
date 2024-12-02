@@ -6,6 +6,7 @@ import { storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
 import { UserInfo } from '@/entities'
 import { useEffect } from 'react'
 import Link from 'next/link'
+import { sendRNFunction } from '@/shared'
 
 export default function MyPageWidget({
   storeId,
@@ -25,6 +26,10 @@ export default function MyPageWidget({
       setUserName(userData.name || '')
     }
   }, [userData, setStoreName, setUserName])
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
 
   return (
     <div className="flex flex-col min-h-screen justify-between">

@@ -1,3 +1,5 @@
+'use client'
+
 import { useAtom } from 'jotai'
 import { imageNameAtom, isImageLoadingAtom, isSuccessAtom } from '../atoms/uploadImageAtoms'
 import { UploadFailReasonT } from '../types/imageUploadType'
@@ -20,6 +22,7 @@ export default function useHandleStoreImage() {
       case 'presigned-url-error':
       case 'upload-fail':
         setIsSuccess(false)
+        setIsLoading(false)
         break
       default:
     }

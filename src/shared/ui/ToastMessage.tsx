@@ -23,7 +23,7 @@ function ToastMessage({ message, icon, open, setOpen }: ToastMessageProps) {
       timerRef.current = setTimeout(() => {
         setOpen(false)
         timerRef.current = null
-      }, 700)
+      }, 2400)
     }
 
     return () => {
