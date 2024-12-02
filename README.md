@@ -1,6 +1,7 @@
 # 얼루가게 README
 
-![image](https://github.com/user-attachments/assets/b52d7bca-7bce-4633-9a37-49bb15e8e258)
+<img width="3870" alt="얼루가" src="https://github.com/user-attachments/assets/1335c3f1-c42e-4519-9838-3453f83ba81e">
+<br/>
 
 - [배포 URL](https://gage.eolluga.com)
 - [App Store(iOS)](https://apps.apple.com/kr/app/%EC%96%BC%EB%A3%A8%EA%B0%80%EA%B2%8C/id6477911531)
