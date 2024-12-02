@@ -50,7 +50,6 @@
 - UI 구현 : 2024.09.25 ~ 2024.10.14
 - 기능 구현 : 2024.10.15 ~ 2024.11.10
 - QA 진행 및 오류 수정 : 2024.11.11 ~ 현재
-- 리팩토링 :
 
 <br>
 
@@ -137,6 +136,8 @@ http://localhost:3000 에서 접속 가능
 ├── tsconfig.json
 └── yarn.lock
 ```
+
+- [FSD 아키텍처 사용법](https://github.com/the-kingdoms/eollugage-fe/wiki/FSD-%EA%B5%AC%EC%A1%B0-%EC%82%AC%EC%9A%A9-%EA%B7%9C%EC%B9%99-%EB%B0%8F-%EA%B0%9C%EB%85%90)
 
 <br>
 
