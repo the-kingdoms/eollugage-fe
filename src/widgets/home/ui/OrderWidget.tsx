@@ -4,8 +4,8 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TextArea, TextField, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { usePostOrder } from '../model/usePostOrder'
 import { sendRNFunction } from '@/shared'
+import { usePostOrder } from '../model/usePostOrder'
 
 interface OrderWidgetProps {
   storeId: string

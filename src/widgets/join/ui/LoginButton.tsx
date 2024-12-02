@@ -2,9 +2,9 @@
 
 import { Icon } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
-import useJoin from '../hooks/useJoin'
 import { sendRNFunction } from '@/shared'
 import { useEffect } from 'react'
+import useJoin from '../hooks/useJoin'
 
 export default function LoginButton() {
   const { handleNextStep } = useJoin()

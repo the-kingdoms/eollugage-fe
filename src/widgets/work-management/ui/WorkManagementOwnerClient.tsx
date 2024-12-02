@@ -4,11 +4,11 @@ import React, { useEffect } from 'react'
 
 import { useAtom } from 'jotai'
 import { useMembers } from '@/entities'
+import { sendRNFunction } from '@/shared'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import AttendanceInfo from './AttendanceInfo'
 import AddAttendanceLink from './AddAttendanceLink'
 import MemberSelector from './MemberSelector'
-import { sendRNFunction } from '@/shared'
 
 export default function WorkManagementOwnerClient({ storeId }: { storeId: string }) {
   const { members } = useMembers(storeId)

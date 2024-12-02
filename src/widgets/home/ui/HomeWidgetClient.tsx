@@ -10,10 +10,10 @@ import { formatCurrentDate } from '@/features'
 import { useAtom } from 'jotai'
 import { storeInfoAtom, StoreInfoT } from '@/entities'
 import { useHydrateAtoms } from 'jotai/utils'
-import { useGetOrder } from '../model/useGetOrder'
-import { useGetTodayDuty } from '../model/useGetTodyDuty'
 import { useEffect } from 'react'
 import { sendRNFunction } from '@/shared'
+import { useGetOrder } from '../model/useGetOrder'
+import { useGetTodayDuty } from '../model/useGetTodyDuty'
 
 interface HomeWidgetClientProps {
   storeId: string

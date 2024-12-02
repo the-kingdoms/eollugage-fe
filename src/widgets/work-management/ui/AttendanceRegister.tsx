@@ -1,9 +1,9 @@
 'use client'
 
 import { CheckInWorkButton, CheckOutWorkButton } from '@/features'
-import formatDate from '../utils/getTodayDate'
 import { useEffect } from 'react'
 import { sendRNFunction } from '@/shared'
+import formatDate from '../utils/getTodayDate'
 
 export default function AttendanceRegister({ storeId }: { storeId: string }) {
   useEffect(() => {

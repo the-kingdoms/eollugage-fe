@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'
 import { storeInfoAtom } from '@/entities'
-import { usePutStoreDetail } from '../model/usePutStoreDetail'
 import { sendRNFunction } from '@/shared'
+import { usePutStoreDetail } from '../model/usePutStoreDetail'
 
 interface NoticeWidgetProps {
   storeId: string
