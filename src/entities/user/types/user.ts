@@ -3,7 +3,6 @@ export interface RelationT {
   storeId: string
   role: 'OWNER' | 'STAFF'
   position: string
-  member: string | null
 }
 
 interface Store {
@@ -24,6 +23,5 @@ export interface UserInfo {
   name: string
   phone: string
   providerType: string
-  relationList: RelationT[]
-  storeList: Store[]
+  relationDTO: RelationT
 }
