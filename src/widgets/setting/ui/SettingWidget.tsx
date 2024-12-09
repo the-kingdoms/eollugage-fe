@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { TopBar, Icon } from '@eolluga/eolluga-ui'
 import LogoutModal from '@/features/setting/ui/LogoutModal'
+import { sendRNFunction } from '@/shared'
 
 export default function SettingsWidget({ storeId }: { storeId: string }) {
   const { push } = useRouter()
@@ -54,13 +55,14 @@ export default function SettingsWidget({ storeId }: { storeId: string }) {
 
         <ul className="flex flex-col gap-spacing-02 px-4 py-2">
           <li className="flex justify-between py-spacing-04">
-            <Link
-              href={`/${storeId}/mypage/setting/appInfo`}
+            <button
+              type="button"
+              onClick={() => sendRNFunction('getAppInfo')}
               className="flex w-full justify-between"
             >
               <span>앱 버전</span>
               <Icon icon="chevron_right_outlined" />
-            </Link>
+            </button>
           </li>
           <li className="flex justify-between py-spacing-04">
             <Link

@@ -9,6 +9,7 @@ import { format } from 'date-fns'
 import { useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import { sendRNFunction } from '@/shared'
 import Header from './Header'
 import SelectWorkingDateCalendar from './SelectWorkingDateCalendar'
 import SelectWorkingTime from './SelectWorkingTime'
@@ -113,6 +114,11 @@ export default function AttendanceFormClient({
   useEffect(() => {
     if (createHistoryStatus === 'success' || updateHistoryStatus === 'success') back()
   }, [createHistoryStatus, updateHistoryStatus])
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
+
   return (
     <>
       <Header type={type} />

@@ -11,10 +11,10 @@ export default function MemberSelector({ storeId }: { storeId: string }) {
     <div className=" bg-[#131313] text-white overflow-hidden pb-4">
       <div className="flex space-x-[8px] p-4 ">
         <h2 className="body-03-bold-compact">근무자</h2>
-        <p className="body-01-medium-compact text-[#A8A8A8]">근무자를 선택해주세요</p>
+        <p className="body-01-medium-compact text-text-on-placeholder">근무자를 선택해주세요</p>
       </div>
       <MemberList members={members} />
-      <p className="body-03-bold-compact mt-[12px] px-[16px]">
+      <p className="body-03-bold-compact mt-spacing-03 px-spacing-04">
         {selectedMemberID === null
           ? members && formatPhoneNumber(members[0].phoneNumber)
           : formatPhoneNumber(

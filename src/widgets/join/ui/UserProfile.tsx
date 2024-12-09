@@ -1,4 +1,3 @@
-import { getRandomColor } from '@/features'
 import FlexBox from '@/shared/ui/Flexbox'
 import { Avatar, ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
@@ -24,7 +23,7 @@ export default function UserProfile({
       <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={handlePreviousStep} />
       <FlexBox direction="col" className="gap-spacing-04 mt-[152px]">
         <div className="text-white">
-          <Avatar size="XL" backgroundColor={getRandomColor()} text={name[0]} />
+          <Avatar size="XL" backgroundColor="in-gray" text={name[0]} />
         </div>
         <FlexBox direction="col" className="gap-spacing-01">
           <div className="head-02-bold">
