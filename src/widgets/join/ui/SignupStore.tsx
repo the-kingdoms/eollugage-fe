@@ -27,7 +27,7 @@ interface SignupStoreProps {
   handlePreviousStep: () => void
 }
 
-export default function SingupStore({
+export default function SignupStore({
   name,
   store,
   storeId,
@@ -44,7 +44,6 @@ export default function SingupStore({
   const [openBottomSheet, setOpenBottomSheet] = useState(false)
   const [showToast, setShowToast] = useState(false)
   const [approvalFailed, setApprovalFailed] = useState(false)
-  const [isLoading, setIsLoading] = useState(false) // 로딩 상태 추가
 
   const [storeName] = useAtom(storeNameAtom)
   const [isValidCode] = useAtom(isValidCodeAtom)
@@ -54,18 +53,15 @@ export default function SingupStore({
   const { mutate: getStoreInfoPrefixMutate } = useGetStoreInfoPrefix(storeId.slice(0, 4))
   const { mutate: postMemberMutate } = usePostMember(storeId, memberId)
   const handleOpenDialog = () => {
-    setIsLoading(true)
     setApprovalFailed(false)
 
     getStoreInfoPrefixMutate(undefined, {
       onSuccess: res => {
         setOpenDialog(true)
         setShowToast(false)
-        setIsLoading(false)
         setStoreId(res.storeId)
       },
       onError: () => {
-        setIsLoading(false)
         setApprovalFailed(true)
       },
     })
@@ -115,6 +111,13 @@ export default function SingupStore({
       </>
     )
 
+  const getButtonState = () => {
+    if (isOwner) {
+      return store.length >= 1 ? 'enabled' : 'disabled'
+    }
+    return storeId.length === 4 ? 'enabled' : 'disabled'
+  }
+
   return (
     <>
       <TopBar leftIcon="chevron_left_outlined" onClickLeftIcon={handlePreviousStep} />
@@ -152,16 +155,14 @@ export default function SingupStore({
               />
             </div>
           )}
-          {(store.length > 0 || storeId.length > 0) && (
-            <ButtonMobile
-              size="L"
-              style="primary"
-              state={isLoading ? 'disabled' : 'enabled'} // 로딩 중에는 버튼 비활성화
-              type="text"
-              text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}
-              onClick={isOwner ? handleOpenBottomSheet : handleOpenDialog}
-            />
-          )}
+          <ButtonMobile
+            size="L"
+            style="primary"
+            state={getButtonState()}
+            type="text"
+            text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}
+            onClick={isOwner ? handleOpenBottomSheet : handleOpenDialog}
+          />
         </FlexBox>
         {isValidCode && openDialog && (
           <Scrim

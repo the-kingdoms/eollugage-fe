@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 
 import { useAtom } from 'jotai'
 import { useMembers } from '@/entities'
+import { sendRNFunction } from '@/shared'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'
 import AttendanceInfo from './AttendanceInfo'
 import AddAttendanceLink from './AddAttendanceLink'
@@ -17,6 +18,10 @@ export default function WorkManagementOwnerClient({ storeId }: { storeId: string
       setSelectedMemberID(members ? members[0]?.memberId : null)
     }
   }, [selectedMemberId])
+
+  useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#131313', style: 'light' })
+  }, [])
 
   return (
     <>
