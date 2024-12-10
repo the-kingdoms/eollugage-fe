@@ -3,12 +3,12 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import SignupName from '@/widgets/join/ui/SignupName'
 import { useEffect, useState } from 'react'
-import { RoleSelection, storeNameAtom, useJoin } from '@/widgets'
+import { RoleSelection, storeNameAtom, useJoin, SignupStore } from '@/widgets'
 import { useRouter } from 'next/navigation'
-import SingupStore from '@/widgets/join/ui/SingupStore'
 import UserProfile from '@/widgets/join/ui/UserProfile'
 import { useAtom } from 'jotai'
 import { storeIdAtom } from '@/widgets/join/atoms/joinAtoms'
+import { sendRNFunction } from '@/shared'
 
 export default function JoinPage() {
   const { step, handleNextStep, handlePreviousStep } = useJoin()
@@ -19,8 +19,12 @@ export default function JoinPage() {
   const router = useRouter()
 
   useEffect(() => {
+    sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+  }, [])
+
+  useEffect(() => {
     if (step === 0) {
-      router.push('/')
+      router.replace('/')
     }
   }, [step, router])
 
@@ -65,7 +69,7 @@ export default function JoinPage() {
       )}
       {step === 2 && <RoleSelection handlePreviousStep={handlePreviousStep} />}
       {step === 3 && (
-        <SingupStore
+        <SignupStore
           name={name}
           store={store}
           setStore={setStore}
