@@ -23,6 +23,7 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+    sendRNFunction('setSafeAreaEdges', ['bottom'])
 
     if (noticeText.trim()) {
       setButtonText('수정하기')

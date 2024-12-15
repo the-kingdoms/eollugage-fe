@@ -11,6 +11,7 @@ export default function LoginButton() {
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#000', style: 'light' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (
