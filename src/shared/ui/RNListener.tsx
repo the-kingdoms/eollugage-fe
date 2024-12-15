@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useLoginToken, useHandleStoreImage, ImageUploadResultT } from '@/widgets'
+import { useLoginToken } from '@/widgets'
 
 interface TokenResultT {
   isSuccess: boolean
@@ -11,7 +11,6 @@ interface TokenResultT {
 type MessageTypeT = 'getLoginToken' | 'getImageUploadResult'
 
 export default function RNListener() {
-  const { onSuccessImageDownload, onFailImageDownload } = useHandleStoreImage()
   const { onSuccessGetToken } = useLoginToken()
 
   const onMessageEvent = (e: MessageEvent) => {
@@ -25,16 +24,6 @@ export default function RNListener() {
         if (tokenData.isSuccess && tokenData.token) onSuccessGetToken(tokenData.token)
         break
       }
-      case 'getImageUploadResult':
-        {
-          const uploadResultData = message.data as ImageUploadResultT
-          if (!uploadResultData.isSuccess) onFailImageDownload(uploadResultData.reason)
-          else {
-            const imageName = uploadResultData.fileFullName
-            onSuccessImageDownload(imageName)
-          }
-        }
-        break
       default:
     }
   }
