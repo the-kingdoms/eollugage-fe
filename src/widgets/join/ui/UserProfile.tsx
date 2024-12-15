@@ -2,6 +2,7 @@ import FlexBox from '@/shared/ui/Flexbox'
 import { Avatar, ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
 import useJoin from '../hooks/useJoin'
+import { sendRNFunction } from '@/shared'
 
 interface UserProfileProps {
   name: string
@@ -40,7 +41,7 @@ export default function UserProfile({
             text1={isOwner ? '프로필 생성하기' : '출근하기'}
             onClick={
               isOwner
-                ? () => router.push(`join/upload-image?storeId=${storeId}`)
+                ? () => sendRNFunction('navigateToImageUploadPage', { storeId, from: 'join' })
                 : () => router.push(`/${storeId}/home`)
             }
           />

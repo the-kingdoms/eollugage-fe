@@ -41,7 +41,11 @@ export default function HomeWidgetClient({
     <>
       <Header title={storeInfo.name || ''} storeCode={storeId.slice(0, 4)} />
       <div className="mt-[76px]">
-        {isOwner && storeInfo.image === 'NONE' ? <AddPhotoButton storeId={storeId} /> : null}
+        {isOwner && storeInfo.image === 'NONE' ? (
+          <div className="px-4">
+            <AddPhotoButton storeId={storeId} />
+          </div>
+        ) : null}
         <FlexBox direction="col" className="gap-8 mx-4">
           <HomeNotice storeId={storeId} notice={storeInfo.internalNotice || ''} />
           <TodayWork workList={workList?.histories || []} />
