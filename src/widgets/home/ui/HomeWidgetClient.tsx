@@ -34,6 +34,7 @@ export default function HomeWidgetClient({
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#000', style: 'light' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (

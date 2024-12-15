@@ -29,6 +29,7 @@ export default function MyPageWidget({
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (

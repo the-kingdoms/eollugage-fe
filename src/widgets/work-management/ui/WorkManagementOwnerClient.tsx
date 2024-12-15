@@ -21,6 +21,7 @@ export default function WorkManagementOwnerClient({ storeId }: { storeId: string
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#131313', style: 'light' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (
