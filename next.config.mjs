@@ -24,7 +24,7 @@ export default withSentryConfig(nextConfig, {
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
   org: 'eolluga',
-  project: 'javascript-nextjs',
+  project: 'eollugage-fe',
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,
