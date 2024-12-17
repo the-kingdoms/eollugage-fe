@@ -33,6 +33,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+    sendRNFunction('setSafeAreaEdges', ['bottom'])
   }, [])
 
   return (
