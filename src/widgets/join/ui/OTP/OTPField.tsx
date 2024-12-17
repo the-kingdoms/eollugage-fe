@@ -147,11 +147,7 @@ export function OTPField({
   }
 
   return (
-    <Suspense
-      fallback={
-        <TextFieldSkeleton size={size} mode={mode} label={label !== undefined ? true : false} />
-      }
-    >
+    <Suspense fallback={<TextFieldSkeleton size={size} mode={mode} label />}>
       <div className="flex flex-col gap-spacing-01 w-full">
         <div
           className={`
