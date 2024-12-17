@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
 import { useAtom } from 'jotai'
+import { uid } from '@/widgets/join/atoms/joinAtoms'
 import { postOTP } from '../api/postOTP'
 import { UserInfoT } from '../api/user'
-import { uid } from '@/widgets/join/atoms/joinAtoms'
 
 function usePostOTP(
   userInfo: UserInfoT,

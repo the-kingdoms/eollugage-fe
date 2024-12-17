@@ -1,6 +1,6 @@
 import { ChangeEvent, Suspense, useEffect, useState } from 'react'
-import TextFieldSkeleton from './TextFieldSkeleton'
 import { Icon } from '@eolluga/eolluga-ui'
+import TextFieldSkeleton from './TextFieldSkeleton'
 
 type InputStateType = 'enable' | 'warning' | 'error' | 'disabled' | 'readOnly'
 
@@ -93,24 +93,26 @@ export function OTPField({
 
   const handleBorderStyle = () => {
     if (mode === 'outlined') {
-      let radiusStyle
-      radiusStyle = size === 'S' ? ' rounded-radius-03' : ' rounded-radius-04'
+      const radiusStyle = size === 'S' ? 'rounded-radius-03' : 'rounded-radius-04'
       switch (state) {
         case 'disabled':
-          setInputBorder('border border-border-strong-01' + radiusStyle)
+          setInputBorder(`border border-border-strong-01 ${radiusStyle}`)
           break
         case 'readOnly':
-          setInputBorder('border border-border-tile-01' + radiusStyle)
+          setInputBorder(`border border-border-tile-01 ${radiusStyle}`)
           break
         case 'error':
-          setInputBorder('border-2 border-border-error' + radiusStyle)
+          setInputBorder(`border-2 border-border-error ${radiusStyle}`)
           break
         case 'warning':
-          setInputBorder('border-2 border-border-strong-01' + radiusStyle)
+          setInputBorder(`border-2 border-border-strong-01 ${radiusStyle}`)
           break
         default:
-          if (isFocused) setInputBorder('border border-border-strong-01' + radiusStyle)
-          else setInputBorder('border border-border-subtle-01' + radiusStyle)
+          setInputBorder(
+            isFocused
+              ? `border border-border-strong-01 ${radiusStyle}`
+              : `border border-border-subtle-01 ${radiusStyle}`,
+          )
           break
       }
     } else {
@@ -128,8 +130,9 @@ export function OTPField({
           setInputBorder('border-b-2 border-b-border-strong-01')
           break
         default:
-          if (isFocused) setInputBorder('border-b border-b-border-strong-01')
-          else setInputBorder('border-b border-b-border-subtle-01')
+          setInputBorder(
+            isFocused ? 'border-b border-b-border-strong-01' : 'border-b border-b-border-subtle-01',
+          )
           break
       }
     }
@@ -144,7 +147,11 @@ export function OTPField({
   }
 
   return (
-    <Suspense fallback={<TextFieldSkeleton size={size} mode={mode} label={label ? true : false} />}>
+    <Suspense
+      fallback={
+        <TextFieldSkeleton size={size} mode={mode} label={label !== undefined ? true : false} />
+      }
+    >
       <div className="flex flex-col gap-spacing-01 w-full">
         <div
           className={`

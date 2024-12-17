@@ -1,18 +1,18 @@
 'use client'
 
-import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TopBar, TextField } from '@eolluga/eolluga-ui'
-import { OTPField } from './OTP/OTPField'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import FlexBox from '@/shared/ui/Flexbox'
+import { ButtonMobile, TopBar, TextField } from '@eolluga/eolluga-ui'
 import { ToastMessage } from '@/shared'
 import { useAtom } from 'jotai'
+import { uid, memberIdAtom } from '@/widgets/join/atoms/joinAtoms' // 중복 제거
 import { RelationT } from '@/entities'
+
+import { OTPField } from './OTP/OTPField' // 상대 경로는 마지막에 배치
 import { usePostLogin } from '../model/usePostLogin'
 import { usePostOTP } from '../model/usePostOTP'
 import { StoreT } from '../api/store'
-import { memberIdAtom } from '../atoms/joinAtoms'
-import { uid } from '@/widgets/join/atoms/joinAtoms'
 
 interface SignupNameProps {
   name: string
@@ -72,7 +72,7 @@ export default function SignupName({
 
   const handleStartClick = () => {
     if (otp !== '') {
-      // 인증번호까지 입력한 경우 이후 절차 기릿
+      // 인증번호까지 입력한 경우 이후 절차 진행
       setIsValidOTP(true)
       mutate()
     } else {
@@ -138,10 +138,8 @@ export default function SignupName({
           size="L"
           style="primary"
           state={getButtonState()}
-          //state={name && phone ? 'enabled' : 'disabled'}
           type="text"
           text1={buttonText}
-          //text1={isValid ? '인증번호 받기' : '인증하기'}
           onClick={handleStartClick}
         />
       </FlexBox>

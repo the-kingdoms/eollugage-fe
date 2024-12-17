@@ -3,7 +3,6 @@ import axios from 'axios'
 import { sendRNFunction, setTokenFromCookie } from '@/shared'
 import { RelationT } from '@/entities'
 import { postLogin, LoginInput } from '../api/postLogin'
-//import { UserInfoT } from '../api/user'
 import { StoreT } from '../api/store'
 
 function usePostLogin(

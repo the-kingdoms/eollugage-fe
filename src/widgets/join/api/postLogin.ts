@@ -1,5 +1,4 @@
 import { axiosInstance } from '@/shared'
-//import { UserInfoT } from './user'
 
 export interface LoginInput {
   userId: string
