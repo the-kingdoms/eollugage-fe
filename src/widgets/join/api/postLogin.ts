@@ -3,7 +3,7 @@ import { axiosInstance } from '@/shared'
 
 export interface LoginInput {
   userId: string
-  otp: number
+  otp: string
 }
 
 interface PostLoginResponse {
@@ -11,7 +11,8 @@ interface PostLoginResponse {
 }
 
 async function postLogin(body: LoginInput): Promise<PostLoginResponse> {
-  const { data } = await axiosInstance.post('/v1/login/phone', body)
+  const loginBody = { uid: body.userId, verificationCode: Number(body.otp) }
+  const { data } = await axiosInstance.post('/v1/login/phone', loginBody)
   return data
 }
 

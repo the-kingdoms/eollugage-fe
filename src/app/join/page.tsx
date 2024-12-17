@@ -14,7 +14,7 @@ export default function JoinPage() {
   const { step, handleNextStep, handlePreviousStep } = useJoin()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
-  const [otp, setOtp] = useState(0) // 인증번호 관리 상태
+  const [otp, setOtp] = useState('') // 인증번호 관리 상태
   const [store, setStore] = useAtom(storeNameAtom)
   const [storeId, setStoreId] = useAtom(storeIdAtom)
   const router = useRouter()
@@ -48,8 +48,7 @@ export default function JoinPage() {
   }
 
   const handleOtpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Number(e.target.value)
-    setOtp(value) // 인증번호 입력 수정 로직
+    setOtp(e.target.value) // 인증번호 입력 수정 로직
   }
   const handleStoreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStore(e.target.value)
