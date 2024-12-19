@@ -13,7 +13,6 @@ import { OTPField } from './OTP/OTPField' // 상대 경로는 마지막에 배�
 import { usePostLogin } from '../model/usePostLogin'
 import { usePostOTP } from '../model/usePostOTP'
 import { StoreT } from '../api/store'
-import { AxiosError } from 'axios'
 
 interface SignupNameProps {
   name: string
