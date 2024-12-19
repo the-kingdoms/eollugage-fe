@@ -13,6 +13,7 @@ import { OTPField } from './OTP/OTPField' // 상대 경로는 마지막에 배�
 import { usePostLogin } from '../model/usePostLogin'
 import { usePostOTP } from '../model/usePostOTP'
 import { StoreT } from '../api/store'
+import { AxiosError } from 'axios'
 
 interface SignupNameProps {
   name: string
@@ -94,15 +95,10 @@ export default function SignupName({
     } else {
       // 인증번호 생성 요청
       setButtonText('인증하기')
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       postOTP(undefined, {
-        onError: (error: any) => {
+        onError: error => {
           // 인증번호 요청 실패 처리
-          const reason =
-            error?.response?.status === 404
-              ? '인증번호 요청 실패: 잘못된 요청입니다.'
-              : '인증번호 요청 중 문제가 발생했습니다.'
-
+          const reason = String(error.cause)
           setErrorMessage(reason)
           setShowToast(true)
         },
