@@ -69,9 +69,9 @@ export default function SignupName({
   })
 
   // 전화번호 유효성 검사 함수
-  const validatePhoneNumber = (phone: string): boolean => {
+  const validatePhoneNumber = (phoneNumber: string): boolean => {
     const phoneRegex = /^[0-9]{10,11}$/
-    return phoneRegex.test(phone)
+    return phoneRegex.test(phoneNumber)
   }
 
   const { mutate: postOTP } = usePostOTP({ name, phone }) // 인증번호 생성
@@ -94,6 +94,7 @@ export default function SignupName({
     } else {
       // 인증번호 생성 요청
       setButtonText('인증하기')
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       postOTP(undefined, {
         onError: (error: any) => {
           // 인증번호 요청 실패 처리
