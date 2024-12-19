@@ -68,17 +68,44 @@ export default function SignupName({
     setShowToast(true)
   })
 
+  // 전화번호 유효성 검사 함수
+  const validatePhoneNumber = (phone: string): boolean => {
+    const phoneRegex = /^[0-9]{10,11}$/
+    return phoneRegex.test(phone)
+  }
+
   const { mutate: postOTP } = usePostOTP({ name, phone }) // 인증번호 생성
 
   const handleStartClick = () => {
+    if (!validatePhoneNumber(phone)) {
+      // 전화번호 유효성 검사 실패
+      setIsValid(false)
+      setErrorMessage('유효하지 않은 전화번호 형식입니다.')
+      setShowToast(true)
+      return
+    }
+
+    setIsValid(true)
+
     if (otp !== '') {
       // 인증번호까지 입력한 경우 이후 절차 진행
       setIsValidOTP(true)
       mutate()
     } else {
-      setIsValid(true)
+      // 인증번호 생성 요청
       setButtonText('인증하기')
-      postOTP()
+      postOTP(undefined, {
+        onError: (error: any) => {
+          // 인증번호 요청 실패 처리
+          const reason =
+            error?.response?.status === 404
+              ? '인증번호 요청 실패: 잘못된 요청입니다.'
+              : '인증번호 요청 중 문제가 발생했습니다.'
+
+          setErrorMessage(reason)
+          setShowToast(true)
+        },
+      })
     }
   }
 
@@ -90,6 +117,19 @@ export default function SignupName({
       return 'enabled'
     }
     return 'disabled'
+  }
+
+  const handlePhoneChangeWrap = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPhone = e.target.value
+    handlePhoneChange(e)
+
+    // 상태 초기화 및 버튼 상태 변경 처리
+    if (newPhone !== phone) {
+      setIsValid(true)
+      setButtonText('인증번호 받기')
+      setIsValidOTP(true)
+      handleOtpChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)
+    }
   }
 
   return (
@@ -110,7 +150,7 @@ export default function SignupName({
           description=" "
         />
         <TextField
-          onChange={handlePhoneChange}
+          onChange={handlePhoneChangeWrap}
           size="L"
           style="outlined"
           label="전화번호"
