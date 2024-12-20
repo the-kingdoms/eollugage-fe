@@ -80,8 +80,6 @@ export default function SignupName({
     if (!validatePhoneNumber(phone)) {
       // 전화번호 유효성 검사 실패
       setIsValid(false)
-      setErrorMessage('유효하지 않은 전화번호 형식입니다.')
-      setShowToast(true)
       return
     }
 
