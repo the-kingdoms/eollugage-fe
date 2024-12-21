@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 얼루가게 README
 
-## Getting Started
+<img width="3870" alt="얼루가" src="https://github.com/user-attachments/assets/1335c3f1-c42e-4519-9838-3453f83ba81e">
+<br/>
 
-First, run the development server:
+- [배포 URL](https://gage.eolluga.com)
+- [App Store(iOS)](https://apps.apple.com/kr/app/%EC%96%BC%EB%A3%A8%EA%B0%80%EA%B2%8C/id6477911531)
+- [Play Store(AOS)](https://play.google.com/store/apps/details?id=com.eolluga.eollugage)
 
-```bash
-npm run dev
-# or
+<br>
+
+## 목차
+
+1. [서비스 소개](#서비스-소개)
+2. [팀원 소개 및 역할 분담](#팀원-소개-및-역할-분담)
+3. [프로젝트 소개](#프로젝트-소개)
+4. [기술 스택 소개](#기술-스택-소개)
+5. [시작 가이드](#시작-가이드)
+6. [프로젝트 구조](#프로젝트-구조)
+7. [페이지별 기능](#페이지별-기능)
+
+<br>
+
+## 서비스 소개
+
+- 얼루가게는 요식업 점주들의 직원 & 발주 관리를 위한 웹앱입니다.
+- 사장님은 가게 계정을 개설하고, 직원들은 가게에 합류하여 가게 공지사항과 발주노트를 함께 공유할 수 있습니다.
+- 가게마다 비치된 QR을 통해 직원들은 출퇴근 현황을 기록할 수 있습니다.
+- 사장님은 직원들의 출퇴근 현황을 한 눈에 파악하고 수정/추가할 수 있습니다.
+- 사장님은 직원들의 직책을 설정하고 변경할 수 있습니다.
+
+<br>
+
+## 팀원 소개 및 역할 분담
+
+<div align="center">
+
+|                                                           **정선아**                                                            |                                                          **김유경**                                                          |                                                                **방기연**                                                                |                                                                   **장원석**                                                                   |
+| :-----------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://avatars.githubusercontent.com/iodio89?v=4" height=150 width=150> <br/> @iodio89](https://github.com/iodio89) | [<img src="https://avatars.githubusercontent.com/tptkds?v=4" height=150 width=150> <br/> @tptkds](https://github.com/tptkds) | [<img src="https://avatars.githubusercontent.com/PangKiYeon?v=4" height=150 width=150> <br/> @PangKiYeon](https://github.com/PangKiYeon) | [<img src="https://avatars.githubusercontent.com/Wonchang0314?v=4" height=150 width=150> <br/> @Wonchang0314](https://github.com/Wonchang0314) |
+
+</div>
+
+<br>
+
+## 프로젝트 소개
+
+### 개발 기간
+
+- 전체 개발 기간 : 2024.09.25 ~ 현재
+- UI 구현 : 2024.09.25 ~ 2024.10.14
+- 기능 구현 : 2024.10.15 ~ 2024.11.10
+- QA 진행 및 오류 수정 : 2024.11.11 ~ 현재
+
+<br>
+
+### 진행 방식
+
+- 주에 2번 온라인 회의를 진행하며 작업 순서와 방향성에 대한 고민을 나누고 코드 리뷰를 진행했습니다.
+- **GitHub Projects**와 **Issues**를 사용하여 작업을 할당하고 진행 상황을 공유했습니다.
+- **Github**는 Git-flow 전략을 기반으로 Upstream의 main, develop 브랜치와 개개인의 Origin Repository를 운용했습니다.
+  - 개인 Origin Repository에서 기능 단위로 독립적인 개발을 진행했습니다.
+  - Upstream은 main, develop 브랜치로 나누어 사용하였습니다.
+    - main 브랜치: 배포 브랜치
+    - develop 브랜치: 개발 단계에서 git-flow의 master 역할
+
+<br>
+
+## 기술 스택 소개
+
+- 코어 : Next.js, Typescript, React Native
+- 상태관리: React Query, Jotai
+- 스타일링: Tailwind CSS, [자체 개발 UI 컴포넌트](https://www.npmjs.com/package/@eolluga/eolluga-ui), shadcn/ui
+- 패키지 매니저: Yarn
+- CI/CD : Github Action, AWS Amplify
+- 버전 및 이슈관리 : Github, Github Issues, Github Project
+- 협업 툴 : Slack, ZEP
+
+<br/>
+
+### 사용 이유
+
+#### Next.js, Tailwind CSS
+
+- Next.js
+  - SSR을 통해 초기 페이지 진입 시 화면을 빠르게 로딩하고, 필요한 데이터를 미리 불러와 사용자 경험을 향상시켰습니다.
+  - App Router의 직관적이고 편리한 라우팅 체계를 활용하여 개발 효율성을 높이고 페이지 간 전환을 용이하게 했습니다.
+- Tailwind CSS
+  - 자체 제작한 컴포넌트 패키지에서 미리 정의해 둔 컬러 시스템과 타이포그래피를 사용하여 일관된 스타일을 유지할 수 있었습니다.
+  - 편리한 CSS 유틸리티를 사용하여 복잡한 스타일링을 간단하게 구현할 수 있었습니다.
+  - CSS와 JavaScript를 한 파일에서 관리할 수 있어 코드 가독성을 높이고, 컴포넌트 개발의 생산성을 향상시켰습니다.
+
+#### React Query
+
+- 중복 호출을 제거하고 오래된 데이터를 자동으로 갱신해주어, 비동기 데이터 처리의 복잡성을 크게 줄이고 효율적으로 데이터를 관리할 수 있었습니다.
+- 데이터 호출 상태(로딩, 성공, 실패 등)를 다양한 상태값으로 관리하여, 사용자에게 요청 상태에 따라 적절한 피드백을 제공할 수 있었습니다.
+- Prefetch한 데이터를 Hydration을 통해 클라이언트 사이드의 상태로 손쉽게 이어받아, 초기 로딩 성능을 높이고 클라이언트 측에서의 데이터 관리를 원활히 할 수 있었습니다.
+
+#### eslint, prettier
+
+- 정해진 규칙에 따라 자동적으로 코드 스타일을 정리해 코드의 일관성을 유지하고자 했습니다.
+- 코드 품질 관리는 eslint에, 코드 포맷팅은 prettier에 일임해 사용했습니다.
+- 협업 시 매번 컨벤션을 신경 쓸 필요 없이 빠르게 개발하는 데에 목적을 두었습니다.
+
+<br>
+
+## 시작 가이드
+```
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+http://localhost:3000 에서 접속 가능
+
+<br/>
+
+## 프로젝트 구조
+
+```
+.
+├── README.md
+├── components.json
+├── declaration.d.ts
+├── next-env.d.ts
+├── next.config.mjs
+├── node_modules
+├── package.json
+├── postcss.config.mjs
+├── public
+├── scripts
+├── src
+│   ├── app
+│   ├── entities
+│   ├── features
+│   ├── shared
+│   └── widgets
+├── tailwind.config.ts
+├── tsconfig.json
+└── yarn.lock
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [FSD 아키텍처 사용법](https://github.com/the-kingdoms/eollugage-fe/wiki/FSD-%EA%B5%AC%EC%A1%B0-%EC%82%AC%EC%9A%A9-%EA%B7%9C%EC%B9%99-%EB%B0%8F-%EA%B0%9C%EB%85%90)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<br>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 페이지별 기능
 
-## Learn More
+### [초기화면]
+- 서비스 접속 초기화면이며 쿠키 로그인 토큰 저장 여부에 따라 다른 플로우가 진행돼요.
+  - access token이 존재하는 경우: 소속된 가게의 home 화면으로 redirect
+  - access token이 존재하지 않거나 유효하지 않은 경우: 초기화면 그대로 유지
 
-To learn more about Next.js, take a look at the following resources:
+### [로그인 및 회원가입]
+<div align="center">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+</div>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| 기능       | 설명                                                   | 이미지                                                                                          |
+|------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **로그인** | 이름과 전화번호를 입력한 후 가입하기 버튼을 클릭하면 전화번호 유효성 검사가 실행되고, 검사를 통과해야 다음 단계로 넘어갈 수 있어요.<br/><br/>입력한 전화번호로 가입된 계정이 있는 경우 소속된 가게의 홈 화면으로 넘어가고, 가입된 계정이 없는 경우에는 회원가입 과정이 이어져요. | <img src="https://github.com/user-attachments/assets/0c4529ff-97cf-43b4-8567-2e6d60e8f987" width="270"/> |
+| **회원가입** | **[사장]**<br/><br/>가게 이름을 입력하여 4자리 가게 코드를 발급받아 가게를 생성할 수 있어요. 가게 생성이 완료된 경우, 손님들이 주문하는 화면에 보이게 될 가게 대표 이미지를 추가할 수 있어요.  | <img src="https://github.com/user-attachments/assets/9c6620f8-73aa-45c1-83de-ea08be069d85" width="270"/> |
+| **회원가입** | **[직원]**<br/><br/>자신의 이름과 합류할 가게 코드 4자리를 입력하여 가게 소속 직원으로 합류할 수 있어요.    | <img src="https://github.com/user-attachments/assets/2f1b7989-57c8-4be1-a26d-a8a6747c2d43" width="270"/> |
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### [홈]
+| 기능       | 설명                                                   | 이미지                                                                                          |
+|------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **가게 공지** | 사장님과 직원 모두 **가게 공지**를 확인하고 추가 및 수정할 수 있어요. | ![ScreenRecording_12-09-2024 23-53-24_1](https://github.com/user-attachments/assets/3c3994fa-231d-4dc1-a9ae-16e1b363d51c) |
+| **금일 근무자** | 사장님과 직원 모두 **금일 근무자**를 확인할 수 있어요. <br/><br/>출근 시간 순으로 나열되어 있어요. <br/><br/>**좌우로 이동**할 수 있도록 제공되며, 화면에 위치한 화살표 버튼을 클릭하여 확인할 수 있어요. |  |
+| **발주 리스트** | 사장님과 직원 모두 **발주 리스트**를 확인 및 추가할 수 있어요.<br/><br/> 항목을 클릭하면 해당 발주 항목의 상세 정보가 **다이얼로그 형식**의 팝업으로 나타나요. | ![ScreenRecording_12-10-2024 00-06-54_1](https://github.com/user-attachments/assets/4b49f198-5261-48e0-88a0-9d0fe7dad986) |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### [근무 관리]
+
+| 기능       | 설명                                                   | 이미지                                                                                          |
+|------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **근무기록 확인** | 사장님은 직원의 **근무기록**을 확인할 수 있어요. <br/><br/>**주간 또는 월간 단위를 토글**해 원하는 날짜의 근무기록을 쉽고 빠르게 찾을 수 있어요. | <img src="https://github.com/user-attachments/assets/2c554777-b14f-4df0-9058-f0ce850df944" alt="근무 추가 이미지" width="270px"> |
+| **근무 추가** | 사장님은 근무관리 페이지 하단에 위치한 **근무추가 버튼**을 통해 근무기록을 추가할 수 있어요.<br/><br/>근무 추가 화면에서 근무자 선택 부분을 클릭하면 하단에 보이는 **근무자 리스트**에서 근무자를 선택할 수 있어요.<br/><br/>근무 추가 화면에서 출근 시간과 퇴근 시간을 **숫자 키패드**로 입력할 수 있어요.<br/><br/>근무 추가 화면에서 근무자, 출근 시간, 퇴근 시간을 모두 입력한 경우 활성화된 하단의 **근무 추가하기 버튼**을 통해 추가된 근무 기록을 확인할 수 있어요.  | <img src="https://github.com/user-attachments/assets/92aefc31-6835-4432-94d6-f65c7eba19b8" alt="근무 추가 이미지" width="270px"> |
+| **근무 수정** | 사장님은 선택한 근무자에게 추가되어 있는 **근무기록을 눌러 수정**할 수 있어요.<br/><br/>근무 수정 화면에서 **근무 날짜 또는 출근, 퇴근 시간**을 변경할 수 있어요.    | <img src="https://github.com/user-attachments/assets/ba709a7b-8d28-4816-89be-dc02f9be6c65" alt="근무 수정 이미지" width="270px"> |
+| **출근 처리** | QR 코드를 찍으면 활성화되는 출근 버튼을 눌러 출근 처리를 할 수 있어요.    | <img src="https://github.com/user-attachments/assets/a8c24451-42ca-4071-9875-bcd8842fbf9f" alt="출근 처리 이미지" width="270px"> |
+| **퇴근 처리** | 오늘 출근 한 기록이 있는 경우 퇴근 버튼을 눌러 퇴근 처리를 할 수 있어요.   | <img src="https://github.com/user-attachments/assets/29336ff8-01d3-4e46-a279-e79710a8d09e" alt="퇴근 처리 이미지" width="270px"> |
+
+
+### [마이페이지] - 장원석
+
+| 기능       | 설명                                                   | 이미지                                                                                          |
+|------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| **드래그앤 드롭을 통한 근무 직책 수정** | 사장님은 마이페이지에서 직원의 직책을 수정할 수 있어요. <br/><br/>**드래그앤 드롭으로** 편하게 원하는 직원의 직책을 수정 가능해요. | <img width="270" alt="직책 수정 및 생성 페이지 이미지" src="https://github.com/user-attachments/assets/97e8c6a7-0b3e-4c48-8ac6-ea500b948f2d"> |
+| **새로운 직책 설정 추가** | 사장님은 직원의 직책을 수정하고, 새로운 직책을 추가할 수 있어요. <br/><br/>**바텀 시트로** 특정 직책을 삭제하거나, 가게에 새로운 직책을 추가할 수 있어요. | <img width="270" alt="직책 수정 및 생성 페이지 이미지" src="https://github.com/user-attachments/assets/97e8c6a7-0b3e-4c48-8ac6-ea500b948f2d"> |
+| **정적인 컨텐츠 조회** | 마이페이지에서 가게 관련 정보를 조회할 수 있어요. <br/><br/> 가게 정보, 앱 정보, 사업자 정보 등 정적인 컨텐츠를 조회할 수 있어요 <br/><br/> (+ 로그아웃, 탈퇴 기능)  | <img width="270" alt="스크린샷 2024-11-25 오후 10 17 59" src="https://github.com/user-attachments/assets/e6f2acc3-0c64-49a2-a37b-2c856cfc06d7"> |
+<br>
+
+<br>
+
+
