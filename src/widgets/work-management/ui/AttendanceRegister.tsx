@@ -8,6 +8,7 @@ import formatDate from '../utils/getTodayDate'
 export default function AttendanceRegister({ storeId }: { storeId: string }) {
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#131313', style: 'light' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (
