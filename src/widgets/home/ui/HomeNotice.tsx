@@ -1,4 +1,4 @@
-import { Icon } from '@eolluga/eolluga-ui/icon'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import Link from 'next/link'
 import HomeBundle from './HomeBundle'
 

@@ -1,7 +1,7 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { Icon } from '@eolluga/eolluga-ui/icon'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { useState } from 'react'
 import { DutyT } from '@/entities/home/api/home'
 import dayjs from 'dayjs'

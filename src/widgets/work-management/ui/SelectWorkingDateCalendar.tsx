@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from '@/shared/ui/shadcn/drawer'
 import { Button } from '@/shared/ui/shadcn/button'
-import { Icon } from '@eolluga/eolluga-ui/icon'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { getNextWeekOfMonth, getPrevWeekOfMonth, getWeekDates, getWeekOfMonth } from '@/shared'
 import { cn } from '@/shared/utils/cn'
 import { useState } from 'react'

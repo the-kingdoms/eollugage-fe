@@ -1,7 +1,7 @@
 'use client'
 
 import { Dialog } from '@eolluga/eolluga-ui/Feedback'
-import { Icon } from '@eolluga/eolluga-ui/icon'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { Scrim } from '@eolluga/eolluga-ui/Layout'
 import { useState } from 'react'
 import Link from 'next/link'
