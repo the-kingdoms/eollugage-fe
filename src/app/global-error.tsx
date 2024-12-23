@@ -1,7 +1,7 @@
 'use client'
 
 import { Flexbox, deleteTokenFromCookie } from '@/shared'
-import { ButtonMobile } from '@eolluga/eolluga-ui'
+import { ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
 import Link from 'next/link'
 
 export default function GlobalError({
@@ -23,7 +23,7 @@ export default function GlobalError({
           <Flexbox direction="col" className="w-full gap-4 px-4">
             <ButtonMobile
               size="L"
-              style="primary"
+              mode="primary"
               state="enabled"
               type="text"
               text1="다시 시도하기"

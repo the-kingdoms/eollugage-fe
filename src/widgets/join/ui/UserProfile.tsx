@@ -1,5 +1,6 @@
 import FlexBox from '@/shared/ui/Flexbox'
-import { Avatar, ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { Avatar } from '@eolluga/eolluga-ui/Display'
 import { useRouter } from 'next/navigation'
 import useJoin from '../hooks/useJoin'
 
@@ -34,7 +35,7 @@ export default function UserProfile({
         <FlexBox direction="col" className="w-full px-spacing-04 py-spacing-03 absolute bottom-4">
           <ButtonMobile
             size="L"
-            style="primary"
+            mode="primary"
             state="enabled"
             type="text"
             text1={isOwner ? '프로필 생성하기' : '출근하기'}

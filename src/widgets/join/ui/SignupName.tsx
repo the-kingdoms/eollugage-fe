@@ -1,7 +1,8 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextField, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { TextField } from '@eolluga/eolluga-ui/Input'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { ToastMessage } from '@/shared'
@@ -74,7 +75,7 @@ export default function SignupName({
         <TextField
           onChange={handleNameChange}
           size="L"
-          style="outlined"
+          mode="outlined"
           label="이름"
           placeholder="이름을 입력해주세요"
           value={name}
@@ -83,7 +84,7 @@ export default function SignupName({
         <TextField
           onChange={handlePhoneChange}
           size="L"
-          style="outlined"
+          mode="outlined"
           label="전화번호"
           placeholder="전화번호를 입력해주세요"
           value={phone}
@@ -94,7 +95,7 @@ export default function SignupName({
       <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           state={name && phone ? 'enabled' : 'disabled'}
           type="text"
           text1="시작하기"
