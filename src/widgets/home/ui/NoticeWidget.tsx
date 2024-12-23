@@ -70,7 +70,7 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
         </div>
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           type="text"
           state="enabled"
           text1={buttonText}

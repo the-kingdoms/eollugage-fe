@@ -46,7 +46,7 @@ export default function ImageControlButtons({
         <Flexbox direction="col" className="w-full gap-spacing-02 py-spacing-03 px-spacing-04">
           <ButtonMobile
             size="L"
-            style="primary"
+            mode="primary"
             type="text"
             state="enabled"
             text1="앨범에서 선택하기"

@@ -53,7 +53,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
             placeholder="발주 이름을 입력해주세요"
             value={nameText}
             onChange={handleNameChange}
-            style="outlined"
+            mode="outlined"
           />
           <TextArea
             size="L"
@@ -65,7 +65,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
         </FlexBox>
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           type="text"
           state={nameText.trim() && descriptionText.trim() ? 'enabled' : 'disabled'}
           text1="저장하기"
