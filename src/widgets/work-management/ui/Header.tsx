@@ -1,4 +1,4 @@
-import { Icon } from '@eolluga/eolluga-ui'
+import { Icon } from '@eolluga/eolluga-ui/icon'
 import { useRouter } from 'next/navigation'
 
 export default function Header({ type }: { type: 'add' | 'edit' }) {

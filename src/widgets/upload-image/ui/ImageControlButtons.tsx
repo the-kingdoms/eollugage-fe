@@ -1,5 +1,5 @@
 import { Flexbox, sendRNFunction } from '@/shared'
-import { ButtonMobile } from '@eolluga/eolluga-ui'
+import { ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
 import Link from 'next/link'
 import { StoreInfoT } from '@/entities'
 import { useState } from 'react'

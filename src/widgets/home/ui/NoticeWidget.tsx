@@ -1,7 +1,8 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextArea, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { TextArea } from '@eolluga/eolluga-ui/Input'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'

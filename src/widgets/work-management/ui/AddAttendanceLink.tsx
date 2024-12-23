@@ -1,4 +1,4 @@
-import { Icon } from '@eolluga/eolluga-ui'
+import { Icon } from '@eolluga/eolluga-ui/icon'
 import Link from 'next/link'
 
 export default function AddAttendanceLink({ storeId }: { storeId: string }) {

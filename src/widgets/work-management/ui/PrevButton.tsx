@@ -1,5 +1,5 @@
 /* eslint-disable import/no-cycle */
-import { Icon } from '@eolluga/eolluga-ui'
+import { Icon } from '@eolluga/eolluga-ui/icon'
 import handlePrev from '../utils/handlePrev'
 import useAttendance from '../hooks/useAttendance'
 

@@ -1,5 +1,5 @@
 import { Flexbox } from '@/shared'
-import { Icon } from '@eolluga/eolluga-ui'
+import { Icon } from '@eolluga/eolluga-ui/icon'
 import Image from 'next/image'
 import { OrbitProgress } from 'react-loading-indicators'
 import storeDefaultImage from '@public/image/store_default_image.png'

@@ -1,5 +1,6 @@
 import FlexBox from '@/shared/ui/Flexbox'
-import { Chip, Icon } from '@eolluga/eolluga-ui'
+import { Chip } from '@eolluga/eolluga-ui/Input'
+import { Icon } from '@eolluga/eolluga-ui/icon'
 import Link from 'next/link'
 
 interface AddPhotoButtonProps {
