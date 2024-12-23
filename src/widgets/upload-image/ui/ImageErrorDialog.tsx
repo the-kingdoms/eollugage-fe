@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai'
-import { Dialog, Scrim } from '@eolluga/eolluga-ui'
+import { Dialog } from '@eolluga/eolluga-ui/Feedback'
+import { Scrim } from '@eolluga/eolluga-ui/Layout'
 import { isSuccessAtom } from '../atoms/uploadImageAtoms'
 
 interface ImageErrorDialogProps {

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import { getWeekOfMonth } from '@/shared'
-import { Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { useRef } from 'react'
 import handleNext from '../utils/handleNext'
 import useAttendance from '../hooks/useAttendance'

@@ -1,4 +1,5 @@
-import { Dialog, Scrim } from '@eolluga/eolluga-ui'
+import { Dialog } from '@eolluga/eolluga-ui/Feedback'
+import { Scrim } from '@eolluga/eolluga-ui/Layout'
 import { Dispatch, SetStateAction } from 'react'
 import { useRouter } from 'next/navigation'
 

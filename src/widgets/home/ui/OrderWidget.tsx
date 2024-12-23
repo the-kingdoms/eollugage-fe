@@ -1,7 +1,8 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextArea, TextField, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { TextArea, TextField } from '@eolluga/eolluga-ui/Input'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { sendRNFunction } from '@/shared'
@@ -52,7 +53,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
             placeholder="발주 이름을 입력해주세요"
             value={nameText}
             onChange={handleNameChange}
-            style="outlined"
+            mode="outlined"
           />
           <TextArea
             size="L"
@@ -64,7 +65,7 @@ export default function OrderWidget({ storeId }: OrderWidgetProps) {
         </FlexBox>
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           type="text"
           state={nameText.trim() && descriptionText.trim() ? 'enabled' : 'disabled'}
           text1="저장하기"

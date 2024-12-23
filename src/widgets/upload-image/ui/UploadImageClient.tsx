@@ -4,7 +4,7 @@
 import { useEffect } from 'react'
 import FlexBox from '@/shared/ui/Flexbox'
 import { useRouter } from 'next/navigation'
-import { TopBar } from '@eolluga/eolluga-ui'
+import { TopBar } from '@eolluga/eolluga-ui/Navigation'
 import { useAtom } from 'jotai'
 import { useGetStoreInfo } from '@/entities'
 import { sendRNFunction } from '@/shared'

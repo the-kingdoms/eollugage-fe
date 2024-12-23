@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@eolluga/eolluga-ui": "^3.2.9",
+    "@eolluga/eolluga-ui": "^3.3.2",
     "@hookform/resolvers": "^3.9.0",
     "@mui/material": "^6.1.2",
     "@mui/x-date-pickers": "^7.18.0",

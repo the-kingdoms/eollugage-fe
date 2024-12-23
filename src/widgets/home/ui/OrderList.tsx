@@ -1,6 +1,8 @@
 'use client'
 
-import { Dialog, Icon, Scrim } from '@eolluga/eolluga-ui'
+import { Dialog } from '@eolluga/eolluga-ui/Feedback'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
+import { Scrim } from '@eolluga/eolluga-ui/Layout'
 import { useState } from 'react'
 import Link from 'next/link'
 import { OrderT } from '@/entities/home/api/home'
