@@ -2,12 +2,11 @@ import { useMutation } from '@tanstack/react-query'
 import axios from 'axios'
 import { sendRNFunction, setTokenFromCookie } from '@/shared'
 import { RelationT } from '@/entities'
-import { postLogin } from '../api/postLogin'
-import { UserInfoT } from '../api/user'
+import { postLogin, LoginInput } from '../api/postLogin'
 import { StoreT } from '../api/store'
 
 function usePostLogin(
-  userInfo: UserInfoT,
+  userInfo: LoginInput,
   handleStoreListCheck: (storelist: StoreT[], relationList: RelationT[], memberId: string) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onErrorCallback: (error: any) => void,
