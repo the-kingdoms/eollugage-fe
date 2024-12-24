@@ -21,6 +21,7 @@ export default function JoinPage() {
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+    sendRNFunction('setSafeAreaEdges', ['bottom'])
   }, [])
 
   useEffect(() => {

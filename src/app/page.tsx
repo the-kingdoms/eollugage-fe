@@ -7,9 +7,7 @@ import styles from './page.module.css'
 
 export default async function Home() {
   const userInfo = await fetchUserInfo()
-  if (userInfo && userInfo.storeList.length > 0) redirect(`/${userInfo.storeList[0].storeId}/home`)
-  if (userInfo && userInfo.relationList.length > 0 && userInfo.relationList[0].storeId)
-    redirect(`/${userInfo.relationList[0].storeId}/home`)
+  if (userInfo && userInfo.relationDTO.storeId) redirect(`/${userInfo.relationDTO.storeId[0]}/home`)
 
   return (
     <FlexBox
