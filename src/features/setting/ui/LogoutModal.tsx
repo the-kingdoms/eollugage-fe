@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'
-import { ButtonMobile } from '@eolluga/eolluga-ui'
+import ButtonMobile from '@eolluga/eolluga-ui/Navigation/ButtonMobile'
 import { deleteTokenFromCookie, sendRNFunction } from '@/shared'
 
 export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => void }) {
@@ -18,7 +18,7 @@ export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => 
           <div className="flex gap-2">
             <ButtonMobile
               size="M"
-              style="secondary"
+              mode="secondary"
               type="text"
               state="enabled"
               text1="닫기"
@@ -26,7 +26,7 @@ export default function LogoutModal({ setIsModalOpen }: { setIsModalOpen: () => 
             />
             <ButtonMobile
               size="M"
-              style="primary"
+              mode="primary"
               type="text"
               state="enabled"
               text1="확인"

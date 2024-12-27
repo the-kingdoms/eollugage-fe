@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { DragDropContext, DropResult } from 'react-beautiful-dnd'
-import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui'
+import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
 import { PositionGroupType } from '@/shared/types/myPageTypes'
 import PositionGroup from '@/features/mypage/ui/PositionGroup'
 import BottomSheet from '@/features/mypage/ui/BottomSheet'
@@ -157,7 +157,7 @@ export default function PositionWidget({
       </div>
       <footer className="w-full py-3 px-4 fixed bottom-4">
         <ButtonMobile
-          style="primary"
+          mode="primary"
           size="L"
           type="text"
           state="enabled"

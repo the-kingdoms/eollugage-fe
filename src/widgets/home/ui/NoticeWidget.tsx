@@ -1,7 +1,8 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextArea, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import TextArea from '@eolluga/eolluga-ui/Input/TextArea'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState, useEffect } from 'react'
 import { useAtom } from 'jotai'
@@ -70,7 +71,7 @@ export default function NoticeWidget({ storeId }: NoticeWidgetProps) {
         </div>
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           type="text"
           state="enabled"
           text1={buttonText}

@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TopBar, TextField } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import TextField from '@eolluga/eolluga-ui/Input/TextField'
 import { ToastMessage } from '@/shared'
 import { useAtom } from 'jotai'
 import { uid, memberIdAtom } from '@/widgets/join/atoms/joinAtoms' // 중복 제거
@@ -137,7 +138,7 @@ export default function SignupName({
         <TextField
           onChange={handleNameChange}
           size="L"
-          style="outlined"
+          mode="outlined"
           label="이름"
           placeholder="이름을 입력해주세요"
           value={name}
@@ -146,7 +147,7 @@ export default function SignupName({
         <TextField
           onChange={handlePhoneChangeWrap}
           size="L"
-          style="outlined"
+          mode="outlined"
           label="전화번호"
           placeholder="전화번호를 입력해주세요"
           value={phone}
@@ -170,7 +171,7 @@ export default function SignupName({
       <FlexBox direction="col" className="w-full p-spacing-04 absolute bottom-4">
         <ButtonMobile
           size="L"
-          style="primary"
+          mode="primary"
           state={getButtonState()}
           type="text"
           text1={buttonText}
