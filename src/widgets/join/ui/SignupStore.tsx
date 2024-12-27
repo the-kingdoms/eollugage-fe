@@ -3,7 +3,10 @@
 'use client'
 
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, Dialog, Scrim, TextField, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import TextField from '@eolluga/eolluga-ui/Input/TextField'
+import Dialog from '@eolluga/eolluga-ui/Feedback/Dialog'
+import Scrim from '@eolluga/eolluga-ui/Layout/Scrim'
 import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
 import { useAtom } from 'jotai'
@@ -128,7 +131,7 @@ export default function SignupStore({
         <TextField
           onChange={isOwner ? handleStoreChange : hadleStoreIdChange}
           size="L"
-          style="underlined"
+          mode="underlined"
           label={isOwner ? '가게 이름' : '근무 중인 가게 코드'}
           placeholder={isOwner ? '가게 이름을 입력해주세요' : '가게 코드를 입력해주세요'}
           value={isOwner ? store : storeId.slice(0, 4)}
@@ -138,7 +141,7 @@ export default function SignupStore({
         <TextField
           onChange={handleNameChange}
           size="L"
-          style="underlined"
+          mode="underlined"
           label="이름"
           placeholder="이름을 입력해주세요"
           state="readOnly"
@@ -157,7 +160,7 @@ export default function SignupStore({
           )}
           <ButtonMobile
             size="L"
-            style="primary"
+            mode="primary"
             state={getButtonState()}
             type="text"
             text1={isOwner ? '가게 코드 받기' : '코드 승인 받기'}

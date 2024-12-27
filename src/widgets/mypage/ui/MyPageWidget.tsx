@@ -1,7 +1,8 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { Icon, Avatar } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
+import { Avatar } from '@eolluga/eolluga-ui/Display'
 import { storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
 import { UserInfo } from '@/entities'
 import { useEffect } from 'react'

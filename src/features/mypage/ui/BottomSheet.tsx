@@ -9,7 +9,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/shared/ui/shadcn/drawer'
-import { TextField, Icon } from '@eolluga/eolluga-ui'
+import { TextField } from '@eolluga/eolluga-ui/Input'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 
 export default function BottomSheet({
   positionList,
@@ -88,7 +89,7 @@ export default function BottomSheet({
                   value={position}
                   onChange={e => handlePositionChange(e.target.value, index)}
                   size="M"
-                  style="outlined"
+                  mode="outlined"
                   placeholder="직책 입력"
                 />
                 <button type="button" onClick={() => handleDelete(position)} className="p-3">
@@ -107,7 +108,7 @@ export default function BottomSheet({
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             size="M"
-            style="outlined"
+            mode="outlined"
             placeholder="직책 추가하기"
           />
         </div>

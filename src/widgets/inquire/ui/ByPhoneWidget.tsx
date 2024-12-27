@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { TopBar, TextField, ButtonMobile } from '@eolluga/eolluga-ui'
+import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
+import { TextField } from '@eolluga/eolluga-ui/Input'
 import ToastMessage from '@/shared/ui/ToastMessage'
 
 export default function ByPhoneWidget({ storeId }: { storeId: string }) {
@@ -37,7 +38,7 @@ export default function ByPhoneWidget({ storeId }: { storeId: string }) {
           label="고객센터 번호"
           onChange={() => {}}
           size="L"
-          style="outlined"
+          mode="outlined"
           state="readOnly"
         />
       </div>
@@ -52,7 +53,7 @@ export default function ByPhoneWidget({ storeId }: { storeId: string }) {
           />
         </div>
         <ButtonMobile
-          style="primary"
+          mode="primary"
           size="L"
           type="text"
           state="enabled"

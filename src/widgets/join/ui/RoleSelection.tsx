@@ -1,6 +1,6 @@
 'use client'
 
-import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
 import { Flexbox } from '@/shared'
 import BadgeCard from './BadgeCard'
 import useJoin from '../hooks/useJoin'
@@ -33,7 +33,7 @@ export default function RoleSelection({ handlePreviousStep }: RoleSelectionProps
           onClick={handleMemberClick}
           size="L"
           state="enabled"
-          style="primary"
+          mode="primary"
           text1="네 직원이에요"
           type="text"
         />

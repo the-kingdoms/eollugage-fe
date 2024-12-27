@@ -8,7 +8,7 @@ import {
   tailwindRadiusConfig,
   tailwindMotionsConfig,
   tailwindTypographyConfig,
-} from '@eolluga/eolluga-ui'
+} from '@eolluga/eolluga-ui/tailwindConfig'
 
 const baseConfig: Config = {
   darkMode: ['class'],

@@ -1,5 +1,5 @@
 import { ChangeEvent, Suspense, useEffect, useState } from 'react'
-import { Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import TextFieldSkeleton from './TextFieldSkeleton'
 
 type InputStateType = 'enable' | 'warning' | 'error' | 'disabled' | 'readOnly'
