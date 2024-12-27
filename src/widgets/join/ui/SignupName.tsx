@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
 import { TextField } from '@eolluga/eolluga-ui/Input'
+import FlexBox from '@/shared/ui/Flexbox'
 import { ToastMessage } from '@/shared'
 import { useAtom } from 'jotai'
 import { uid, memberIdAtom } from '@/widgets/join/atoms/joinAtoms' // 중복 제거
@@ -172,7 +172,7 @@ export default function SignupName({
         <ButtonMobile
           size="L"
           mode="primary"
-          state={getButtonState()}
+          state={name && phone ? 'enabled' : 'disabled'}
           type="text"
           text1={buttonText}
           onClick={handleStartClick}

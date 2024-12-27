@@ -4,9 +4,9 @@
 
 import FlexBox from '@/shared/ui/Flexbox'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
-import TextField from '@eolluga/eolluga-ui/Input/TextField'
-import Dialog from '@eolluga/eolluga-ui/Feedback/Dialog'
-import Scrim from '@eolluga/eolluga-ui/Layout/Scrim'
+import { TextField } from '@eolluga/eolluga-ui/Input'
+import { Scrim } from '@eolluga/eolluga-ui/Layout'
+import { Dialog } from '@eolluga/eolluga-ui/Feedback'
 import { useState } from 'react'
 import ToastMessage from '@/shared/ui/ToastMessage'
 import { useAtom } from 'jotai'

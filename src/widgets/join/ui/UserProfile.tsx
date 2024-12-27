@@ -1,6 +1,6 @@
 import FlexBox from '@/shared/ui/Flexbox'
-import { Avatar } from '@eolluga/eolluga-ui/Display'
 import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { Avatar } from '@eolluga/eolluga-ui/Display'
 import { useRouter } from 'next/navigation'
 import useJoin from '../hooks/useJoin'
 

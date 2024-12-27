@@ -1,7 +1,7 @@
 'use client'
 
 import { Flexbox, deleteTokenFromCookie } from '@/shared'
-import ButtonMobile from '@eolluga/eolluga-ui/Navigation/ButtonMobile'
+import { ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
 import Link from 'next/link'
 
 export default function GlobalError({
