@@ -15,7 +15,7 @@ import {
 } from '@/shared/ui/shadcn/drawer'
 import { FormControl, FormField, FormItem, FormLabel } from '@/shared/ui/shadcn/form'
 import { cn } from '@/shared/utils/cn'
-import { Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { Form } from '../types/work-management'
 
 export default function SelectMemberDrawer({

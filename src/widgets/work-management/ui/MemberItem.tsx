@@ -1,6 +1,6 @@
 'use client'
 
-import { Avatar } from '@eolluga/eolluga-ui'
+import Avatar from '@eolluga/eolluga-ui/Display/Avatar'
 import { useAtom } from 'jotai'
 import { Member } from '@/entities'
 import { selectedMemberAtom } from '../atoms/workManagementAtoms'

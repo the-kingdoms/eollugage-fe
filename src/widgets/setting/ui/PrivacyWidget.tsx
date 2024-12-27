@@ -1,7 +1,7 @@
 'use client'
 
 import { useParams, useRouter } from 'next/navigation'
-import { TopBar } from '@eolluga/eolluga-ui'
+import TopBar from '@eolluga/eolluga-ui/Navigation/TopBar'
 
 interface PrivacyPolicyContent {
   subTitle: string

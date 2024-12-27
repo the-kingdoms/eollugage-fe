@@ -1,6 +1,7 @@
 import { sendRNFunction } from '@/shared'
 import FlexBox from '@/shared/ui/Flexbox'
-import { Chip, Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
+import Chip from '@eolluga/eolluga-ui/Input/Chip'
 
 interface AddPhotoButtonProps {
   storeId: string

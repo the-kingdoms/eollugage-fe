@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { useParams, useRouter } from 'next/navigation'
-import { ButtonMobile, TopBar, CheckBox } from '@eolluga/eolluga-ui'
+import { ButtonMobile, TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { CheckBox } from '@eolluga/eolluga-ui/Input'
 import { userNameAtom } from '@/shared/atoms/globalAtom'
 import { useDeleteUser } from '@/widgets/setting/model/useDeleteUser'
 
@@ -78,7 +79,7 @@ export default function Quit() {
           <CheckBox alert="동의확인란" size="L" state="enable" title="확인했습니다" />
         </div>
         <ButtonMobile
-          style="primary"
+          mode="primary"
           size="L"
           type="text"
           state={isChecked ? 'enabled' : 'disabled'}

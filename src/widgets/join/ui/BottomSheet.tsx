@@ -1,6 +1,7 @@
 import { Drawer, DrawerContent } from '@/shared/ui/shadcn/drawer'
 import FlexBox from '@/shared/ui/Flexbox'
-import { ButtonMobile, TextField } from '@eolluga/eolluga-ui'
+import ButtonMobile from '@eolluga/eolluga-ui/Navigation/ButtonMobile'
+import TextField from '@eolluga/eolluga-ui/Input/TextField'
 
 interface BottomSheetProps {
   openBottomSheet: boolean
@@ -31,7 +32,7 @@ export default function BottomSheet({
               value={storeId.slice(0, 4)}
               label="가게 코드"
               size="L"
-              style="underlined"
+              mode="underlined"
               state="readOnly"
               onChange={() => console.log('')}
             />
@@ -40,7 +41,7 @@ export default function BottomSheet({
             <ButtonMobile
               size="L"
               state="enabled"
-              style="primary"
+              mode="primary"
               text1="확인했습니다"
               type="text"
               onClick={() => handleNextStep()}

@@ -1,6 +1,6 @@
 'use client'
 
-import { Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import Link from 'next/link'
 import { sendRNFunction } from '@/shared'
 import { useEffect } from 'react'

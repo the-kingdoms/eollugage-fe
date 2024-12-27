@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import '@eolluga/eolluga-ui/dist/index.css'
+import '@eolluga/eolluga-ui/index.css'
 import ProviderLayout from '@/shared/ui/ProviderLayout'
 import RNListener from '@/shared/ui/RNListener'
 
