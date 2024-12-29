@@ -1,8 +1,8 @@
 import FlexBox from '@/shared/ui/Flexbox'
 import { Avatar, ButtonMobile, TopBar } from '@eolluga/eolluga-ui'
 import { useRouter } from 'next/navigation'
-import { sendRNFunction } from '@/shared'
 import useJoin from '../hooks/useJoin'
+import { sendRNFunction } from '@/shared'
 
 interface UserProfileProps {
   name: string
