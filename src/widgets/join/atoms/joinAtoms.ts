@@ -6,3 +6,6 @@ export const storeNameAtom = atom<string>('')
 export const storeIdAtom = atom<string>('')
 export const memberIdAtom = atom<string>('')
 export const isOwnerAtom = atom<boolean>(true)
+
+// send-verification 엔드포인트 응답 값 저장소
+export const uid = atom<string>('')

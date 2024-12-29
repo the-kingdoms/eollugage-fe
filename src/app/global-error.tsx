@@ -1,5 +1,8 @@
 'use client'
 
+import * as Sentry from '@sentry/nextjs'
+import Error from 'next/error'
+import { useEffect } from 'react'
 import { Flexbox, deleteTokenFromCookie } from '@/shared'
 import { ButtonMobile } from '@eolluga/eolluga-ui'
 import Link from 'next/link'
@@ -8,12 +11,16 @@ export default function GlobalError({
   error,
   reset,
 }: {
-  error: Error & { digest?: string }
+  error: Error & { digest?: string; message?: string }
   reset: () => void
 }) {
   const onClickHomeBtn = () => {
     deleteTokenFromCookie()
   }
+
+  useEffect(() => {
+    Sentry.captureException(error)
+  }, [error])
 
   return (
     <html lang="en">

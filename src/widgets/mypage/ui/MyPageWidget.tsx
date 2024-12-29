@@ -2,7 +2,7 @@
 
 import { useAtom } from 'jotai'
 import { Icon, Avatar } from '@eolluga/eolluga-ui'
-import { storeNameAtom, userNameAtom } from '@/shared/atoms/globalAtom'
+import { userNameAtom } from '@/shared/atoms/globalAtom'
 import { UserInfo } from '@/entities'
 import { useEffect } from 'react'
 import Link from 'next/link'
@@ -17,18 +17,17 @@ export default function MyPageWidget({
   userData: UserInfo | undefined
   isOwner: boolean
 }) {
-  const [, setStoreName] = useAtom(storeNameAtom)
   const [, setUserName] = useAtom(userNameAtom)
 
   useEffect(() => {
     if (userData) {
-      setStoreName(userData.storeList[0]?.name || '')
       setUserName(userData.name || '')
     }
-  }, [userData, setStoreName, setUserName])
+  }, [userData, setUserName])
 
   useEffect(() => {
     sendRNFunction('setStatusbarStyle', { color: '#FFF', style: 'dark' })
+    sendRNFunction('setSafeAreaEdges', [])
   }, [])
 
   return (
