@@ -3,11 +3,13 @@ export interface RelationT {
   storeId: string
   role: 'OWNER' | 'STAFF'
   position: string
+  member: string | null
 }
 export interface UserInfo {
   id: string
   name: string
   phone: string
   providerType: string
-  relationDTO: RelationT
+  relationList: RelationT[]
+  storeList: Store[]
 }
