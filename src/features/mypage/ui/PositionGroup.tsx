@@ -1,7 +1,7 @@
 'use client'
 
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import { PositionGroupProps } from '@/shared/types/myPageTypes'
 
 export default function PositionGroup({ id, position, items, index, length }: PositionGroupProps) {

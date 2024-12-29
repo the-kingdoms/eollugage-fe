@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { TopBar, Icon } from '@eolluga/eolluga-ui'
+import { TopBar } from '@eolluga/eolluga-ui/Navigation'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
 import LogoutModal from '@/features/setting/ui/LogoutModal'
 import { sendRNFunction } from '@/shared'
 

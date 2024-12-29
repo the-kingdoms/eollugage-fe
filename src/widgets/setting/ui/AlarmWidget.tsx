@@ -2,7 +2,8 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { TopBar, Switch } from '@eolluga/eolluga-ui'
+import { TopBar } from '@eolluga/eolluga-ui/Navigation'
+import { Switch } from '@eolluga/eolluga-ui/Input'
 import { usePostNotification } from '../model/usePostNotification'
 
 export default function AlarmWidget() {

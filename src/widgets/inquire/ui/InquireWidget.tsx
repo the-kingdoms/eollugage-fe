@@ -1,7 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { TopBar, ButtonMobile, Icon } from '@eolluga/eolluga-ui'
+import Icon from '@eolluga/eolluga-ui/icon/Icon'
+import { TopBar, ButtonMobile } from '@eolluga/eolluga-ui/Navigation'
 import { sendRNFunction } from '@/shared'
 
 export default function InquireWidget({ storeId }: { storeId: string }) {
@@ -37,7 +38,7 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
         </button>
         <ButtonMobile
           size="L"
-          style="border"
+          mode="border"
           type="icon-left"
           state="enabled"
           text1="전화로 문의하기"
