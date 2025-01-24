@@ -35,7 +35,6 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
           </span>
           <span className="text-black shrink-0">카카오톡으로 문의하기</span>
         </button>
-        {/*
         <ButtonMobile
           size="L"
           style="border"
@@ -45,7 +44,6 @@ export default function InquireWidget({ storeId }: { storeId: string }) {
           iconKey="device_phone"
           onClick={() => push(`/${storeId}/mypage/setting/inquire/byPhone`)}
         />
-        */}
       </footer>
     </div>
   )
