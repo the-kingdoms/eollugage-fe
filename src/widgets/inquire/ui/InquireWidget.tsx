@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { TopBar, ButtonMobile, Icon } from '@eolluga/eolluga-ui'
+import { TopBar, Icon } from '@eolluga/eolluga-ui'
 import { sendRNFunction } from '@/shared'
 
 export default function InquireWidget({ storeId }: { storeId: string }) {
